@@ -292,7 +292,15 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+         String s = Facturacion.s;
+        Facturacion vista = new Facturacion();
+        if(s == null){
+            jpEscritorio1.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio1, "Ventana ya abierta!!!");
+
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
