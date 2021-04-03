@@ -7,7 +7,7 @@ package proyectojava;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-//probando 123 kathy estuvo aqui ok
+//probando 123 kathy estuvo aqui ok  jajajajja
 /**
  *
  * @author Francisco Javier
