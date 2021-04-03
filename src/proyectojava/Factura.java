@@ -316,7 +316,8 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-      String prod = ProducFactura.prod;
+      //abre ventana de producto
+        String prod = ProducFactura.prod;
         ProducFactura vista = new ProducFactura();
       for(int i = 0; i < 2; i++){  
             if(prod==null){
