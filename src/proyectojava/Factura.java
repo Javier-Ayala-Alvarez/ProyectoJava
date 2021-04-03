@@ -292,15 +292,7 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String s = Facturacion.s;
-        Facturacion vista = new Facturacion();
-        if(s == null){
-            jpEscritorio1.add(vista);
-            vista.show();
-        }else{
-            JOptionPane.showMessageDialog(jpEscritorio1, "Ventana ya abierta!!!");
-
-        }
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
@@ -324,7 +316,16 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-      
+      String prod = ProducFactura.prod;
+        ProducFactura vista = new ProducFactura();
+      for(int i = 0; i < 2; i++){  
+            if(prod==null){
+            jpEscritorio1.add(vista);
+            vista.show();
+            }else{
+               res = null;
+            }
+        } 
     }//GEN-LAST:event_jTextField1FocusGained
 
     private void jTextField1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField1InputMethodTextChanged
@@ -336,16 +337,7 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        String prod = ProducFactura.prod;
-        ProducFactura vista = new ProducFactura();
-      for(int i = 0; i < 2; i++){  
-            if(prod==null){
-            jpEscritorio1.add(vista);
-            vista.show();
-            }else{
-               res = null;
-            }
-        }  
+         
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
