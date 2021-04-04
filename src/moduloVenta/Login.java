@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectojava;
+package moduloVenta;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
 //probando 123 kathy estuvo aqui ok  jajajajja
-/**JAJAJAJAXD 
+/**
  *
  * @author Francisco Javier
  */

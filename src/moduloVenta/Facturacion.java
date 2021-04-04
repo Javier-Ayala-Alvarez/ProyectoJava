@@ -3,32 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectojava;
+package moduloVenta;
 
 
 /**
  *
  * @author Francisco Javier
  */
-public class ProducFactura extends javax.swing.JInternalFrame {
-public static String prod;
-
+public class Facturacion extends javax.swing.JInternalFrame {
+public static String s;
+public static String i;
     /**
      * Creates new form Facturacion
      */
 
-    public ProducFactura() {
+    public Facturacion() {
         initComponents();
         int a = Factura.jpEscritorio1.getWidth()-this.getWidth();
         int b = Factura.jpEscritorio1.getHeight()-this.getHeight();
-        setLocation(a / 2, b / 8);
-        prod ="s";
-       String res = Factura.res;
-        if(res == null){
-            this.dispose();
-        }else if(res == "w"){
-            this.dispose();
-        }
+        setLocation(a / 2, b / 2);
+        s ="s";
+        i = "i";
         
     }
 
@@ -41,8 +36,10 @@ public static String prod;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -63,28 +60,45 @@ public static String prod;
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Codigo", "Nombre", "Precio Unitario", "Cantidad"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Cliente");
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Vendedor");
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Telefono");
+
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Fecha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(191, 191, 191)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addContainerGap(655, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addContainerGap(470, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("factura");
@@ -93,13 +107,15 @@ public static String prod;
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-       prod =null; 
-       
+       s =null; 
+       i = null;
     }//GEN-LAST:event_formInternalFrameClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

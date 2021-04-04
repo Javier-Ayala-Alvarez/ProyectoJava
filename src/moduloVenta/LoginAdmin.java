@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectojava;
+package moduloVenta;
 
-import static proyectojava.GuardarEmpleado.x;
+import moduloAdministracion.MenuAdministrador;
 
 /**
  *
@@ -98,7 +98,7 @@ public static String x;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MenuAdministrador vista2 = new MenuAdministrador();
+        moduloAdministracion.MenuAdministrador vista2 = new moduloAdministracion.MenuAdministrador();
         vista2.show(); 
         this.dispose();
         x =null;

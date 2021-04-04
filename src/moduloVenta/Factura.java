@@ -1,8 +1,9 @@
-package proyectojava;
+package moduloVenta;
 
+import moduloAdministracion.MenuAdministrador;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static proyectojava.MenuAdministrador.jpEscritorio;
+import static moduloAdministracion.MenuAdministrador.jpEscritorio;
 
 /**
  *
@@ -266,7 +267,7 @@ public class Factura extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpEscritorio1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 553, Short.MAX_VALUE)
+            .addComponent(jpEscritorio1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
         );
 
         pack();
@@ -292,9 +293,10 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-         String s = Facturacion.s;
+        String x = LoginAdmin.x;
+        String xm = Facturacion.s;
         Facturacion vista = new Facturacion();
-        if(s == null){
+        if((x == null)&& (xm == null)){
             jpEscritorio1.add(vista);
             vista.show();
         }else{
