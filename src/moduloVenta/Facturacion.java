@@ -54,19 +54,18 @@ public static String i;
         jLabel4 = new javax.swing.JLabel();
         jTextPreTotProdu = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextFecha = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableRegisProd = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         jTextTotalPagar = new javax.swing.JTextField();
         jButtonVender = new javax.swing.JButton();
         jLabelNombreClie = new javax.swing.JLabel();
-        jLabelNombrePro = new javax.swing.JLabel();
         jLabelCanti = new javax.swing.JLabel();
         jLabelPU = new javax.swing.JLabel();
         jLabelTotPagar = new javax.swing.JLabel();
         jLabelPT = new javax.swing.JLabel();
         jButtonSalir = new javax.swing.JButton();
+        jFormattedFecha = new javax.swing.JFormattedTextField();
 
         jTextField7.setText("jTextField7");
 
@@ -192,8 +191,6 @@ public static String i;
 
         jLabelNombreClie.setForeground(new java.awt.Color(255, 51, 51));
 
-        jLabelNombrePro.setForeground(new java.awt.Color(255, 51, 51));
-
         jLabelCanti.setForeground(new java.awt.Color(255, 51, 51));
 
         jLabelPU.setForeground(new java.awt.Color(255, 51, 51));
@@ -209,6 +206,12 @@ public static String i;
             }
         });
 
+        try {
+            jFormattedFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -220,19 +223,19 @@ public static String i;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextCantiProdu)
-                                            .addComponent(jTextFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextCantiProdu, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFormattedFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButtonAgreCarri))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
+                                        .addGap(0, 0, 0)
                                         .addComponent(jLabelCanti, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(208, 208, 208)
                                         .addComponent(jTextPreTotProdu, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,17 +243,15 @@ public static String i;
                                         .addComponent(jLabelPT, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelNombrePro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel7)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextNomProdu))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextNomClien, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextNomProdu))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextNomClien, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -279,7 +280,7 @@ public static String i;
                     .addGroup(layout.createSequentialGroup()
                         .addGap(269, 269, 269)
                         .addComponent(jLabelNombreClie, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabelTotPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,16 +311,13 @@ public static String i;
                                 .addComponent(jLabelNombreClie, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jTextNomProdu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jTextPreUniProduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(4, 4, 4)
-                                        .addComponent(jLabelNombrePro, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jTextNomProdu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jTextPreUniProduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabelPU, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1)
                                     .addComponent(jTextCantiProdu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -330,11 +328,11 @@ public static String i;
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAgreCarri))
+                    .addComponent(jButtonAgreCarri)
+                    .addComponent(jFormattedFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jTextTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -425,13 +423,11 @@ public static String i;
 
     private void jTextNomProduKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomProduKeyTyped
         // TODO add your handling code here:
-        char vali = evt.getKeyChar();
-             if(Character.isDigit(vali)){
-                 evt.consume();
-                 jLabelNombrePro.setText("Digitar letras");
-             }else{
-                 jLabelNombrePro.setText("");
-             }
+        if(jTextNomProdu.getText().length()>=8){
+            evt.consume();
+        
+        }
+             
     }//GEN-LAST:event_jTextNomProduKeyTyped
 
     private void jTextCantiProduKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextCantiProduKeyTyped
@@ -451,7 +447,7 @@ public static String i;
            && !jTextDirecClien.getText().isEmpty()
            && !jTextNomProdu.getText().isEmpty()
            && !jTextCantiProdu.getText().isEmpty()
-           && !jTextFecha.getText().isEmpty()){
+           && !jFormattedFecha.getText().isEmpty()){
             
             
             //            Aqui voy hacer que se almacenen en la tabla
@@ -473,7 +469,7 @@ public static String i;
     jTextDirecClien.setText("");
     jTextNomProdu.setText("");
     jTextCantiProdu.setText("");
-    jTextFecha.setText("");
+    jFormattedFecha.setText("");
     jLabelPU.setText("");
     jLabelPT.setText("");
     jLabelTotPagar.setText("");
@@ -491,6 +487,7 @@ public static String i;
     public javax.swing.JButton jButtonAgreCarri;
     public javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonVender;
+    private javax.swing.JFormattedTextField jFormattedFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -502,7 +499,6 @@ public static String i;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCanti;
     private javax.swing.JLabel jLabelNombreClie;
-    private javax.swing.JLabel jLabelNombrePro;
     private javax.swing.JLabel jLabelPT;
     private javax.swing.JLabel jLabelPU;
     private javax.swing.JLabel jLabelTotPagar;
@@ -510,7 +506,6 @@ public static String i;
     public javax.swing.JTable jTableRegisProd;
     public javax.swing.JTextField jTextCantiProdu;
     public javax.swing.JTextField jTextDirecClien;
-    public javax.swing.JTextField jTextFecha;
     private javax.swing.JTextField jTextField7;
     public javax.swing.JTextField jTextNomClien;
     public javax.swing.JTextField jTextNomProdu;
