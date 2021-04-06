@@ -5,6 +5,8 @@
  */
 package moduloVenta;
 
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -36,10 +38,37 @@ public static String i;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField7 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextNomClien = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextDirecClien = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jTextCantiProdu = new javax.swing.JTextField();
+        jButtonAgreCarri = new javax.swing.JButton();
+        jTextNomProdu = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jTextPreUniProduc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jTextPreTotProdu = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextFecha = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableRegisProd = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        jTextTotalPagar = new javax.swing.JTextField();
+        jButtonVender = new javax.swing.JButton();
+        jLabelNombreClie = new javax.swing.JLabel();
+        jLabelNombrePro = new javax.swing.JLabel();
+        jLabelCanti = new javax.swing.JLabel();
+        jLabelPU = new javax.swing.JLabel();
+        jLabelTotPagar = new javax.swing.JLabel();
+        jLabelPT = new javax.swing.JLabel();
+        jButtonSalir = new javax.swing.JButton();
+
+        jTextField7.setText("jTextField7");
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -60,45 +89,262 @@ public static String i;
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Cliente");
+        jLabel5.setText(" Cliente:");
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Vendedor");
+        jTextNomClien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextNomClienKeyTyped(evt);
+            }
+        });
 
-        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Telefono");
+        jLabel6.setText("Dirección:");
 
-        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Fecha");
+        jTextDirecClien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextDirecClienActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Producto:");
+
+        jLabel1.setText("Cantidad:");
+
+        jTextCantiProdu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextCantiProduKeyTyped(evt);
+            }
+        });
+
+        jButtonAgreCarri.setText("Agregar a carrito");
+        jButtonAgreCarri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgreCarriActionPerformed(evt);
+            }
+        });
+
+        jTextNomProdu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextNomProduKeyTyped(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("NOMBRE DE LA EMPRESA");
+
+        jLabel3.setText("Precio Unitario");
+
+        jTextPreUniProduc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextPreUniProducKeyTyped(evt);
+            }
+        });
+
+        jLabel4.setText("PrecioTotal:");
+
+        jTextPreTotProdu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextPreTotProduActionPerformed(evt);
+            }
+        });
+        jTextPreTotProdu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextPreTotProduKeyTyped(evt);
+            }
+        });
+
+        jLabel8.setText("Fecha:");
+
+        jTableRegisProd.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Codigo", "Cantidad", "Producto", "P/U", "Total"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableRegisProd);
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel9.setText("TOTAL A PAGAR:");
+
+        jTextTotalPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextTotalPagarActionPerformed(evt);
+            }
+        });
+        jTextTotalPagar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextTotalPagarKeyTyped(evt);
+            }
+        });
+
+        jButtonVender.setText("Vender");
+
+        jLabelNombreClie.setForeground(new java.awt.Color(255, 51, 51));
+
+        jLabelNombrePro.setForeground(new java.awt.Color(255, 51, 51));
+
+        jLabelCanti.setForeground(new java.awt.Color(255, 51, 51));
+
+        jLabelPU.setForeground(new java.awt.Color(255, 51, 51));
+
+        jLabelTotPagar.setForeground(new java.awt.Color(255, 51, 51));
+
+        jLabelPT.setForeground(new java.awt.Color(255, 51, 51));
+
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(191, 191, 191)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addContainerGap(655, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextCantiProdu)
+                                            .addComponent(jTextFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonAgreCarri))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelCanti, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(208, 208, 208)
+                                        .addComponent(jTextPreTotProdu, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelPT, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelNombrePro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel7)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jTextNomProdu))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jTextNomClien, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(57, 57, 57)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTextPreUniProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabelPU, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextDirecClien, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(13, 13, 13))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(234, 234, 234)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(269, 269, 269)
+                        .addComponent(jLabelNombreClie, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(56, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabelTotPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jButtonSalir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonVender, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextNomClien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextDirecClien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelNombreClie, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jTextNomProdu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jTextPreUniProduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(4, 4, 4)
+                                        .addComponent(jLabelNombrePro, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabelPU, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTextCantiProdu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jTextPreTotProdu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabelPT, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabelCanti, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAgreCarri))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addContainerGap(470, Short.MAX_VALUE))
+                    .addComponent(jLabel9)
+                    .addComponent(jTextTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTotPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonVender)
+                    .addComponent(jButtonSalir))
+                .addContainerGap())
         );
 
         getAccessibleContext().setAccessibleName("factura");
@@ -111,11 +357,165 @@ public static String i;
        i = null;
     }//GEN-LAST:event_formInternalFrameClosing
 
+    private void jTextDirecClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextDirecClienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextDirecClienActionPerformed
+
+    private void jTextPreTotProduActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPreTotProduActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextPreTotProduActionPerformed
+
+    private void jTextTotalPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTotalPagarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextTotalPagarActionPerformed
+
+    private void jTextPreUniProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPreUniProducKeyTyped
+        // TODO add your handling code here:
+        this.jTextPreUniProduc.setEditable(false);
+        char vali = evt.getKeyChar();
+             if(Character.isDigit(vali)){
+                 evt.consume();
+                 jLabelPU.setText("Este campo no es editable");
+             }else{
+                jLabelPU.setText("Este campo no es editable");
+             }
+             
+        
+    }//GEN-LAST:event_jTextPreUniProducKeyTyped
+
+    private void jTextTotalPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextTotalPagarKeyTyped
+        // TODO add your handling code here:
+         this.jTextTotalPagar.setEditable(false);
+          char vali = evt.getKeyChar();
+             if(Character.isDigit(vali)){
+                 evt.consume();
+                jLabelTotPagar.setText("Este campo no es editable");
+             }else{
+                jLabelTotPagar.setText("Este campo no es editable");
+             }
+    }//GEN-LAST:event_jTextTotalPagarKeyTyped
+
+    private void jTextPreTotProduKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPreTotProduKeyTyped
+        // TODO add your handling code here:
+        this.jTextPreTotProdu.setEditable(false);
+        char vali = evt.getKeyChar();
+             if(Character.isDigit(vali)){
+                 evt.consume();
+                jLabelPT.setText("Este campo no es editable");
+             }else{
+                jLabelPT.setText("Este campo no es editable");
+             }
+        
+                
+        
+    }//GEN-LAST:event_jTextPreTotProduKeyTyped
+
+    private void jTextNomClienKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomClienKeyTyped
+        // TODO add your handling code here:
+        char vali = evt.getKeyChar();
+             if(Character.isDigit(vali)){
+                 evt.consume();
+                 jLabelNombreClie.setText("Digitar letras");
+             }else{
+                 jLabelNombreClie.setText("");
+             }
+    }//GEN-LAST:event_jTextNomClienKeyTyped
+
+    private void jTextNomProduKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomProduKeyTyped
+        // TODO add your handling code here:
+        char vali = evt.getKeyChar();
+             if(Character.isDigit(vali)){
+                 evt.consume();
+                 jLabelNombrePro.setText("Digitar letras");
+             }else{
+                 jLabelNombrePro.setText("");
+             }
+    }//GEN-LAST:event_jTextNomProduKeyTyped
+
+    private void jTextCantiProduKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextCantiProduKeyTyped
+        // TODO add your handling code here:
+         char vali = evt.getKeyChar();
+        if(Character.isDigit(vali)){
+            jLabelCanti.setText("");
+        }else{
+        jLabelCanti.setText("Digitar numeros");
+        evt.consume();
+        }  
+    }//GEN-LAST:event_jTextCantiProduKeyTyped
+
+    private void jButtonAgreCarriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgreCarriActionPerformed
+        // TODO add your handling code here:
+        if(!jTextNomClien.getText().isEmpty()
+           && !jTextDirecClien.getText().isEmpty()
+           && !jTextNomProdu.getText().isEmpty()
+           && !jTextCantiProdu.getText().isEmpty()
+           && !jTextFecha.getText().isEmpty()){
+            
+            
+            //            Aqui voy hacer que se almacenen en la tabla
+            
+            
+            
+            
+           limpiarVista();
+
+        }else{
+            JOptionPane.showMessageDialog(null,"Llenar todos los Campos","ERROR",JOptionPane.ERROR_MESSAGE);       
+        }
+        
+        
+    }//GEN-LAST:event_jButtonAgreCarriActionPerformed
+
+     public void limpiarVista(){
+    jTextNomClien.setText("");
+    jTextDirecClien.setText("");
+    jTextNomProdu.setText("");
+    jTextCantiProdu.setText("");
+    jTextFecha.setText("");
+    jLabelPU.setText("");
+    jLabelPT.setText("");
+    jLabelTotPagar.setText("");
+}
+     
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+         s =null;
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton jButtonAgreCarri;
+    public javax.swing.JButton jButtonSalir;
+    private javax.swing.JButton jButtonVender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelCanti;
+    private javax.swing.JLabel jLabelNombreClie;
+    private javax.swing.JLabel jLabelNombrePro;
+    private javax.swing.JLabel jLabelPT;
+    private javax.swing.JLabel jLabelPU;
+    private javax.swing.JLabel jLabelTotPagar;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable jTableRegisProd;
+    public javax.swing.JTextField jTextCantiProdu;
+    public javax.swing.JTextField jTextDirecClien;
+    public javax.swing.JTextField jTextFecha;
+    private javax.swing.JTextField jTextField7;
+    public javax.swing.JTextField jTextNomClien;
+    public javax.swing.JTextField jTextNomProdu;
+    public javax.swing.JTextField jTextPreTotProdu;
+    public javax.swing.JTextField jTextPreUniProduc;
+    public javax.swing.JTextField jTextTotalPagar;
     // End of variables declaration//GEN-END:variables
 }
