@@ -3,25 +3,13 @@ package moduloVenta;
 import moduloAdministracion.MenuAdministrador;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static moduloAdministracion.MenuAdministrador.jpEscritorio;
-import static moduloVenta.Facturacion.res;
 
-/**
- *
- * @author Francisco Javier
- */
 public class Factura extends javax.swing.JFrame {
     public static String res;
     public Factura() {
-        
         initComponents();
-         
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);//PANTALLA COMPLETA
-        jpEscritorio1.setBorder(new Fondo("/img/Fondo.jpg"));
-      res = "r";
-        
-        
-        
+        jpEscritorio1.setBorder(new Fondo("/img/Fondo.jpg"));      
     }
 
 
@@ -40,6 +28,7 @@ public class Factura extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jMenu3 = new javax.swing.JMenu();
+        jDialog1 = new javax.swing.JDialog();
         jpEscritorio1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
@@ -84,6 +73,17 @@ public class Factura extends javax.swing.JFrame {
         );
 
         jMenu3.setText("jMenu3");
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Sistema de Tienda");
@@ -323,27 +323,30 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1InputMethodTextChanged
 
     private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseExited
-
+       Producto vista1 = new Producto(this,false);
+       vista1.dispose();
     }//GEN-LAST:event_jTextField1MouseExited
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-
-    }//GEN-LAST:event_jTextField1MouseClicked
-
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
-          String prod = Busqueda.prod;
-        Busqueda vista = new Busqueda();
+       String prod = Producto.prod;
+        Producto vista1 = new Producto(this,false);
         for(int i = 0; i < 2; i++){
             if(prod==null){
-                vista.show();
+                vista1.show();
             }else{
                 res = null;
             }
         }
+    }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        
     }//GEN-LAST:event_jTextField1FocusLost
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-       
+        
+            
+            
     }//GEN-LAST:event_jTextField1FocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -351,6 +354,7 @@ public class Factura extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
