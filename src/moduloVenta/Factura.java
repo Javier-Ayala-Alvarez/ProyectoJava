@@ -4,6 +4,7 @@ import moduloAdministracion.MenuAdministrador;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static moduloAdministracion.MenuAdministrador.jpEscritorio;
+import static moduloVenta.Facturacion.res;
 
 /**
  *
@@ -267,7 +268,7 @@ public class Factura extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpEscritorio1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+            .addComponent(jpEscritorio1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 553, Short.MAX_VALUE)
         );
 
         pack();
@@ -305,51 +306,45 @@ public class Factura extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        
-    }//GEN-LAST:event_jTextField1MouseClicked
-
-    private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseExited
-        
-        
-    }//GEN-LAST:event_jTextField1MouseExited
-
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
-        String prod = ProducFactura.prod;
-        if((prod == "s")){
-           res = "w";
-       }
-    }//GEN-LAST:event_jTextField1FocusLost
-
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        
-    }//GEN-LAST:event_jTextField1KeyReleased
-
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-      //abre ventana de producto
-        String prod = ProducFactura.prod;
-        ProducFactura vista = new ProducFactura();
-      for(int i = 0; i < 2; i++){  
-            if(prod==null){
-            jpEscritorio1.add(vista);
-            vista.show();
-            }else{
-               res = null;
-            }
-        } 
-    }//GEN-LAST:event_jTextField1FocusGained
-
-    private void jTextField1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField1InputMethodTextChanged
-       
-    }//GEN-LAST:event_jTextField1InputMethodTextChanged
-
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        
+
     }//GEN-LAST:event_jTextField1KeyTyped
 
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+
+    }//GEN-LAST:event_jTextField1KeyReleased
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-         
+
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField1InputMethodTextChanged
+
+    }//GEN-LAST:event_jTextField1InputMethodTextChanged
+
+    private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseExited
+
+    }//GEN-LAST:event_jTextField1MouseExited
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+
+    }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+          String prod = Busqueda.prod;
+        Busqueda vista = new Busqueda();
+        for(int i = 0; i < 2; i++){
+            if(prod==null){
+                vista.show();
+            }else{
+                res = null;
+            }
+        }
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+       
+    }//GEN-LAST:event_jTextField1FocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
