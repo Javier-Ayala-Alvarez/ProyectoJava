@@ -13,7 +13,7 @@ import moduloVenta.Fondo;
  */
 public class GastoEC extends javax.swing.JInternalFrame {
 public static String x;
-int Combo = 2;
+
     /**
      * Creates new form GuardarEmpleado
      */
@@ -234,16 +234,14 @@ int Combo = 2;
     }//GEN-LAST:event_jTable1FocusLost
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        lbMensaje.setText("Elija una Opcion"); 
-        if(Combo == 1){
+
              btnEliminar.setEnabled(true);
-             lbMensaje.setText("");
-         }
+          
          
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
-        Combo = 1;
+
     }//GEN-LAST:event_jComboBox1MouseClicked
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
