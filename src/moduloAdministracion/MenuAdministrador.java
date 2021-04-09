@@ -56,10 +56,31 @@ public static String xm;
         jMenu11 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu12 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jmGuardar3 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
+        jMenu14 = new javax.swing.JMenu();
+        jmGuardar5 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
+        jMenuItem25 = new javax.swing.JMenuItem();
+        jMenuItem26 = new javax.swing.JMenuItem();
+        jMenuItem27 = new javax.swing.JMenuItem();
+        jMenuItem28 = new javax.swing.JMenuItem();
+        jMenuItem29 = new javax.swing.JMenuItem();
+        jMenu15 = new javax.swing.JMenu();
+        jmGuardar6 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
+        jMenuItem32 = new javax.swing.JMenuItem();
+        jMenuItem33 = new javax.swing.JMenuItem();
+        jMenuItem34 = new javax.swing.JMenuItem();
+        jMenuItem35 = new javax.swing.JMenuItem();
+        jMenu16 = new javax.swing.JMenu();
         jMenu13 = new javax.swing.JMenu();
         jmGuardar4 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
@@ -129,7 +150,7 @@ public static String xm;
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("SUCURSAL : ");
+        jLabel1.setText("Empresa:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -138,7 +159,7 @@ public static String xm;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 576, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 622, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -161,7 +182,7 @@ public static String xm;
         jpEscritorioLayout.setVerticalGroup(
             jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEscritorioLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 364, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -273,37 +294,193 @@ public static String xm;
         jMenu12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gastos.png"))); // NOI18N
         jMenu12.setText("Gastos de Sucursal");
 
-        jmGuardar3.setText("Guardar");
+        jMenu4.setText("Agregar");
+
+        jmGuardar3.setText("Impuesto");
         jmGuardar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmGuardar3ActionPerformed(evt);
             }
         });
-        jMenu12.add(jmGuardar3);
+        jMenu4.add(jmGuardar3);
 
-        jMenuItem11.setText("Modificar");
+        jMenuItem23.setText("IVA");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem23);
+
+        jMenuItem11.setText("Energia");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem11ActionPerformed(evt);
             }
         });
-        jMenu12.add(jMenuItem11);
+        jMenu4.add(jMenuItem11);
 
-        jMenuItem16.setText("Consultar");
+        jMenuItem16.setText("Alquiler");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem16ActionPerformed(evt);
             }
         });
-        jMenu12.add(jMenuItem16);
+        jMenu4.add(jMenuItem16);
 
-        jMenuItem17.setText("Eliminar");
+        jMenuItem17.setText("Agua");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem17ActionPerformed(evt);
             }
         });
-        jMenu12.add(jMenuItem17);
+        jMenu4.add(jMenuItem17);
+
+        jMenuItem21.setText("ISSS");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem21);
+
+        jMenuItem22.setText("AFP");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem22);
+
+        jMenu12.add(jMenu4);
+
+        jMenu14.setText("Modificar");
+
+        jmGuardar5.setText("Impuesto");
+        jmGuardar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmGuardar5ActionPerformed(evt);
+            }
+        });
+        jMenu14.add(jmGuardar5);
+
+        jMenuItem24.setText("IVA");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu14.add(jMenuItem24);
+
+        jMenuItem25.setText("Energia");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
+        jMenu14.add(jMenuItem25);
+
+        jMenuItem26.setText("Alquiler");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
+        jMenu14.add(jMenuItem26);
+
+        jMenuItem27.setText("Agua");
+        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem27ActionPerformed(evt);
+            }
+        });
+        jMenu14.add(jMenuItem27);
+
+        jMenuItem28.setText("ISSS");
+        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem28ActionPerformed(evt);
+            }
+        });
+        jMenu14.add(jMenuItem28);
+
+        jMenuItem29.setText("AFP");
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem29ActionPerformed(evt);
+            }
+        });
+        jMenu14.add(jMenuItem29);
+
+        jMenu12.add(jMenu14);
+
+        jMenu15.setText("Consultar y Eliminar");
+
+        jmGuardar6.setText("Impuesto");
+        jmGuardar6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmGuardar6ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jmGuardar6);
+
+        jMenuItem30.setText("IVA");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItem30);
+
+        jMenuItem31.setText("Energia");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItem31);
+
+        jMenuItem32.setText("Alquiler");
+        jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem32ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItem32);
+
+        jMenuItem33.setText("Agua");
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItem33);
+
+        jMenuItem34.setText("ISSS");
+        jMenuItem34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem34ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItem34);
+
+        jMenuItem35.setText("AFP");
+        jMenuItem35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem35ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItem35);
+
+        jMenu12.add(jMenu15);
+
+        jMenu16.setText("Valance");
+        jMenu16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu16ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenu16);
 
         jMenu.add(jMenu12);
 
@@ -364,18 +541,6 @@ public static String xm;
        this.dispose();
        xm=null;
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jmGuardar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGuardar3ActionPerformed
-      String x = GuardarGastos.x;
-        GuardarGastos vista = new GuardarGastos();
-        if(x == null){
-            jpEscritorio.add(vista);
-            vista.show();
-        }else{
-            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
-
-        } 
-    }//GEN-LAST:event_jmGuardar3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
 
@@ -449,43 +614,6 @@ public static String xm;
        xm = null;
     }//GEN-LAST:event_formWindowClosing
 
-    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-          String x = EliminarGastos.x;
-        EliminarGastos vista = new EliminarGastos();
-        if(x == null){
-            jpEscritorio.add(vista);
-            vista.show();
-        }else{
-            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
-
-        }
-    }//GEN-LAST:event_jMenuItem17ActionPerformed
-
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-         String x = ModificarGastos.x;
-        ModificarGastos vista = new ModificarGastos();
-        if(x == null){
-            jpEscritorio.add(vista);
-            vista.show();
-        }else{
-            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
-
-        }  
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
-
-    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        String x = ConsultarGastos.x;
-        ConsultarGastos vista = new ConsultarGastos();
-        if(x == null){
-            jpEscritorio.add(vista);
-            vista.show();
-        }else{
-            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
-
-        }
-    
-    }//GEN-LAST:event_jMenuItem16ActionPerformed
-
     private void jmGuardar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGuardar4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jmGuardar4ActionPerformed
@@ -502,6 +630,284 @@ public static String xm;
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
+    private void jmGuardar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGuardar3ActionPerformed
+        String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("Impuesto");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jmGuardar3ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+       String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("IVA");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("Energia");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("Alquiler");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("Agua");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("ISSS");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("AFP");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jmGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGuardar5ActionPerformed
+        String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("Impuesto");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jmGuardar5ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("IVA");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("Energia");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+       String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("Alquiler");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
+
+    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
+         String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("Agua");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem27ActionPerformed
+
+    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
+       String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("ISSS");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem28ActionPerformed
+
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+        String x = GastoGM.x;
+        GastoGM vista = new GastoGM();
+        GastoGM.lbGasto.setText("AFP");
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
+
+    private void jmGuardar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGuardar6ActionPerformed
+         String x = GastoEC.x;
+        GastoEC vista = new GastoEC();
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jmGuardar6ActionPerformed
+
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        String x = GastoEC.x;
+        GastoEC vista = new GastoEC();
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+       String x = GastoEC.x;
+        GastoEC vista = new GastoEC();
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
+    private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
+       String x = GastoEC.x;
+        GastoEC vista = new GastoEC();
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem32ActionPerformed
+
+    private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
+        String x = GastoEC.x;
+        GastoEC vista = new GastoEC();
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem33ActionPerformed
+
+    private void jMenuItem34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem34ActionPerformed
+        String x = GastoEC.x;
+        GastoEC vista = new GastoEC();
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem34ActionPerformed
+
+    private void jMenuItem35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem35ActionPerformed
+        String x = GastoEC.x;
+        GastoEC vista = new GastoEC();
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem35ActionPerformed
+
+    private void jMenu16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu16ActionPerformed
+          String x = GastoValance.x;
+        GastoValance vista = new GastoValance();
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenu16ActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -513,8 +919,12 @@ public static String xm;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu13;
+    private javax.swing.JMenu jMenu14;
+    private javax.swing.JMenu jMenu15;
+    private javax.swing.JMenu jMenu16;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
@@ -535,7 +945,22 @@ public static String xm;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JMenuItem jMenuItem25;
+    private javax.swing.JMenuItem jMenuItem26;
+    private javax.swing.JMenuItem jMenuItem27;
+    private javax.swing.JMenuItem jMenuItem28;
+    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
+    private javax.swing.JMenuItem jMenuItem32;
+    private javax.swing.JMenuItem jMenuItem33;
+    private javax.swing.JMenuItem jMenuItem34;
+    private javax.swing.JMenuItem jMenuItem35;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem9;
@@ -545,6 +970,8 @@ public static String xm;
     private javax.swing.JMenuItem jmGuardar2;
     private javax.swing.JMenuItem jmGuardar3;
     private javax.swing.JMenuItem jmGuardar4;
+    private javax.swing.JMenuItem jmGuardar5;
+    private javax.swing.JMenuItem jmGuardar6;
     public static javax.swing.JPanel jpEscritorio;
     // End of variables declaration//GEN-END:variables
 }
