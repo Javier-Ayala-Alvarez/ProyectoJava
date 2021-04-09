@@ -323,8 +323,7 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1InputMethodTextChanged
 
     private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseExited
-       Producto vista1 = new Producto(this,false);
-       vista1.dispose();
+
     }//GEN-LAST:event_jTextField1MouseExited
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
