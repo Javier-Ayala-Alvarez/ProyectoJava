@@ -1,5 +1,5 @@
 
-package ClasesAdministracion;
+package Clases;
 
 import java.util.Date;
 

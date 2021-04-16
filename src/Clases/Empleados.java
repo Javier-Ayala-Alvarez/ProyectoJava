@@ -1,19 +1,20 @@
 
-package usuario;
+package Clases;
 
+import usuario.*;
 import java.util.Date;
 
 public class Empleados {
-   private String codigo; 
-   private String nombreEmpleado; 
-   private String apellidoEmpleado;
-   private String telefonoEmpleado;
-   private String dirrecionEmpleado;
-   private String salarioEmpleado;
-   private String cargoEmpleado;
-   private String afp;
-   private String isss;
-   private Date constratacion; 
+    protected String codigo; 
+    protected String nombreEmpleado; 
+    protected String apellidoEmpleado;
+    protected String telefonoEmpleado;
+    protected String dirrecionEmpleado;
+    protected String salarioEmpleado;
+    protected String cargoEmpleado;
+    protected String afp;
+    protected String isss;
+    protected Date constratacion; 
 
     public Empleados() {
     }
