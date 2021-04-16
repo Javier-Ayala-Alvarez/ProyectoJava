@@ -511,7 +511,6 @@ public static int opcion;
             vista.show();
         }else{
             JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
-
         }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 

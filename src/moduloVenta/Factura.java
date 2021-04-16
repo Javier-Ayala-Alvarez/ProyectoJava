@@ -285,9 +285,13 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Login vista = new Login();
-        vista.setVisible(true);
-        this.setVisible(false);
+        int opccion = JOptionPane.showConfirmDialog(null, "Deseas Salir de Facturacion?", "Confirmar salida", 
+               JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE); 
+        if(opccion == 0){
+         Login vista = new Login();
+        vista.show();
+        this.dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
