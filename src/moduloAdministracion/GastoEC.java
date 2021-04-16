@@ -38,6 +38,7 @@ public static String x;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        evaluatorColor1 = new org.jdesktop.swing.animation.timing.evaluators.EvaluatorColor();
         btnEliminar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jpLogo1 = new javax.swing.JPanel();
@@ -229,17 +230,6 @@ public static String x;
         x=null;
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTable1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusLost
-       
-    }//GEN-LAST:event_jTable1FocusLost
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-
-             btnEliminar.setEnabled(true);
-          
-         
-    }//GEN-LAST:event_jTable1MouseClicked
-
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
 
     }//GEN-LAST:event_jComboBox1MouseClicked
@@ -248,9 +238,20 @@ public static String x;
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
+        btnEliminar.setEnabled(true);
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusLost
+
+    }//GEN-LAST:event_jTable1FocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
+    private org.jdesktop.swing.animation.timing.evaluators.EvaluatorColor evaluatorColor1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

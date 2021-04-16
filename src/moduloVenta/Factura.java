@@ -275,29 +275,25 @@ public class Factura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Login vista = new Login();
+       int opccion = JOptionPane.showConfirmDialog(null, "Deseas Salir?", "Confirmar salida", 
+               JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE); 
+        if(opccion == 0){
+         Login vista = new Login();
         vista.show();
         this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String x = LoginAdmin.x;
-        String xm = MenuAdministrador.xm;
-        LoginAdmin vista = new LoginAdmin();
-        if((x == null)&& (xm == null)){
-            jpEscritorio1.add(vista);
-            vista.show();
-        }else{
-            JOptionPane.showMessageDialog(jpEscritorio1, "Ventana ya abierta!!!");
-
-        }
+        Login vista = new Login();
+        vista.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String x = LoginAdmin.x;
         String xm = Facturacion.s;
         Facturacion vista = new Facturacion();
-        if((x == null)&& (xm == null)){
+        if((xm == null)){
             jpEscritorio1.add(vista);
             vista.show();
         }else{
@@ -323,7 +319,7 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1InputMethodTextChanged
 
     private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseExited
-
+       
     }//GEN-LAST:event_jTextField1MouseExited
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
