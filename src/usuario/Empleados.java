@@ -1,5 +1,5 @@
 
-package Usuarios;
+package usuario;
 
 import java.util.Date;
 

@@ -260,6 +260,11 @@ public static int opcion;
         jMenu10.add(jMenuItem5);
 
         jMenuItem6.setText("Eliminar");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu10.add(jMenuItem6);
 
         jMenuItem13.setText("Consultar");
@@ -378,7 +383,15 @@ public static int opcion;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        String x = ModificarEmpleado.x;
+        ModificarEmpleado vista = new ModificarEmpleado();
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
 
+        }  
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jmGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGuardarActionPerformed
@@ -513,6 +526,18 @@ public static int opcion;
             JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
         }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        String x = EliminarEmpleado1.x;
+        EliminarEmpleado1 vista = new EliminarEmpleado1();
+        if(x == null){
+            jpEscritorio.add(vista);
+            vista.show();
+        }else{
+            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
+
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
 
 
