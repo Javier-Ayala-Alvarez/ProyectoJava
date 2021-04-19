@@ -311,10 +311,10 @@ public static String i;
                         .addComponent(jLabelNombreClie, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel3)
                                 .addComponent(jTextPreUniProduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel7)
                                 .addComponent(jTextNomProdu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabelPU, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
@@ -486,8 +486,8 @@ public static String i;
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAgreCarri;
-    private javax.swing.JButton jButtonSalir;
+    public javax.swing.JButton jButtonAgreCarri;
+    public javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonVender;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFormattedTextField jFormattedFecha;
@@ -506,14 +506,14 @@ public static String i;
     private javax.swing.JLabel jLabelPU;
     private javax.swing.JLabel jLabelTotPagar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableRegisProd;
-    private javax.swing.JTextField jTextCantiProdu;
-    private javax.swing.JTextField jTextDirecClien;
+    public javax.swing.JTable jTableRegisProd;
+    public javax.swing.JTextField jTextCantiProdu;
+    public javax.swing.JTextField jTextDirecClien;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextNomClien;
+    public javax.swing.JTextField jTextNomClien;
     public javax.swing.JTextField jTextNomProdu;
-    private javax.swing.JTextField jTextPreTotProdu;
-    private javax.swing.JTextField jTextPreUniProduc;
-    private javax.swing.JTextField jTextTotalPagar;
+    public javax.swing.JTextField jTextPreTotProdu;
+    public javax.swing.JTextField jTextPreUniProduc;
+    public javax.swing.JTextField jTextTotalPagar;
     // End of variables declaration//GEN-END:variables
 }
