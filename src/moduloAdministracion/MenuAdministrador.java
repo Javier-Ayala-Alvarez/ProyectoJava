@@ -1,5 +1,6 @@
 package moduloAdministracion;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import moduloVenta.Fondo;
@@ -18,6 +19,8 @@ public static int opcion;
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);//PANTALLA COMPLETA
         jpEscritorio.setBorder(new Fondo("/img/Fondo.jpg"));
        xm = "xm";
+       jMenu.setBackground(Color.yellow);
+       jMenu.setBackground(Color.yellow);
         
     }
 
@@ -110,6 +113,7 @@ public static int opcion;
         setFocusTraversalPolicyProvider(true);
         setLocationByPlatform(true);
         setModalExclusionType(null);
+        setUndecorated(true);
         setSize(new java.awt.Dimension(10, 10));
         setState(5);
         setType(java.awt.Window.Type.POPUP);
@@ -172,7 +176,6 @@ public static int opcion;
 
         jMenu.setBackground(new java.awt.Color(54, 139, 200));
         jMenu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jMenu.setForeground(new java.awt.Color(51, 153, 255));
         jMenu.setAlignmentY(22.0F);
         jMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
