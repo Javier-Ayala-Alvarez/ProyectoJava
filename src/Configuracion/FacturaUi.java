@@ -92,14 +92,7 @@ public static String i;
     }//GEN-LAST:event_formInternalFrameClosing
 
      public void limpiarVista(){
-    jTextNomClien.setText("");
-    jTextDirecClien.setText("");
-    jTextNomProdu.setText("");
-    jTextCantiProdu.setText("");
-    jFormattedFecha.setText("");
-    jLabelPU.setText("");
-    jLabelPT.setText("");
-    jLabelTotPagar.setText("");
+   
 }
      
     
