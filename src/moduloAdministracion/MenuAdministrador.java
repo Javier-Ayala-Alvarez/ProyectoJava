@@ -53,6 +53,7 @@ public static int opcion;
         rSButtonHover5 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover6 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
+        jPanel3 = new javax.swing.JPanel();
         jMenu = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -164,9 +165,9 @@ public static int opcion;
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(materialButtonCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(materialButtonCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(13, 13, 13))
         );
 
@@ -243,20 +244,37 @@ public static int opcion;
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jpEscritorioLayout = new javax.swing.GroupLayout(jpEscritorio);
         jpEscritorio.setLayout(jpEscritorioLayout);
         jpEscritorioLayout.setHorizontalGroup(
             jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEscritorioLayout.createSequentialGroup()
-                .addGap(0, 657, Short.MAX_VALUE)
+                .addGap(249, 249, 249)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpEscritorioLayout.setVerticalGroup(
             jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEscritorioLayout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
+                .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpEscritorioLayout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -484,10 +502,10 @@ public static int opcion;
     }//GEN-LAST:event_jmGuardarActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        String x = RegistroDeProductos.x;
-        RegistroDeProductos vista = new RegistroDeProductos();
+        String x = RegistrosDeProductos.x;
+        RegistrosDeProductos vista = new RegistrosDeProductos(this,false);
         if(x == null){
-            jpEscritorio.add(vista);
+            
             vista.show();
         }else{
             JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
@@ -556,11 +574,11 @@ public static int opcion;
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-       String x = GastoGM.x;
+       String x = GastosGM.x;
           opcion = 1;
-        GastoGM vista = new GastoGM();
+        GastosGM vista = new GastosGM(this,false);
         if(x == null){
-            jpEscritorio.add(vista);
+            
             vista.show();
         }else{
             JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
@@ -569,11 +587,11 @@ public static int opcion;
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-         String x = GastoGM.x;
+         String x = GastosGM.x;
            opcion = 2;
-        GastoGM vista = new GastoGM();
+        GastosGM vista = new GastosGM(this,false);
         if(x == null){
-            jpEscritorio.add(vista);
+            
             vista.show();
         }else{
             JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
@@ -582,10 +600,9 @@ public static int opcion;
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        String x = GastoEC.x;
-        GastoEC vista = new GastoEC();
+        String x = GastosEC.x;
+        GastosEC vista = new GastosEC(this,false);
         if(x == null){
-            jpEscritorio.add(vista);
             vista.show();
         }else{
             JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
@@ -594,10 +611,10 @@ public static int opcion;
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        String x = GastoValance.x;
-        GastoValance vista = new GastoValance();
+        String x = GastosValance.x;
+        GastosValance vista = new GastosValance(this,false);
         if(x == null){
-            jpEscritorio.add(vista);
+            
             vista.show();
         }else{
             JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
@@ -605,15 +622,7 @@ public static int opcion;
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        String x = EliminarEmpleado1.x;
-        EliminarEmpleado1 vista = new EliminarEmpleado1();
-        if(x == null){
-            jpEscritorio.add(vista);
-            vista.show();
-        }else{
-            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
-
-        }
+        
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
@@ -688,6 +697,7 @@ public static int opcion;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JMenuItem jmGuardar;
     private javax.swing.JMenuItem jmGuardar2;
