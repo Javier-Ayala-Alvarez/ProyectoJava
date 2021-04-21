@@ -96,7 +96,7 @@ public static String x;
                 jComboBox1MouseClicked(evt);
             }
         });
-        panelFondo.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 430, 50));
+        panelFondo.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 430, 50));
 
         tfCodigo.setBackground(new java.awt.Color(213, 216, 221));
         tfCodigo.setForeground(new java.awt.Color(0, 0, 0));

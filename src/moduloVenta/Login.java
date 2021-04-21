@@ -209,7 +209,6 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,14 +229,18 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(lbPass, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pfPass, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(30, 30, 30))))
+            .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addComponent(lbUser)
@@ -251,10 +254,7 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lbError1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 6, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 20, Short.MAX_VALUE))))
         );
 
         getAccessibleContext().setAccessibleParent(this);
@@ -270,19 +270,25 @@ public class Login extends javax.swing.JFrame {
         } else if (tfUser.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"¡Nombre vacío!","Error",JOptionPane.ERROR_MESSAGE);
         } else if(pfPass.getText().equals("12345") && tfUser.getText().equals("Admin")){
-            JOptionPane.showMessageDialog(null, "Welcome", "ADMIN", HEIGHT);
-            //capturar();
-            //limpiar();
-            moduloAdministracion.MenuAdministrador vistaAd = new moduloAdministracion.MenuAdministrador();
-            vistaAd.setVisible(true);
+            int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a administracion?", "Welcome", 
+               JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE); 
+                limpiar();
+            if(opccion == 0){
+                moduloAdministracion.MenuAdministrador vistaAd = new moduloAdministracion.MenuAdministrador();
+                vistaAd.setVisible(true);
             this.setVisible(false);
+            
+            }
         } else {
-            JOptionPane.showMessageDialog(null,"Bienvenido " ,"Usuario",JOptionPane.ERROR_MESSAGE);
-            // capturar();
+            int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Caja?", "Welcome", 
+               JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE); 
             limpiar();
-            Factura vista = new Factura();
-            vista.setVisible(true);
-            this.setVisible(false);
+            if(opccion == 0){
+                Factura vista = new Factura();
+                vista.setVisible(true);
+                this.setVisible(false);
+            }
+            
         }
     }//GEN-LAST:event_btnSalir1ActionPerformed
 
