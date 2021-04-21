@@ -33,7 +33,6 @@ public static String x;
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -66,25 +65,25 @@ public static String x;
 
         panelFondo.setBackground(new java.awt.Color(255, 255, 255));
         panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 945, 20));
+        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 740, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Gastos");
-        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 210, 60));
+        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 210, 60));
 
         javax.swing.GroupLayout jpLogo1Layout = new javax.swing.GroupLayout(jpLogo1);
         jpLogo1.setLayout(jpLogo1Layout);
         jpLogo1Layout.setHorizontalGroup(
             jpLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 60, Short.MAX_VALUE)
         );
         jpLogo1Layout.setVerticalGroup(
             jpLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 60, Short.MAX_VALUE)
         );
 
-        panelFondo.add(jpLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+        panelFondo.add(jpLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
 
         materialButtonCircle2.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle2.setText("X");
@@ -127,20 +126,12 @@ public static String x;
         });
         jScrollPane1.setViewportView(jTable1);
 
-        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 191, 750, 230));
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 750, 230));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("TOTAL");
-        panelFondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, -1, -1));
-
-        jButton2.setText("Salir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        panelFondo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 482, 150, 40));
+        panelFondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,7 +141,7 @@ public static String x;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
         );
 
         pack();
@@ -187,11 +178,6 @@ public static String x;
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-        x=null;
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -222,7 +208,6 @@ public static String x;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

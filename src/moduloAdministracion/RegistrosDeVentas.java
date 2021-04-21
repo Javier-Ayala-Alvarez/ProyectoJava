@@ -4,10 +4,10 @@ package moduloAdministracion;
 import moduloVenta.Fondo;
 
 
-public class RegistrosDeProductos extends javax.swing.JDialog {
+public class RegistrosDeVentas extends javax.swing.JDialog {
 public static String x;
 
-    public RegistrosDeProductos(java.awt.Frame parent, boolean modal) {
+    public RegistrosDeVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
          x ="x";
@@ -66,25 +66,25 @@ public static String x;
 
         panelFondo.setBackground(new java.awt.Color(255, 255, 255));
         panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 20));
+        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 10));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Gastos");
-        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 210, 60));
+        jLabel5.setText("Ventas");
+        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 210, 60));
 
         javax.swing.GroupLayout jpLogo1Layout = new javax.swing.GroupLayout(jpLogo1);
         jpLogo1.setLayout(jpLogo1Layout);
         jpLogo1Layout.setHorizontalGroup(
             jpLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
         jpLogo1Layout.setVerticalGroup(
             jpLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
-        panelFondo.add(jpLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
+        panelFondo.add(jpLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
         materialButtonCircle2.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle2.setText("X");
@@ -108,37 +108,35 @@ public static String x;
         });
         panelFondo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 482, 150, 40));
 
-        jTable1.setBackground(new java.awt.Color(218, 220, 222));
+        jTable1.setBackground(new java.awt.Color(199, 207, 214));
         jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Precio Compra", "Precio Unitario", "Cantidad", "Maximo", "Minimo"
+                "Nº Factura", "Fecha", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -147,7 +145,7 @@ public static String x;
         });
         jScrollPane1.setViewportView(jTable1);
 
-        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 750, 360));
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 750, 310));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

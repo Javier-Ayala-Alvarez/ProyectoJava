@@ -68,7 +68,7 @@ public static String x;
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Gasto");
         panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 100, 60));
-        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 945, 20));
+        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 20));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
@@ -127,14 +127,14 @@ public static String x;
         jpLogo1.setLayout(jpLogo1Layout);
         jpLogo1Layout.setHorizontalGroup(
             jpLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 60, Short.MAX_VALUE)
         );
         jpLogo1Layout.setVerticalGroup(
             jpLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 60, Short.MAX_VALUE)
         );
 
-        panelFondo.add(jpLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+        panelFondo.add(jpLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
 
         tbnGuardar.setText("Guardar");
         tbnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +159,7 @@ public static String x;
                 materialButtonCircle2ActionPerformed(evt);
             }
         });
-        panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 50, 50));
+        panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, 50, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

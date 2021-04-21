@@ -31,15 +31,13 @@ public class Login extends javax.swing.JFrame {
     public void cerrar(){
         Facturacion.s = null;
         Producto.prod = null;
-        moduloAdministracion.EliminarVenta.x = null;
+        moduloAdministracion.EliminarVentas.x = null;
         moduloAdministracion.GastosEC.x = null;
         moduloAdministracion.GastosGM.x = null;
         moduloAdministracion.GastosValance.x = null;
-        moduloAdministracion.GuardarEmpleado.x = null;
-        moduloAdministracion.ModificarEmpleado.x = null;
-        moduloAdministracion.ProductoVenta.x = null;
+        moduloAdministracion.EmpleadoGM.x = null;
         moduloAdministracion.RegistrosDeProductos.x = null;
-        moduloAdministracion.RegistroDeVentas.x = null;
+        moduloAdministracion.RegistrosDeVentas.x = null;
         
     }
     @SuppressWarnings("unchecked")

@@ -58,7 +58,6 @@ public static int opcion;
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem19 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jmGuardar2 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -293,7 +292,7 @@ public static int opcion;
         jMenu3.setText("Venta");
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Registro por Factura");
+        jMenuItem2.setText("Registro de Factura");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -308,14 +307,6 @@ public static int opcion;
             }
         });
         jMenu3.add(jMenuItem3);
-
-        jMenuItem19.setText("Registro de Ventas");
-        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem19ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem19);
 
         jMenu.add(jMenu3);
 
@@ -478,10 +469,10 @@ public static int opcion;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        String x = ModificarEmpleado.x;
-        ModificarEmpleado vista = new ModificarEmpleado();
+        String x = EmpleadoGM.x;
+        EmpleadoGM vista = new EmpleadoGM(this,false);
+        opcion = 2;
         if(x == null){
-            jpEscritorio.add(vista);
             vista.show();
         }else{
             JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
@@ -490,10 +481,10 @@ public static int opcion;
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jmGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGuardarActionPerformed
-        String x = GuardarEmpleado.x;
-        GuardarEmpleado vista = new GuardarEmpleado();
+        String x = EmpleadoGM.x;
+        EmpleadoGM vista = new EmpleadoGM(this,false);
+        opcion = 1;
         if(x == null){
-            jpEscritorio.add(vista);
             vista.show();
         }else{
             JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
@@ -517,23 +508,10 @@ public static int opcion;
         // TODO add your handling code here:
     }//GEN-LAST:event_jmGuardar2ActionPerformed
 
-    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        String x = RegistroDeVentas.x;
-        RegistroDeVentas vista = new RegistroDeVentas();
-        if(x == null){
-            jpEscritorio.add(vista);
-            vista.show();
-        }else{
-            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
-
-        }
-    }//GEN-LAST:event_jMenuItem19ActionPerformed
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        String x = EliminarVenta.x;
-        EliminarVenta vista = new EliminarVenta();
+        String x = EliminarVentas.x;
+        EliminarVentas vista = new EliminarVentas(this,false);
         if(x == null){
-            jpEscritorio.add(vista);
             vista.show();
         }else{
             JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
@@ -542,10 +520,9 @@ public static int opcion;
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        String x = ProductoVenta.x;
-        ProductoVenta vista = new ProductoVenta();
+        String x = RegistrosDeVentas.x;
+        RegistrosDeVentas vista = new RegistrosDeVentas(this,false);
         if(x == null){
-            jpEscritorio.add(vista);
             vista.show();
         }else{
             JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
@@ -685,7 +662,6 @@ public static int opcion;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem18;
-    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem3;
