@@ -24,6 +24,7 @@ public class GastosGM extends javax.swing.JDialog {
         btModificar.setVisible(false);
         empresa = g;
          mostrar();
+         
     }
 
     @SuppressWarnings("unchecked")
@@ -51,9 +52,10 @@ public class GastosGM extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDatos = new javax.swing.JTable();
         jSeparator2 = new javax.swing.JSeparator();
-        rSButtonHover6 = new rojeru_san.complementos.RSButtonHover();
+        tbGenerar = new rojeru_san.complementos.RSButtonHover();
         btModificar = new rojeru_san.complementos.RSButtonHover();
         btEliminar = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -115,9 +117,15 @@ public class GastosGM extends javax.swing.JDialog {
         tfCodigo.setForeground(new java.awt.Color(0, 0, 0));
         tfCodigo.setCaretColor(new java.awt.Color(0, 0, 0));
         tfCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        tfCodigo.setEnabled(false);
         tfCodigo.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         tfCodigo.setSelectionColor(new java.awt.Color(102, 153, 255));
-        panelFondo.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 430, 40));
+        tfCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCodigoActionPerformed(evt);
+            }
+        });
+        panelFondo.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 330, 40));
 
         tfPago.setBackground(new java.awt.Color(213, 216, 221));
         tfPago.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -193,13 +201,13 @@ public class GastosGM extends javax.swing.JDialog {
         panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 750, 190));
         panelFondo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 20));
 
-        rSButtonHover6.setText("Agregar");
-        rSButtonHover6.addActionListener(new java.awt.event.ActionListener() {
+        tbGenerar.setText("Generar");
+        tbGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover6ActionPerformed(evt);
+                tbGenerarActionPerformed(evt);
             }
         });
-        panelFondo.add(rSButtonHover6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 160, 50));
+        panelFondo.add(tbGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 90, 40));
 
         btModificar.setBackground(new java.awt.Color(0, 102, 102));
         btModificar.setText("Modificar");
@@ -219,6 +227,14 @@ public class GastosGM extends javax.swing.JDialog {
             }
         });
         panelFondo.add(btEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, 160, 50));
+
+        rSButtonHover7.setText("Agregar");
+        rSButtonHover7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover7ActionPerformed(evt);
+            }
+        });
+        panelFondo.add(rSButtonHover7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 160, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -288,45 +304,9 @@ public class GastosGM extends javax.swing.JDialog {
      
     }//GEN-LAST:event_tbDatosMouseClicked
 
-    private void rSButtonHover6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover6ActionPerformed
-        Date fechaC = dFecha.getDatoFecha();
-        double pago = Double.parseDouble(tfPago.getText());
-        if(!existe()){
-            if(!tfCodigo.getText().isEmpty() && !tfPago.getText().isEmpty()){
-                if(cbTipo.getSelectedItem().equals("Impuesto de Alcaldia")){
-                GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Impuesto de Alcaldia",pago);
-                empresa.add(obj);      
-                }else if(cbTipo.getSelectedItem().equals("Pago de Energia")){
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Pago de Energia",pago);
-                    empresa.add(obj); 
-                }else if(cbTipo.getSelectedItem().equals("Pago de Alquiler")){
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Pago de Alquiler",pago);
-                    empresa.add(obj); 
-                }else if(cbTipo.getSelectedItem().equals("Pago de Agua")){
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Pago de Agua",pago);
-                    empresa.add(obj); 
-                }else if(cbTipo.getSelectedItem().equals("ISSS")){
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"ISSS",pago);
-                    empresa.add(obj); 
-                }else if(cbTipo.getSelectedItem().equals("AFP")){
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"AFP",pago);
-                    empresa.add(obj); 
-                }else if(cbTipo.getSelectedItem().equals("IVA")){
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"IVA",pago);
-                    empresa.add(obj); 
-                }
-            }else{
-                JOptionPane.showMessageDialog(null,"Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
-            }
-            
-        }else{
-           JOptionPane.showMessageDialog(null,"Codigo ya existe","Error",JOptionPane.ERROR_MESSAGE);
-       }
-        
-        
-        mostrar();
-             
-    }//GEN-LAST:event_rSButtonHover6ActionPerformed
+    private void tbGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbGenerarActionPerformed
+        tfCodigo.setText(codigo());                   
+    }//GEN-LAST:event_tbGenerarActionPerformed
     private boolean existe(){
         for(GastosEmpresa x: empresa){
             if(x.getCodigoGastos().equals(tfCodigo.getText())){
@@ -409,7 +389,22 @@ public class GastosGM extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_btModificarActionPerformed
-
+    private String codigo(){
+        int w = 0;
+        String letra = "GE-";
+        String correlativo = letra;
+        for(GastosEmpresa x: empresa){
+            w++;     
+        }
+        String ww = String.valueOf(w);
+        for(int i = 0; i < 6; i++){
+            if(correlativo.length() + ww.length()< 7){
+                correlativo = correlativo + "0";
+            }            
+        }
+        correlativo = correlativo + String.valueOf(w); 
+        return correlativo;     
+    }
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
         int fila = tbDatos.getSelectedRow();
             String codigo = tbDatos.getValueAt(fila, 0).toString();
@@ -427,6 +422,49 @@ public class GastosGM extends javax.swing.JDialog {
                 w++;
             }
     }//GEN-LAST:event_btEliminarActionPerformed
+
+    private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCodigoActionPerformed
+
+    private void rSButtonHover7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover7ActionPerformed
+        Date fechaC = dFecha.getDatoFecha();
+        double pago = Double.parseDouble(tfPago.getText());
+        if(!existe()){
+            if((!tfCodigo.getText().isEmpty()) && (!tfPago.getText().isEmpty())){
+                if(cbTipo.getSelectedItem().equals("Impuesto de Alcaldia")){
+                GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Impuesto de Alcaldia",pago);
+                empresa.add(obj);      
+                }else if(cbTipo.getSelectedItem().equals("Pago de Energia")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Pago de Energia",pago);
+                    empresa.add(obj); 
+                }else if(cbTipo.getSelectedItem().equals("Pago de Alquiler")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Pago de Alquiler",pago);
+                    empresa.add(obj); 
+                }else if(cbTipo.getSelectedItem().equals("Pago de Agua")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Pago de Agua",pago);
+                    empresa.add(obj); 
+                }else if(cbTipo.getSelectedItem().equals("ISSS")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"ISSS",pago);
+                    empresa.add(obj); 
+                }else if(cbTipo.getSelectedItem().equals("AFP")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"AFP",pago);
+                    empresa.add(obj); 
+                }else if(cbTipo.getSelectedItem().equals("IVA")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"IVA",pago);
+                    empresa.add(obj); 
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }else{
+           JOptionPane.showMessageDialog(null,"Codigo ya existe","Error",JOptionPane.ERROR_MESSAGE);
+       }
+        
+        
+        mostrar();
+    }//GEN-LAST:event_rSButtonHover7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -475,10 +513,11 @@ public class GastosGM extends javax.swing.JDialog {
     private principal.MaterialButtonCircle materialButtonCircle1;
     private principal.MaterialButtonCircle materialButtonCircle2;
     private javax.swing.JPanel panelFondo;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover6;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private rojeru_san.componentes.RSCalendar rSCalendar1;
     private efectos.Roboto roboto1;
     private javax.swing.JTable tbDatos;
+    private rojeru_san.complementos.RSButtonHover tbGenerar;
     private principal.MaterialTextField tfCodigo;
     private principal.MaterialTextField tfPago;
     // End of variables declaration//GEN-END:variables
