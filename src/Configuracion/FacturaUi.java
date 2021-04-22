@@ -26,6 +26,7 @@ public static String i;
 
         jTextField7 = new javax.swing.JTextField();
         jDialog1 = new javax.swing.JDialog();
+        materialColor1 = new efectos.MaterialColor();
         jLabel2 = new javax.swing.JLabel();
 
         jTextField7.setText("jTextField7");
@@ -78,7 +79,7 @@ public static String i;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(509, Short.MAX_VALUE))
+                .addContainerGap(513, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("factura");
@@ -101,5 +102,6 @@ public static String i;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField7;
+    private efectos.MaterialColor materialColor1;
     // End of variables declaration//GEN-END:variables
 }
