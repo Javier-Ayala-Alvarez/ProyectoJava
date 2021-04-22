@@ -2,8 +2,13 @@
 package moduloAdministracion;
 
 import Clases.GastosEmpresa;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import moduloVenta.Fondo;
@@ -13,6 +18,7 @@ public class GastosGM extends javax.swing.JDialog {
     public static String x;
     DefaultTableModel modelo;
     ArrayList<GastosEmpresa> empresa;
+    DateFormat formater = new SimpleDateFormat("MMM-yyyy");
     public GastosGM(java.awt.Frame parent, boolean modal,ArrayList<GastosEmpresa> g) {
         super(parent, modal);
         initComponents();
@@ -23,7 +29,9 @@ public class GastosGM extends javax.swing.JDialog {
         btEliminar.setVisible(false);
         btModificar.setVisible(false);
         empresa = g;
-         mostrar();
+        mostrar();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        
          
     }
 
@@ -134,7 +142,7 @@ public class GastosGM extends javax.swing.JDialog {
             }
         });
         panelFondo.add(tfPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 430, 40));
-        panelFondo.add(dFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 470, 40));
+        panelFondo.add(dFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 430, 40));
 
         lbCodigo.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
         lbCodigo.setForeground(new java.awt.Color(255, 0, 0));
@@ -428,7 +436,7 @@ public class GastosGM extends javax.swing.JDialog {
     }//GEN-LAST:event_tfCodigoActionPerformed
 
     private void rSButtonHover7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover7ActionPerformed
-        Date fechaC = dFecha.getDatoFecha();
+        Date fechaC = dFecha.getDatoFecha();        
         double pago = Double.parseDouble(tfPago.getText());
         if(!existe()){
             if((!tfCodigo.getText().isEmpty()) && (!tfPago.getText().isEmpty())){
