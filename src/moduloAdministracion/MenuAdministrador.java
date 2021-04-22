@@ -1,6 +1,8 @@
 package moduloAdministracion;
 
+import Clases.GastosEmpresa;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import moduloVenta.Fondo;
@@ -13,6 +15,7 @@ import moduloVenta.Login;
 public class MenuAdministrador extends javax.swing.JFrame {
 public static String xm;
 public static int opcion;
+ArrayList<GastosEmpresa> Gastos;
     public MenuAdministrador() {
         initComponents();
         //this.setResizable(false);//No Maximo
@@ -27,6 +30,7 @@ public static int opcion;
        jpPercede.setBorder(new Fondo("/img/percedero.png"));
        jpVencer.setBorder(new Fondo("/img/Vencer.png"));
        jpCliente.setBorder(new Fondo("/img/cliente2.png"));
+       Gastos = new ArrayList();
         
     }
 
@@ -101,8 +105,6 @@ public static int opcion;
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu12 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenu13 = new javax.swing.JMenu();
         jmGuardar4 = new javax.swing.JMenuItem();
@@ -722,29 +724,13 @@ public static int opcion;
         jMenu12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gastos.png"))); // NOI18N
         jMenu12.setText("Gastos de Sucursal");
 
-        jMenuItem7.setText("Agregar");
+        jMenuItem7.setText("Opciones");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
             }
         });
         jMenu12.add(jMenuItem7);
-
-        jMenuItem8.setText("Modificar");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu12.add(jMenuItem8);
-
-        jMenuItem11.setText("Consulta y Eliminar");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu12.add(jMenuItem11);
 
         jMenuItem16.setText("Valance");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
@@ -894,7 +880,7 @@ public static int opcion;
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
        String x = GastosGM.x;
           opcion = 1;
-        GastosGM vista = new GastosGM(this,false);
+        GastosGM vista = new GastosGM(this,false,Gastos);
         if(x == null){
             
             vista.show();
@@ -903,30 +889,6 @@ public static int opcion;
 
         }
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-         String x = GastosGM.x;
-           opcion = 2;
-        GastosGM vista = new GastosGM(this,false);
-        if(x == null){
-            
-            vista.show();
-        }else{
-            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
-
-        }
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        String x = GastosEC.x;
-        GastosEC vista = new GastosEC(this,false);
-        if(x == null){
-            vista.show();
-        }else{
-            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
-
-        }
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         String x = GastosValance.x;
@@ -1008,7 +970,6 @@ public static int opcion;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
@@ -1022,7 +983,6 @@ public static int opcion;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;

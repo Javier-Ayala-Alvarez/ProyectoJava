@@ -1,20 +1,29 @@
 
 package moduloAdministracion;
 
+import Clases.GastosEmpresa;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import moduloVenta.Fondo;
 
 
 public class GastosGM extends javax.swing.JDialog {
-public static String x;
-
-    public GastosGM(java.awt.Frame parent, boolean modal) {
+    public static String x;
+    DefaultTableModel modelo;
+    ArrayList<GastosEmpresa> empresa;
+    public GastosGM(java.awt.Frame parent, boolean modal,ArrayList<GastosEmpresa> g) {
         super(parent, modal);
         initComponents();
          x ="x";
         jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
-        tbnModificar.setEnabled(false);
-        tbnGuardar.setEnabled(false);
-        
+        empresa = g;
+        dFecha.setDatoFecha(new Date());
+        btEliminar.setVisible(false);
+        btModificar.setVisible(false);
+        empresa = g;
+         mostrar();
     }
 
     @SuppressWarnings("unchecked")
@@ -31,16 +40,20 @@ public static String x;
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbTipo = new javax.swing.JComboBox<>();
         tfCodigo = new principal.MaterialTextField();
         tfPago = new principal.MaterialTextField();
-        rSDateChooser1 = new rojeru_san.componentes.RSDateChooser();
+        dFecha = new rojeru_san.componentes.RSDateChooser();
         lbCodigo = new javax.swing.JLabel();
-        lbEnergia = new javax.swing.JLabel();
+        lbPago = new javax.swing.JLabel();
         jpLogo1 = new javax.swing.JPanel();
-        tbnGuardar = new javax.swing.JButton();
-        tbnModificar = new javax.swing.JButton();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbDatos = new javax.swing.JTable();
+        jSeparator2 = new javax.swing.JSeparator();
+        rSButtonHover6 = new rojeru_san.complementos.RSButtonHover();
+        btModificar = new rojeru_san.complementos.RSButtonHover();
+        btEliminar = new rojeru_san.complementos.RSButtonHover();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -67,36 +80,36 @@ public static String x;
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Gasto");
-        panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 100, 60));
+        panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 100, 60));
         panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 20));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Codigo");
-        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 80, 60));
+        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 80, 60));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Gastos");
-        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 210, 60));
+        jLabel5.setText("Gastos/ Agregar/ Modificar / Eliminar");
+        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 420, 60));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Fecha");
-        panelFondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 80, 60));
+        panelFondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 80, 60));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Pago");
-        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 80, 60));
+        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 80, 60));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Impuesto de Alcaldia", "Pago de Energia", "Pago de Alquiler", "Pago de Agua", "ISSS", "AFP", "IVA" }));
-        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Impuesto de Alcaldia", "Pago de Energia", "Pago de Alquiler", "Pago de Agua", "ISSS", "AFP", "IVA" }));
+        cbTipo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBox1MouseClicked(evt);
+                cbTipoMouseClicked(evt);
             }
         });
-        panelFondo.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 430, 50));
+        panelFondo.add(cbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 430, 50));
 
         tfCodigo.setBackground(new java.awt.Color(213, 216, 221));
         tfCodigo.setForeground(new java.awt.Color(0, 0, 0));
@@ -104,7 +117,7 @@ public static String x;
         tfCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         tfCodigo.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         tfCodigo.setSelectionColor(new java.awt.Color(102, 153, 255));
-        panelFondo.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 420, 40));
+        panelFondo.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 430, 40));
 
         tfPago.setBackground(new java.awt.Color(213, 216, 221));
         tfPago.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -112,16 +125,16 @@ public static String x;
                 tfPagoKeyTyped(evt);
             }
         });
-        panelFondo.add(tfPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 420, 40));
-        panelFondo.add(rSDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 420, 40));
+        panelFondo.add(tfPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 430, 40));
+        panelFondo.add(dFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 470, 40));
 
         lbCodigo.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
         lbCodigo.setForeground(new java.awt.Color(255, 0, 0));
-        panelFondo.add(lbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 120, 40));
+        panelFondo.add(lbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 120, 40));
 
-        lbEnergia.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbEnergia.setForeground(new java.awt.Color(255, 0, 0));
-        panelFondo.add(lbEnergia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 140, 40));
+        lbPago.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        lbPago.setForeground(new java.awt.Color(255, 0, 0));
+        panelFondo.add(lbPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, 140, 40));
 
         javax.swing.GroupLayout jpLogo1Layout = new javax.swing.GroupLayout(jpLogo1);
         jpLogo1.setLayout(jpLogo1Layout);
@@ -136,22 +149,6 @@ public static String x;
 
         panelFondo.add(jpLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
 
-        tbnGuardar.setText("Guardar");
-        tbnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbnGuardarActionPerformed(evt);
-            }
-        });
-        panelFondo.add(tbnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 460, 170, 50));
-
-        tbnModificar.setText("Modificar");
-        tbnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbnModificarActionPerformed(evt);
-            }
-        });
-        panelFondo.add(tbnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 452, 150, 50));
-
         materialButtonCircle2.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle2.setText("X");
         materialButtonCircle2.addActionListener(new java.awt.event.ActionListener() {
@@ -161,47 +158,97 @@ public static String x;
         });
         panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, 50, 50));
 
+        tbDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Codigo", "Fecha", "Impuesto"
+            }
+        ));
+        tbDatos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tbDatosFocusLost(evt);
+            }
+        });
+        tbDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDatosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbDatos);
+
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 750, 190));
+        panelFondo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 20));
+
+        rSButtonHover6.setText("Agregar");
+        rSButtonHover6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover6ActionPerformed(evt);
+            }
+        });
+        panelFondo.add(rSButtonHover6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 160, 50));
+
+        btModificar.setBackground(new java.awt.Color(0, 102, 102));
+        btModificar.setText("Modificar");
+        btModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btModificarActionPerformed(evt);
+            }
+        });
+        panelFondo.add(btModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, 160, 50));
+
+        btEliminar.setBackground(new java.awt.Color(204, 0, 0));
+        btEliminar.setForeground(new java.awt.Color(255, 153, 153));
+        btEliminar.setText("Eliminar");
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarActionPerformed(evt);
+            }
+        });
+        panelFondo.add(btEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, 160, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 747, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
-        if(MenuAdministrador.opcion == 1){
-            tbnGuardar.setEnabled(true);
-        }else{
-            tbnModificar.setEnabled(true);
-        }
-    }//GEN-LAST:event_jComboBox1MouseClicked
+    private void cbTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbTipoMouseClicked
+        
+    }//GEN-LAST:event_cbTipoMouseClicked
 
     private void tfPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPagoKeyTyped
         char c = evt.getKeyChar();
 
-        if(Character.isDigit(c)){
-            lbEnergia.setText("");
+        if((c >= 46 && c <= 57 )){
+            lbPago.setText("");
         }else{
-            lbEnergia.setText("solo numeros");
+            lbPago.setText("solo numeros");
             evt.consume();
         }
     }//GEN-LAST:event_tfPagoKeyTyped
-
-    private void tbnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbnGuardarActionPerformed
-
-    private void tbnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnModificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbnModificarActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
          x =null; 
@@ -220,6 +267,166 @@ public static String x;
         this.dispose();
          x =null; 
     }//GEN-LAST:event_materialButtonCircle2ActionPerformed
+
+    private void tbDatosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tbDatosFocusLost
+
+    }//GEN-LAST:event_tbDatosFocusLost
+
+    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
+        btEliminar.setVisible(true);
+        btModificar.setVisible(true);
+        int fila = tbDatos.getSelectedRow();
+        String codigo = tbDatos.getValueAt(fila, 0).toString();
+        for(GastosEmpresa x: empresa){
+            if(x.getCodigoGastos().equals(codigo)){
+                tfCodigo.setText(x.getCodigoGastos());
+                tfPago.setText(String.valueOf(x.getSaldo()));
+                dFecha.setDatoFecha(x.getFecha());
+            }
+  
+         }
+     
+    }//GEN-LAST:event_tbDatosMouseClicked
+
+    private void rSButtonHover6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover6ActionPerformed
+        Date fechaC = dFecha.getDatoFecha();
+        double pago = Double.parseDouble(tfPago.getText());
+        if(!existe()){
+            if(!tfCodigo.getText().isEmpty() && !tfPago.getText().isEmpty()){
+                if(cbTipo.getSelectedItem().equals("Impuesto de Alcaldia")){
+                GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Impuesto de Alcaldia",pago);
+                empresa.add(obj);      
+                }else if(cbTipo.getSelectedItem().equals("Pago de Energia")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Pago de Energia",pago);
+                    empresa.add(obj); 
+                }else if(cbTipo.getSelectedItem().equals("Pago de Alquiler")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Pago de Alquiler",pago);
+                    empresa.add(obj); 
+                }else if(cbTipo.getSelectedItem().equals("Pago de Agua")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"Pago de Agua",pago);
+                    empresa.add(obj); 
+                }else if(cbTipo.getSelectedItem().equals("ISSS")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"ISSS",pago);
+                    empresa.add(obj); 
+                }else if(cbTipo.getSelectedItem().equals("AFP")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"AFP",pago);
+                    empresa.add(obj); 
+                }else if(cbTipo.getSelectedItem().equals("IVA")){
+                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(),fechaC,"IVA",pago);
+                    empresa.add(obj); 
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }else{
+           JOptionPane.showMessageDialog(null,"Codigo ya existe","Error",JOptionPane.ERROR_MESSAGE);
+       }
+        
+        
+        mostrar();
+             
+    }//GEN-LAST:event_rSButtonHover6ActionPerformed
+    private boolean existe(){
+        for(GastosEmpresa x: empresa){
+            if(x.getCodigoGastos().equals(tfCodigo.getText())){
+                return true;
+            }
+        }
+        return false;
+    }
+    private void limpiar(){
+        tfCodigo.setText("");
+        tfPago.setText("");
+        dFecha.setDatoFecha(new Date());
+    }
+    private void mostrar(){
+        modelo = new DefaultTableModel();
+        String titulo []= {"Codigo","Fecha","Tipo","Pago"};
+        modelo.setColumnIdentifiers(titulo);
+        for(GastosEmpresa x: empresa){
+                Object obj1[] = {x.getCodigoGastos(),x.getFecha(),x.getTipo(),"$ " + String.format("%.2f",x.getSaldo())};
+                modelo.addRow(obj1);
+            }
+        tbDatos.setModel(modelo);
+    }
+    private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
+      if(existe()){
+            int fila = tbDatos.getSelectedRow();
+            String codigo = tbDatos.getValueAt(fila, 0).toString();
+            for(GastosEmpresa x: empresa){
+                if(x.getCodigoGastos().equals(codigo)){
+                    double pago = Double.parseDouble(tfPago.getText());
+                    if(cbTipo.getSelectedItem().equals("Impuesto de Alcaldia")){
+                         x.setCodigoGastos(tfCodigo.getText());
+                        Date fechaC = dFecha.getDatoFecha();
+                        x.setFecha(fechaC);
+                        x.setTipo("Impuesto de Alcaldia");
+                        x.setSaldo(pago);
+                    }else if(cbTipo.getSelectedItem().equals("Pago de Energia")){
+                        x.setCodigoGastos(tfCodigo.getText());
+                        Date fechaC = dFecha.getDatoFecha();
+                        x.setFecha(fechaC);
+                        x.setTipo("Pago de Energia");
+                        x.setSaldo(pago);
+                    }else if(cbTipo.getSelectedItem().equals("Pago de Alquiler")){
+                         x.setCodigoGastos(tfCodigo.getText());
+                        Date fechaC = dFecha.getDatoFecha();
+                        x.setFecha(fechaC);
+                        x.setTipo("Pago de Alquiler");
+                        x.setSaldo(pago);
+                    }else if(cbTipo.getSelectedItem().equals("Pago de Agua")){
+                       x.setCodigoGastos(tfCodigo.getText());
+                        Date fechaC = dFecha.getDatoFecha();
+                        x.setFecha(fechaC);
+                        x.setTipo("Pago de Agua");
+                        x.setSaldo(pago);
+                    }else if(cbTipo.getSelectedItem().equals("ISSS")){
+                        x.setCodigoGastos(tfCodigo.getText());
+                        Date fechaC = dFecha.getDatoFecha();
+                        x.setFecha(fechaC);
+                        x.setTipo("ISSS");
+                        x.setSaldo(pago);
+                    }else if(cbTipo.getSelectedItem().equals("AFP")){
+                       x.setCodigoGastos(tfCodigo.getText());
+                        Date fechaC = dFecha.getDatoFecha();
+                        x.setFecha(fechaC);
+                        x.setTipo("AFP");
+                        x.setSaldo(pago);
+                    }else if(cbTipo.getSelectedItem().equals("IVA")){
+                        x.setCodigoGastos(tfCodigo.getText());
+                        Date fechaC = dFecha.getDatoFecha();
+                        x.setFecha(fechaC);
+                        x.setTipo("IVA");
+                        x.setSaldo(pago);
+                    }
+                }        
+        }
+            limpiar(); 
+            mostrar();
+        }else{
+            JOptionPane.showMessageDialog(null,"Codigo no existe","Error",JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btModificarActionPerformed
+
+    private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+        int fila = tbDatos.getSelectedRow();
+            String codigo = tbDatos.getValueAt(fila, 0).toString();
+            int w = 0;
+            for(GastosEmpresa x: empresa){
+                if(x.getCodigoGastos().equals(codigo)){
+                    int opccion1 = JOptionPane.showConfirmDialog(null, "Deseas Eliminar Registro?", "Welcome", 
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE); 
+                    if(opccion1 == 0){
+                        empresa.remove(w);
+                    }
+                    limpiar(); 
+                    mostrar();
+                }
+                w++;
+            }
+    }//GEN-LAST:event_btEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,24 +457,28 @@ public static String x;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private rojeru_san.complementos.RSButtonHover btEliminar;
+    private rojeru_san.complementos.RSButtonHover btModificar;
+    private javax.swing.JComboBox<String> cbTipo;
+    private rojeru_san.componentes.RSDateChooser dFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel jpLogo1;
     private javax.swing.JLabel lbCodigo;
-    private javax.swing.JLabel lbEnergia;
+    private javax.swing.JLabel lbPago;
     private principal.MaterialButtonCircle materialButtonCircle1;
     private principal.MaterialButtonCircle materialButtonCircle2;
     private javax.swing.JPanel panelFondo;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover6;
     private rojeru_san.componentes.RSCalendar rSCalendar1;
-    private rojeru_san.componentes.RSDateChooser rSDateChooser1;
     private efectos.Roboto roboto1;
-    private javax.swing.JButton tbnGuardar;
-    private javax.swing.JButton tbnModificar;
+    private javax.swing.JTable tbDatos;
     private principal.MaterialTextField tfCodigo;
     private principal.MaterialTextField tfPago;
     // End of variables declaration//GEN-END:variables

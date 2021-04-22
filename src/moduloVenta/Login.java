@@ -32,7 +32,6 @@ public class Login extends javax.swing.JFrame {
         Facturacion.s = null;
         Producto.prod = null;
         moduloAdministracion.EliminarVentas.x = null;
-        moduloAdministracion.GastosEC.x = null;
         moduloAdministracion.GastosGM.x = null;
         moduloAdministracion.GastosValance.x = null;
         moduloAdministracion.EmpleadoGM.x = null;
