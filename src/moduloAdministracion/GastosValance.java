@@ -3,6 +3,9 @@ package moduloAdministracion;
 
 import Clases.GastosEmpresa;
 import java.util.ArrayList;
+import java.util.Calendar;
+import static java.util.Calendar.YEAR;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import moduloVenta.Fondo;
 
@@ -11,12 +14,12 @@ public class GastosValance extends javax.swing.JDialog {
 public static String x;
 DefaultTableModel modelo;
 ArrayList<GastosEmpresa> empresa;
-    public GastosValance(java.awt.Frame parent, boolean modal) {
+    public GastosValance(java.awt.Frame parent, boolean modal,ArrayList<GastosEmpresa> g) {
         super(parent, modal);
         initComponents();
          x ="x";
         jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
-        empresa = new ArrayList();
+        empresa = g;
         
     }
 
@@ -39,9 +42,9 @@ ArrayList<GastosEmpresa> empresa;
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jComboBox1 = new javax.swing.JComboBox<>();
         rSButtonHover6 = new rojeru_san.complementos.RSButtonHover();
+        dFecha = new rojeru_san.componentes.RSDateChooser();
+        dFecha1 = new rojeru_san.componentes.RSDateChooser();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -78,7 +81,7 @@ ArrayList<GastosEmpresa> empresa;
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Año");
+        jLabel5.setText("Final");
         panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 80, 40));
 
         javax.swing.GroupLayout jpLogo1Layout = new javax.swing.GroupLayout(jpLogo1);
@@ -144,20 +147,13 @@ ArrayList<GastosEmpresa> empresa;
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Gastos");
+        jLabel6.setText("Inventario de Gastos");
         panelFondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 210, 60));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Mes");
+        jLabel7.setText("Inicio");
         panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 80, 40));
-
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(2021, 1900, 2050, 1));
-        jSpinner1.setToolTipText("2000");
-        panelFondo.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 210, 30));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", " " }));
-        panelFondo.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 190, 30));
 
         rSButtonHover6.setText("Buscar");
         rSButtonHover6.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +161,9 @@ ArrayList<GastosEmpresa> empresa;
                 rSButtonHover6ActionPerformed(evt);
             }
         });
-        panelFondo.add(rSButtonHover6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, 90, 30));
+        panelFondo.add(rSButtonHover6, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, 90, 30));
+        panelFondo.add(dFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 190, 40));
+        panelFondo.add(dFecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 190, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,16 +179,7 @@ ArrayList<GastosEmpresa> empresa;
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-private void mostrar(){
-        modelo = new DefaultTableModel();
-        String titulo []= {"Codigo","Fecha","Tipo","Pago"};
-        modelo.setColumnIdentifiers(titulo);
-        for(GastosEmpresa x: empresa){
-                Object obj1[] = {x.getCodigoGastos(),x.getFecha(),x.getTipo(),"$ " + String.format("%.2f",x.getSaldo())};
-                modelo.addRow(obj1);
-            }
-        tbDatos.setModel(modelo);
-    }
+
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
          x =null; 
     }//GEN-LAST:event_formWindowClosed
@@ -222,8 +211,33 @@ private void mostrar(){
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void rSButtonHover6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover6ActionPerformed
+        mostrarDatos();
     }//GEN-LAST:event_rSButtonHover6ActionPerformed
+    
+    private void mostrarDatos(){
+        modelo = new DefaultTableModel();
+        String titulo []= {"Codigo","Fecha","Tipo","Pago"};
+        modelo.setColumnIdentifiers(titulo);
+            
+        for(GastosEmpresa x: empresa){    
+            int dia0 = x.getFecha().getDay();
+            int mes0 = x.getFecha().getMonth();
+            int año0 = x.getFecha().getYear();
+            int dia1 = dFecha.getDatoFecha().getDay();
+            int mes1 = dFecha.getDatoFecha().getMonth();
+            int año1 = dFecha.getDatoFecha().getYear();
+            
+            int dia2 = dFecha1.getDatoFecha().getDay();
+            int mes2 = dFecha1.getDatoFecha().getMonth();
+            int año2 = dFecha1.getDatoFecha().getYear();
 
+                if((dia0 >= dia1 && dia0 <= dia2) && (mes0 >= mes1 && mes0 <= mes2) && (año0 >= año1 && año0 <= año2)){
+                    Object obj1[] = {x.getCodigoGastos(),x.getFecha(),x.getTipo(),"$ " + String.format("%.2f",x.getSaldo())};
+                    modelo.addRow(obj1);
+                }
+            }
+        tbDatos.setModel(modelo);
+    }
     /**
      * @param args the command line arguments
      */
@@ -254,7 +268,8 @@ private void mostrar(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private rojeru_san.componentes.RSDateChooser dFecha;
+    private rojeru_san.componentes.RSDateChooser dFecha1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -262,7 +277,6 @@ private void mostrar(){
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JPanel jpLogo1;
     private principal.MaterialButtonCircle materialButtonCircle1;
     private principal.MaterialButtonCircle materialButtonCircle2;

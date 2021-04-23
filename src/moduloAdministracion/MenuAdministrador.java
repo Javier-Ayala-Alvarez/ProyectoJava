@@ -892,7 +892,7 @@ ArrayList<GastosEmpresa> Gastos;
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         String x = GastosValance.x;
-        GastosValance vista = new GastosValance(this,false);
+        GastosValance vista = new GastosValance(this,false,Gastos);
         if(x == null){
             
             vista.show();

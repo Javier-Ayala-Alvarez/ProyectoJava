@@ -1,6 +1,7 @@
 
 package Clases;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GastosEmpresa {
@@ -28,10 +29,12 @@ public class GastosEmpresa {
     }
 
     public Date getFecha() {
+       
         return fecha;
     }
 
     public void setFecha(Date fecha) {
+        
         this.fecha = fecha;
     }
 
