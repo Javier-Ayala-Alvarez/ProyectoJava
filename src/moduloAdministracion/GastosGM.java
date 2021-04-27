@@ -401,17 +401,25 @@ public class GastosGM extends javax.swing.JDialog {
         int w = 0;
         String letra = "GE-";
         String correlativo = letra;
-        for(GastosEmpresa x: empresa){
-            w++;     
-        }
-        String ww = String.valueOf(w);
+        String [] corre= null;
+         int corre1 = 0;
+         String d = "0qq-0000";
+       for(GastosEmpresa x: empresa){
+            d = x.getCodigoGastos();
+            
+        }  
+       corre = d.split("-");
+            corre1 = Integer.valueOf(corre[1]);
+          
+        corre1 = corre1 +1;
+        String ww = String.valueOf(corre1);
         for(int i = 0; i < 6; i++){
             if(correlativo.length() + ww.length()< 7){
                 correlativo = correlativo + "0";
             }            
         }
-        correlativo = correlativo + String.valueOf(w); 
-        return correlativo;     
+        correlativo = correlativo + String.valueOf(ww); 
+        return correlativo;      
     }
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
         int fila = tbDatos.getSelectedRow();

@@ -1,19 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package moduloVenta;
 
+package moduloVenta;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-//probando 123 kathy estuvo aqui ok  jajajajja
-/**
- *
- * @author Francisco Javier
- */
 public class Login extends javax.swing.JFrame {
 
     /**
