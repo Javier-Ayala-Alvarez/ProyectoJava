@@ -105,7 +105,7 @@
         </Property>
         <Property name="alignmentY" type="float" value="22.0"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
         <Property name="debugGraphicsOptions" type="int" value="-1"/>
         <Property name="doubleBuffered" type="boolean" value="true"/>
@@ -320,7 +320,7 @@
     <Property name="title" type="java.lang.String" value="Sistema de Tienda"/>
     <Property name="autoRequestFocus" type="boolean" value="false"/>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-      <Color id="Cursor Por defecto"/>
+      <Color id="Default Cursor"/>
     </Property>
     <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
     <Property name="locationByPlatform" type="boolean" value="true"/>
@@ -471,9 +471,6 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Empresa:"/>
               </Properties>
