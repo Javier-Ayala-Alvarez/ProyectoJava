@@ -12,7 +12,7 @@ import moduloVenta.Login;
  *
  * @author Francisco Javier
  */
-//Prueba
+//Prueba ok
 public class MenuAdministrador extends javax.swing.JFrame {
 public static String xm;
 public static int opcion;
