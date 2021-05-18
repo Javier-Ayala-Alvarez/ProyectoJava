@@ -1,6 +1,6 @@
 package moduloAdministracion;
 
-import Clases.GastosEmpresa;
+import Modelo.GastosEmpresa;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JFrame;

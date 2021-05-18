@@ -1,7 +1,7 @@
 
 package moduloAdministracion;
 
-import Clases.GastosEmpresa;
+import Modelo.GastosEmpresa;
 import java.util.ArrayList;
 import java.util.Calendar;
 import static java.util.Calendar.YEAR;
