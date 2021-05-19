@@ -1,8 +1,9 @@
 
-package moduloVenta;
+package Vista.moduloVenta;
 
+import Vista.moduloVenta.Factura;
 import javax.swing.JOptionPane;
-import static moduloVenta.Factura.res;
+import static Vista.moduloVenta.Factura.res;
 
 public class Facturacion extends javax.swing.JInternalFrame {
 public static String s;

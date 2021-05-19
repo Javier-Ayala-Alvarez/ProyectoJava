@@ -1,7 +1,7 @@
 
-package moduloAdministracion;
+package Vista.moduloAdministracion;
 
-import moduloVenta.Fondo;
+import Vista.moduloVenta.Fondo;
 
 
 public class RegistrosDeVentas extends javax.swing.JDialog {
@@ -43,7 +43,6 @@ public static String x;
             }
         });
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("TOTAL");
 
         btnEliminar.setText("Eliminar");
@@ -96,7 +95,6 @@ public static String x;
         panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 50, 50));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("TOTAL");
         panelFondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, -1, -1));
 
@@ -109,7 +107,6 @@ public static String x;
         panelFondo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 482, 150, 40));
 
         jTable1.setBackground(new java.awt.Color(199, 207, 214));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},

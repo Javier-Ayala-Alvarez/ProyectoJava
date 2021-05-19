@@ -1,5 +1,5 @@
 
-package moduloVenta;
+package Vista.moduloVenta;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -8,6 +8,7 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
+import Vista.Login.Login;
 
 public class Mensaje extends javax.swing.JDialog {
 

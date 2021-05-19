@@ -1,12 +1,16 @@
-package moduloAdministracion;
+package Vista.moduloAdministracion;
 
+import Vista.moduloAdministracion.GastosValance;
+import Vista.moduloAdministracion.GastosGM;
+import Vista.moduloAdministracion.EmpleadoGM;
+import Vista.moduloAdministracion.EliminarVentas;
 import Modelo.GastosEmpresa;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import moduloVenta.Fondo;
-import moduloVenta.Login;
+import Vista.moduloVenta.Fondo;
+import Vista.Login.Login;
 
 /**
  *
@@ -170,7 +174,6 @@ ArrayList<GastosEmpresa> Gastos;
         jPanel2.setForeground(new java.awt.Color(255, 0, 153));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Empresa:");
 
         materialButtonCircle2.setBackground(new java.awt.Color(220, 20, 20));
@@ -926,7 +929,7 @@ ArrayList<GastosEmpresa> Gastos;
          int opccion = JOptionPane.showConfirmDialog(null, "Deseas Salir?", "Confirmar salida", 
                JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE); 
         if(opccion == 0){
-         moduloVenta.Login vista = new moduloVenta.Login();
+         Vista.Login.Login vista = new Vista.Login.Login();
         vista.show();
         this.dispose();
         xm=null;

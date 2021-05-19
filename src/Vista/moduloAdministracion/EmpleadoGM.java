@@ -1,7 +1,7 @@
 
-package moduloAdministracion;
+package Vista.moduloAdministracion;
 
-import moduloVenta.Fondo;
+import Vista.moduloVenta.Fondo;
 
 
 public class EmpleadoGM extends javax.swing.JDialog {
@@ -84,8 +84,6 @@ public static String x;
         panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 100, 60));
 
         tfCodigo.setBackground(new java.awt.Color(213, 216, 221));
-        tfCodigo.setForeground(new java.awt.Color(0, 0, 0));
-        tfCodigo.setCaretColor(new java.awt.Color(0, 0, 0));
         tfCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         tfCodigo.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         tfCodigo.setSelectionColor(new java.awt.Color(102, 153, 255));

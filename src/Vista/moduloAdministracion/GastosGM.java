@@ -1,5 +1,5 @@
 
-package moduloAdministracion;
+package Vista.moduloAdministracion;
 
 import Modelo.GastosEmpresa;
 import java.text.DateFormat;
@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import moduloVenta.Fondo;
+import Vista.moduloVenta.Fondo;
 
 
 public class GastosGM extends javax.swing.JDialog {
@@ -122,8 +122,6 @@ public class GastosGM extends javax.swing.JDialog {
         panelFondo.add(cbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 430, 50));
 
         tfCodigo.setBackground(new java.awt.Color(213, 216, 221));
-        tfCodigo.setForeground(new java.awt.Color(0, 0, 0));
-        tfCodigo.setCaretColor(new java.awt.Color(0, 0, 0));
         tfCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         tfCodigo.setEnabled(false);
         tfCodigo.setSelectedTextColor(new java.awt.Color(0, 0, 0));

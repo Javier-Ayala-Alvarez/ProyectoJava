@@ -1,5 +1,9 @@
 
-package moduloVenta;
+package Vista.Login;
+import Vista.moduloVenta.Producto;
+import Vista.moduloVenta.Fondo;
+import Vista.moduloVenta.Facturacion;
+import Vista.moduloVenta.Factura;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
@@ -19,12 +23,12 @@ public class Login extends javax.swing.JFrame {
     public void cerrar(){
         Facturacion.s = null;
         Producto.prod = null;
-        moduloAdministracion.EliminarVentas.x = null;
-        moduloAdministracion.GastosGM.x = null;
-        moduloAdministracion.GastosValance.x = null;
-        moduloAdministracion.EmpleadoGM.x = null;
-        moduloAdministracion.RegistrosDeProductos.x = null;
-        moduloAdministracion.RegistrosDeVentas.x = null;
+        Vista.moduloAdministracion.EliminarVentas.x = null;
+        Vista.moduloAdministracion.GastosGM.x = null;
+        Vista.moduloAdministracion.GastosValance.x = null;
+        Vista.moduloAdministracion.EmpleadoGM.x = null;
+        Vista.moduloAdministracion.RegistrosDeProductos.x = null;
+        Vista.moduloAdministracion.RegistrosDeVentas.x = null;
         
     }
     @SuppressWarnings("unchecked")
@@ -105,7 +109,6 @@ public class Login extends javax.swing.JFrame {
         );
 
         btnSalir1.setBackground(new java.awt.Color(46, 114, 183));
-        btnSalir1.setForeground(new java.awt.Color(0, 0, 0));
         btnSalir1.setText("Entrar");
         btnSalir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +120,6 @@ public class Login extends javax.swing.JFrame {
 
         lbPass.setBackground(new java.awt.Color(255, 255, 255));
         lbPass.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lbPass.setForeground(new java.awt.Color(0, 0, 0));
         lbPass.setText("Contraseña:");
 
         tfUser.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -128,7 +130,6 @@ public class Login extends javax.swing.JFrame {
 
         lbUser.setBackground(new java.awt.Color(255, 255, 255));
         lbUser.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lbUser.setForeground(new java.awt.Color(0, 0, 0));
         lbUser.setText("Usuario:");
 
         panel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -261,7 +262,7 @@ public class Login extends javax.swing.JFrame {
                JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE); 
                 limpiar();
             if(opccion == 0){
-                moduloAdministracion.MenuAdministrador vistaAd = new moduloAdministracion.MenuAdministrador();
+                Vista.moduloAdministracion.MenuAdministrador vistaAd = new Vista.moduloAdministracion.MenuAdministrador();
                 vistaAd.setVisible(true);
             this.setVisible(false);
             

@@ -1,17 +1,18 @@
 
-package moduloAdministracion;
+package Vista.moduloAdministracion;
 
-import moduloVenta.Fondo;
+import Vista.moduloVenta.Fondo;
 
 
-public class EliminarVentas extends javax.swing.JDialog {
+public class RegistrosDeProductos extends javax.swing.JDialog {
 public static String x;
 
-    public EliminarVentas(java.awt.Frame parent, boolean modal) {
+    public RegistrosDeProductos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
          x ="x";
         jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
+      
         
     }
 
@@ -22,25 +23,17 @@ public static String x;
         rSCalendar1 = new rojeru_san.componentes.RSCalendar();
         roboto1 = new efectos.Roboto();
         materialButtonCircle1 = new principal.MaterialButtonCircle();
-        lbCodigo1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
         panelFondo = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        lbCodigo = new javax.swing.JLabel();
-        lbEnergia = new javax.swing.JLabel();
         jpLogo1 = new javax.swing.JPanel();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
-        jTextField1 = new javax.swing.JTextField();
-        lbCodigo2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        materialButtonCircle3 = new principal.MaterialButtonCircle();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -50,8 +43,14 @@ public static String x;
             }
         });
 
-        lbCodigo1.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbCodigo1.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel2.setText("TOTAL");
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -66,38 +65,25 @@ public static String x;
 
         panelFondo.setBackground(new java.awt.Color(255, 255, 255));
         panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 840, 20));
+        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 20));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Gastos");
         panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 210, 60));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Fecha de Ventas");
-        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 200, 60));
-
-        lbCodigo.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbCodigo.setForeground(new java.awt.Color(255, 0, 0));
-        panelFondo.add(lbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 120, 40));
-
-        lbEnergia.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbEnergia.setForeground(new java.awt.Color(255, 0, 0));
-        panelFondo.add(lbEnergia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 140, 40));
-
         javax.swing.GroupLayout jpLogo1Layout = new javax.swing.GroupLayout(jpLogo1);
         jpLogo1.setLayout(jpLogo1Layout);
         jpLogo1Layout.setHorizontalGroup(
             jpLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGap(0, 60, Short.MAX_VALUE)
         );
         jpLogo1Layout.setVerticalGroup(
             jpLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGap(0, 60, Short.MAX_VALUE)
         );
 
-        panelFondo.add(jpLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
+        panelFondo.add(jpLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
 
         materialButtonCircle2.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle2.setText("X");
@@ -106,55 +92,50 @@ public static String x;
                 materialButtonCircle2ActionPerformed(evt);
             }
         });
-        panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 50, 50));
+        panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 50, 50));
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel3.setText("TOTAL");
+        panelFondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, -1, -1));
+
+        jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
-        panelFondo.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 210, 40));
+        panelFondo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 482, 150, 40));
 
-        lbCodigo2.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbCodigo2.setForeground(new java.awt.Color(204, 0, 0));
-        panelFondo.add(lbCodigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 160, 30));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Nº Factura");
-        panelFondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 130, 60));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("Cliente");
-        panelFondo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 130, 60));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("Sucursal");
-        panelFondo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 130, 60));
-
-        jTable1.setBackground(new java.awt.Color(217, 222, 226));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
+        jTable1.setBackground(new java.awt.Color(218, 220, 222));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Precio Unitario", "Cantidad", "Total"
+                "Codigo", "Nombre", "Precio Compra", "Precio Unitario", "Cantidad", "Maximo", "Minimo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -163,37 +144,17 @@ public static String x;
         });
         jScrollPane1.setViewportView(jTable1);
 
-        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 850, 180));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
-        jButton1.setText("Eliminar Factura");
-        panelFondo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 480, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Total: ");
-        panelFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, -1, -1));
-
-        materialButtonCircle3.setBackground(new java.awt.Color(255, 0, 0));
-        materialButtonCircle3.setText("X");
-        materialButtonCircle3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                materialButtonCircle3ActionPerformed(evt);
-            }
-        });
-        panelFondo.add(materialButtonCircle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 50, 50));
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 750, 360));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 843, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 747, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
         );
 
         pack();
@@ -218,20 +179,14 @@ public static String x;
          x =null; 
     }//GEN-LAST:event_materialButtonCircle2ActionPerformed
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        char c = evt.getKeyChar();
-        if(Character.isDigit(c)){
-            lbCodigo.setText("");
-        }else{
-            lbCodigo.setText("solo numeros");
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField1KeyTyped
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void materialButtonCircle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle3ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
-        x =null;
-    }//GEN-LAST:event_materialButtonCircle3ActionPerformed
+        x=null;
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,25 +217,17 @@ public static String x;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel jpLogo1;
-    private javax.swing.JLabel lbCodigo;
-    private javax.swing.JLabel lbCodigo1;
-    private javax.swing.JLabel lbCodigo2;
-    private javax.swing.JLabel lbEnergia;
     private principal.MaterialButtonCircle materialButtonCircle1;
     private principal.MaterialButtonCircle materialButtonCircle2;
-    private principal.MaterialButtonCircle materialButtonCircle3;
     private javax.swing.JPanel panelFondo;
     private rojeru_san.componentes.RSCalendar rSCalendar1;
     private efectos.Roboto roboto1;

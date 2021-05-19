@@ -1,5 +1,5 @@
 
-package moduloVenta;
+package Vista.moduloVenta;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -35,7 +35,6 @@ public static String prod;
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("PRODUCTO");
         add(jLabel1, java.awt.BorderLayout.CENTER);
 

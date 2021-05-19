@@ -1,6 +1,7 @@
-package moduloVenta;
+package Vista.moduloVenta;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import Vista.Login.Login;
 
 public class Factura extends javax.swing.JFrame {
     public static String res;
@@ -107,7 +108,6 @@ public class Factura extends javax.swing.JFrame {
         jpEscritorio1.setInheritsPopupMenu(true);
 
         jPanel3.setBackground(new java.awt.Color(72, 139, 183));
-        jPanel3.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.setAutoscrolls(true);
         jPanel3.setFocusCycleRoot(true);
         jPanel3.setFocusTraversalPolicyProvider(true);
@@ -213,10 +213,10 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jTextField1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField1InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -265,7 +265,7 @@ public class Factura extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTextField1.getAccessibleContext().setAccessibleName("Producto");
@@ -276,6 +276,7 @@ public class Factura extends javax.swing.JFrame {
             jpEscritorio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpEscritorio1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpEscritorio1Layout.setVerticalGroup(
@@ -312,7 +313,7 @@ public class Factura extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpEscritorio1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 553, Short.MAX_VALUE)
+            .addComponent(jpEscritorio1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)

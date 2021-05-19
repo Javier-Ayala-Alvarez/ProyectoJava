@@ -1,5 +1,5 @@
 
-package moduloAdministracion;
+package Vista.moduloAdministracion;
 
 import Modelo.GastosEmpresa;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.Calendar;
 import static java.util.Calendar.YEAR;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
-import moduloVenta.Fondo;
+import Vista.moduloVenta.Fondo;
 
 
 public class GastosValance extends javax.swing.JDialog {
@@ -54,7 +54,6 @@ ArrayList<GastosEmpresa> empresa;
             }
         });
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("TOTAL");
 
         btnEliminar.setText("Eliminar");
@@ -141,7 +140,6 @@ ArrayList<GastosEmpresa> empresa;
         panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 750, 230));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("TOTAL");
         panelFondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, -1));
 
