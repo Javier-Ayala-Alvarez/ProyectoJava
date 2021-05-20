@@ -70,7 +70,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="btnSalir1" min="-2" pref="172" max="-2" attributes="0"/>
+                              <Component id="btnEntrar" min="-2" pref="172" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
@@ -111,7 +111,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pfPass" min="-2" pref="39" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="btnSalir1" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="btnEntrar" min="-2" pref="44" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="lbError1" min="-2" pref="27" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
@@ -185,7 +185,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnSalir1">
+    <Component class="javax.swing.JButton" name="btnEntrar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="b7" green="72" red="2e" type="rgb"/>
@@ -193,8 +193,11 @@
         <Property name="text" type="java.lang.String" value="Entrar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalir1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEntrarActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lbError1">
       <Properties>
@@ -218,6 +221,9 @@
       <Events>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfUserKeyTyped"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lbUser">
       <Properties>
@@ -329,6 +335,9 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JPasswordField" name="pfPass">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

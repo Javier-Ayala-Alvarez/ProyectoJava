@@ -1,5 +1,6 @@
 
 package Vista.Login;
+import Controlador.ControladorAdministracion;
 import Vista.moduloVenta.Producto;
 import Vista.moduloVenta.Fondo;
 import Vista.moduloVenta.Facturacion;
@@ -13,11 +14,21 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.btnEntrar.setActionCommand("Entrar");////////////////////////////
         //this.setLocationRelativeTo(null);			
       cerrar();
       setLocationRelativeTo(null);		
       setVisible(true);
       jpLogo12.setBorder(new Fondo("/img/login.png"));
+      pfPass.setText("12345");//borrar
+      this.tfUser.setText("admin");//borrar
+    }
+    public void setControlador(ControladorAdministracion control){
+        btnEntrar.addActionListener(control);
+    }
+    
+    public void iniciar(){
+        this.setVisible(true);
     }
 
     public void cerrar(){
@@ -40,7 +51,7 @@ public class Login extends javax.swing.JFrame {
         panel1 = new java.awt.Panel();
         jLabel1 = new javax.swing.JLabel();
         materialButtonCircle1 = new principal.MaterialButtonCircle();
-        btnSalir1 = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
         lbError1 = new javax.swing.JLabel();
         lbPass = new javax.swing.JLabel();
         tfUser = new principal.MaterialTextField();
@@ -108,11 +119,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(5, 5, 5))
         );
 
-        btnSalir1.setBackground(new java.awt.Color(46, 114, 183));
-        btnSalir1.setText("Entrar");
-        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
+        btnEntrar.setBackground(new java.awt.Color(46, 114, 183));
+        btnEntrar.setText("Entrar");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir1ActionPerformed(evt);
+                btnEntrarActionPerformed(evt);
             }
         });
 
@@ -207,7 +218,7 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(lbError1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
-                                .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(52, 52, 52))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -239,7 +250,7 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lbError1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 20, Short.MAX_VALUE))))
@@ -250,7 +261,7 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         if (tfUser.getText().isEmpty() && pfPass.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"¡Campos Vacíos!","Error",JOptionPane.ERROR_MESSAGE);
         } else if (pfPass.getText().isEmpty()) {
@@ -278,7 +289,7 @@ public class Login extends javax.swing.JFrame {
             }
             
         }
-    }//GEN-LAST:event_btnSalir1ActionPerformed
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void tfUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUserKeyTyped
        char c = evt.getKeyChar();
@@ -302,43 +313,43 @@ public class Login extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Login().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSalir1;
+    public javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jpLogo;
     public static javax.swing.JPanel jpLogo12;
@@ -351,7 +362,7 @@ public class Login extends javax.swing.JFrame {
     private java.awt.Panel panel1;
     private java.awt.Panel panel2;
     private java.awt.Panel panel3;
-    private javax.swing.JPasswordField pfPass;
-    private principal.MaterialTextField tfUser;
+    public javax.swing.JPasswordField pfPass;
+    public principal.MaterialTextField tfUser;
     // End of variables declaration//GEN-END:variables
 }

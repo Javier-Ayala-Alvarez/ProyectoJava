@@ -5,10 +5,41 @@
  */
 package Controlador;
 
+
+import Vista.Login.Login;
+import Vista.moduloAdministracion.MenuAdministrador;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author kathy
  */
-public class ControladorAdministracion {
+public class ControladorAdministracion implements ActionListener {
+
+    public ControladorAdministracion() {
+        
+         /*--------------Modulo vista===----------------*/
+             Login login = new Login();
+        /*-----------------------------------------------*/
+        
+        
+        /*Modulo Administracion*/
+         /*------------MenuAdministrador--------------*/
+        MenuAdministrador menuAdministrador = new MenuAdministrador();
+        /*-----------------------------------------------*/
+
+        /*Fin de Modulo Administracion*/
+        
+     
+    }
+
+    
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }
