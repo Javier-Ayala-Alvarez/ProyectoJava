@@ -3,24 +3,27 @@ package Modelo;
 
 import java.util.Date;
 
-public class Bono extends Empleados{
-
-    public Bono(double bono, String codigo, String nombreEmpleado, String apellidoEmpleado, String telefonoEmpleado, String dirrecionEmpleado, String salarioEmpleado, String cargoEmpleado, String afp, String isss, Date constratacion) {
-        super(codigo, nombreEmpleado, apellidoEmpleado, telefonoEmpleado, dirrecionEmpleado, salarioEmpleado, cargoEmpleado, afp, isss, constratacion);
-        this.bono = bono;
-    }
-  private double bono;
+public class Bono  {
+    private Double bono;
 
     public Bono() {
     }
 
-    public double getBono() {
+    public Bono(Double bono) {
+        this.bono = bono;
+    }
+
+    public Double getBono() {
         return bono;
     }
 
-    public void setBono(double bono) {
+    public void setBono(Double bono) {
         this.bono = bono;
     }
+    
+    
+
+   
 
     
   

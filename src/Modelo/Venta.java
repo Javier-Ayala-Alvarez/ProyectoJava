@@ -1,27 +1,34 @@
 
 package Modelo;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Venta {
-   private String nFactura;
+   private int  idFactura;
    private Date fechaVenta;
-   private double precioTotal;
+   private double saldoTotal;
+    ArrayList<Registro> registros;
 
     public Venta() {
     }
 
-    public Venta(String nFactura, Date fechaVenta, double precioTotal) {
-        this.nFactura = nFactura;
+    public Venta(int idFactura, Date fechaVenta, double saldoTotal) {
+        this.idFactura = idFactura;
         this.fechaVenta = fechaVenta;
-        this.precioTotal = precioTotal;
+        this.saldoTotal = saldoTotal;
     }
 
-    public String getnFactura() {
-        return nFactura;
+    public Venta(Date fechaVenta, double saldoTotal) {
+        this.fechaVenta = fechaVenta;
+        this.saldoTotal = saldoTotal;
     }
 
-    public void setnFactura(String nFactura) {
-        this.nFactura = nFactura;
+    public int getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(int idFactura) {
+        this.idFactura = idFactura;
     }
 
     public Date getFechaVenta() {
@@ -32,13 +39,22 @@ public class Venta {
         this.fechaVenta = fechaVenta;
     }
 
-    public double getPrecioTotal() {
-        return precioTotal;
+    public double getSaldoTotal() {
+        return saldoTotal;
     }
 
-    public void setPrecioTotal(double precioTotal) {
-        this.precioTotal = precioTotal;
+    public void setSaldoTotal(double saldoTotal) {
+        this.saldoTotal = saldoTotal;
     }
-   
-   
+
+    public ArrayList<Registro> getRegistros() {
+        return registros;
+    }
+    
+    public void addRegistro(int cantidadProducto, double precioTotalProducto){
+        registros.add(new Registro(cantidadProducto, precioTotalProducto));
+        
+    }
+
+  
 }

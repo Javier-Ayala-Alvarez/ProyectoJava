@@ -1,7 +1,9 @@
 
 package Modelo;
 
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Usuario{
     private String usuario;
@@ -30,6 +32,7 @@ public class Usuario{
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+      
     }
     
     

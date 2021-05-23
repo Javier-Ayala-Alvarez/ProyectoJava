@@ -2,18 +2,18 @@
 package Modelo;
 
 public class Producto {
-  protected String codigoProducto;
-  protected String nombreProducto;
-  protected double precioCompra;
-  protected double cantidad;
+  private int idProducto;
+  private String nombreProducto;
+  private double precioCompra;
+  private double cantidad;
   protected int max;
   protected int min;
 
     public Producto() {
     }
 
-    public Producto(String codigoProducto, String nombreProducto, double precioCompra, double cantidad, int max, int min) {
-        this.codigoProducto = codigoProducto;
+    public Producto(int idProducto, String nombreProducto, double precioCompra, double cantidad, int max, int min) {
+        this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.precioCompra = precioCompra;
         this.cantidad = cantidad;
@@ -21,12 +21,20 @@ public class Producto {
         this.min = min;
     }
 
-    public String getCodigoProducto() {
-        return codigoProducto;
+    public Producto(String nombreProducto, double precioCompra, double cantidad, int max, int min) {
+        this.nombreProducto = nombreProducto;
+        this.precioCompra = precioCompra;
+        this.cantidad = cantidad;
+        this.max = max;
+        this.min = min;
     }
 
-    public void setCodigoProducto(String codigoProducto) {
-        this.codigoProducto = codigoProducto;
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getNombreProducto() {
@@ -68,6 +76,8 @@ public class Producto {
     public void setMin(int min) {
         this.min = min;
     }
+    
+    
   
   
 }

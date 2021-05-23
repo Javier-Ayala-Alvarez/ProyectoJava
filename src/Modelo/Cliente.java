@@ -1,63 +1,38 @@
 
 package Modelo;
 
-public class Cliente {
-    private String codigo;
-    private String nombreCliente;
-    private String apellidoCliente;
-    private String telefonoCliente;
-    private String direccionCliente;
+import java.util.ArrayList;
+
+
+public class Cliente extends Persona{
+    
+    ArrayList<Venta> ventas;
+
+    public Cliente(int idPersona, String nombre, String apellido, String telefono, String direccion) {
+        super(idPersona, nombre, apellido, telefono, direccion);
+        ventas = new ArrayList();
+    }
 
     public Cliente() {
+        ventas = new ArrayList();
     }
 
-    public Cliente(String codigo, String nombreCliente, String apellidoCliente, String telefonoCliente, String direccionCliente) {
-        this.codigo = codigo;
-        this.nombreCliente = nombreCliente;
-        this.apellidoCliente = apellidoCliente;
-        this.telefonoCliente = telefonoCliente;
-        this.direccionCliente = direccionCliente;
+    public Cliente(String nombre, String apellido, String telefono, String direccion) {
+        super(nombre, apellido, telefono, direccion);
+        ventas = new ArrayList();
+       
+    }
+    
+    private void addVenta(Venta x){
+        ventas.add(x);
     }
 
-    public String getCodigo() {
-        return codigo;
+    public ArrayList<Venta> getVentas() {
+        return ventas;
     }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
-
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
-    }
-
-    public String getApellidoCliente() {
-        return apellidoCliente;
-    }
-
-    public void setApellidoCliente(String apellidoCliente) {
-        this.apellidoCliente = apellidoCliente;
-    }
-
-    public String getTelefonoCliente() {
-        return telefonoCliente;
-    }
-
-    public void setTelefonoCliente(String telefonoCliente) {
-        this.telefonoCliente = telefonoCliente;
-    }
-
-    public String getDireccionCliente() {
-        return direccionCliente;
-    }
-
-    public void setDireccionCliente(String direccionCliente) {
-        this.direccionCliente = direccionCliente;
-    }
+    
+   
+    
     
     
 }

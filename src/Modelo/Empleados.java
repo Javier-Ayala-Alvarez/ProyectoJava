@@ -1,83 +1,45 @@
-
 package Modelo;
 
+
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Empleados {
-    protected String codigo; 
-    protected String nombreEmpleado; 
-    protected String apellidoEmpleado;
-    protected String telefonoEmpleado;
-    protected String dirrecionEmpleado;
-    protected String salarioEmpleado;
-    protected String cargoEmpleado;
-    protected String afp;
-    protected String isss;
-    protected Date constratacion; 
+public class Empleados extends Persona{
 
-    public Empleados() {
-    }
+   
+    private String cargoEmpleado;
+    private double salarioEmpleado, afp, isss;
+    private Date fechaContratacion;
+    private Usuario usuario;
+    private  ArrayList<Bono> bonos;
 
-    public Empleados(String codigo, String nombreEmpleado, String apellidoEmpleado, String telefonoEmpleado, String dirrecionEmpleado, String salarioEmpleado, String cargoEmpleado, String afp, String isss, Date constratacion) {
-        this.codigo = codigo;
-        this.nombreEmpleado = nombreEmpleado;
-        this.apellidoEmpleado = apellidoEmpleado;
-        this.telefonoEmpleado = telefonoEmpleado;
-        this.dirrecionEmpleado = dirrecionEmpleado;
-        this.salarioEmpleado = salarioEmpleado;
+    public Empleados(String cargoEmpleado, double salarioEmpleado, double afp, double isss,Usuario usuario, Date fechaContratacion, int idPersona, String nombre, String apellido, String telefono, String direccion) {
+        super(idPersona, nombre, apellido, telefono, direccion);
         this.cargoEmpleado = cargoEmpleado;
+        this.salarioEmpleado = salarioEmpleado;
         this.afp = afp;
         this.isss = isss;
-        this.constratacion = constratacion;
+        this.fechaContratacion = fechaContratacion;
+        this.usuario = usuario;
+        bonos = new ArrayList();
     }
 
-    public String getCodigo() {
-        return codigo;
+    public Empleados() {
+        bonos = new ArrayList();
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNombreEmpleado() {
-        return nombreEmpleado;
-    }
-
-    public void setNombreEmpleado(String nombreEmpleado) {
-        this.nombreEmpleado = nombreEmpleado;
-    }
-
-    public String getApellidoEmpleado() {
-        return apellidoEmpleado;
-    }
-
-    public void setApellidoEmpleado(String apellidoEmpleado) {
-        this.apellidoEmpleado = apellidoEmpleado;
-    }
-
-    public String getTelefonoEmpleado() {
-        return telefonoEmpleado;
-    }
-
-    public void setTelefonoEmpleado(String telefonoEmpleado) {
-        this.telefonoEmpleado = telefonoEmpleado;
-    }
-
-    public String getDirrecionEmpleado() {
-        return dirrecionEmpleado;
-    }
-
-    public void setDirrecionEmpleado(String dirrecionEmpleado) {
-        this.dirrecionEmpleado = dirrecionEmpleado;
-    }
-
-    public String getSalarioEmpleado() {
-        return salarioEmpleado;
-    }
-
-    public void setSalarioEmpleado(String salarioEmpleado) {
+    public Empleados(String cargoEmpleado, double salarioEmpleado, double afp, double isss, Date fechaContratacion, Usuario usuario, String nombre, String apellido, String telefono, String direccion) {
+        super(nombre, apellido, telefono, direccion);
+        this.cargoEmpleado = cargoEmpleado;
         this.salarioEmpleado = salarioEmpleado;
+        this.afp = afp;
+        this.isss = isss;
+        this.fechaContratacion = fechaContratacion;
+        this.usuario = usuario;
+        bonos = new ArrayList();
     }
+
+   
 
     public String getCargoEmpleado() {
         return cargoEmpleado;
@@ -87,29 +49,51 @@ public class Empleados {
         this.cargoEmpleado = cargoEmpleado;
     }
 
-    public String getAfp() {
+    public double getSalarioEmpleado() {
+        return salarioEmpleado;
+    }
+
+    public void setSalarioEmpleado(double salarioEmpleado) {
+        this.salarioEmpleado = salarioEmpleado;
+    }
+
+    public double getAfp() {
         return afp;
     }
 
-    public void setAfp(String afp) {
+    public void setAfp(double afp) {
         this.afp = afp;
     }
 
-    public String getIsss() {
+    public double getIsss() {
         return isss;
     }
 
-    public void setIsss(String isss) {
+    public void setIsss(double isss) {
         this.isss = isss;
     }
 
-    public Date getConstratacion() {
-        return constratacion;
+    public Date getFechaContratacion() {
+        return fechaContratacion;
     }
 
-    public void setConstratacion(Date constratacion) {
-        this.constratacion = constratacion;
+    public void setFechaContratacion(Date fechaContratacion) {
+        this.fechaContratacion = fechaContratacion;
     }
-   
-   
+
+
+    public void addBono(Bono x)
+    {
+        bonos.add(x);
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public ArrayList<Bono> getBonos() {
+        return bonos;
+    }
+    
+    
 }
