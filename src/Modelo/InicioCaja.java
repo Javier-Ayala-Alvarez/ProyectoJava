@@ -13,13 +13,15 @@ import java.util.Date;
  * 
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class AdministrarCaja {
+public class InicioCaja {
     private int idAdminCaja;
     private Date fechaInicio,fechaCierre;
     private double dineroInicio,dineroCierre;
-    private ArrayList<Venta>ventas;
+    private ArrayList<Venta> ventas;
+    private  Usuario usuario;
+  
 
-    public AdministrarCaja(int idAdminCaja, Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre) {
+    public InicioCaja(int idAdminCaja, Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre) {
         this.idAdminCaja = idAdminCaja;
         this.fechaInicio = fechaInicio;
         this.fechaCierre = fechaCierre;
@@ -28,10 +30,10 @@ public class AdministrarCaja {
        
     }
 
-    public AdministrarCaja() {
+    public InicioCaja() {
     }
 
-    public AdministrarCaja(Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre) {
+    public InicioCaja(Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre) {
         this.fechaInicio = fechaInicio;
         this.fechaCierre = fechaCierre;
         this.dineroInicio = dineroInicio;
@@ -79,20 +81,15 @@ public class AdministrarCaja {
         this.dineroCierre = dineroCierre;
     }
 
-    public ArrayList<Venta> getVentas() {
-        return ventas;
-    }
-
-    public void setVentas(ArrayList<Venta> ventas) {
-        this.ventas = ventas;
-    }
+   
     
-    public void addVentas(Date fechaVenta, double saldoTotal)
+    public void addVenta(Venta x)
     {
-        ventas.add(new Venta(fechaVenta, saldoTotal));
+        ventas.add(x);
     }
-    
-    
-    
+     public void addUsuario(Usuario x)
+    {
+       this.usuario =x;
+    }
 
 }

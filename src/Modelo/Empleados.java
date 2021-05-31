@@ -11,7 +11,9 @@ public class Empleados extends Persona{
     private double salarioEmpleado, afp, isss;
     private Date fechaContratacion;
     private Usuario usuario;
-    private  ArrayList<Bono> bonos;
+    private  Bono bono;
+    private Empresa enpresa;
+    private ArrayList<Venta> ventas;
 
     public Empleados(String cargoEmpleado, double salarioEmpleado, double afp, double isss,Usuario usuario, Date fechaContratacion, int idPersona, String nombre, String apellido, String telefono, String direccion) {
         super(idPersona, nombre, apellido, telefono, direccion);
@@ -21,11 +23,12 @@ public class Empleados extends Persona{
         this.isss = isss;
         this.fechaContratacion = fechaContratacion;
         this.usuario = usuario;
-        bonos = new ArrayList();
+        ventas = new ArrayList();
+        
     }
 
     public Empleados() {
-        bonos = new ArrayList();
+        ventas = new ArrayList();
     }
 
     public Empleados(String cargoEmpleado, double salarioEmpleado, double afp, double isss, Date fechaContratacion, Usuario usuario, String nombre, String apellido, String telefono, String direccion) {
@@ -36,7 +39,7 @@ public class Empleados extends Persona{
         this.isss = isss;
         this.fechaContratacion = fechaContratacion;
         this.usuario = usuario;
-        bonos = new ArrayList();
+        ventas = new ArrayList();
     }
 
    
@@ -82,18 +85,19 @@ public class Empleados extends Persona{
     }
 
 
-    public void addBono(Bono x)
-    {
-        bonos.add(x);
-    }
 
     public Usuario getUsuario() {
         return usuario;
     }
 
-    public ArrayList<Bono> getBonos() {
-        return bonos;
+    public void addVenta(Venta x){
+        ventas.add(x);
     }
-    
+    public void addBono(Bono x){
+        this.bono = x;
+    }
+    public void addUsuario(Usuario x){
+        this.usuario = x;
+    }
     
 }

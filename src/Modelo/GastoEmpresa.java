@@ -17,6 +17,7 @@ public class GastoEmpresa {
     private Date fecha;
     private String categoria;
     private double saldo;
+    private Empresa empresa;
 
     public GastoEmpresa(int idGasto, Date fecha, String categoria, double saldo) {
         this.idGasto = idGasto;

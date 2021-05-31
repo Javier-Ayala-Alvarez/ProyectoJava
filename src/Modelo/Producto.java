@@ -6,8 +6,8 @@ public class Producto {
   private String nombreProducto;
   private double precioCompra;
   private double cantidad;
-  protected int max;
-  protected int min;
+  private int max;
+  private int min;
 
     public Producto() {
     }

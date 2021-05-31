@@ -8,7 +8,7 @@ import java.util.Date;
 public class Usuario{
     private String usuario;
     private String contraseña;
-    ArrayList<Persona>persona;
+    private ArrayList<InicioCaja>administrarCajas;
 
     public Usuario() {
     }
@@ -34,6 +34,13 @@ public class Usuario{
         this.contraseña = contraseña;
       
     }
-    
+    public void addAdministarCajas(int idAdminCaja, Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre)
+    {
+        this.administrarCajas.add(new InicioCaja(idAdminCaja, fechaInicio, fechaCierre, dineroInicio, dineroCierre));
+    }
+
+    public ArrayList<InicioCaja> getAdministrarCajas() {
+        return administrarCajas;
+    }
     
 }

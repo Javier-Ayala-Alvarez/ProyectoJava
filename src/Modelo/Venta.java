@@ -7,7 +7,12 @@ public class Venta {
    private int  idFactura;
    private Date fechaVenta;
    private double saldoTotal;
-    ArrayList<Registro> registros;
+   private ArrayList<Registro> registros;
+   private  InicioCaja inicioCaja;
+   private Cliente cliente;
+   private Empleados empleado;
+   
+    
 
     public Venta() {
     }
@@ -51,9 +56,21 @@ public class Venta {
         return registros;
     }
     
-    public void addRegistro(int cantidadProducto, double precioTotalProducto){
-        registros.add(new Registro(cantidadProducto, precioTotalProducto));
-        
+    public void addRegistro(Registro x){
+       registros.add(x);   
+    }
+    
+    public void addInicioCaja(InicioCaja x)
+    {
+        this.inicioCaja = x;
+    }
+
+    public InicioCaja getInicioCaja() {
+        return inicioCaja;
+    }
+    
+    public void addCliente(String nombre, String apellido, String telefono, String direccion){
+        cliente = new Cliente(nombre, apellido, telefono, direccion);
     }
 
   

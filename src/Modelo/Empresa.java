@@ -1,24 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package Modelo;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
- */
 public class Empresa {
     private int IdEmpresa;
     private String nombre,direccion,correo;
     private ArrayList<GastoEmpresa>gastosEmpresa;
     private ArrayList<Producto> productos;
     private ArrayList<Venta>ventas;
+    private ArrayList<Empleados> empleados;
     
 
     public Empresa(int IdEmpresa, String nombre, String direccion, String correo) {
@@ -29,6 +22,7 @@ public class Empresa {
          gastosEmpresa =new ArrayList();
          productos = new ArrayList();
          ventas = new ArrayList();
+         empleados = new ArrayList();
     }
 
     public Empresa(String nombre, String direccion, String correo) {
@@ -38,12 +32,14 @@ public class Empresa {
         gastosEmpresa =new ArrayList();
         productos = new ArrayList();
         ventas = new ArrayList();
+         empleados = new ArrayList();
     }
 
     public Empresa() {
          gastosEmpresa =new ArrayList();
          productos = new ArrayList();
          ventas = new ArrayList();
+          empleados = new ArrayList();
     }
 
     public int getIdEmpresa() {
@@ -115,5 +111,11 @@ public class Empresa {
         ventas.add(x);
         
     }
+     
+     public void addEmpleado(Empleados x)
+     {
+         this.empleados.add(x);
+     }
+     
 
 }
