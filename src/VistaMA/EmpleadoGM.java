@@ -1,0 +1,269 @@
+package VistaMA;
+
+import VistaMV.Fondo;
+
+public class EmpleadoGM extends javax.swing.JDialog {
+
+    public static String x;
+
+    public EmpleadoGM(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        x = "x";
+        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
+//        btnGuardar.setActionCommand("btnGuardarEmpleado");
+//        btnModificar.setActionCommand("btnModificarEmpleado");
+
+    }
+    
+//    public void setControladorMA(ControlMA controlMA){
+//        this.btnGuardar.addActionListener(controlMA);
+//        this.btnModificar.addActionListener(controlMA);
+//    }
+
+    public void iniciar() {
+        this.setVisible(true);
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        rSCalendar1 = new rojeru_san.componentes.RSCalendar();
+        roboto1 = new efectos.Roboto();
+        materialButtonCircle1 = new principal.MaterialButtonCircle();
+        panelFondo = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        tfCodigo = new principal.MaterialTextField();
+        tfPago = new principal.MaterialTextField();
+        lbCodigo = new javax.swing.JLabel();
+        lbEnergia = new javax.swing.JLabel();
+        jpLogo1 = new javax.swing.JPanel();
+        btnGuardar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        materialButtonCircle2 = new principal.MaterialButtonCircle();
+        jComboBox2 = new javax.swing.JComboBox<>();
+
+        materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
+        materialButtonCircle1.setText("X");
+        materialButtonCircle1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materialButtonCircle1ActionPerformed(evt);
+            }
+        });
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
+        panelFondo.setBackground(new java.awt.Color(255, 255, 255));
+        panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("Gasto");
+        panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 100, 60));
+        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 750, 20));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("Codigo");
+        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 80, 60));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setText("Empleado");
+        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 210, 60));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("Apellidos");
+        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 100, 60));
+
+        tfCodigo.setBackground(new java.awt.Color(213, 216, 221));
+        tfCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        tfCodigo.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        tfCodigo.setSelectionColor(new java.awt.Color(102, 153, 255));
+        panelFondo.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 420, 40));
+
+        tfPago.setBackground(new java.awt.Color(213, 216, 221));
+        tfPago.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfPagoKeyTyped(evt);
+            }
+        });
+        panelFondo.add(tfPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 420, 40));
+
+        lbCodigo.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        lbCodigo.setForeground(new java.awt.Color(255, 0, 0));
+        panelFondo.add(lbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 120, 40));
+
+        lbEnergia.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        lbEnergia.setForeground(new java.awt.Color(255, 0, 0));
+        panelFondo.add(lbEnergia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 140, 40));
+
+        javax.swing.GroupLayout jpLogo1Layout = new javax.swing.GroupLayout(jpLogo1);
+        jpLogo1.setLayout(jpLogo1Layout);
+        jpLogo1Layout.setHorizontalGroup(
+            jpLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+        jpLogo1Layout.setVerticalGroup(
+            jpLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+
+        panelFondo.add(jpLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
+
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        panelFondo.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 460, 170, 50));
+
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        panelFondo.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 452, 150, 50));
+
+        materialButtonCircle2.setBackground(new java.awt.Color(255, 0, 0));
+        materialButtonCircle2.setText("X");
+        materialButtonCircle2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materialButtonCircle2ActionPerformed(evt);
+            }
+        });
+        panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 50, 50));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cajero", "Administrador", "Supervisor", " " }));
+        jComboBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox2MouseClicked(evt);
+            }
+        });
+        panelFondo.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 420, 40));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 747, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+        );
+
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void tfPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPagoKeyTyped
+//        char c = evt.getKeyChar();
+//
+//        if (Character.isDigit(c)) {
+//            lbEnergia.setText("");
+//        } else {
+//            lbEnergia.setText("solo numeros");
+//            evt.consume();
+//        }
+    }//GEN-LAST:event_tfPagoKeyTyped
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        x = null;
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+    }//GEN-LAST:event_formWindowClosing
+
+    private void materialButtonCircle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle1ActionPerformed
+
+
+    }//GEN-LAST:event_materialButtonCircle1ActionPerformed
+
+    private void materialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle2ActionPerformed
+        this.dispose();
+        x = null;
+    }//GEN-LAST:event_materialButtonCircle2ActionPerformed
+
+    private void jComboBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox2MouseClicked
+//        if (opc == 1) {
+//            btnGuardar.setEnabled(true);
+//        } else {
+//            btnModificar.setEnabled(true);
+//        }
+    }//GEN-LAST:event_jComboBox2MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ModalEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ModalEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ModalEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ModalEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnGuardar;
+    public javax.swing.JButton btnModificar;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jpLogo1;
+    private javax.swing.JLabel lbCodigo;
+    private javax.swing.JLabel lbEnergia;
+    private principal.MaterialButtonCircle materialButtonCircle1;
+    private principal.MaterialButtonCircle materialButtonCircle2;
+    private javax.swing.JPanel panelFondo;
+    private rojeru_san.componentes.RSCalendar rSCalendar1;
+    private efectos.Roboto roboto1;
+    private principal.MaterialTextField tfCodigo;
+    private principal.MaterialTextField tfPago;
+    // End of variables declaration//GEN-END:variables
+}
