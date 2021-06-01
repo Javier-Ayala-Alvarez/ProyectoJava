@@ -5,7 +5,7 @@
  */
 package Controlador;
 
-import Modelo.GastosEmpresa;
+import Modelo.GastoEmpresa;
 import VistaLogin.Login;
 import VistaMA.EliminarVentas;
 import VistaMA.EmpleadoGM;
@@ -180,11 +180,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         }else if (vista.equals("consultarCliente")) {
             
         }else if (vista.equals("opcionesGDS")) {
-             ArrayList<GastosEmpresa> gastos = new ArrayList();
+             ArrayList<GastoEmpresa> gastos = new ArrayList();
             this.gastosGM = new GastosGM(menuAdministrador,true,gastos);
             this.gastosGM.iniciar();
         }else if (vista.equals("valanceGDS")) {
-             ArrayList<GastosEmpresa> empresa = new ArrayList();
+             ArrayList<GastoEmpresa> empresa = new ArrayList();
             this.gastosValance = new GastosValance(menuAdministrador,true,empresa);
             this.gastosValance.iniciar();
         }

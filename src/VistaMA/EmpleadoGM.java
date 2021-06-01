@@ -15,6 +15,10 @@ public class EmpleadoGM extends javax.swing.JDialog {
 //        btnModificar.setActionCommand("btnModificarEmpleado");
 
     }
+
+    public EmpleadoGM() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 //    public void setControladorMA(ControlMA controlMA){
 //        this.btnGuardar.addActionListener(controlMA);

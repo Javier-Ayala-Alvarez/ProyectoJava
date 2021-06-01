@@ -1,6 +1,7 @@
 package VistaMA;
 
-import Modelo.GastosEmpresa;
+
+import Modelo.GastoEmpresa;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,25 +15,21 @@ import VistaMV.Fondo;
 
 public class GastosGM extends javax.swing.JDialog {
 
-    public static String x;
     DefaultTableModel modelo;
-    ArrayList<GastosEmpresa> empresa;
-    DateFormat formater = new SimpleDateFormat("MMM-yyyy");
+    public static String x;
 
-    public GastosGM(java.awt.Frame parent, boolean modal, ArrayList<GastosEmpresa> g) {
+    public GastosGM(java.awt.Frame parent, boolean modal, ArrayList<GastoEmpresa> gastos) {
         super(parent, modal);
         initComponents();
-        x = "x";
-        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
-        empresa = g;
-        dFecha.setDatoFecha(new Date());
-        btEliminar.setVisible(false);
-        btModificar.setVisible(false);
-        empresa = g;
-        mostrar();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
+        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
     }
+
+    public GastosGM() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
 
     public void iniciar() {
         this.setVisible(true);
@@ -168,6 +165,11 @@ public class GastosGM extends javax.swing.JDialog {
 
         materialButtonCircle2.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle2.setText("X");
+        materialButtonCircle2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                materialButtonCircle2MouseClicked(evt);
+            }
+        });
         materialButtonCircle2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 materialButtonCircle2ActionPerformed(evt);
@@ -265,22 +267,15 @@ public class GastosGM extends javax.swing.JDialog {
     }//GEN-LAST:event_cbTipoMouseClicked
 
     private void tfPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPagoKeyTyped
-        char c = evt.getKeyChar();
 
-        if ((c >= 46 && c <= 57)) {
-            lbPago.setText("");
-        } else {
-            lbPago.setText("solo numeros");
-            evt.consume();
-        }
     }//GEN-LAST:event_tfPagoKeyTyped
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        x = null;
+         x = null;
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
+        x = null;
     }//GEN-LAST:event_formWindowClosing
 
     private void materialButtonCircle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle1ActionPerformed
@@ -289,8 +284,7 @@ public class GastosGM extends javax.swing.JDialog {
     }//GEN-LAST:event_materialButtonCircle1ActionPerformed
 
     private void materialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle2ActionPerformed
-        this.dispose();
-        x = null;
+
     }//GEN-LAST:event_materialButtonCircle2ActionPerformed
 
     private void tbDatosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tbDatosFocusLost
@@ -298,148 +292,21 @@ public class GastosGM extends javax.swing.JDialog {
     }//GEN-LAST:event_tbDatosFocusLost
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
-        btEliminar.setVisible(true);
-        btModificar.setVisible(true);
-        int fila = tbDatos.getSelectedRow();
-        String codigo = tbDatos.getValueAt(fila, 0).toString();
-        for (GastosEmpresa x : empresa) {
-            if (x.getCodigoGastos().equals(codigo)) {
-                tfCodigo.setText(x.getCodigoGastos());
-                tfPago.setText(String.valueOf(x.getSaldo()));
-                dFecha.setDatoFecha(x.getFecha());
-            }
 
-        }
 
     }//GEN-LAST:event_tbDatosMouseClicked
 
     private void tbGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbGenerarActionPerformed
-        tfCodigo.setText(codigo());
+
     }//GEN-LAST:event_tbGenerarActionPerformed
-    private boolean existe() {
-        for (GastosEmpresa x : empresa) {
-            if (x.getCodigoGastos().equals(tfCodigo.getText())) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    private void limpiar() {
-        tfCodigo.setText("");
-        tfPago.setText("");
-        dFecha.setDatoFecha(new Date());
-    }
-
-    private void mostrar() {
-        modelo = new DefaultTableModel();
-        String titulo[] = {"Codigo", "Fecha", "Tipo", "Pago"};
-        modelo.setColumnIdentifiers(titulo);
-        for (GastosEmpresa x : empresa) {
-            Object obj1[] = {x.getCodigoGastos(), x.getFecha(), x.getTipo(), "$ " + String.format("%.2f", x.getSaldo())};
-            modelo.addRow(obj1);
-        }
-        tbDatos.setModel(modelo);
-    }
     private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
-        if (existe()) {
-            int fila = tbDatos.getSelectedRow();
-            String codigo = tbDatos.getValueAt(fila, 0).toString();
-            for (GastosEmpresa x : empresa) {
-                if (x.getCodigoGastos().equals(codigo)) {
-                    double pago = Double.parseDouble(tfPago.getText());
-                    if (cbTipo.getSelectedItem().equals("Impuesto de Alcaldia")) {
-                        x.setCodigoGastos(tfCodigo.getText());
-                        Date fechaC = dFecha.getDatoFecha();
-                        x.setFecha(fechaC);
-                        x.setTipo("Impuesto de Alcaldia");
-                        x.setSaldo(pago);
-                    } else if (cbTipo.getSelectedItem().equals("Pago de Energia")) {
-                        x.setCodigoGastos(tfCodigo.getText());
-                        Date fechaC = dFecha.getDatoFecha();
-                        x.setFecha(fechaC);
-                        x.setTipo("Pago de Energia");
-                        x.setSaldo(pago);
-                    } else if (cbTipo.getSelectedItem().equals("Pago de Alquiler")) {
-                        x.setCodigoGastos(tfCodigo.getText());
-                        Date fechaC = dFecha.getDatoFecha();
-                        x.setFecha(fechaC);
-                        x.setTipo("Pago de Alquiler");
-                        x.setSaldo(pago);
-                    } else if (cbTipo.getSelectedItem().equals("Pago de Agua")) {
-                        x.setCodigoGastos(tfCodigo.getText());
-                        Date fechaC = dFecha.getDatoFecha();
-                        x.setFecha(fechaC);
-                        x.setTipo("Pago de Agua");
-                        x.setSaldo(pago);
-                    } else if (cbTipo.getSelectedItem().equals("ISSS")) {
-                        x.setCodigoGastos(tfCodigo.getText());
-                        Date fechaC = dFecha.getDatoFecha();
-                        x.setFecha(fechaC);
-                        x.setTipo("ISSS");
-                        x.setSaldo(pago);
-                    } else if (cbTipo.getSelectedItem().equals("AFP")) {
-                        x.setCodigoGastos(tfCodigo.getText());
-                        Date fechaC = dFecha.getDatoFecha();
-                        x.setFecha(fechaC);
-                        x.setTipo("AFP");
-                        x.setSaldo(pago);
-                    } else if (cbTipo.getSelectedItem().equals("IVA")) {
-                        x.setCodigoGastos(tfCodigo.getText());
-                        Date fechaC = dFecha.getDatoFecha();
-                        x.setFecha(fechaC);
-                        x.setTipo("IVA");
-                        x.setSaldo(pago);
-                    }
-                }
-            }
-            limpiar();
-            mostrar();
-        } else {
-            JOptionPane.showMessageDialog(null, "Codigo no existe", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
+        
     }//GEN-LAST:event_btModificarActionPerformed
-    private String codigo() {
-        int w = 0;
-        String letra = "GE-";
-        String correlativo = letra;
-        String[] corre = null;
-        int corre1 = 0;
-        String d = "0qq-0000";
-        for (GastosEmpresa x : empresa) {
-            d = x.getCodigoGastos();
 
-        }
-        corre = d.split("-");
-        corre1 = Integer.valueOf(corre[1]);
-
-        corre1 = corre1 + 1;
-        String ww = String.valueOf(corre1);
-        for (int i = 0; i < 6; i++) {
-            if (correlativo.length() + ww.length() < 7) {
-                correlativo = correlativo + "0";
-            }
-        }
-        correlativo = correlativo + String.valueOf(ww);
-        return correlativo;
-    }
+      
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-        int fila = tbDatos.getSelectedRow();
-        String codigo = tbDatos.getValueAt(fila, 0).toString();
-        int w = 0;
-        for (GastosEmpresa x : empresa) {
-            if (x.getCodigoGastos().equals(codigo)) {
-                int opccion1 = JOptionPane.showConfirmDialog(null, "Deseas Eliminar Registro?", "Welcome",
-                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if (opccion1 == 0) {
-                    empresa.remove(w);
-                }
-                limpiar();
-                mostrar();
-            }
-            w++;
-        }
+       
     }//GEN-LAST:event_btEliminarActionPerformed
 
     private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
@@ -447,42 +314,12 @@ public class GastosGM extends javax.swing.JDialog {
     }//GEN-LAST:event_tfCodigoActionPerformed
 
     private void rSButtonHover7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover7ActionPerformed
-        Date fechaC = dFecha.getDatoFecha();
-        double pago = Double.parseDouble(tfPago.getText());
-        if (!existe()) {
-            if ((!tfCodigo.getText().isEmpty()) && (!tfPago.getText().isEmpty())) {
-                if (cbTipo.getSelectedItem().equals("Impuesto de Alcaldia")) {
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(), fechaC, "Impuesto de Alcaldia", pago);
-                    empresa.add(obj);
-                } else if (cbTipo.getSelectedItem().equals("Pago de Energia")) {
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(), fechaC, "Pago de Energia", pago);
-                    empresa.add(obj);
-                } else if (cbTipo.getSelectedItem().equals("Pago de Alquiler")) {
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(), fechaC, "Pago de Alquiler", pago);
-                    empresa.add(obj);
-                } else if (cbTipo.getSelectedItem().equals("Pago de Agua")) {
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(), fechaC, "Pago de Agua", pago);
-                    empresa.add(obj);
-                } else if (cbTipo.getSelectedItem().equals("ISSS")) {
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(), fechaC, "ISSS", pago);
-                    empresa.add(obj);
-                } else if (cbTipo.getSelectedItem().equals("AFP")) {
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(), fechaC, "AFP", pago);
-                    empresa.add(obj);
-                } else if (cbTipo.getSelectedItem().equals("IVA")) {
-                    GastosEmpresa obj = new GastosEmpresa(tfCodigo.getText(), fechaC, "IVA", pago);
-                    empresa.add(obj);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Codigo ya existe", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-        mostrar();
+      
     }//GEN-LAST:event_rSButtonHover7ActionPerformed
+
+    private void materialButtonCircle2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialButtonCircle2MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_materialButtonCircle2MouseClicked
 
     /**
      * @param args the command line arguments

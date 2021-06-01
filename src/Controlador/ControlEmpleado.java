@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package Controlador;
-
-import Vista.moduloAdministracion.EmpleadoGM;
+import VistaMA.EmpleadoGM;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

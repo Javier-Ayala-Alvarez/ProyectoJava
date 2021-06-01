@@ -5,7 +5,7 @@
  */
 package Controlador;
 
-import Vista.moduloAdministracion.MenuAdministrador;
+import VistaMA.MenuAdministrador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

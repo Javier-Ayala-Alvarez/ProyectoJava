@@ -2,7 +2,7 @@ package VistaMA;
 
 import Controlador.ControlLogin;
 import Controlador.ControlMA;
-import Modelo.GastosEmpresa;
+import Modelo.GastoEmpresa;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JFrame;

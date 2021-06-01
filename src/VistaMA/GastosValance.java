@@ -1,26 +1,28 @@
 package VistaMA;
-
-import Modelo.GastosEmpresa;
-import java.util.ArrayList;
-import java.util.Calendar;
-import static java.util.Calendar.YEAR;
-import java.util.Date;
+import Modelo.GastoEmpresa;
 import javax.swing.table.DefaultTableModel;
 import VistaMV.Fondo;
+import java.util.ArrayList;
 
 public class GastosValance extends javax.swing.JDialog {
 
     public static String x;
     DefaultTableModel modelo;
-    ArrayList<GastosEmpresa> empresa;
 
-    public GastosValance(java.awt.Frame parent, boolean modal, ArrayList<GastosEmpresa> g) {
+    public GastosValance(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         x = "x";
         jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
-        empresa = g;
 
+    }
+
+    public GastosValance(MenuAdministrador menuAdministrador, boolean b, ArrayList<GastoEmpresa> empresa) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public GastosValance() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void iniciar() {
@@ -213,33 +215,9 @@ public class GastosValance extends javax.swing.JDialog {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void rSButtonHover6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover6ActionPerformed
-        mostrarDatos();
     }//GEN-LAST:event_rSButtonHover6ActionPerformed
 
-    private void mostrarDatos() {
-        modelo = new DefaultTableModel();
-        String titulo[] = {"Codigo", "Fecha", "Tipo", "Pago"};
-        modelo.setColumnIdentifiers(titulo);
-
-        for (GastosEmpresa x : empresa) {
-            int dia0 = x.getFecha().getDay();
-            int mes0 = x.getFecha().getMonth();
-            int año0 = x.getFecha().getYear();
-            int dia1 = dFecha.getDatoFecha().getDay();
-            int mes1 = dFecha.getDatoFecha().getMonth();
-            int año1 = dFecha.getDatoFecha().getYear();
-
-            int dia2 = dFecha1.getDatoFecha().getDay();
-            int mes2 = dFecha1.getDatoFecha().getMonth();
-            int año2 = dFecha1.getDatoFecha().getYear();
-
-            if ((dia0 >= dia1 && dia0 <= dia2) && (mes0 >= mes1 && mes0 <= mes2) && (año0 >= año1 && año0 <= año2)) {
-                Object obj1[] = {x.getCodigoGastos(), x.getFecha(), x.getTipo(), "$ " + String.format("%.2f", x.getSaldo())};
-                modelo.addRow(obj1);
-            }
-        }
-        tbDatos.setModel(modelo);
-    }
+   
     /**
      * @param args the command line arguments
      */
