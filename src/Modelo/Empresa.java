@@ -42,6 +42,12 @@ public class Empresa {
           empleados = new ArrayList();
     }
 
+    public Empresa(int IdEmpresa) {
+        this.IdEmpresa = IdEmpresa;
+    }
+
+
+
     public int getIdEmpresa() {
         return IdEmpresa;
     }

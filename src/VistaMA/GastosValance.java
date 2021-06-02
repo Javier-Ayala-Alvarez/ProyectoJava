@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class GastosValance extends javax.swing.JDialog {
 
-    public static String x;
+   
     DefaultTableModel modelo;
 
     public GastosValance(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        x = "x";
+       
         jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
 
     }
@@ -185,7 +185,7 @@ public class GastosValance extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        x = null;
+      
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -199,7 +199,7 @@ public class GastosValance extends javax.swing.JDialog {
 
     private void materialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle2ActionPerformed
         this.dispose();
-        x = null;
+        
     }//GEN-LAST:event_materialButtonCircle2ActionPerformed
 
     private void tbDatosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tbDatosFocusLost
