@@ -18,7 +18,7 @@ public class GastosValance extends javax.swing.JDialog {
     }
 
     public GastosValance(MenuAdministrador menuAdministrador, boolean b, ArrayList<GastoEmpresa> empresa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public GastosValance() {

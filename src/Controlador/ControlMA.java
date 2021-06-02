@@ -14,6 +14,7 @@ import VistaMA.GastosValance;
 import VistaMA.MenuAdministrador;
 import VistaMA.RegistrosDeProductos;
 import VistaMA.RegistrosDeVentas;
+import VistaMA.VistaEmpresa;
 import VistaMV.Factura;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,6 +39,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     RegistrosDeProductos registrosDeProductos;
     RegistrosDeVentas registrosDeVentas;
     EliminarVentas eliminarVentas;
+    VistaEmpresa vistaEmpresa;
 
     public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, GastosValance gastosValance, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas) {
         this.menuAdministrador = menuAdministrador;
@@ -99,6 +101,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             llamarVistaConsulta("opcionesGDS");
         }else if (e.getActionCommand().equals("valanceGDS")) {
             llamarVistaConsulta("valanceGDS");
+        }else if (e.getActionCommand().equals("modificarEmpresa")) {
+            llamarVistaConsulta("modificarEmpresa");
+        }else if (e.getActionCommand().equals("consultarEmpresa")) {
+            llamarVistaConsulta("consultarEmpresa");
         }
         /*Fin de Sub-botones de los Menús*/
 
@@ -188,6 +194,17 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.gastosValance = new GastosValance(menuAdministrador,true,empresa);
             this.gastosValance.iniciar();
         }
+        else if (vista.equals("modificarEmpresa")) {
+            this.vistaEmpresa = new VistaEmpresa(menuAdministrador,true,true);
+            this.vistaEmpresa.iniciar();
+            
+        }
+        else if (vista.equals("consultarEmpresa")) {
+            this.vistaEmpresa = new VistaEmpresa(menuAdministrador,true,false);
+            this.vistaEmpresa.iniciar();
+            
+        }
+        
         /*Fin de Ejecuciones de los Sub-botones de los Menús*/
     }
 }
