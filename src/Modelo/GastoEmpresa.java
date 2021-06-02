@@ -14,6 +14,7 @@ import java.util.Date;
  */
 public class GastoEmpresa {
     private int idGasto;
+    private String codigoGastos;
     private Date fecha;
     private String categoria;
     private double saldo;
@@ -34,6 +35,31 @@ public class GastoEmpresa {
 
     public GastoEmpresa() {
     }
+
+    public GastoEmpresa(String codigoGastos, Date fecha, String categoria, double saldo, Empresa empresa) {
+        this.codigoGastos = codigoGastos;
+        this.fecha = fecha;
+        this.categoria = categoria;
+        this.saldo = saldo;
+        this.empresa = empresa;
+    }
+
+    public String getCodigoGastos() {
+        return codigoGastos;
+    }
+
+    public void setCodigoGastos(String codigoGastos) {
+        this.codigoGastos = codigoGastos;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+    
 
     public int getIdGasto() {
         return idGasto;

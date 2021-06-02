@@ -58,7 +58,6 @@ public class GastosGM extends javax.swing.JDialog {
         jpLogo1 = new javax.swing.JPanel();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbDatos = new javax.swing.JTable();
         jSeparator2 = new javax.swing.JSeparator();
         tbGenerar = new rojeru_san.complementos.RSButtonHover();
         btModificar = new rojeru_san.complementos.RSButtonHover();
@@ -177,7 +176,7 @@ public class GastosGM extends javax.swing.JDialog {
         });
         panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, 50, 50));
 
-        tbDatos.setModel(new javax.swing.table.DefaultTableModel(
+        jtDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -197,17 +196,17 @@ public class GastosGM extends javax.swing.JDialog {
                 "Codigo", "Fecha", "Impuesto"
             }
         ));
-        tbDatos.addFocusListener(new java.awt.event.FocusAdapter() {
+        jtDatos.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                tbDatosFocusLost(evt);
+                jtDatosFocusLost(evt);
             }
         });
-        tbDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtDatos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbDatosMouseClicked(evt);
+                jtDatosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbDatos);
+        jScrollPane1.setViewportView(jtDatos);
 
         panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 750, 190));
         panelFondo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 20));
@@ -287,14 +286,14 @@ public class GastosGM extends javax.swing.JDialog {
 
     }//GEN-LAST:event_materialButtonCircle2ActionPerformed
 
-    private void tbDatosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tbDatosFocusLost
+    private void jtDatosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDatosFocusLost
 
-    }//GEN-LAST:event_tbDatosFocusLost
+    }//GEN-LAST:event_jtDatosFocusLost
 
-    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
+    private void jtDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDatosMouseClicked
 
 
-    }//GEN-LAST:event_tbDatosMouseClicked
+    }//GEN-LAST:event_jtDatosMouseClicked
 
     private void tbGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbGenerarActionPerformed
 
@@ -362,6 +361,7 @@ public class GastosGM extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel jpLogo1;
+    public final javax.swing.JTable jtDatos = new javax.swing.JTable();
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbPago;
     private principal.MaterialButtonCircle materialButtonCircle1;
@@ -370,7 +370,6 @@ public class GastosGM extends javax.swing.JDialog {
     private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private rojeru_san.componentes.RSCalendar rSCalendar1;
     private efectos.Roboto roboto1;
-    private javax.swing.JTable tbDatos;
     private rojeru_san.complementos.RSButtonHover tbGenerar;
     private principal.MaterialTextField tfCodigo;
     private principal.MaterialTextField tfPago;
