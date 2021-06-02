@@ -29,7 +29,7 @@ public class Login extends javax.swing.JFrame {
         VistaMA.EliminarVentas.x = null;
         VistaMA.EmpleadoGM.x = null;
         VistaMA.GastosGM.x = null;
-        VistaMA.GastosValance.x = null;
+        
         VistaMA.RegistrosDeProductos.x = null;
         VistaMA.RegistrosDeVentas.x = null;
         VistaMV.Factura.res = null;/////////////////////

@@ -20,8 +20,9 @@ public class VistaEmpresa extends javax.swing.JDialog {
         super(parent, modal);
    
         initComponents();
+        setEstado(estado);
              
-             this.setUndecorated(true);
+             
     }
     
     

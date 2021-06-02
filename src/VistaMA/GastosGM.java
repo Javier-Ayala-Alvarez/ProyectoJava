@@ -18,7 +18,7 @@ public class GastosGM extends javax.swing.JDialog {
     DefaultTableModel modelo;
     public static String x;
 
-    public GastosGM(java.awt.Frame parent, boolean modal, ArrayList<GastoEmpresa> gastos) {
+    public GastosGM(java.awt.Frame parent, boolean modal ) {
         super(parent, modal);
         initComponents();
 

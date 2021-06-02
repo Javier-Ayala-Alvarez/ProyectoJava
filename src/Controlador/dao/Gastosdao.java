@@ -10,13 +10,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class Gastosdao {
+public class GastosDao {
     Conexion conectar = new Conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
     
-    public Gastosdao(){
+    public GastosDao(){
         
     }
     
