@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Controlador.dao.Gastosdao;
 import Modelo.GastoEmpresa;
 import VistaLogin.Login;
 import VistaMA.EliminarVentas;
@@ -22,6 +23,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,11 +35,20 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     MenuAdministrador menuAdministrador;
     Login login;
     EmpleadoGM empleadoGM;
+    
+    //****GastoGM****//
     GastosGM gastosGM;
+    Gastosdao daoGasto = new Gastosdao();
+//    GastosGM gasto = new GastosGM();
+    GastosGM gastoSeleccionado = null;
+    //****Fin GastoGM****//
+    
     GastosValance gastosValance;
     RegistrosDeProductos registrosDeProductos;
     RegistrosDeVentas registrosDeVentas;
     EliminarVentas eliminarVentas;
+    DefaultTableModel modelo = new DefaultTableModel();
+    private String padreActiva = "";
 
     public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, GastosValance gastosValance, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas) {
         this.menuAdministrador = menuAdministrador;
@@ -49,6 +60,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         this.registrosDeVentas = registrosDeVentas;
         this.eliminarVentas = eliminarVentas;
         llamarVistaConsulta("menuAdministrador");
+        
+        
     }
 
     @Override
@@ -97,6 +110,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             llamarVistaConsulta("consultarCliente");
         }else if (e.getActionCommand().equals("opcionesGDS")) {
             llamarVistaConsulta("opcionesGDS");
+           
         }else if (e.getActionCommand().equals("valanceGDS")) {
             llamarVistaConsulta("valanceGDS");
         }
@@ -180,9 +194,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         }else if (vista.equals("consultarCliente")) {
             
         }else if (vista.equals("opcionesGDS")) {
-             ArrayList<GastoEmpresa> gastos = new ArrayList();
-            this.gastosGM = new GastosGM(menuAdministrador,true,gastos);
+             padreActiva = "opcionesGDS";
+            mostrarDatos();
+            this.gastosGM = new GastosGM(menuAdministrador,true);
             this.gastosGM.iniciar();
+            
         }else if (vista.equals("valanceGDS")) {
              ArrayList<GastoEmpresa> empresa = new ArrayList();
             this.gastosValance = new GastosValance(menuAdministrador,true,empresa);
@@ -190,4 +206,24 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         }
         /*Fin de Ejecuciones de los Sub-botones de los Menús*/
     }
+////////*************Mostrar Datos**************////////////
+     public void mostrarDatos() {
+        modelo = new DefaultTableModel();
+        /* Gastos */
+        
+        if (padreActiva.equals("opcionesGDS")) {
+            String titulos[] = {"Codigo", "Fecha","Tipo","Saldo","Empresa"};
+            modelo.setColumnIdentifiers(titulos);
+            ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
+            int i = 1;
+
+            for (GastoEmpresa x : gastos) {
+                Object datos[] = {i, x.getCodigoGastos(),x.getFecha(),x.getCategoria(),x.getEmpresa().getNombre()};
+                modelo.addRow(datos);
+                i++;
+            }
+            this.gastosGM.jtDatos.setModel(modelo);
+        }
+    }
+////////*************Fin de Mostrar Datos**************////////////
 }
