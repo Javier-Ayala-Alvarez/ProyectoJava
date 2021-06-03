@@ -21,7 +21,7 @@ public Connection getConexion() {
             Class.forName(driver);
             cn= DriverManager.getConnection(url,user , password);
         } catch (Exception ex) {
-         Alerta alert=new Alerta("Error en la conexión","null");
+         Alerta alert=new Alerta("Error en la conexión","/img/error.png");
             alert.show();           
             ex.printStackTrace();
         }
@@ -36,7 +36,7 @@ public Connection getConexion() {
           conn.close();
       }
   }catch(SQLException sql){
-       Alerta alert=new Alerta("Error al cerrar conexión","null");
+       Alerta alert=new Alerta("Error al cerrar conexión","/img/error.png");
             alert.show(); 
     sql.printStackTrace();
   }

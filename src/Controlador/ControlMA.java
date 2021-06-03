@@ -5,8 +5,11 @@
  */
 package Controlador;
 
+import Controlador.dao.EmpresaDao;
 import Controlador.dao.GastosDao;
+import Modelo.Empresa;
 import Modelo.GastoEmpresa;
+import VistaLogin.Alerta;
 
 import VistaLogin.Login;
 import VistaMA.EliminarVentas;
@@ -45,6 +48,14 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     GastosGM gastoSeleccionado = null;
     //****Fin GastoGM****//
     
+    //****inicio vistaEmpresa****//
+    Empresa empresa = new Empresa();
+    Empresa empresaSeleccionanda = new Empresa();
+    EmpresaDao daoEmpresa = new EmpresaDao();
+    
+    //****fin vistaEmpresa****//
+    
+    
     GastosValance gastosValance;
     RegistrosDeProductos registrosDeProductos;
     RegistrosDeVentas registrosDeVentas;
@@ -55,6 +66,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     VistaEmpresa vistaEmpresa;
 
     public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, GastosValance gastosValance, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas) {
+        //this.daoGasto = new GastosDao();
         this.menuAdministrador = menuAdministrador;
         this.login = login;
         this.empleadoGM = empleadoGM;
@@ -123,7 +135,41 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             llamarVistaConsulta("consultarEmpresa");
         }
         /*Fin de Sub-botones de los Menús*/
+        
+        
+        
+        /*********************************para Modificar empresa*********************************/
+        else if (e.getActionCommand().equals("editarEmpresa")) {
+            llamarAcciones("editarEmpresa");
+            
+        }
+        
+        
+        /**********************************fin Modificar empresa*********************************/
 
+    }
+    public void llamarAcciones(String nombreAccion ) {
+        //para boton modificar en vistaEmpresa
+        if (nombreAccion.equals("editarEmpresa")) {
+            if ((!vistaEmpresa.tfNombre.getText().isEmpty())
+                  && (!vistaEmpresa.tfDireccion.getText().isEmpty())
+                  && (!vistaEmpresa.tfCorreo.getText().isEmpty())) {
+                
+                empresa = new Empresa(vistaEmpresa.tfNombre.getText(), vistaEmpresa.tfDireccion.getText(), 
+                        vistaEmpresa.tfCorreo.getText(),vistaEmpresa.tfCodigoEmpresa.getText());
+                if ( daoEmpresa.update(empresa)) {
+                    Alerta alerta = new Alerta("Datos Modificados con exito", "/img/exito.png");
+                    this.vistaEmpresa.dispose();
+                }
+                else{
+                     Alerta alerta = new Alerta("error realisando la modificacion ", "/img/error.png");
+                }
+                
+            }else{
+                Alerta alerta = new Alerta("complete los datos para poder realizar un cambio", "/img/error.png");
+            }
+            
+        }
     }
 
     @Override
@@ -214,16 +260,34 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         }
         else if (vista.equals("modificarEmpresa")) {
             this.vistaEmpresa = new VistaEmpresa(menuAdministrador,true,true);
-            this.vistaEmpresa.iniciar();
             
+            empresaSeleccionanda = daoEmpresa.selectAll().get(0);
+            System.out.println("hola");
+            this.vistaEmpresa.setControladorMA(this);
+            this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
+             this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
+              this.vistaEmpresa.tfDireccion.setText(empresaSeleccionanda.getDireccion());
+              this.vistaEmpresa.tfCorreo.setText(empresaSeleccionanda.getCorreo());
+              this.vistaEmpresa.iniciar();
+         
         }
         else if (vista.equals("consultarEmpresa")) {
             this.vistaEmpresa = new VistaEmpresa(menuAdministrador,true,false);
+             empresaSeleccionanda = daoEmpresa.selectAll().get(0);
+            System.out.println("hola");
+            this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
+             this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
+              this.vistaEmpresa.tfDireccion.setText(empresaSeleccionanda.getDireccion());
+              this.vistaEmpresa.tfCorreo.setText(empresaSeleccionanda.getCorreo());
+            
             this.vistaEmpresa.iniciar();
             
         }
         
         /*Fin de Ejecuciones de los Sub-botones de los Menús*/
+        
+        
+        
     }
 ////////*************Mostrar Datos**************////////////
      public void mostrarDatos() {
