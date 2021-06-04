@@ -1,7 +1,12 @@
 package Controlador;
 
+import Modelo.Dao.EmpresaDao;
+import Modelo.Dao.GastosDao;
+import Modelo.Empresa;
 import Modelo.GastoEmpresa;
+import Modelo.dao.EmpresaDao;
 import Modelo.dao.Gastosdao;
+import VistaLogin.Alerta;
 import VistaLogin.Login;
 import VistaMA.EliminarVentas;
 import VistaMA.EmpleadoGM;
@@ -9,6 +14,7 @@ import VistaMA.GastosGM;
 import VistaMA.MenuAdministrador;
 import VistaMA.RegistrosDeProductos;
 import VistaMA.RegistrosDeVentas;
+import VistaMA.VistaEmpresa;
 import VistaMV.Factura;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +39,13 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
     Gastosdao daoGasto = new Gastosdao();
     GastosGM gastoSeleccionado = null;
     //****Fin GastoGM****//
+    //****Empresa****//
+     
+    VistaEmpresa vistaEmpresa;
+    EmpresaDao daoEmpresa = new EmpresaDao();
+    Empresa empresa;
+    Empresa empresaSeleccionanda = null;
+    //****Fin GastoGM****//
 
     RegistrosDeProductos registrosDeProductos;
     RegistrosDeVentas registrosDeVentas;
@@ -40,7 +53,8 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
     DefaultTableModel modelo = new DefaultTableModel();
     private String padreActiva = "";
 
-    public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas) {
+    public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, GastosValance gastosValance, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas) {
+        //this.daoGasto = new GastoDao();
         this.menuAdministrador = menuAdministrador;
         this.login = login;
         this.empleadoGM = empleadoGM;
@@ -108,6 +122,40 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
         }
         /*Fin de Sub-botones de los Menús*/
 
+    }
+    public void llamarAcciones(String nombreAccion ) {
+        //para boton modificar en vistaEmpresa
+        if (nombreAccion.equals("editarEmpresa")) {
+            if ((!vistaEmpresa.tfNombre.getText().isEmpty())
+                  && (!vistaEmpresa.tfDireccion.getText().isEmpty())
+                  && (!vistaEmpresa.tfCorreo.getText().isEmpty())) {
+                
+                empresaSeleccionanda.setNombre(vistaEmpresa.tfNombre.getText()); 
+                 empresaSeleccionanda.setCorreo(vistaEmpresa.tfCorreo.getText()); 
+                 empresaSeleccionanda.setCodigoEmpresa(vistaEmpresa.tfCodigoEmpresa.getText()); 
+                 empresaSeleccionanda.setDireccion(vistaEmpresa.tfDireccion.getText()); 
+                
+                 
+                //= new Empresa(vistaEmpresa.tfNombre.getText(), vistaEmpresa.tfDireccion.getText(), 
+                        //vistaEmpresa.tfCorreo.getText(),vistaEmpresa.tfCodigoEmpresa.getText());
+              
+                if ( daoEmpresa.update(empresaSeleccionanda)) {
+                    
+                    Alerta alerta = new Alerta("Datos Modificados con exito", "/img/exito.png");
+                    alerta.show();
+                    this.vistaEmpresa.dispose();
+                }
+                else{
+                     Alerta alerta = new Alerta("error realisando la modificacion ", "/img/error.png");
+                     alerta.show();
+                    this.vistaEmpresa.dispose();
+                }
+                
+            }else{
+                Alerta alerta = new Alerta("complete los datos para poder realizar un cambio", "/img/error.png");
+            }
+            
+        }
     }
 
     @Override
