@@ -6,6 +6,7 @@
 
 package Modelo;
 
+import Modelo.dao.EmpresaDao;
 import java.util.Date;
 
 /**
@@ -56,8 +57,8 @@ public class GastoEmpresa {
     }
 
     public Empresa getEmpresa() {
-//        Empresa daoEmpresa = new EmpresaDao();
-//        empresa = daoEmpresa.selectId(empresa.getNombre()).get(0);
+        EmpresaDao daoEmpresa = new EmpresaDao();
+        empresa = daoEmpresa.selectId(empresa.getIdEmpresa()).get(0);
 
         return empresa;
     }

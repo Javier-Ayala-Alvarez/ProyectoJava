@@ -2,7 +2,7 @@ package VistaMA;
 import Controlador.ControlMA;
 import javax.swing.table.DefaultTableModel;
 import VistaMV.Fondo;
-import javax.swing.JOptionPane;
+
 public class GastosGM extends javax.swing.JDialog {
 
     DefaultTableModel modelo;
@@ -17,6 +17,7 @@ public class GastosGM extends javax.swing.JDialog {
         btnModificar.setActionCommand("Modificar");
         btnGenerar.setActionCommand("Generar");
         
+
                     
     }
     public void iniciar() {
@@ -27,6 +28,7 @@ public class GastosGM extends javax.swing.JDialog {
         btnEliminar.addActionListener(control1);
         btnModificar.addActionListener(control1);
         btnGenerar.addActionListener(control1);
+        tfBuscar.addKeyListener(control1);
         
     }
 
@@ -152,13 +154,13 @@ public class GastosGM extends javax.swing.JDialog {
         });
         panelFondo.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 300, 40));
 
-        tfPago.setBackground(new java.awt.Color(213, 216, 221));
-        tfPago.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfBuscar.setBackground(new java.awt.Color(213, 216, 221));
+        tfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfPagoKeyTyped(evt);
+                tfBuscarKeyTyped(evt);
             }
         });
-        panelFondo.add(tfPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 160, 30));
+        panelFondo.add(tfBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 160, 30));
         panelFondo.add(dFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 400, 40));
 
         javax.swing.GroupLayout jpLogo1Layout = new javax.swing.GroupLayout(jpLogo1);
@@ -452,7 +454,6 @@ public class GastosGM extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -557,8 +558,8 @@ public class GastosGM extends javax.swing.JDialog {
     private void cbTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbTipoMouseClicked
     }//GEN-LAST:event_cbTipoMouseClicked
 
-    private void tfPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPagoKeyTyped
-    }//GEN-LAST:event_tfPagoKeyTyped
+    private void tfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyTyped
+    }//GEN-LAST:event_tfBuscarKeyTyped
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         x = null;
@@ -688,8 +689,8 @@ public class GastosGM extends javax.swing.JDialog {
     private javax.swing.JPanel panelFondo;
     private rojeru_san.componentes.RSCalendar rSCalendar1;
     private efectos.Roboto roboto1;
+    public static final principal.MaterialTextField tfBuscar = new principal.MaterialTextField();
     public static principal.MaterialTextField tfCodigo;
-    public static final principal.MaterialTextField tfPago = new principal.MaterialTextField();
     public static final principal.MaterialTextField tfPago1 = new principal.MaterialTextField();
     // End of variables declaration//GEN-END:variables
 }

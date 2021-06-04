@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class Empresa {
     private int IdEmpresa;
+    private String codigoEmpresa;
     private String nombre,direccion,correo;
     private ArrayList<GastoEmpresa>gastosEmpresa;
     private ArrayList<Producto> productos;
@@ -41,6 +42,26 @@ public class Empresa {
          ventas = new ArrayList();
           empleados = new ArrayList();
     }
+
+    public Empresa(String codigoEmpresa, String nombre, String direccion, String correo, ArrayList<GastoEmpresa> gastosEmpresa, ArrayList<Producto> productos, ArrayList<Venta> ventas, ArrayList<Empleados> empleados) {
+        this.codigoEmpresa = codigoEmpresa;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.gastosEmpresa = gastosEmpresa;
+        this.productos = productos;
+        this.ventas = ventas;
+        this.empleados = empleados;
+    }
+
+    public String getCodigoEmpresa() {
+        return codigoEmpresa;
+    }
+
+    public void setCodigoEmpresa(String codigoEmpresa) {
+        this.codigoEmpresa = codigoEmpresa;
+    }
+    
 
     public Empresa(int IdEmpresa) {
         this.IdEmpresa = IdEmpresa;
