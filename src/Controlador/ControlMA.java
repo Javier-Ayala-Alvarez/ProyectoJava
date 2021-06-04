@@ -6,7 +6,7 @@
 package Controlador;
 
 import Controlador.dao.EmpresaDao;
-import Controlador.dao.GastosDao;
+import Controlador.dao.GastoDao;
 import Modelo.Empresa;
 import Modelo.GastoEmpresa;
 import VistaLogin.Alerta;
@@ -43,7 +43,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     
     //****GastoGM****//
     GastosGM gastosGM;
-    GastosDao daoGasto = new GastosDao();
+    GastoDao daoGasto = new GastoDao();
 //    GastosGM gasto = new GastosGM();
     GastosGM gastoSeleccionado = null;
     //****Fin GastoGM****//
@@ -66,7 +66,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     VistaEmpresa vistaEmpresa;
 
     public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, GastosValance gastosValance, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas) {
-        //this.daoGasto = new GastosDao();
+        //this.daoGasto = new GastoDao();
         this.menuAdministrador = menuAdministrador;
         this.login = login;
         this.empleadoGM = empleadoGM;
