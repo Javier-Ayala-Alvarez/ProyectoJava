@@ -9,7 +9,6 @@ import VistaLogin.Login;
 import VistaMA.EliminarVentas;
 import VistaMA.EmpleadoGM;
 import VistaMA.GastosGM;
-import VistaMA.GastosValance;
 import VistaMA.MenuAdministrador;
 import VistaMA.RegistrosDeProductos;
 import VistaMA.RegistrosDeVentas;
@@ -39,7 +38,6 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
     /*Objetos para el Constructor de ControlMA*/
     EmpleadoGM empleadoGM;
     GastosGM gastosGM;
-    GastosValance gastosValance;
     RegistrosDeProductos registrosDeProductos;
     RegistrosDeVentas registrosDeVentas;
     EliminarVentas eliminarVentas;
@@ -107,7 +105,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         } else if (vista.equals("Admin")) {
             login.dispose();
             menuAdministrador.setControlador(this);
-            ControlMA controlMA = new ControlMA(menuAdministrador, login, empleadoGM, gastosGM, gastosValance, registrosDeProductos, registrosDeVentas, eliminarVentas);
+            ControlMA controlMA = new ControlMA(menuAdministrador, login, empleadoGM, gastosGM, registrosDeProductos, registrosDeVentas, eliminarVentas);
         }
     }
 
