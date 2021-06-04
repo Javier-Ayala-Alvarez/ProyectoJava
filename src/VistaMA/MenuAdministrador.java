@@ -46,7 +46,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.consultarCliente.setActionCommand("consultarCliente");
         menuGDS.setActionCommand("menuGDS");
         this.opcionesGDS.setActionCommand("opcionesGDS");
-        this.valanceGDS.setActionCommand("valanceGDS");
         /*ActionCommand de los Botones principales*/
         this.btnHome.setActionCommand("Home");
         this.btnVentas.setActionCommand("Ventas");
@@ -86,7 +85,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.menuCliente.addActionListener(controlMA);
         this.consultarCliente.addActionListener(controlMA);
         this.opcionesGDS.addActionListener(controlMA);
-        this.valanceGDS.addActionListener(controlMA);
         /*Agregando botones principales*/
         btnHome.addActionListener(controlMA);
         btnVentas.addActionListener(controlMA);
@@ -166,7 +164,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         consultarCliente = new javax.swing.JMenuItem();
         menuGDS = new javax.swing.JMenu();
         opcionesGDS = new javax.swing.JMenuItem();
-        valanceGDS = new javax.swing.JMenuItem();
         jMenu13 = new javax.swing.JMenu();
         jmGuardar4 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
@@ -815,14 +812,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuGDS.add(opcionesGDS);
 
-        valanceGDS.setText("Valance");
-        valanceGDS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valanceGDSActionPerformed(evt);
-            }
-        });
-        menuGDS.add(valanceGDS);
-
         jMenu.add(menuGDS);
 
         jMenu13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/configuracion.png"))); // NOI18N
@@ -934,17 +923,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
 //
 //        }
     }//GEN-LAST:event_opcionesGDSActionPerformed
-
-    private void valanceGDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valanceGDSActionPerformed
-//        String x = GastosValance.x;
-//        GastosValance vista = new GastosValance(this, false, Gastos);
-//        if (x == null) {
-//
-//            vista.show();
-//        } else {
-//            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
-//        }
-    }//GEN-LAST:event_valanceGDSActionPerformed
 
     private void eliminarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEmpleadoActionPerformed
 
@@ -1063,6 +1041,5 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JPanel panel5;
     public javax.swing.JPanel panel6;
     public javax.swing.JMenuItem registrarFacturaItem;
-    public javax.swing.JMenuItem valanceGDS;
     // End of variables declaration//GEN-END:variables
 }
