@@ -380,96 +380,104 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbIvaC" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lbAlquilerC" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="lbEnergiaC" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="lbAguaC" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="lbIsssC" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="lbAfpC" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lbCodigo12" min="-2" pref="178" max="-2" attributes="0"/>
+                                          <Component id="lbCodigo10" min="-2" pref="178" max="-2" attributes="0"/>
+                                          <Component id="lbCodigo14" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
+                                          <Component id="lbCodigo16" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
+                                          <Component id="lbCodigo18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="lbCodigo8" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="lbCodigo6" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="24" max="32767" attributes="0"/>
+                                                      <Component id="lbEnergiaTotal" min="-2" pref="67" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="lbCodigo3" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="lbAlcaldiaTotal" min="-2" pref="67" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="216" pref="216" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="lbAlquilerTotal" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lbAguaTotal" min="-2" pref="67" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="lbTotalReporte" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lbAFPTotal" alignment="0" pref="67" max="32767" attributes="0"/>
+                                                      <Component id="lbISSSTotal" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="lbIVATotal" alignment="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="lbAlcaldiaC" min="-2" pref="37" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                       <Component id="lbCodigo4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lbAlcaldiaC" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbCodigo5" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                      <Component id="lbCodigo" min="-2" pref="180" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbAlcaldiaTotal" min="-2" pref="76" max="-2" attributes="0"/>
-                                  <Component id="lbCodigo3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSeparator2" min="-2" pref="358" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="lbEnergiaC" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="lbAlquilerC" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="lbAguaC" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="lbIsssC" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="lbAfpC" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="lbIvaC" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="lbCodigo14" min="-2" pref="191" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="lbAFPTotal" min="-2" pref="76" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="lbCodigo8" min="-2" pref="191" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="lbAlquilerTotal" min="-2" pref="76" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="lbCodigo6" max="32767" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="lbEnergiaTotal" min="-2" pref="76" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lbAguaTotal" alignment="1" min="-2" pref="76" max="-2" attributes="0"/>
-                                                  <Component id="lbISSSTotal" alignment="1" min="-2" pref="76" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lbCodigo16" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
-                                                  <Component id="lbCodigo18" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lbCodigo12" min="-2" pref="191" max="-2" attributes="0"/>
-                                                  <Component id="lbCodigo10" min="-2" pref="191" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lbTotalReporte" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lbIVATotal" min="-2" pref="76" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                  </Group>
+                                  <Component id="lbCodigo5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbCodigo" min="-2" pref="180" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="jSeparator2" alignment="0" min="-2" pref="358" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -479,36 +487,47 @@
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbCodigo4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbCodigo5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbCodigo3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbAlcaldiaC" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbAlcaldiaTotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbCodigo6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbEnergiaC" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbEnergiaTotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbCodigo8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbAlquilerC" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbAlquilerTotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbCodigo10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbAguaC" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbAguaTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lbCodigo4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbCodigo5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbCodigo3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lbCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbAlcaldiaC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbAlcaldiaTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lbCodigo6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbEnergiaC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbEnergiaTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lbCodigo8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbAlquilerC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="lbAlquilerTotal" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbCodigo10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbAguaC" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                              <Component id="lbAguaTotal" min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -608,7 +627,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Cantidad"/>
+                <Property name="text" type="java.lang.String" value="Cant."/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbCodigo5">
