@@ -6,7 +6,7 @@
 package Controlador;
 
 import Controlador.dao.EmpresaDao;
-import Controlador.dao.GastosDao;
+import Modelo.Dao.GastosDao;
 import Modelo.Empresa;
 import Modelo.GastoEmpresa;
 import VistaLogin.Alerta;
