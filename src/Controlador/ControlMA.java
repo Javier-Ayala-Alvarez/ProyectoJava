@@ -262,6 +262,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
         } else if (vista.equals("gastosGM")) {
             padreActiva = "gastosGM";
             this.gastosGM = new GastosGM(menuAdministrador, true);
+            this.gastosGM.setControlador(this);
             mostrarDatos();
             this.gastosGM.iniciar();
         } 
