@@ -1,38 +1,33 @@
 package VistaMA;
-
-
-import Modelo.GastoEmpresa;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import Controlador.ControlMA;
 import javax.swing.table.DefaultTableModel;
 import VistaMV.Fondo;
-
+import javax.swing.JOptionPane;
 public class GastosGM extends javax.swing.JDialog {
 
     DefaultTableModel modelo;
     public static String x;
 
-    public GastosGM(java.awt.Frame parent, boolean modal ) {
+    public GastosGM(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
         jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
+        btnAgregar.setActionCommand("Agregar");
+        btnEliminar.setActionCommand("Eliminar");
+        btnModificar.setActionCommand("Modificar");
+        btnGenerar.setActionCommand("Generar");
+        
+                    
     }
-
-    public GastosGM() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-   
-
     public void iniciar() {
         this.setVisible(true);
+    }
+     public void setControlador(ControlMA control1) {
+        btnAgregar.addActionListener(control1);
+        btnEliminar.addActionListener(control1);
+        btnModificar.addActionListener(control1);
+        btnGenerar.addActionListener(control1);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -49,20 +44,17 @@ public class GastosGM extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        cbTipo = new javax.swing.JComboBox<>();
         tfCodigo = new principal.MaterialTextField();
-        tfPago = new principal.MaterialTextField();
-        dFecha = new rojeru_san.componentes.RSDateChooser();
         lbCodigo = new javax.swing.JLabel();
         lbPago = new javax.swing.JLabel();
         jpLogo1 = new javax.swing.JPanel();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         jScrollPane1 = new javax.swing.JScrollPane();
         jSeparator2 = new javax.swing.JSeparator();
-        tbGenerar = new rojeru_san.complementos.RSButtonHover();
-        btModificar = new rojeru_san.complementos.RSButtonHover();
-        btEliminar = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
+        btnGenerar = new rojeru_san.complementos.RSButtonHover();
+        btnModificar = new rojeru_san.complementos.RSButtonHover();
+        btnEliminar = new rojeru_san.complementos.RSButtonHover();
+        btnAgregar = new rojeru_san.complementos.RSButtonHover();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -122,7 +114,6 @@ public class GastosGM extends javax.swing.JDialog {
 
         tfCodigo.setBackground(new java.awt.Color(213, 216, 221));
         tfCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        tfCodigo.setEnabled(false);
         tfCodigo.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         tfCodigo.setSelectionColor(new java.awt.Color(102, 153, 255));
         tfCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -211,40 +202,42 @@ public class GastosGM extends javax.swing.JDialog {
         panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 750, 190));
         panelFondo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 20));
 
-        tbGenerar.setText("Generar");
-        tbGenerar.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerar.setText("Generar");
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbGenerarActionPerformed(evt);
+                btnGenerarActionPerformed(evt);
             }
         });
-        panelFondo.add(tbGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 90, 40));
+        panelFondo.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 90, 40));
 
-        btModificar.setBackground(new java.awt.Color(0, 102, 102));
-        btModificar.setText("Modificar");
-        btModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setBackground(new java.awt.Color(0, 102, 102));
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModificarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
-        panelFondo.add(btModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, 160, 50));
+        panelFondo.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, 160, 50));
 
-        btEliminar.setBackground(new java.awt.Color(204, 0, 0));
-        btEliminar.setForeground(new java.awt.Color(255, 153, 153));
-        btEliminar.setText("Eliminar");
-        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(204, 0, 0));
+        btnEliminar.setForeground(new java.awt.Color(255, 153, 153));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setActionCommand("Eliminar3");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEliminarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        panelFondo.add(btEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, 160, 50));
+        panelFondo.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, 160, 50));
 
-        rSButtonHover7.setText("Agregar");
-        rSButtonHover7.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setText("Agregar");
+        btnAgregar.setActionCommand("Agregar1");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover7ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
-        panelFondo.add(rSButtonHover7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 160, 50));
+        panelFondo.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 160, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,15 +255,13 @@ public class GastosGM extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbTipoMouseClicked
-
     }//GEN-LAST:event_cbTipoMouseClicked
 
     private void tfPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPagoKeyTyped
-
     }//GEN-LAST:event_tfPagoKeyTyped
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-         x = null;
+        x = null;
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -278,43 +269,31 @@ public class GastosGM extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void materialButtonCircle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle1ActionPerformed
-
-
     }//GEN-LAST:event_materialButtonCircle1ActionPerformed
 
     private void materialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle2ActionPerformed
-
     }//GEN-LAST:event_materialButtonCircle2ActionPerformed
 
     private void jtDatosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDatosFocusLost
-
     }//GEN-LAST:event_jtDatosFocusLost
 
     private void jtDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDatosMouseClicked
-
-
     }//GEN-LAST:event_jtDatosMouseClicked
 
-    private void tbGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbGenerarActionPerformed
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+    }//GEN-LAST:event_btnGenerarActionPerformed
 
-    }//GEN-LAST:event_tbGenerarActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
-        
-    }//GEN-LAST:event_btModificarActionPerformed
-
-      
-    private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-       
-    }//GEN-LAST:event_btEliminarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_tfCodigoActionPerformed
 
-    private void rSButtonHover7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover7ActionPerformed
-      
-    }//GEN-LAST:event_rSButtonHover7ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void materialButtonCircle2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialButtonCircle2MouseClicked
         this.dispose();
@@ -348,10 +327,12 @@ public class GastosGM extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojeru_san.complementos.RSButtonHover btEliminar;
-    private rojeru_san.complementos.RSButtonHover btModificar;
-    private javax.swing.JComboBox<String> cbTipo;
-    private rojeru_san.componentes.RSDateChooser dFecha;
+    public rojeru_san.complementos.RSButtonHover btnAgregar;
+    public rojeru_san.complementos.RSButtonHover btnEliminar;
+    public rojeru_san.complementos.RSButtonHover btnGenerar;
+    public rojeru_san.complementos.RSButtonHover btnModificar;
+    public static final javax.swing.JComboBox<String> cbTipo = new javax.swing.JComboBox<>();
+    public static final rojeru_san.componentes.RSDateChooser dFecha = new rojeru_san.componentes.RSDateChooser();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -361,17 +342,15 @@ public class GastosGM extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel jpLogo1;
-    public final javax.swing.JTable jtDatos = new javax.swing.JTable();
+    public static final javax.swing.JTable jtDatos = new javax.swing.JTable();
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbPago;
     private principal.MaterialButtonCircle materialButtonCircle1;
     private principal.MaterialButtonCircle materialButtonCircle2;
     private javax.swing.JPanel panelFondo;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private rojeru_san.componentes.RSCalendar rSCalendar1;
     private efectos.Roboto roboto1;
-    private rojeru_san.complementos.RSButtonHover tbGenerar;
-    private principal.MaterialTextField tfCodigo;
-    private principal.MaterialTextField tfPago;
+    public static principal.MaterialTextField tfCodigo;
+    public static final principal.MaterialTextField tfPago = new principal.MaterialTextField();
     // End of variables declaration//GEN-END:variables
 }

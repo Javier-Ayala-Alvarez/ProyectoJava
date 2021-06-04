@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
 
-import Controlador.dao.EmpresaDao;
-import Controlador.dao.GastosDao;
-import Modelo.Empresa;
 import Modelo.GastoEmpresa;
-import VistaLogin.Alerta;
-
+import Modelo.dao.Gastosdao;
 import VistaLogin.Login;
 import VistaMA.EliminarVentas;
 import VistaMA.EmpleadoGM;
@@ -19,10 +10,11 @@ import VistaMA.GastosValance;
 import VistaMA.MenuAdministrador;
 import VistaMA.RegistrosDeProductos;
 import VistaMA.RegistrosDeVentas;
-import VistaMA.VistaEmpresa;
 import VistaMV.Factura;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -30,43 +22,27 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author kathy
- */
-public class ControlMA extends MouseAdapter implements ActionListener, KeyListener {
+public class ControlMA  extends MouseAdapter implements ActionListener, KeyListener, ItemListener  {
 
     /*Clases que serán usadas para el Constructor*/
     MenuAdministrador menuAdministrador;
     Login login;
     EmpleadoGM empleadoGM;
-    
+
     //****GastoGM****//
     GastosGM gastosGM;
-    GastosDao daoGasto = new GastosDao();
-//    GastosGM gasto = new GastosGM();
+    Gastosdao daoGasto = new Gastosdao();
     GastosGM gastoSeleccionado = null;
     //****Fin GastoGM****//
-    
-    //****inicio vistaEmpresa****//
-    Empresa empresa = new Empresa();
-    Empresa empresaSeleccionanda = new Empresa();
-    EmpresaDao daoEmpresa = new EmpresaDao();
-    
-    //****fin vistaEmpresa****//
-    
-    
+
     GastosValance gastosValance;
     RegistrosDeProductos registrosDeProductos;
     RegistrosDeVentas registrosDeVentas;
     EliminarVentas eliminarVentas;
-    
     DefaultTableModel modelo = new DefaultTableModel();
     private String padreActiva = "";
-    VistaEmpresa vistaEmpresa;
 
     public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, GastosValance gastosValance, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas) {
-        //this.daoGasto = new GastosDao();
         this.menuAdministrador = menuAdministrador;
         this.login = login;
         this.empleadoGM = empleadoGM;
@@ -76,16 +52,12 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         this.registrosDeVentas = registrosDeVentas;
         this.eliminarVentas = eliminarVentas;
         llamarVistaConsulta("menuAdministrador");
-        
-        
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        /*  Esta función verifica que el botón presionado contenga un determinado
-        ActionCommand y ejecuta la función que alberga en su interior.  */
-
- /*Inicio de Botones Derechos*/
+        /*Inicio de Botones Derechos*/
         if (e.getActionCommand().equals("Home")) {
             llamarVistaConsulta("home");
         } else if (e.getActionCommand().equals("Ventas")) {
@@ -124,52 +96,21 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             llamarVistaConsulta("consultarEmpleado");
         } else if (e.getActionCommand().equals("consultarCliente")) {
             llamarVistaConsulta("consultarCliente");
-        }else if (e.getActionCommand().equals("opcionesGDS")) {
-            llamarVistaConsulta("opcionesGDS");
-           
-        }else if (e.getActionCommand().equals("valanceGDS")) {
+        } else if (e.getActionCommand().equals("opcionesGDS")) {
+            padreActiva = "gastosGM";
+            llamarVistaConsulta("gastosGM");
+        } else if (e.getActionCommand().equals("valanceGDS")) {
             llamarVistaConsulta("valanceGDS");
-        }else if (e.getActionCommand().equals("modificarEmpresa")) {
-            llamarVistaConsulta("modificarEmpresa");
-        }else if (e.getActionCommand().equals("consultarEmpresa")) {
-            llamarVistaConsulta("consultarEmpresa");
+        }
+        
+        if ((e.getActionCommand().equals("Agregar")) 
+                || (e.getActionCommand().equals("Eliminar") )
+                || (e.getActionCommand().equals("Modificar") )
+                || (e.getActionCommand().equals("Generar") )) {
+            accionDeBotones(e);
         }
         /*Fin de Sub-botones de los Menús*/
-        
-        
-        
-        /*********************************para Modificar empresa*********************************/
-        else if (e.getActionCommand().equals("editarEmpresa")) {
-            llamarAcciones("editarEmpresa");
-            
-        }
-        
-        
-        /**********************************fin Modificar empresa*********************************/
 
-    }
-    public void llamarAcciones(String nombreAccion ) {
-        //para boton modificar en vistaEmpresa
-        if (nombreAccion.equals("editarEmpresa")) {
-            if ((!vistaEmpresa.tfNombre.getText().isEmpty())
-                  && (!vistaEmpresa.tfDireccion.getText().isEmpty())
-                  && (!vistaEmpresa.tfCorreo.getText().isEmpty())) {
-                
-                empresa = new Empresa(vistaEmpresa.tfNombre.getText(), vistaEmpresa.tfDireccion.getText(), 
-                        vistaEmpresa.tfCorreo.getText(),vistaEmpresa.tfCodigoEmpresa.getText());
-                if ( daoEmpresa.update(empresa)) {
-                    Alerta alerta = new Alerta("Datos Modificados con exito", "/img/exito.png");
-                    this.vistaEmpresa.dispose();
-                }
-                else{
-                     Alerta alerta = new Alerta("error realisando la modificacion ", "/img/error.png");
-                }
-                
-            }else{
-                Alerta alerta = new Alerta("complete los datos para poder realizar un cambio", "/img/error.png");
-            }
-            
-        }
     }
 
     @Override
@@ -245,68 +186,88 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
         } else if (vista.equals("consultarEmpleado")) {
 
-        }else if (vista.equals("consultarCliente")) {
-            
-        }else if (vista.equals("opcionesGDS")) {
-             padreActiva = "opcionesGDS";
-            
-            this.gastosGM = new GastosGM(menuAdministrador,true);
-            this.gastosGM.iniciar();
+        } else if (vista.equals("consultarCliente")) {
+
+        } else if (vista.equals("gastosGM")) {
+            padreActiva = "gastosGM";
+            this.gastosGM = new GastosGM(menuAdministrador, true);
             mostrarDatos();
-        }else if (vista.equals("valanceGDS")) {
-             ArrayList<GastoEmpresa> empresa = new ArrayList();
-            this.gastosValance = new GastosValance(menuAdministrador,true,empresa);
+            this.gastosGM.iniciar();
+        } else if (vista.equals("valanceGDS")) {
+            ArrayList<GastoEmpresa> empresa = new ArrayList();
+            this.gastosValance = new GastosValance(menuAdministrador, true, empresa);
             this.gastosValance.iniciar();
         }
-        else if (vista.equals("modificarEmpresa")) {
-            this.vistaEmpresa = new VistaEmpresa(menuAdministrador,true,true);
-            
-            empresaSeleccionanda = daoEmpresa.selectAll().get(0);
-            System.out.println("hola");
-            this.vistaEmpresa.setControladorMA(this);
-            this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
-             this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
-              this.vistaEmpresa.tfDireccion.setText(empresaSeleccionanda.getDireccion());
-              this.vistaEmpresa.tfCorreo.setText(empresaSeleccionanda.getCorreo());
-              this.vistaEmpresa.iniciar();
-         
-        }
-        else if (vista.equals("consultarEmpresa")) {
-            this.vistaEmpresa = new VistaEmpresa(menuAdministrador,true,false);
-             empresaSeleccionanda = daoEmpresa.selectAll().get(0);
-            System.out.println("hola");
-            this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
-             this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
-              this.vistaEmpresa.tfDireccion.setText(empresaSeleccionanda.getDireccion());
-              this.vistaEmpresa.tfCorreo.setText(empresaSeleccionanda.getCorreo());
-            
-            this.vistaEmpresa.iniciar();
-            
-        }
-        
         /*Fin de Ejecuciones de los Sub-botones de los Menús*/
-        
-        
-        
     }
-////////*************Mostrar Datos**************////////////
-     public void mostrarDatos() {
+
+    public void mostrarDatos() {
         modelo = new DefaultTableModel();
-        /* Gastos */
-        
-        if (padreActiva.equals("opcionesGDS")) {
-            String titulos[] = {"Codigo", "Fecha","Tipo","Saldo","Empresa"};
+        ////////////******GASTOS********/////////////////
+
+        if (padreActiva.equals("gastosGM")) {
+            String titulos[] = {"Codigo", "Tipo", "Fecha", "Saldo", "Empresa"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
-            int i = 1;
-
             for (GastoEmpresa x : gastos) {
-                Object datos[] = {i, x.getCodigoGastos(),x.getFecha(),x.getCategoria(),x.getEmpresa().getNombre()};
+                Object datos[] = {x.getCodigoGastos(),x.getCategoria(), x.getFecha(),x.getSaldo(),  x.getEmpresa().getNombre()};
                 modelo.addRow(datos);
-                i++;
             }
-            this.gastosGM.jtDatos.setModel(modelo);
+            GastosGM.jtDatos.setModel(modelo);
+        }
+        ////////////******FINAL GASTOS********/////////////////
+    }
+
+    public void crearCodigo(String a) {
+        ////////////******GASTOS********///////////////////////
+        String iniciales = a;
+        String correlativo = iniciales;
+        int corre = 0;
+        ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
+        for (GastoEmpresa x : gastos) {
+            corre = x.getIdGasto();
+
+        }
+        for (int i = 0; i < 6; i++) {
+            if (correlativo.length() + corre < 7) {
+                correlativo = correlativo + "0";
+            }
+        }
+        correlativo = correlativo + corre;
+        
+        this.gastosGM.tfCodigo.setText("correlativo");
+        ////////////******FINAL GASTOS********/////////////////
+    }
+    public void accionDeBotones(ActionEvent e){
+        if(e.getActionCommand().equals("Agregar") && padreActiva.equals("gastosGM")){
+            if(!gastosGM.tfCodigo.getText().isEmpty() 
+                    && (!gastosGM.tfPago.getText().isEmpty())){
+                if(gastoSeleccionado == null){
+                    String v = gastosGM.cbTipo.getSelectedItem().toString(); 
+                    GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(),gastosGM.dFecha.getDatoFecha(),v,Double.parseDouble(gastosGM.tfPago.getText()));
+                    ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("codigoGasto",gastosGM.tfCodigo.getText());
+                    if(existe.isEmpty()){
+                        if(daoGasto.insert(gasto)){
+                             JOptionPane.showMessageDialog(null, "Guardado con exito");
+                        }
+                    }
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Campos vacios");
+            }
+            
+        }else if(e.getActionCommand().equals("Generar") && padreActiva.equals("gastosGM")){
+            String iniciales = "EG-";
+            
+            crearCodigo(iniciales);
+            
         }
     }
-////////*************Fin de Mostrar Datos**************////////////
+
+    @Override
+    public void itemStateChanged(ItemEvent ie) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

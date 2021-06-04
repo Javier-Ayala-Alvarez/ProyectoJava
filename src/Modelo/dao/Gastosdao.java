@@ -1,22 +1,23 @@
-package Controlador.dao;
+package Modelo.dao;
 
 import Modelo.Conexion;
 import Modelo.Empresa;
 import Modelo.GastoEmpresa;
-import VistaLogin.Alerta;
+import ejemplocompleto.vistas.Alerta;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
-public class GastosDao {
+public class Gastosdao {
     Conexion conectar = new Conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
     
-    public GastosDao(){
+    public Gastosdao(){
         
     }
     
@@ -61,7 +62,8 @@ public class GastosDao {
 
             while(rs.next()) {
                 obj = new GastoEmpresa();
-                obj.setCodigoGastos(rs.getString("idGasto"));
+                //obj.setIdGasto(rs.getInt("idGastos"));
+                obj.setCodigoGastos(rs.getString("codigoGasto"));
                 obj.setFecha(rs.getDate("fecha"));
                 obj.setCategoria(rs.getString("tipo"));
                 obj.setSaldo(rs.getDouble("saldo"));
@@ -70,8 +72,7 @@ public class GastosDao {
             }
             
         }catch(Exception e) {
-            Alerta alert = new Alerta("Error en sql", "/img/error.png");
-            alert.show();
+            JOptionPane.showMessageDialog(null, "Error en sql");
             e.printStackTrace();
         }finally{
             try {
@@ -90,18 +91,17 @@ public class GastosDao {
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
             
-            ps.setDate(3, (Date) obj.getFecha());
-            ps.setString(4, obj.getCategoria());
-            ps.setDouble(5, obj.getSaldo());
+            ps.setDate(1, (Date) obj.getFecha());
+            ps.setString(2, obj.getCategoria());
+            ps.setDouble(3, obj.getSaldo());
             
             
             ps.execute();
             
             return true;
         }catch(Exception e) {
-            Alerta alert = new Alerta("Error en sql", "/img/error.png");
-            alert.show();
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error en sql");
+            e.printStackTrace();
         }finally{
             try {
                 ps.close();
@@ -122,9 +122,8 @@ public class GastosDao {
             ps.execute();
             return true;
         }catch(Exception e) {
-            Alerta alert = new Alerta("Error en sql", "/ejemplocompleto/img/error.png");
-            alert.show();
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error en sql");
+            e.printStackTrace();
         }finally{
             try {
                 ps.close();
