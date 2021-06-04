@@ -1,10 +1,8 @@
 package Modelo.dao;
 import Modelo.Conexion;
 import Modelo.Empresa;
-import Modelo.Empresa;
 import VistaLogin.Alerta;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -46,7 +44,7 @@ public class EmpresaDao {
     }
     //UPDATE `empresa` SET `codigoEmpresa`='2', `nombreEmpresa`='Tienda1', `dirrecionEmpresa`='San vicente1' WHERE (`idEmpresa`='1')
     public boolean update(Empresa obj) {
-        String sql = "UPDATE empresa SET codigoEmpresa = ? , nombreEmpresa = ?, dirrecionEmpresa = ?, correoEmpresa = ? where idEmpresa = " + obj.getIdEmpresa();
+        String sql = "UPDATE empresa SET codigoEmpresa = ? , nombreEmpresa = ?, dirrecionEmpresa = ?, correoEmpresa = ? WHERE idEmpresa = " + obj.getIdEmpresa();
         return alterarRegistro(sql, obj);
     }
     
@@ -70,7 +68,7 @@ public class EmpresaDao {
             }
             
         }catch(Exception e) {
-            Alerta alert = new Alerta("Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null,true,"Error en sql", "/img/error.png");
             alert.show();
             e.printStackTrace();
         }finally{
@@ -87,19 +85,20 @@ public class EmpresaDao {
     
     private boolean alterarRegistro(String sql, Empresa obj){
         try {
+            //UPDATE empresa SET codigoEmpresa = ? , nombreEmpresa = ?, dirrecionEmpresa = ?, correoEmpresa = ? WHERE idEmpresa
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
-            ps.setString(0,obj.getCodigoEmpresa());
-            ps.setString(1,obj.getNombre());
-            ps.setString(2,obj.getDireccion());
-            ps.setString(3,obj.getCorreo());
+            ps.setString(1,obj.getCodigoEmpresa());
+            ps.setString(2,obj.getNombre());
+            ps.setString(3,obj.getDireccion());
+            ps.setString(4,obj.getCorreo());
             
             
             ps.execute();
-            
+            System.out.println("ujhuuj");
             return true;
         }catch(Exception e) {
-            Alerta alert = new Alerta("Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null,true,"Error en sql", "/img/error.png");
             alert.show();
             //e.printStackTrace();
         }finally{

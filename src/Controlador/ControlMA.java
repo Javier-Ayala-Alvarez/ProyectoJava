@@ -111,7 +111,22 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
             llamarVistaConsulta("gastosGM");
         } else if (e.getActionCommand().equals("valanceGDS")) {
             llamarVistaConsulta("valanceGDS");
+        }else if (e.getActionCommand().equals("modificarEmpresa")) {
+            llamarVistaConsulta("modificarEmpresa");
+        }else if (e.getActionCommand().equals("consultarEmpresa")) {
+            llamarVistaConsulta("consultarEmpresa");
         }
+        /*Fin de Sub-botones de los Menús*/
+        /*********************************para Modificar empresa*********************************/
+        else if (e.getActionCommand().equals("editarEmpresa")) {
+            llamarAcciones("editarEmpresa");
+            
+        }
+        
+        
+        /**********************************fin Modificar empresa*********************************/
+
+
         
         if ((e.getActionCommand().equals("Agregar")) 
                 || (e.getActionCommand().equals("Eliminar") )
@@ -133,25 +148,28 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
                  empresaSeleccionanda.setCorreo(vistaEmpresa.tfCorreo.getText()); 
                  empresaSeleccionanda.setCodigoEmpresa(vistaEmpresa.tfCodigoEmpresa.getText()); 
                  empresaSeleccionanda.setDireccion(vistaEmpresa.tfDireccion.getText()); 
-                
+                System.out.println(empresaSeleccionanda.getIdEmpresa()+empresaSeleccionanda.getNombre());
                  
                 //= new Empresa(vistaEmpresa.tfNombre.getText(), vistaEmpresa.tfDireccion.getText(), 
                         //vistaEmpresa.tfCorreo.getText(),vistaEmpresa.tfCodigoEmpresa.getText());
               
                 if ( daoEmpresa.update(empresaSeleccionanda)) {
-                    
-                    Alerta alerta = new Alerta("Datos Modificados con exito", "/img/exito.png");
-                    alerta.show();
+                    System.out.println(empresaSeleccionanda.getIdEmpresa()+empresaSeleccionanda.getNombre());
+                     Alerta aler = new Alerta(menuAdministrador,true,"Datos Modificados Con exito", "/img/Succes.png");
+                     aler.show();
                     this.vistaEmpresa.dispose();
                 }
                 else{
-                     Alerta alerta = new Alerta("error realisando la modificacion ", "/img/error.png");
-                     alerta.show();
-                    this.vistaEmpresa.dispose();
+                      
+                      Alerta aler = new Alerta(menuAdministrador,true,"Error realisando la operación", "/img/error.png");
+                      aler.show();
+                      this.vistaEmpresa.dispose();
                 }
                 
             }else{
-                Alerta alerta = new Alerta("complete los datos para poder realizar un cambio", "/img/error.png");
+               Alerta aler = new Alerta(menuAdministrador,true,"complete los datos para poder realizar un cambio", "/img/error.png");
+                aler.show();
+                
             }
             
         }
@@ -247,6 +265,34 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
             mostrarDatos();
             this.gastosGM.iniciar();
         } 
+        /////////////////////////////////
+         else if (vista.equals("modificarEmpresa")) {
+            this.vistaEmpresa = new VistaEmpresa(menuAdministrador,true,true);
+            
+            empresaSeleccionanda = daoEmpresa.selectAll().get(0);
+            System.out.println("hola");
+            this.vistaEmpresa.setControladorMA(this);
+            this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
+             this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
+              this.vistaEmpresa.tfDireccion.setText(empresaSeleccionanda.getDireccion());
+              this.vistaEmpresa.tfCorreo.setText(empresaSeleccionanda.getCorreo());
+              this.vistaEmpresa.iniciar();
+         
+        }
+        else if (vista.equals("consultarEmpresa")) {
+            this.vistaEmpresa = new VistaEmpresa(menuAdministrador,true,false);
+             empresaSeleccionanda = daoEmpresa.selectAll().get(0);
+            System.out.println("hola");
+            this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
+             this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
+              this.vistaEmpresa.tfDireccion.setText(empresaSeleccionanda.getDireccion());
+              this.vistaEmpresa.tfCorreo.setText(empresaSeleccionanda.getCorreo());
+            
+            this.vistaEmpresa.iniciar();
+            
+        }
+        
+        
         /*Fin de Ejecuciones de los Sub-botones de los Menús*/
     }
 

@@ -4,9 +4,10 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 public class Alerta extends javax.swing.JDialog {
 
-    public Alerta(String msg, String r) {
+    public Alerta(java.awt.Frame parent, boolean modal,String msg, String r) {
+         super(parent, modal);
         initComponents();
-        this.setLocation(1300, 780);
+        this.setLocationRelativeTo(null);
          msj.setText(msg);
          ImageIcon img=new ImageIcon(getClass().getResource(r));
          imagen.setIcon(img);        
@@ -26,6 +27,7 @@ public class Alerta extends javax.swing.JDialog {
         msj.setForeground(new java.awt.Color(255, 255, 255));
         msj.setText(".");
 
+        imagen.setForeground(new java.awt.Color(204, 204, 204));
         imagen.setText(".");
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
