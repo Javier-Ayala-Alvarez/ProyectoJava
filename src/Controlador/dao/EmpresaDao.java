@@ -45,9 +45,9 @@ public class EmpresaDao {
         String sql = "INSERT  INTO empresa (codigoEmpresa, nombreEmpresa, dirrecionEmpresa, Correo) VALUES (????)";
         return alterarRegistro(sql, obj);
     }
-    
+    //UPDATE `empresa` SET `codigoEmpresa`='2', `nombreEmpresa`='Tienda1', `dirrecionEmpresa`='San vicente1' WHERE (`idEmpresa`='1')
     public boolean update(Empresa obj) {
-        String sql = "UPDATE empresa SET codigoEmpresa = ? , nombreEmpresa = ?, dirrecionEmpresa = ?, CorreoEmpresa = ? where idEmpresa = " + obj.getIdEmpresa();
+        String sql = "UPDATE empresa SET codigoEmpresa = ? , nombreEmpresa = ?, dirrecionEmpresa = ?, correoEmpresa = ? where idEmpresa = " + obj.getIdEmpresa();
         return alterarRegistro(sql, obj);
     }
     
@@ -90,10 +90,10 @@ public class EmpresaDao {
         try {
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
-            ps.setString(1,obj.getCodigoEmpresa());
-            ps.setString(2,obj.getNombre());
-            ps.setString(3,obj.getDireccion());
-            ps.setString(4,obj.getCorreo());
+            ps.setString(0,obj.getCodigoEmpresa());
+            ps.setString(1,obj.getNombre());
+            ps.setString(2,obj.getDireccion());
+            ps.setString(3,obj.getCorreo());
             
             
             ps.execute();

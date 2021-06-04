@@ -155,14 +155,25 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                   && (!vistaEmpresa.tfDireccion.getText().isEmpty())
                   && (!vistaEmpresa.tfCorreo.getText().isEmpty())) {
                 
-                empresa = new Empresa(vistaEmpresa.tfNombre.getText(), vistaEmpresa.tfDireccion.getText(), 
-                        vistaEmpresa.tfCorreo.getText(),vistaEmpresa.tfCodigoEmpresa.getText());
-                if ( daoEmpresa.update(empresa)) {
+                empresaSeleccionanda.setNombre(vistaEmpresa.tfNombre.getText()); 
+                 empresaSeleccionanda.setCorreo(vistaEmpresa.tfCorreo.getText()); 
+                 empresaSeleccionanda.setCodigoEmpresa(vistaEmpresa.tfCodigoEmpresa.getText()); 
+                 empresaSeleccionanda.setDireccion(vistaEmpresa.tfDireccion.getText()); 
+                
+                 
+                //= new Empresa(vistaEmpresa.tfNombre.getText(), vistaEmpresa.tfDireccion.getText(), 
+                        //vistaEmpresa.tfCorreo.getText(),vistaEmpresa.tfCodigoEmpresa.getText());
+              
+                if ( daoEmpresa.update(empresaSeleccionanda)) {
+                    
                     Alerta alerta = new Alerta("Datos Modificados con exito", "/img/exito.png");
+                    alerta.show();
                     this.vistaEmpresa.dispose();
                 }
                 else{
                      Alerta alerta = new Alerta("error realisando la modificacion ", "/img/error.png");
+                     alerta.show();
+                    this.vistaEmpresa.dispose();
                 }
                 
             }else{
