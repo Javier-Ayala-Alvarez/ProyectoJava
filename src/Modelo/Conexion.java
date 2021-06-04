@@ -1,29 +1,29 @@
+
 package Modelo;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import ejemplocompleto.vistas.Alerta;
 import java.sql.*;
-import javax.swing.JOptionPane;
 
 public class Conexion {
     
 Connection cn;
 public Connection getConexion() {
-        String driver = "com.mysql.cj.jdbc.Driver";
-        String user = "root";
-        String password = "";
-        String url = "jdbc:mysql://localhost:3306/ventasjava";
+     String driver = "com.mysql.cj.jdbc.Driver";
+     String user = "root";  
+     String nombreBd= "dtienda";
+     String password = "";  
+     String url = "jdbc:mysql://localhost:3306/"+nombreBd+"?useUnicode=true&use"
+             + "JDBCCompliantTimezoneShift=true&uselegacyDateTimeCode=false&"
+             + "serverTimezone=UTC";
       
     try {
             Class.forName(driver);
             cn= DriverManager.getConnection(url,user , password);
         } catch (Exception ex) {
-         JOptionPane.showMessageDialog(null, "Error de conexion");          
+         Alerta alert=new Alerta("Error en la conexión","/ejemplocompleto/img/error.png");
+            alert.show();           
             ex.printStackTrace();
         }
      return cn;   
-     
-     
     }
    
   public  void closeConexion(Connection conn){
@@ -32,7 +32,8 @@ public Connection getConexion() {
           conn.close();
       }
   }catch(SQLException sql){
-       JOptionPane.showMessageDialog(null, "Error al cerrar conexion"); 
+       Alerta alert=new Alerta("Error al cerrar conexión","/ejemplocompleto/img/error.png");
+            alert.show(); 
     sql.printStackTrace();
   }
   }  

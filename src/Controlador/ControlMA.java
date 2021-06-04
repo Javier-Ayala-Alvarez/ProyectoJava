@@ -1,11 +1,10 @@
 package Controlador;
 
-import Modelo.Dao.EmpresaDao;
-import Modelo.Dao.GastosDao;
 import Modelo.Empresa;
 import Modelo.GastoEmpresa;
 import Modelo.dao.EmpresaDao;
 import Modelo.dao.Gastosdao;
+
 import VistaLogin.Alerta;
 import VistaLogin.Login;
 import VistaMA.EliminarVentas;
@@ -53,7 +52,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
     DefaultTableModel modelo = new DefaultTableModel();
     private String padreActiva = "";
 
-    public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, GastosValance gastosValance, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas) {
+    public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas) {
         //this.daoGasto = new GastoDao();
         this.menuAdministrador = menuAdministrador;
         this.login = login;
