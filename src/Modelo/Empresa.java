@@ -7,7 +7,8 @@ import java.util.Date;
 
 public class Empresa {
     private int IdEmpresa;
-    private String nombre,direccion,correo,codigoEmpresa;
+    private String codigoEmpresa;
+    private String nombre,direccion,correo;
     private ArrayList<GastoEmpresa>gastosEmpresa;
     private ArrayList<Producto> productos;
     private ArrayList<Venta>ventas;
@@ -25,11 +26,10 @@ public class Empresa {
          empleados = new ArrayList();
     }
 
-    public Empresa(String nombre, String direccion, String correo , String codigoEmpresa) {
+    public Empresa(String nombre, String direccion, String correo) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.correo = correo;
-        this.codigoEmpresa = codigoEmpresa;
         gastosEmpresa =new ArrayList();
         productos = new ArrayList();
         ventas = new ArrayList();
@@ -43,12 +43,35 @@ public class Empresa {
           empleados = new ArrayList();
     }
 
+    public Empresa(String codigoEmpresa, String nombre, String direccion, String correo, ArrayList<GastoEmpresa> gastosEmpresa, ArrayList<Producto> productos, ArrayList<Venta> ventas, ArrayList<Empleados> empleados) {
+        this.codigoEmpresa = codigoEmpresa;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.gastosEmpresa = gastosEmpresa;
+        this.productos = productos;
+        this.ventas = ventas;
+        this.empleados = empleados;
+    }
+
+    public String getCodigoEmpresa() {
+        return codigoEmpresa;
+    }
+
+    public void setCodigoEmpresa(String codigoEmpresa) {
+        this.codigoEmpresa = codigoEmpresa;
+    }
+    
+
     public Empresa(int IdEmpresa) {
         this.IdEmpresa = IdEmpresa;
     }
 
-
-
+    public Empresa(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
     public int getIdEmpresa() {
         return IdEmpresa;
     }
@@ -124,17 +147,14 @@ public class Empresa {
          this.empleados.add(x);
      }
 
-    public String getCodigoEmpresa() {
-        return codigoEmpresa;
-    }
-
-    public void setCodigoEmpresa(String codigoEmpresa) {
-        this.codigoEmpresa = codigoEmpresa;
-    }
-
     public ArrayList<Empleados> getEmpleados() {
         return empleados;
     }
+
+    public void setEmpleados(ArrayList<Empleados> empleados) {
+        this.empleados = empleados;
+    }
+     
      
 
 }

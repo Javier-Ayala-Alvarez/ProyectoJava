@@ -6,6 +6,7 @@
 
 package Modelo;
 
+import Modelo.dao.EmpresaDao;
 import java.util.Date;
 
 /**
@@ -27,7 +28,16 @@ public class GastoEmpresa {
         this.saldo = saldo;
     }
 
-    public GastoEmpresa(Date fecha, String categoria, double saldo) {
+    public GastoEmpresa(String codigoGastos, Date fecha, String categoria, double saldo, Empresa empresa) {
+        this.codigoGastos = codigoGastos;
+        this.fecha = fecha;
+        this.categoria = categoria;
+        this.saldo = saldo;
+        this.empresa = empresa;
+    }
+
+    public GastoEmpresa(String codigoGastos, Date fecha, String categoria, double saldo) {
+        this.codigoGastos = codigoGastos;
         this.fecha = fecha;
         this.categoria = categoria;
         this.saldo = saldo;
@@ -36,13 +46,7 @@ public class GastoEmpresa {
     public GastoEmpresa() {
     }
 
-    public GastoEmpresa(String codigoGastos, Date fecha, String categoria, double saldo, Empresa empresa) {
-        this.codigoGastos = codigoGastos;
-        this.fecha = fecha;
-        this.categoria = categoria;
-        this.saldo = saldo;
-        this.empresa = empresa;
-    }
+
 
     public String getCodigoGastos() {
         return codigoGastos;
@@ -53,6 +57,9 @@ public class GastoEmpresa {
     }
 
     public Empresa getEmpresa() {
+        EmpresaDao daoEmpresa = new EmpresaDao();
+        empresa = daoEmpresa.selectId(empresa.getIdEmpresa()).get(0);
+
         return empresa;
     }
 
@@ -91,7 +98,6 @@ public class GastoEmpresa {
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
-    }
-    
+    }   
 
 }

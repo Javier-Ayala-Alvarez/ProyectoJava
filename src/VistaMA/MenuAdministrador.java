@@ -2,16 +2,11 @@ package VistaMA;
 
 import Controlador.ControlLogin;
 import Controlador.ControlMA;
-import Modelo.GastoEmpresa;
 import java.awt.Color;
-import java.util.ArrayList;
 import javax.swing.JFrame;
 import VistaMV.Fondo;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Francisco Javier
- */
 public class MenuAdministrador extends javax.swing.JFrame {
 
     public static String xm;
@@ -51,10 +46,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.consultarCliente.setActionCommand("consultarCliente");
         menuGDS.setActionCommand("menuGDS");
         this.opcionesGDS.setActionCommand("opcionesGDS");
-        this.valanceGDS.setActionCommand("valanceGDS");
-        this.modificarEmpresa.setActionCommand("modificarEmpresa");
-        this.consultarEmpresa.setActionCommand("consultarEmpresa");
-       
         /*ActionCommand de los Botones principales*/
         this.btnHome.setActionCommand("Home");
         this.btnVentas.setActionCommand("Ventas");
@@ -74,6 +65,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }
 
     public void setControladorMA(ControlMA controlMA) {
+       
         /*Esta función envía los botones y demás recursos al ControlMA para ser usados por esa clase*/
         /*Agregando menus y sub-botones*/
         menuVenta.addActionListener(controlMA);
@@ -93,9 +85,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.menuCliente.addActionListener(controlMA);
         this.consultarCliente.addActionListener(controlMA);
         this.opcionesGDS.addActionListener(controlMA);
-        this.valanceGDS.addActionListener(controlMA);
-        this.consultarEmpresa.addActionListener(controlMA);
-        this.modificarEmpresa.addActionListener(controlMA);
         /*Agregando botones principales*/
         btnHome.addActionListener(controlMA);
         btnVentas.addActionListener(controlMA);
@@ -175,10 +164,11 @@ public class MenuAdministrador extends javax.swing.JFrame {
         consultarCliente = new javax.swing.JMenuItem();
         menuGDS = new javax.swing.JMenu();
         opcionesGDS = new javax.swing.JMenuItem();
-        valanceGDS = new javax.swing.JMenuItem();
         jMenu13 = new javax.swing.JMenu();
-        modificarEmpresa = new javax.swing.JMenuItem();
-        consultarEmpresa = new javax.swing.JMenuItem();
+        jmGuardar4 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -822,34 +812,42 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuGDS.add(opcionesGDS);
 
-        valanceGDS.setText("Valance");
-        valanceGDS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valanceGDSActionPerformed(evt);
-            }
-        });
-        menuGDS.add(valanceGDS);
-
         jMenu.add(menuGDS);
 
         jMenu13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/configuracion.png"))); // NOI18N
-        jMenu13.setText("Empresa");
+        jMenu13.setText("Configuraciones");
 
-        modificarEmpresa.setText("Modificar");
-        modificarEmpresa.addActionListener(new java.awt.event.ActionListener() {
+        jmGuardar4.setText("Guardar");
+        jmGuardar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarEmpresaActionPerformed(evt);
+                jmGuardar4ActionPerformed(evt);
             }
         });
-        jMenu13.add(modificarEmpresa);
+        jMenu13.add(jmGuardar4);
 
-        consultarEmpresa.setText("Consultar");
-        consultarEmpresa.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem15.setText("Modificar");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultarEmpresaActionPerformed(evt);
+                jMenuItem15ActionPerformed(evt);
             }
         });
-        jMenu13.add(consultarEmpresa);
+        jMenu13.add(jMenuItem15);
+
+        jMenuItem18.setText("Consultar");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu13.add(jMenuItem18);
+
+        jMenuItem20.setText("Eliminar");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu13.add(jMenuItem20);
 
         jMenu.add(jMenu13);
 
@@ -897,6 +895,22 @@ public class MenuAdministrador extends javax.swing.JFrame {
         xm = null;
     }//GEN-LAST:event_formWindowClosing
 
+    private void jmGuardar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGuardar4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmGuardar4ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
     private void opcionesGDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionesGDSActionPerformed
 //        String x = GastosGM.x;
 //        opcion = 1;
@@ -909,17 +923,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
 //
 //        }
     }//GEN-LAST:event_opcionesGDSActionPerformed
-
-    private void valanceGDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valanceGDSActionPerformed
-//        String x = GastosValance.x;
-//        GastosValance vista = new GastosValance(this, false, Gastos);
-//        if (x == null) {
-//
-//            vista.show();
-//        } else {
-//            JOptionPane.showMessageDialog(jpEscritorio, "Ventana ya abierta!!!");
-//        }
-    }//GEN-LAST:event_valanceGDSActionPerformed
 
     private void eliminarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEmpleadoActionPerformed
 
@@ -965,14 +968,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_consultarClienteActionPerformed
 
-    private void modificarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarEmpresaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificarEmpresaActionPerformed
-
-    private void consultarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarEmpresaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_consultarEmpresaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public principal.MaterialButtonCircle btnCerrarMenuAdmin;
@@ -983,7 +978,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public rojeru_san.complementos.RSButtonHover btnVentas;
     public javax.swing.JMenuItem consultarCliente;
     public javax.swing.JMenuItem consultarEmpleado;
-    private javax.swing.JMenuItem consultarEmpresa;
     public javax.swing.JMenuItem consultarProducto;
     public javax.swing.JMenuItem eliminarEmpleado;
     public javax.swing.JMenuItem eliminarFacturaItem;
@@ -1014,10 +1008,14 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JMenuItem jmGuardar4;
     private javax.swing.JPanel jpCaja;
     private javax.swing.JPanel jpCliente;
     private javax.swing.JPanel jpCompras;
@@ -1034,7 +1032,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JMenu menuProductos;
     public javax.swing.JMenu menuVenta;
     public javax.swing.JMenuItem modificarEmpleado;
-    private javax.swing.JMenuItem modificarEmpresa;
     public javax.swing.JMenuItem modificarProducto;
     public javax.swing.JMenuItem opcionesGDS;
     public javax.swing.JPanel panel1;
@@ -1044,6 +1041,5 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JPanel panel5;
     public javax.swing.JPanel panel6;
     public javax.swing.JMenuItem registrarFacturaItem;
-    public javax.swing.JMenuItem valanceGDS;
     // End of variables declaration//GEN-END:variables
 }

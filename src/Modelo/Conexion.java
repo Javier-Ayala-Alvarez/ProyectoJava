@@ -1,28 +1,24 @@
-
 package Modelo;
-
-
-import VistaLogin.Alerta;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class Conexion {
     
 Connection cn;
 public Connection getConexion() {
-     String driver = "com.mysql.cj.jdbc.Driver";
-     String user = "root";  
-     String nombreBd= "dtienda";
-     String password = "";  
-     String url = "jdbc:mysql://localhost:3306/"+nombreBd+"?useUnicode=true&use"
-             + "JDBCCompliantTimezoneShift=true&uselegacyDateTimeCode=false&"
-             + "serverTimezone=UTC";
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String user = "root";
+        String password = "";
+        String url = "jdbc:mysql://localhost:3306/ventasjava";
       
     try {
             Class.forName(driver);
             cn= DriverManager.getConnection(url,user , password);
         } catch (Exception ex) {
-         Alerta alert=new Alerta("Error en la conexión","/img/error.png");
-            alert.show();           
+         JOptionPane.showMessageDialog(null, "Error de conexion");          
             ex.printStackTrace();
         }
      return cn;   
@@ -36,8 +32,7 @@ public Connection getConexion() {
           conn.close();
       }
   }catch(SQLException sql){
-       Alerta alert=new Alerta("Error al cerrar conexión","/img/error.png");
-            alert.show(); 
+       JOptionPane.showMessageDialog(null, "Error al cerrar conexion"); 
     sql.printStackTrace();
   }
   }  
