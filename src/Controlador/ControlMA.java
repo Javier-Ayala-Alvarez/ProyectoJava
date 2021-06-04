@@ -5,8 +5,8 @@
  */
 package Controlador;
 
-import Controlador.dao.EmpresaDao;
-import Controlador.dao.GastoDao;
+import Modelo.Dao.EmpresaDao;
+import Modelo.Dao.GastosDao;
 import Modelo.Empresa;
 import Modelo.GastoEmpresa;
 import VistaLogin.Alerta;
@@ -43,7 +43,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     
     //****GastoGM****//
     GastosGM gastosGM;
-    GastoDao daoGasto = new GastoDao();
+    GastosDao daoGasto = new GastosDao();
 //    GastosGM gasto = new GastosGM();
     GastosGM gastoSeleccionado = null;
     //****Fin GastoGM****//

@@ -1,4 +1,4 @@
-package Controlador.dao;
+package Modelo.Dao;
 
 import Modelo.Conexion;
 import Modelo.Empresa;

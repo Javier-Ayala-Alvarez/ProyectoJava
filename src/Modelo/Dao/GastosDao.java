@@ -1,4 +1,4 @@
-package Controlador.dao;
+package Modelo.Dao;
 
 import Modelo.Conexion;
 import Modelo.Empresa;
@@ -10,13 +10,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class GastoDao {
+public class GastosDao {
     Conexion conectar = new Conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
     
-    public GastoDao(){
+    public GastosDao(){
         
     }
     
