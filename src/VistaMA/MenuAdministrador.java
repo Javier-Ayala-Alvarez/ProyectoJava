@@ -767,7 +767,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         menuEmpleado.setText("Empleado");
         menuEmpleado.setActionCommand("menuEmpleado");
 
-        guardarEmpleado.setText("Guardar");
+        guardarEmpleado.setText("Añadir");
         guardarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarEmpleadoActionPerformed(evt);
