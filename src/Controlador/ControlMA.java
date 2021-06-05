@@ -342,6 +342,14 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
            
             MenuAdministrador.lbEmpresa1.setText(nombre);
           ////////////******FIN DE NOMBRE DE LA TIENDA********/////////////////
+                   ////////////******TOTAL CLIENTE********/////////////////
+            ArrayList<Cliente> cliente = daoCliente.selectAll();
+            double total = 0;
+            for (Cliente x : cliente) {
+                total++;
+            }
+            this.menuAdministrador.tfClienteT.setText(String.format("%.2f",total));
+          ////////////******FIN DE TOTAL CLIENTE********/////////////////
         ////////////******GASTOS********/////////////////
 
         if (padreActiva.equals("gastosGM")) {
@@ -505,6 +513,13 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
                         int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
                         if(opccion == 0){
                             daoGasto.update(gastoSeleccionado);
+                            JOptionPane.showMessageDialog(null, "Modificado con exito");
+                        }
+                    }else if (e.getActionCommand().equals("Modificar")
+                && padreActiva.equals("consultarCliente")) {
+                        int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        if(opccion == 0){
+                            daoCliente.update(clienteSeleccionado);
                             JOptionPane.showMessageDialog(null, "Modificado con exito");
                         }
                     }

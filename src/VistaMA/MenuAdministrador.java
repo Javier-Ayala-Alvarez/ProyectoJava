@@ -151,7 +151,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         panel6 = new javax.swing.JPanel();
         jpCliente = new javax.swing.JPanel();
-        label6 = new javax.swing.JLabel();
+        tfClienteT = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jMenu = new javax.swing.JMenuBar();
         menuVenta = new javax.swing.JMenu();
@@ -613,8 +613,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
             .addGap(0, 62, Short.MAX_VALUE)
         );
 
-        label6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        label6.setText("$0:00");
+        tfClienteT.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        tfClienteT.setText("0:00");
 
         jLabel16.setText("Cliente");
 
@@ -624,7 +624,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
             panel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(label6)
+                .addComponent(tfClienteT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(jpCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
@@ -639,7 +639,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
                 .addGroup(panel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel6Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(label6)
+                        .addComponent(tfClienteT)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1009,7 +1009,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel jpPercede;
     private javax.swing.JPanel jpProductos;
     private javax.swing.JPanel jpVencer;
-    public javax.swing.JLabel label6;
     public static javax.swing.JLabel lbEmpresa1;
     private efectos.MaterialShadowCircle materialShadowCircle1;
     private efectos.MaterialShadowCircle materialShadowCircle2;
@@ -1029,5 +1028,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JPanel panel5;
     public javax.swing.JPanel panel6;
     public javax.swing.JMenuItem registrarFacturaItem;
+    public static javax.swing.JLabel tfClienteT;
     // End of variables declaration//GEN-END:variables
 }
