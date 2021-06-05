@@ -1,12 +1,15 @@
 package Controlador;
 
+import Modelo.Cliente;
 import Modelo.Empresa;
 import Modelo.GastoEmpresa;
+import Modelo.dao.ClienteDao;
 import Modelo.dao.EmpresaDao;
 import Modelo.dao.Gastosdao;
 
 import VistaLogin.Alerta;
 import VistaLogin.Login;
+import VistaMA.ClienteMA;
 import VistaMA.EliminarVentas;
 import VistaMA.EmpleadoGM;
 import VistaMA.GastosGM;
@@ -42,6 +45,12 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
     GastoEmpresa gastoEmpresa;
     GastoEmpresa gastoSeleccionado = null;
     //****Fin GastoGM****//
+    //****ClienteMA****//
+    ClienteMA clienteMA;
+    Cliente cliente;
+    Cliente clienteSeleccionado = null;
+    ClienteDao daoCliente = new ClienteDao();
+    //****Fin ClienteMA****//
     //****Empresa****//
      
     VistaEmpresa vistaEmpresa;
@@ -56,7 +65,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
     
     private String padreActiva = "";
 
-    public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas) {
+    public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas,ClienteMA clienteMA) {
         //this.daoGasto = new GastoDao();
         this.menuAdministrador = menuAdministrador;
         this.login = login;
@@ -109,6 +118,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
         } else if (e.getActionCommand().equals("consultarEmpleado")) {
             llamarVistaConsulta("consultarEmpleado");
         } else if (e.getActionCommand().equals("consultarCliente")) {
+            padreActiva = "consultarCliente";
             llamarVistaConsulta("consultarCliente");
         } else if (e.getActionCommand().equals("opcionesGDS")) {
             padreActiva = "gastosGM";
@@ -193,6 +203,17 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
                     }
 
                 }
+        if (padreActiva.equals("consultarCliente")) {
+                    ArrayList<Cliente> lista = daoCliente.buscar(ClienteMA.tfBuscar.getText() + e.getKeyChar());
+
+                    if (lista.isEmpty()) {
+                        mostrarDatos();
+                    } else {
+                        mostrarBusqueda(lista);
+
+                    }
+
+                }
     }
 
     @Override
@@ -260,7 +281,11 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
         } else if (vista.equals("consultarEmpleado")) {
 
         } else if (vista.equals("consultarCliente")) {
-
+            padreActiva = "consultarCliente";
+            this.clienteMA = new ClienteMA(menuAdministrador, true);
+            this.clienteMA.setControlador(this);
+            mostrarDatos();
+            this.clienteMA.iniciar();
         } else if (vista.equals("gastosGM")) {
             padreActiva = "gastosGM";
             this.gastosGM = new GastosGM(menuAdministrador, true);
@@ -394,6 +419,21 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
             
         }
         ////////////******FINAL GASTOS********/////////////////
+        ////////////******ClienteMA********/////////////////
+
+        else if (padreActiva.equals("consultarCliente")) {
+            String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion","Total De Compra"};
+            modelo.setColumnIdentifiers(titulos);
+            ArrayList<Cliente> cliente2 = daoCliente.selectAll();
+            for (Cliente x : cliente2) {
+                Object datos[] = {x.getCodigo(),x.getNombre(),x.getApellido(),x.getTelefono(),x.getDireccion()};
+                modelo.addRow(datos);
+                                
+            }
+            this.clienteMA.jtDatos.setModel(modelo);
+            
+        }
+        ////////////******FINAL ClienteMA********/////////////////
     }
 
     public void crearCodigo(String a) {
@@ -557,6 +597,24 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
 
         }
         ////////////******FINAL GASTOS********/////////////////
+        
+                ////////////******ClienteMA********/////////////////
+
+        if (padreActiva.equals("consultarCliente")) {
+            String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion","Total De Compra"};
+            modelo.setColumnIdentifiers(titulos);
+
+            ArrayList<Cliente> cliente = daoCliente.selectAll();
+            for (Object a : lista) {
+                Cliente x = (Cliente) a;
+                Object datos[] = {x.getCodigo(),x.getNombre(),x.getApellido(),x.getTelefono(),x.getDireccion()};
+                modelo.addRow(datos);                
+            }
+            
+            ClienteMA.jtDatos.setModel(modelo);
+
+        }
+        ////////////******FINAL ClienteMA********/////////////////
     }
      @Override
     public void mouseClicked(MouseEvent me) {
@@ -579,11 +637,24 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
                gastosGM.cbTipo.setSelectedItem(x.getCategoria());
             }
         }
-        
+        }else if (padreActiva.equals("consultarCliente")) {
+            int fila = ClienteMA.jtDatos.getSelectedRow();
+            String id = ClienteMA.jtDatos.getValueAt(fila, 0).toString();
+            ArrayList<Cliente> lista = daoCliente.selectAllTo("codigoCliente", id);
+            clienteSeleccionado = lista.get(0);
+            ArrayList<Cliente> cliente = daoCliente.selectAll();
+            for (Cliente x : cliente) {
+            if(x.getCodigo().equals(id)){
+               ClienteMA.tfNombre.setText(x.getNombre());
+               ClienteMA.tfApellido.setText(x.getApellido());
+               ClienteMA.tfTelefono.setText(x.getTelefono());
+               ClienteMA.tfDireccion.setText(x.getDireccion());
+            }
+        }
+        } 
         
     }
-    }
-
+    
     @Override
     public void keyTyped(KeyEvent ke) {
         
