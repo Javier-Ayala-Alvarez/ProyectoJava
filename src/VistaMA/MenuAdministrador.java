@@ -121,6 +121,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btnCerrarMenuAdmin = new principal.MaterialButtonCircle();
+        lbEmpresa1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btnEmpleado = new rojeru_san.complementos.RSButtonHover();
         btnGastos = new rojeru_san.complementos.RSButtonHover();
@@ -241,6 +242,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
             }
         });
 
+        lbEmpresa1.setBackground(new java.awt.Color(255, 255, 255));
+        lbEmpresa1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        lbEmpresa1.setText(".");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -248,6 +253,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
+                .addGap(36, 36, 36)
+                .addComponent(lbEmpresa1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCerrarMenuAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -257,7 +264,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCerrarMenuAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCerrarMenuAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbEmpresa1))
                     .addComponent(jLabel2))
                 .addGap(13, 13, 13))
         );
@@ -1001,6 +1010,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel jpProductos;
     private javax.swing.JPanel jpVencer;
     public javax.swing.JLabel label6;
+    public static javax.swing.JLabel lbEmpresa1;
     private efectos.MaterialShadowCircle materialShadowCircle1;
     private efectos.MaterialShadowCircle materialShadowCircle2;
     public javax.swing.JMenu menuCliente;

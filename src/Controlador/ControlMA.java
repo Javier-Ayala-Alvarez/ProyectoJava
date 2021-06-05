@@ -10,6 +10,7 @@ import VistaLogin.Login;
 import VistaMA.EliminarVentas;
 import VistaMA.EmpleadoGM;
 import VistaMA.GastosGM;
+import static VistaMA.GastosGM.tfPago1;
 import VistaMA.MenuAdministrador;
 import VistaMA.RegistrosDeProductos;
 import VistaMA.RegistrosDeVentas;
@@ -22,7 +23,9 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,7 +39,8 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
     //****GastoGM****//
     GastosGM gastosGM;
     Gastosdao daoGasto = new Gastosdao();
-    GastosGM gastoSeleccionado = null;
+    GastoEmpresa gastoEmpresa;
+    GastoEmpresa gastoSeleccionado = null;
     //****Fin GastoGM****//
     //****Empresa****//
      
@@ -49,7 +53,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
     RegistrosDeProductos registrosDeProductos;
     RegistrosDeVentas registrosDeVentas;
     EliminarVentas eliminarVentas;
-    DefaultTableModel modelo = new DefaultTableModel();
+    
     private String padreActiva = "";
 
     public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas) {
@@ -174,11 +178,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
             
         }
     }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
+ 
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -189,6 +189,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
                         mostrarDatos();
                     } else {
                         mostrarBusqueda(lista);
+
                     }
 
                 }
@@ -206,6 +207,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
  /*Ejecuciones de los Botones Derechos*/
         if (vista.equals("menuAdministrador")) {
             menuAdministrador.setControladorMA(this);
+            mostrarDatos();
             menuAdministrador.iniciar();
         } else if (vista.equals("home")) {
             JOptionPane.showMessageDialog(null, "No hay nada Home");
@@ -277,6 +279,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
              this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
               this.vistaEmpresa.tfDireccion.setText(empresaSeleccionanda.getDireccion());
               this.vistaEmpresa.tfCorreo.setText(empresaSeleccionanda.getCorreo());
+              mostrarDatos();
               this.vistaEmpresa.iniciar();
          
         }
@@ -298,7 +301,22 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
     }
 
     public void mostrarDatos() {
+        DefaultTableModel modelo = new DefaultTableModel();
         modelo = new DefaultTableModel();
+         ////////////******NOMBRE DE LA TIENDA********/////////////////
+                    String nombre ="";
+            ArrayList<Empresa> empresa = daoEmpresa.selectAll();
+            for (Empresa x : empresa) {
+                
+                Object datos1[] = {x.getIdEmpresa(),x.getNombre()};
+                if(datos1[0].equals(1)){
+                    nombre = x.getNombre();
+                }
+                
+            }
+           
+            MenuAdministrador.lbEmpresa1.setText(nombre);
+          ////////////******FIN DE NOMBRE DE LA TIENDA********/////////////////
         ////////////******GASTOS********/////////////////
 
         if (padreActiva.equals("gastosGM")) {
@@ -351,29 +369,29 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
                 
             }
             GastosGM.jtDatos.setModel(modelo);
-            this.gastosGM.lbAlcaldiaTotal.setText("$"+alcaldiaT);
+            this.gastosGM.lbAlcaldiaTotal.setText("$"+ String.format("%.2f",alcaldiaT));
             this.gastosGM.lbAlcaldiaC.setText(String.valueOf(alcaldiaC));
             
-            this.gastosGM.lbEnergiaTotal.setText("$"+energiaT);
+            this.gastosGM.lbEnergiaTotal.setText("$"+ String.format("%.2f",energiaT));
             this.gastosGM.lbEnergiaC.setText(String.valueOf(energiaC));
             
-            this.gastosGM.lbAlquilerTotal.setText("$"+alquilerT);
+            this.gastosGM.lbAlquilerTotal.setText("$"+ String.format("%.2f",alquilerT));
             this.gastosGM.lbAlquilerC.setText(String.valueOf(alquilerC));
             
-            this.gastosGM.lbAguaTotal.setText("$"+aguaT);
+            this.gastosGM.lbAguaTotal.setText("$"+ String.format("%.2f",aguaT));
             this.gastosGM.lbAguaC.setText(String.valueOf(aguaC));
             
-            this.gastosGM.lbISSSTotal.setText("$"+isssT);
+            this.gastosGM.lbISSSTotal.setText("$"+ String.format("%.2f",isssT));
             this.gastosGM.lbIsssC.setText(String.valueOf(isssC));
             
-            this.gastosGM.lbAFPTotal.setText("$"+afpT);
+            this.gastosGM.lbAFPTotal.setText("$"+ String.format("%.2f",afpT));
             this.gastosGM.lbAfpC.setText(String.valueOf(afpC));
             
-            this.gastosGM.lbIVATotal.setText("$"+ivaT);
+            this.gastosGM.lbIVATotal.setText("$"+ String.format("%.2f",ivaT));
             this.gastosGM.lbIvaC.setText(String.valueOf(ivaC));
             
-            this.gastosGM.lbTotalReporte.setText("$"+totalR);
-
+            this.gastosGM.lbTotalReporte.setText("$"+ String.format("%.2f",totalR));
+            
         }
         ////////////******FINAL GASTOS********/////////////////
     }
@@ -395,24 +413,28 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
         }
         correlativo = correlativo + corre;
         
-        this.gastosGM.tfCodigo.setText("correlativo");
+        this.gastosGM.tfCodigo.setText(correlativo);
         ////////////******FINAL GASTOS********/////////////////
     }
     public void accionDeBotones(ActionEvent e){
         if(e.getActionCommand().equals("Agregar") && padreActiva.equals("gastosGM")){
             if(!gastosGM.tfCodigo.getText().isEmpty() 
-                    && (!gastosGM.tfBuscar.getText().isEmpty())){
+                    && (!gastosGM.tfPago1.getText().isEmpty())){
+               ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
+               String v = gastosGM.cbTipo.getSelectedItem().toString();
                 if(gastoSeleccionado == null){
-                    String v = gastosGM.cbTipo.getSelectedItem().toString(); 
-                    GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(),gastosGM.dFecha.getDatoFecha(),v,Double.parseDouble(gastosGM.tfBuscar.getText()));
+                    GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(),gastosGM.dFecha.getDatoFecha(),v,Double.parseDouble(gastosGM.tfPago1.getText()),empresa.get(0));
                     ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("codigoGasto",gastosGM.tfCodigo.getText());
                     if(existe.isEmpty()){
                         if(daoGasto.insert(gasto)){
                              JOptionPane.showMessageDialog(null, "Guardado con exito");
+                             
                         }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Codigo ya Existe");
                     }
                 }
-                
+                mostrarDatos();
             }else{
                 JOptionPane.showMessageDialog(null, "Campos vacios");
             }
@@ -422,7 +444,32 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
             
             crearCodigo(iniciales);
             
-        }
+        }else if (e.getActionCommand().equals("Eliminar")
+                && padreActiva.equals("gastosGM")) {
+            int opccion = JOptionPane.showConfirmDialog(null, "Deseas Eliminar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(opccion == 0){
+            if (gastoSeleccionado != null) {
+                if (daoGasto.delete(gastoSeleccionado)) {
+                    JOptionPane.showMessageDialog(null, "Eliminado con exito");
+                    
+                    mostrarDatos();
+                    gastoSeleccionado = null;
+                } else {
+                   JOptionPane.showMessageDialog(null, "Error al eliminado con exito");
+                }
+            }
+            }
+            
+        }else if (e.getActionCommand().equals("Modificar")
+                && padreActiva.equals("gastosGM")) {
+                        int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        if(opccion == 0){
+                            daoGasto.update(gastoSeleccionado);
+                            JOptionPane.showMessageDialog(null, "Modificado con exito");
+                        }
+                    }
+                    mostrarDatos();
+                    gastoSeleccionado = null;
     }
 
     @Override
@@ -430,7 +477,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public void mostrarBusqueda(ArrayList lista) {
-
+    DefaultTableModel modelo = new DefaultTableModel();
         ////////////******GASTOS********/////////////////
 
         if (padreActiva.equals("gastosGM")) {
@@ -483,31 +530,62 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
                 }
                 
             }
+            
             GastosGM.jtDatos.setModel(modelo);
-            this.gastosGM.lbAlcaldiaTotal.setText("$"+alcaldiaT);
+            this.gastosGM.lbAlcaldiaTotal.setText("$"+ String.format("%.2f",alcaldiaT));
             this.gastosGM.lbAlcaldiaC.setText(String.valueOf(alcaldiaC));
             
-            this.gastosGM.lbEnergiaTotal.setText("$"+energiaT);
+            this.gastosGM.lbEnergiaTotal.setText("$"+ String.format("%.2f",energiaT));
             this.gastosGM.lbEnergiaC.setText(String.valueOf(energiaC));
             
-            this.gastosGM.lbAlquilerTotal.setText("$"+alquilerT);
+            this.gastosGM.lbAlquilerTotal.setText("$"+ String.format("%.2f",alquilerT));
             this.gastosGM.lbAlquilerC.setText(String.valueOf(alquilerC));
             
-            this.gastosGM.lbAguaTotal.setText("$"+aguaT);
+            this.gastosGM.lbAguaTotal.setText("$"+ String.format("%.2f",aguaT));
             this.gastosGM.lbAguaC.setText(String.valueOf(aguaC));
             
-            this.gastosGM.lbISSSTotal.setText("$"+isssT);
+            this.gastosGM.lbISSSTotal.setText("$"+ String.format("%.2f",isssT));
             this.gastosGM.lbIsssC.setText(String.valueOf(isssC));
             
-            this.gastosGM.lbAFPTotal.setText("$"+afpT);
+            this.gastosGM.lbAFPTotal.setText("$"+ String.format("%.2f",afpT));
             this.gastosGM.lbAfpC.setText(String.valueOf(afpC));
             
-            this.gastosGM.lbIVATotal.setText("$"+ivaT);
+            this.gastosGM.lbIVATotal.setText("$"+ String.format("%.2f",ivaT));
             this.gastosGM.lbIvaC.setText(String.valueOf(ivaC));
             
-            this.gastosGM.lbTotalReporte.setText("$"+totalR);
+            this.gastosGM.lbTotalReporte.setText("$"+ String.format("%.2f",totalR));
 
         }
         ////////////******FINAL GASTOS********/////////////////
+    }
+     @Override
+    public void mouseClicked(MouseEvent me) {
+     /* Gastos */
+        if (padreActiva.equals("gastosGM")) {
+            int fila = GastosGM.jtDatos.getSelectedRow();
+            String id = GastosGM.jtDatos.getValueAt(fila, 0).toString();
+            ArrayList<GastoEmpresa> lista = daoGasto.selectAllTo("codigoGasto", id);
+            gastoSeleccionado = lista.get(0);
+            String codigo = GastosGM.jtDatos.getValueAt(fila, 0).toString();
+            String cate = GastosGM.jtDatos.getValueAt(fila, 4).toString();
+            String pago = GastosGM.jtDatos.getValueAt(fila, 3).toString();
+            String fecha = GastosGM.jtDatos.getValueAt(fila, 2).toString();
+            GastosGM.tfCodigo.setText(codigo);
+            GastosGM.tfPago1.setText(pago);
+            ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
+            for (GastoEmpresa x : gastos) {
+            if(x.getCodigoGastos().equals(codigo)){
+               gastosGM.dFecha.setDatoFecha(x.getFecha());
+               gastosGM.cbTipo.setSelectedItem(x.getCategoria());
+            }
+        }
+        
+        
+    }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent ke) {
+        
     }
 }
