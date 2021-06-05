@@ -611,7 +611,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
                 modelo.addRow(datos);                
             }
             
-            ClienteMA.jtDatos.setModel(modelo);
+            this.clienteMA.jtDatos.setModel(modelo);
 
         }
         ////////////******FINAL ClienteMA********/////////////////
