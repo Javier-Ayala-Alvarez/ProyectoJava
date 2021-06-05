@@ -7,13 +7,14 @@ import java.util.Date;
 public class Empleados extends Persona{
 
    
-    private String cargoEmpleado;
+    private String cargoEmpleado,codigoEmpleado;
     private double salarioEmpleado, afp, isss;
     private Date fechaContratacion;
     private Usuario usuario;
     private  Bono bono;
-    private Empresa enpresa;
+    private Empresa empresa;
     private ArrayList<Venta> ventas;
+    private int estado;
 
     public Empleados(String cargoEmpleado, double salarioEmpleado, double afp, double isss,Usuario usuario, Date fechaContratacion, int idPersona, String nombre, String apellido, String telefono, String direccion) {
         super(idPersona, nombre, apellido, telefono, direccion);
@@ -98,6 +99,38 @@ public class Empleados extends Persona{
     }
     public void addUsuario(Usuario x){
         this.usuario = x;
+    }
+
+    public String getCodigoEmpleado() {
+        return codigoEmpleado;
+    }
+
+    public void setCodigoEmpleado(String codigoEmpleado) {
+        this.codigoEmpleado = codigoEmpleado;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public Bono getBono() {
+        return bono;
+    }
+
+    public void setBono(Bono bono) {
+        this.bono = bono;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
     
 }
