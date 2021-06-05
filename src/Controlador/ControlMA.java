@@ -25,6 +25,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -368,28 +369,28 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
                 
             }
             GastosGM.jtDatos.setModel(modelo);
-            this.gastosGM.lbAlcaldiaTotal.setText("$"+alcaldiaT);
+            this.gastosGM.lbAlcaldiaTotal.setText("$"+ String.format("%.2f",alcaldiaT));
             this.gastosGM.lbAlcaldiaC.setText(String.valueOf(alcaldiaC));
             
-            this.gastosGM.lbEnergiaTotal.setText("$"+energiaT);
+            this.gastosGM.lbEnergiaTotal.setText("$"+ String.format("%.2f",energiaT));
             this.gastosGM.lbEnergiaC.setText(String.valueOf(energiaC));
             
-            this.gastosGM.lbAlquilerTotal.setText("$"+alquilerT);
+            this.gastosGM.lbAlquilerTotal.setText("$"+ String.format("%.2f",alquilerT));
             this.gastosGM.lbAlquilerC.setText(String.valueOf(alquilerC));
             
-            this.gastosGM.lbAguaTotal.setText("$"+aguaT);
+            this.gastosGM.lbAguaTotal.setText("$"+ String.format("%.2f",aguaT));
             this.gastosGM.lbAguaC.setText(String.valueOf(aguaC));
             
-            this.gastosGM.lbISSSTotal.setText("$"+isssT);
+            this.gastosGM.lbISSSTotal.setText("$"+ String.format("%.2f",isssT));
             this.gastosGM.lbIsssC.setText(String.valueOf(isssC));
             
-            this.gastosGM.lbAFPTotal.setText("$"+afpT);
+            this.gastosGM.lbAFPTotal.setText("$"+ String.format("%.2f",afpT));
             this.gastosGM.lbAfpC.setText(String.valueOf(afpC));
             
-            this.gastosGM.lbIVATotal.setText("$"+ivaT);
+            this.gastosGM.lbIVATotal.setText("$"+ String.format("%.2f",ivaT));
             this.gastosGM.lbIvaC.setText(String.valueOf(ivaC));
             
-            this.gastosGM.lbTotalReporte.setText("$"+totalR);
+            this.gastosGM.lbTotalReporte.setText("$"+ String.format("%.2f",totalR));
             
         }
         ////////////******FINAL GASTOS********/////////////////
@@ -420,21 +421,20 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
             if(!gastosGM.tfCodigo.getText().isEmpty() 
                     && (!gastosGM.tfPago1.getText().isEmpty())){
                ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
+               String v = gastosGM.cbTipo.getSelectedItem().toString();
                 if(gastoSeleccionado == null){
-                    String v = gastosGM.cbTipo.getSelectedItem().toString();        
-                           
                     GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(),gastosGM.dFecha.getDatoFecha(),v,Double.parseDouble(gastosGM.tfPago1.getText()),empresa.get(0));
                     ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("codigoGasto",gastosGM.tfCodigo.getText());
                     if(existe.isEmpty()){
                         if(daoGasto.insert(gasto)){
                              JOptionPane.showMessageDialog(null, "Guardado con exito");
-                             mostrarDatos();
+                             
                         }
                     }else{
                         JOptionPane.showMessageDialog(null, "Codigo ya Existe");
                     }
                 }
-                
+                mostrarDatos();
             }else{
                 JOptionPane.showMessageDialog(null, "Campos vacios");
             }
@@ -460,8 +460,16 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
             }
             }
             
-        }
-        
+        }else if (e.getActionCommand().equals("Modificar")
+                && padreActiva.equals("gastosGM")) {
+                        int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        if(opccion == 0){
+                            daoGasto.update(gastoSeleccionado);
+                            JOptionPane.showMessageDialog(null, "Modificado con exito");
+                        }
+                    }
+                    mostrarDatos();
+                    gastoSeleccionado = null;
     }
 
     @Override
@@ -524,28 +532,28 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
             }
             
             GastosGM.jtDatos.setModel(modelo);
-            this.gastosGM.lbAlcaldiaTotal.setText("$"+alcaldiaT);
+            this.gastosGM.lbAlcaldiaTotal.setText("$"+ String.format("%.2f",alcaldiaT));
             this.gastosGM.lbAlcaldiaC.setText(String.valueOf(alcaldiaC));
             
-            this.gastosGM.lbEnergiaTotal.setText("$"+energiaT);
+            this.gastosGM.lbEnergiaTotal.setText("$"+ String.format("%.2f",energiaT));
             this.gastosGM.lbEnergiaC.setText(String.valueOf(energiaC));
             
-            this.gastosGM.lbAlquilerTotal.setText("$"+alquilerT);
+            this.gastosGM.lbAlquilerTotal.setText("$"+ String.format("%.2f",alquilerT));
             this.gastosGM.lbAlquilerC.setText(String.valueOf(alquilerC));
             
-            this.gastosGM.lbAguaTotal.setText("$"+aguaT);
+            this.gastosGM.lbAguaTotal.setText("$"+ String.format("%.2f",aguaT));
             this.gastosGM.lbAguaC.setText(String.valueOf(aguaC));
             
-            this.gastosGM.lbISSSTotal.setText("$"+isssT);
+            this.gastosGM.lbISSSTotal.setText("$"+ String.format("%.2f",isssT));
             this.gastosGM.lbIsssC.setText(String.valueOf(isssC));
             
-            this.gastosGM.lbAFPTotal.setText("$"+afpT);
+            this.gastosGM.lbAFPTotal.setText("$"+ String.format("%.2f",afpT));
             this.gastosGM.lbAfpC.setText(String.valueOf(afpC));
             
-            this.gastosGM.lbIVATotal.setText("$"+ivaT);
+            this.gastosGM.lbIVATotal.setText("$"+ String.format("%.2f",ivaT));
             this.gastosGM.lbIvaC.setText(String.valueOf(ivaC));
             
-            this.gastosGM.lbTotalReporte.setText("$"+totalR);
+            this.gastosGM.lbTotalReporte.setText("$"+ String.format("%.2f",totalR));
 
         }
         ////////////******FINAL GASTOS********/////////////////
@@ -558,8 +566,22 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
             String id = GastosGM.jtDatos.getValueAt(fila, 0).toString();
             ArrayList<GastoEmpresa> lista = daoGasto.selectAllTo("codigoGasto", id);
             gastoSeleccionado = lista.get(0);
+            String codigo = GastosGM.jtDatos.getValueAt(fila, 0).toString();
+            String cate = GastosGM.jtDatos.getValueAt(fila, 4).toString();
+            String pago = GastosGM.jtDatos.getValueAt(fila, 3).toString();
+            String fecha = GastosGM.jtDatos.getValueAt(fila, 2).toString();
+            GastosGM.tfCodigo.setText(codigo);
+            GastosGM.tfPago1.setText(pago);
+            ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
+            for (GastoEmpresa x : gastos) {
+            if(x.getCodigoGastos().equals(codigo)){
+               gastosGM.dFecha.setDatoFecha(x.getFecha());
+               gastosGM.cbTipo.setSelectedItem(x.getCategoria());
+            }
         }
         
+        
+    }
     }
 
     @Override
