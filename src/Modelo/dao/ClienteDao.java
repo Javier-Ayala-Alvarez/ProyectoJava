@@ -68,6 +68,8 @@ public class ClienteDao {
                 obj.setApellido(rs.getString("apellido"));
                 obj.setTelefono(rs.getString("telefonoCliente"));
                 obj.setDireccion(rs.getString("direccionCliente"));
+                //obj.getVentas(new Ventas(rs.getInt("idVenta")));
+                lista.add(obj);
                 
                 lista.add(obj);
             }
