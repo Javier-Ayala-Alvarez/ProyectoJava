@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Usuario{
+    private int idUsuario;
     private String usuario;
     private String contraseña;
     private ArrayList<InicioCaja>administrarCajas;
@@ -16,6 +17,10 @@ public class Usuario{
     public Usuario(String usuario, String contraseña) {
         this.usuario = usuario;
         this.contraseña = contraseña;
+    }
+
+    public Usuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getUsuario() {
@@ -30,6 +35,10 @@ public class Usuario{
         return contraseña;
     }
 
+    public Usuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
       
@@ -41,6 +50,14 @@ public class Usuario{
 
     public ArrayList<InicioCaja> getAdministrarCajas() {
         return administrarCajas;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
     
 }
