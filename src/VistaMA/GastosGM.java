@@ -2,6 +2,7 @@ package VistaMA;
 import Controlador.ControlMA;
 import javax.swing.table.DefaultTableModel;
 import VistaMV.Fondo;
+import java.util.Date;
 
 public class GastosGM extends javax.swing.JDialog {
 
@@ -16,6 +17,7 @@ public class GastosGM extends javax.swing.JDialog {
         btnEliminar.setActionCommand("Eliminar");
         btnModificar.setActionCommand("Modificar");
         btnGenerar.setActionCommand("Generar");
+        dFecha.setDatoFecha(new Date());
         
 
                     
@@ -29,6 +31,7 @@ public class GastosGM extends javax.swing.JDialog {
         btnModificar.addActionListener(control1);
         btnGenerar.addActionListener(control1);
         tfBuscar.addKeyListener(control1);
+        jtDatos.addMouseListener(control1);
         
     }
 
@@ -44,7 +47,10 @@ public class GastosGM extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        cbTipo = new javax.swing.JComboBox<>();
         tfCodigo = new principal.MaterialTextField();
+        tfBuscar = new principal.MaterialTextField();
+        dFecha = new rojeru_san.componentes.RSDateChooser();
         jpLogo1 = new javax.swing.JPanel();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -61,7 +67,6 @@ public class GastosGM extends javax.swing.JDialog {
         lbCodigo4 = new javax.swing.JLabel();
         lbCodigo5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        lbEnergiaC = new javax.swing.JLabel();
         lbCodigo6 = new javax.swing.JLabel();
         lbEnergiaTotal = new javax.swing.JLabel();
         lbAlquilerC = new javax.swing.JLabel();
@@ -81,12 +86,14 @@ public class GastosGM extends javax.swing.JDialog {
         lbIVATotal = new javax.swing.JLabel();
         lbCodigo18 = new javax.swing.JLabel();
         lbTotalReporte = new javax.swing.JLabel();
+        lbEnergiaC = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lbCodigo1 = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
-        jLabel10 = new javax.swing.JLabel();
+        tfPago1 = new principal.MaterialTextField();
+        jLabel11 = new javax.swing.JLabel();
+        lbPago = new javax.swing.JLabel();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -113,22 +120,22 @@ public class GastosGM extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Gasto");
-        panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 100, 60));
+        panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 70, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Codigo");
-        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 80, 60));
+        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 80, 40));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Buscar...");
-        panelFondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 80, 50));
+        panelFondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 80, 50));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Pago");
-        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 80, 60));
+        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 70, 30));
 
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Impuesto de Alcaldia", "Pago de Energia", "Pago de Alquiler", "Pago de Agua", "ISSS", "AFP", "IVA" }));
         cbTipo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,10 +148,11 @@ public class GastosGM extends javax.swing.JDialog {
                 cbTipoActionPerformed(evt);
             }
         });
-        panelFondo.add(cbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 400, 50));
+        panelFondo.add(cbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 400, 40));
 
         tfCodigo.setBackground(new java.awt.Color(213, 216, 221));
         tfCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        tfCodigo.setFocusable(false);
         tfCodigo.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         tfCodigo.setSelectionColor(new java.awt.Color(102, 153, 255));
         tfCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +160,7 @@ public class GastosGM extends javax.swing.JDialog {
                 tfCodigoActionPerformed(evt);
             }
         });
-        panelFondo.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 300, 40));
+        panelFondo.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 300, 40));
 
         tfBuscar.setBackground(new java.awt.Color(213, 216, 221));
         tfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -160,8 +168,8 @@ public class GastosGM extends javax.swing.JDialog {
                 tfBuscarKeyTyped(evt);
             }
         });
-        panelFondo.add(tfBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 160, 30));
-        panelFondo.add(dFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 400, 40));
+        panelFondo.add(tfBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 160, 30));
+        panelFondo.add(dFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 400, 40));
 
         javax.swing.GroupLayout jpLogo1Layout = new javax.swing.GroupLayout(jpLogo1);
         jpLogo1.setLayout(jpLogo1Layout);
@@ -222,7 +230,7 @@ public class GastosGM extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jtDatos);
 
-        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 580, 160));
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 580, 160));
 
         btnGenerar.setText("Generar");
         btnGenerar.addActionListener(new java.awt.event.ActionListener() {
@@ -230,7 +238,7 @@ public class GastosGM extends javax.swing.JDialog {
                 btnGenerarActionPerformed(evt);
             }
         });
-        panelFondo.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 90, 40));
+        panelFondo.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 90, -1));
 
         btnModificar.setBackground(new java.awt.Color(0, 102, 102));
         btnModificar.setText("Modificar");
@@ -239,7 +247,7 @@ public class GastosGM extends javax.swing.JDialog {
                 btnModificarActionPerformed(evt);
             }
         });
-        panelFondo.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 520, 160, 50));
+        panelFondo.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 540, 160, 50));
 
         btnEliminar.setBackground(new java.awt.Color(204, 0, 0));
         btnEliminar.setForeground(new java.awt.Color(255, 153, 153));
@@ -250,7 +258,7 @@ public class GastosGM extends javax.swing.JDialog {
                 btnEliminarActionPerformed(evt);
             }
         });
-        panelFondo.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 520, 160, 50));
+        panelFondo.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 540, 160, 50));
 
         btnAgregar.setText("Agregar");
         btnAgregar.setActionCommand("Agregar1");
@@ -259,7 +267,7 @@ public class GastosGM extends javax.swing.JDialog {
                 btnAgregarActionPerformed(evt);
             }
         });
-        panelFondo.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 160, 50));
+        panelFondo.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 160, 50));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -292,10 +300,6 @@ public class GastosGM extends javax.swing.JDialog {
         lbCodigo5.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
         lbCodigo5.setForeground(new java.awt.Color(0, 0, 153));
         lbCodigo5.setText("Categoria");
-
-        lbEnergiaC.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbEnergiaC.setForeground(new java.awt.Color(255, 0, 0));
-        lbEnergiaC.setText("0");
 
         lbCodigo6.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
         lbCodigo6.setForeground(new java.awt.Color(255, 0, 0));
@@ -373,81 +377,80 @@ public class GastosGM extends javax.swing.JDialog {
         lbTotalReporte.setForeground(new java.awt.Color(0, 0, 153));
         lbTotalReporte.setText("$0.00");
 
+        lbEnergiaC.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        lbEnergiaC.setForeground(new java.awt.Color(255, 0, 0));
+        lbEnergiaC.setText("0");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbIvaC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lbAlquilerC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lbEnergiaC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lbAguaC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lbIsssC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lbAfpC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbIvaC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbAlquilerC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbAguaC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbIsssC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbAfpC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lbAlcaldiaC, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbEnergiaC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbCodigo12, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbCodigo10, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbCodigo14, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbCodigo16, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbCodigo18)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(lbCodigo8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(129, 129, 129))
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(lbCodigo6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(lbEnergiaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lbCodigo3)
-                                                    .addComponent(lbAlcaldiaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(33, 33, 33))))
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbCodigo12, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbCodigo10, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbCodigo14, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbCodigo16, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbCodigo18))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbCodigo3)
+                                            .addComponent(lbAlcaldiaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(60, 60, 60))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(216, 216, 216)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lbAlquilerTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(33, 33, 33))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbAguaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(lbTotalReporte)
-                                                .addComponent(lbAFPTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                                                .addComponent(lbISSSTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(lbIVATotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(21, 21, 21))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbEnergiaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(lbAlquilerTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                                        .addComponent(lbAguaTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lbISSSTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lbAFPTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lbIVATotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lbTotalReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(lbAlcaldiaC, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(lbCodigo4)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbCodigo5)
-                            .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(6, 6, 6)
+                                .addComponent(lbCodigo4)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addComponent(lbCodigo5)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,11 +462,15 @@ public class GastosGM extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbCodigo4)
-                                    .addComponent(lbCodigo5)
-                                    .addComponent(lbCodigo3))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(lbCodigo4)
+                                            .addComponent(lbCodigo3)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(lbCodigo5)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lbCodigo)
@@ -472,8 +479,8 @@ public class GastosGM extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lbCodigo6)
-                                    .addComponent(lbEnergiaC)
-                                    .addComponent(lbEnergiaTotal))
+                                    .addComponent(lbEnergiaTotal)
+                                    .addComponent(lbEnergiaC))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lbCodigo8)
@@ -505,10 +512,10 @@ public class GastosGM extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCodigo18)
                     .addComponent(lbTotalReporte))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
-        panelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 350, 420));
+        panelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 360, 420));
         panelFondo.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 960, 20));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -525,7 +532,6 @@ public class GastosGM extends javax.swing.JDialog {
         lbCodigo1.setForeground(new java.awt.Color(255, 0, 0));
         lbCodigo1.setText("Impuesto");
         panelFondo.add(lbCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 120, 40));
-        panelFondo.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 590, 40));
 
         tfPago1.setBackground(new java.awt.Color(213, 216, 221));
         tfPago1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -533,18 +539,23 @@ public class GastosGM extends javax.swing.JDialog {
                 tfPago1KeyTyped(evt);
             }
         });
-        panelFondo.add(tfPago1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 400, 40));
+        panelFondo.add(tfPago1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 400, 40));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("Fecha");
-        panelFondo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 80, 60));
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("Fecha");
+        panelFondo.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 70, 20));
+
+        lbPago.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        lbPago.setForeground(new java.awt.Color(255, 0, 0));
+        lbPago.setText(".");
+        panelFondo.add(lbPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(526, 210, 70, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -554,12 +565,6 @@ public class GastosGM extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbTipoMouseClicked
-    }//GEN-LAST:event_cbTipoMouseClicked
-
-    private void tfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyTyped
-    }//GEN-LAST:event_tfBuscarKeyTyped
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         x = null;
@@ -572,41 +577,64 @@ public class GastosGM extends javax.swing.JDialog {
     private void materialButtonCircle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle1ActionPerformed
     }//GEN-LAST:event_materialButtonCircle1ActionPerformed
 
-    private void materialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle2ActionPerformed
-    }//GEN-LAST:event_materialButtonCircle2ActionPerformed
+    private void tfPago1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPago1KeyTyped
+        char c = evt.getKeyChar();
 
-    private void jtDatosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDatosFocusLost
-    }//GEN-LAST:event_jtDatosFocusLost
-
-    private void jtDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDatosMouseClicked
-    }//GEN-LAST:event_jtDatosMouseClicked
-
-    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-    }//GEN-LAST:event_btnGenerarActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
-    }//GEN-LAST:event_tfCodigoActionPerformed
+        if((c >= 46 && c <= 57 )){
+            lbPago.setText("");
+        }else{
+            lbPago.setText("numeros");
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfPago1KeyTyped
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+
+    }//GEN-LAST:event_btnGenerarActionPerformed
+
+    private void jtDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDatosMouseClicked
+
+    }//GEN-LAST:event_jtDatosMouseClicked
+
+    private void jtDatosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDatosFocusLost
+
+    }//GEN-LAST:event_jtDatosFocusLost
+
+    private void materialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle2ActionPerformed
+
+    }//GEN-LAST:event_materialButtonCircle2ActionPerformed
 
     private void materialButtonCircle2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialButtonCircle2MouseClicked
         this.dispose();
     }//GEN-LAST:event_materialButtonCircle2MouseClicked
 
+    private void tfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyTyped
+
+    }//GEN-LAST:event_tfBuscarKeyTyped
+
+    private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
+
+    }//GEN-LAST:event_tfCodigoActionPerformed
+
     private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbTipoActionPerformed
 
-    private void tfPago1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPago1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPago1KeyTyped
+    private void cbTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbTipoMouseClicked
+
+    }//GEN-LAST:event_cbTipoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -640,10 +668,10 @@ public class GastosGM extends javax.swing.JDialog {
     public rojeru_san.complementos.RSButtonHover btnEliminar;
     public rojeru_san.complementos.RSButtonHover btnGenerar;
     public rojeru_san.complementos.RSButtonHover btnModificar;
-    public static final javax.swing.JComboBox<String> cbTipo = new javax.swing.JComboBox<>();
-    public static final rojeru_san.componentes.RSDateChooser dFecha = new rojeru_san.componentes.RSDateChooser();
+    public javax.swing.JComboBox<String> cbTipo;
+    public rojeru_san.componentes.RSDateChooser dFecha;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -654,17 +682,16 @@ public class GastosGM extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JPanel jpLogo1;
     public static final javax.swing.JTable jtDatos = new javax.swing.JTable();
-    public static javax.swing.JLabel lbAFPTotal;
-    public static javax.swing.JLabel lbAfpC;
-    public static javax.swing.JLabel lbAguaC;
-    public static javax.swing.JLabel lbAguaTotal;
-    public static javax.swing.JLabel lbAlcaldiaC;
-    public static javax.swing.JLabel lbAlcaldiaTotal;
-    public static javax.swing.JLabel lbAlquilerC;
-    public static javax.swing.JLabel lbAlquilerTotal;
+    public javax.swing.JLabel lbAFPTotal;
+    public javax.swing.JLabel lbAfpC;
+    public javax.swing.JLabel lbAguaC;
+    public javax.swing.JLabel lbAguaTotal;
+    public javax.swing.JLabel lbAlcaldiaC;
+    public javax.swing.JLabel lbAlcaldiaTotal;
+    public javax.swing.JLabel lbAlquilerC;
+    public javax.swing.JLabel lbAlquilerTotal;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbCodigo1;
     private javax.swing.JLabel lbCodigo10;
@@ -677,20 +704,21 @@ public class GastosGM extends javax.swing.JDialog {
     private javax.swing.JLabel lbCodigo5;
     private javax.swing.JLabel lbCodigo6;
     private javax.swing.JLabel lbCodigo8;
-    public static javax.swing.JLabel lbEnergiaC;
-    public static javax.swing.JLabel lbEnergiaTotal;
-    public static javax.swing.JLabel lbISSSTotal;
-    public static javax.swing.JLabel lbIVATotal;
-    public static javax.swing.JLabel lbIsssC;
-    public static javax.swing.JLabel lbIvaC;
-    public static javax.swing.JLabel lbTotalReporte;
+    public javax.swing.JLabel lbEnergiaC;
+    public javax.swing.JLabel lbEnergiaTotal;
+    public javax.swing.JLabel lbISSSTotal;
+    public javax.swing.JLabel lbIVATotal;
+    public javax.swing.JLabel lbIsssC;
+    public javax.swing.JLabel lbIvaC;
+    public javax.swing.JLabel lbPago;
+    public javax.swing.JLabel lbTotalReporte;
     private principal.MaterialButtonCircle materialButtonCircle1;
     private principal.MaterialButtonCircle materialButtonCircle2;
     private javax.swing.JPanel panelFondo;
     private rojeru_san.componentes.RSCalendar rSCalendar1;
     private efectos.Roboto roboto1;
-    public static final principal.MaterialTextField tfBuscar = new principal.MaterialTextField();
+    public static principal.MaterialTextField tfBuscar;
     public static principal.MaterialTextField tfCodigo;
-    public static final principal.MaterialTextField tfPago1 = new principal.MaterialTextField();
+    public static principal.MaterialTextField tfPago1;
     // End of variables declaration//GEN-END:variables
 }

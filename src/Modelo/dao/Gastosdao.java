@@ -3,6 +3,7 @@ package Modelo.dao;
 import Modelo.Conexion;
 import Modelo.Empresa;
 import Modelo.GastoEmpresa;
+import VistaMA.GastosGM;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -41,7 +42,7 @@ public class Gastosdao {
     }
     
     public boolean insert(GastoEmpresa obj){
-        String sql = "insert into gastoempresa(codigoGasto, fecha, tipo, saldo, idEmpresa)VALUES(?????)";
+        String sql = "insert into gastoempresa(codigoGasto,fecha,tipo,saldo,idEmpresa)VALUES(?,?,?,?,?)";
         return alterarRegistro(sql, obj);
     }
     
@@ -61,7 +62,7 @@ public class Gastosdao {
 
             while(rs.next()) {
                 obj = new GastoEmpresa();
-                //obj.setIdGasto(rs.getInt("idGastos"));
+                obj.setIdGasto(rs.getInt("idGastos"));
                 obj.setCodigoGastos(rs.getString("codigoGasto"));
                 obj.setFecha(rs.getDate("fecha"));
                 obj.setCategoria(rs.getString("tipo"));
@@ -89,12 +90,12 @@ public class Gastosdao {
         try {
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
-            
-            ps.setDate(1, (Date) obj.getFecha());
-            ps.setString(2, obj.getCategoria());
-            ps.setDouble(3, obj.getSaldo());
-            
-            
+            //ps.setInt(0, obj.getIdGasto());
+            ps.setString(1, obj.getCodigoGastos());
+            ps.setDate(2, new java.sql.Date(obj.getFecha().getTime()));
+            ps.setString(3, obj.getCategoria());
+            ps.setDouble(4, obj.getSaldo());
+            ps.setInt(5, obj.getEmpresa().getIdEmpresa());
             ps.execute();
             
             return true;
@@ -113,7 +114,7 @@ public class Gastosdao {
     }
     
     public boolean delete(GastoEmpresa obj) {
-        String sql = "delete from gastoempresa where idGastoEmpresa='" + obj.getIdGasto() + "'";
+        String sql = "delete from gastoempresa where idGastos='" + obj.getIdGasto() + "'";
         
         try {
             con = conectar.getConexion();
