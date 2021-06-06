@@ -24,11 +24,11 @@ public class Cliente extends Persona{
        
     }
 
-    public Cliente(int idCliente, String codigo, ArrayList<Venta> ventas, String nombre, String apellido, String telefono, String direccion) {
+    public Cliente(int idCliente, String codigo,  String nombre, String apellido, String telefono, String direccion) {
         super(nombre, apellido, telefono, direccion);
         this.idCliente = idCliente;
         this.codigo = codigo;
-        this.ventas = ventas;
+        
     }
 
     public String getCodigo() {

@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
     public void cerrar() {
         VistaMA.MenuAdministrador.xm = null;////////////
         VistaMA.EliminarVentas.x = null;
-        VistaMA.EmpleadoGM.x = null;
+        VistaMA.vistaEmpleadoGM.x = null;
         VistaMA.GastosGM.x = null;
         VistaMA.RegistrosDeProductos.x = null;
         VistaMA.RegistrosDeVentas.x = null;

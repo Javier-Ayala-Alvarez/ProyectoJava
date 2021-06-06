@@ -1,9 +1,11 @@
 package Controlador;
 
 import Modelo.Cliente;
+import Modelo.Empleados;
 import Modelo.Empresa;
 import Modelo.GastoEmpresa;
 import Modelo.dao.ClienteDao;
+import Modelo.dao.EmpleadoDao;
 import Modelo.dao.EmpresaDao;
 import Modelo.dao.Gastosdao;
 
@@ -12,6 +14,7 @@ import VistaLogin.Login;
 import VistaMA.ClienteMA;
 import VistaMA.EliminarVentas;
 import VistaMA.EmpleadoGM;
+import VistaMA.vistaEmpleadoGM;
 import VistaMA.GastosGM;
 import static VistaMA.GastosGM.tfPago1;
 import VistaMA.MenuAdministrador;
@@ -37,7 +40,14 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
     /*Clases que serán usadas para el Constructor*/
     MenuAdministrador menuAdministrador;
     Login login;
+    
+    //****Empleado****//
+    vistaEmpleadoGM vistaEmpleadoGM;
     EmpleadoGM empleadoGM;
+    EmpleadoDao daoEmpleado = new EmpleadoDao();
+    Empleados empleado;
+    Empleados empleadosSeleccionanda = null;
+    //****Fin Empleado
 
     //****GastoGM****//
     GastosGM gastosGM;
@@ -65,11 +75,11 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
     
     private String padreActiva = "";
 
-    public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas,ClienteMA clienteMA) {
+    public ControlMA(MenuAdministrador menuAdministrador, Login login, vistaEmpleadoGM empleadoGM, GastosGM gastosGM, RegistrosDeProductos registrosDeProductos, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas,ClienteMA clienteMA) {
         //this.daoGasto = new GastoDao();
         this.menuAdministrador = menuAdministrador;
         this.login = login;
-        this.empleadoGM = empleadoGM;
+      
         this.gastosGM = gastosGM;
         this.registrosDeProductos = registrosDeProductos;
         this.registrosDeVentas = registrosDeVentas;
@@ -133,11 +143,9 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
         /*Fin de Sub-botones de los Menús*/
         /*********************************para Modificar empresa*********************************/
         else if (e.getActionCommand().equals("editarEmpresa")) {
-            llamarAcciones("editarEmpresa");
-            
+            llamarAcciones("editarEmpresa");     
         }
-        
-        
+
         /**********************************fin Modificar empresa*********************************/
 
 
@@ -266,19 +274,21 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
         } else if (vista.equals("consultarProducto")) {
             registrosDeProductos = new RegistrosDeProductos(menuAdministrador, true);
             this.registrosDeProductos.iniciar();
-        } else if (vista.equals("guardarEmpleado")) {
-            this.empleadoGM = new EmpleadoGM(menuAdministrador, true);
-            this.empleadoGM.btnGuardar.setEnabled(true);
-            this.empleadoGM.btnModificar.setEnabled(false);
+        } else if (vista.equals("guardarEmpleado")) {/////falta agregar el controlador /////////
+            this.vistaEmpleadoGM = new vistaEmpleadoGM(menuAdministrador, true);
+            this.vistaEmpleadoGM.btnGuardar.setEnabled(true);
+            this.vistaEmpleadoGM.btnModificar.setEnabled(false);
             this.empleadoGM.iniciar();
-        } else if (vista.equals("modificarEmpleado")) {
-            this.empleadoGM = new EmpleadoGM(menuAdministrador, true);
-            this.empleadoGM.btnGuardar.setEnabled(false);
-            this.empleadoGM.btnModificar.setEnabled(true);
-            this.empleadoGM.iniciar();
+        } else if (vista.equals("modificarEmpleado")) {/////falta agregar el controlador /////////
+            this.vistaEmpleadoGM = new vistaEmpleadoGM(menuAdministrador, true);
+            this.vistaEmpleadoGM.btnGuardar.setEnabled(false);
+            this.vistaEmpleadoGM.btnModificar.setEnabled(true);
+            this.vistaEmpleadoGM.iniciar();
         } else if (vista.equals("eliminarEmpleado")) {
+            this.empleadoGM = new  EmpleadoGM(menuAdministrador, true, true);
 
         } else if (vista.equals("consultarEmpleado")) {
+            
 
         } else if (vista.equals("consultarCliente")) {
             padreActiva = "consultarCliente";

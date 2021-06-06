@@ -8,7 +8,7 @@ package Controlador;
 import VistaLogin.Login;
 import VistaMA.ClienteMA;
 import VistaMA.EliminarVentas;
-import VistaMA.EmpleadoGM;
+import VistaMA.vistaEmpleadoGM;
 import VistaMA.GastosGM;
 import VistaMA.MenuAdministrador;
 import VistaMA.RegistrosDeProductos;
@@ -37,7 +37,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
     MenuAdministrador menuAdministrador;
     String acceso;
     /*Objetos para el Constructor de ControlMA*/
-    EmpleadoGM empleadoGM;
+    vistaEmpleadoGM empleadoGM;
     GastosGM gastosGM;
     ClienteMA clienteMA;
     RegistrosDeProductos registrosDeProductos;
