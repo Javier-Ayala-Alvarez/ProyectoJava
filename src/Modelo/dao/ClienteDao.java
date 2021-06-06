@@ -3,6 +3,7 @@ package Modelo.dao;
 import Modelo.Conexion;
 import Modelo.Empresa;
 import Modelo.Cliente;
+import Modelo.Venta;
 import VistaMA.GastosGM;
 import java.sql.Connection;
 import java.sql.Date;
@@ -47,8 +48,8 @@ public class ClienteDao {
     }
     
     public void update(Cliente obj) {
-        String sql = "update cliente set codigoCliente =?, nombre =?, apellido =?, telefonoCliente =?, direccionCliente =?, where idCliente=" + obj.getIdCliente();
-        alterarRegistro(sql, obj);
+        String sql = "update cliente set nombre =?, apellido =?, telefonoCliente =?, direccionCliente =?, where idCliente=" + obj.getIdCliente();
+        alterarRegistro1(sql, obj);
     }
     
     
@@ -68,6 +69,8 @@ public class ClienteDao {
                 obj.setApellido(rs.getString("apellido"));
                 obj.setTelefono(rs.getString("telefonoCliente"));
                 obj.setDireccion(rs.getString("direccionCliente"));
+                //obj.getVentas(new Ventas(rs.getInt("idVenta")));
+                lista.add(obj);
                 
                 lista.add(obj);
             }
@@ -113,7 +116,31 @@ public class ClienteDao {
         }
         return false; 
     }
-    
+     private boolean alterarRegistro1(String sql, Cliente obj){
+        try {
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(2, obj.getNombre());
+            ps.setString(3, obj.getApellido());
+            ps.setString(4, obj.getTelefono());
+            ps.setString(5, obj.getDireccion());
+            ps.execute();
+            
+            return true;
+        }catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en sql");
+            e.printStackTrace();
+        }finally{
+            try {
+                ps.close();
+            } catch (Exception ex) {
+                
+            }
+            conectar.closeConexion(con);
+        }
+        return false; 
+    }
     public boolean delete(Cliente obj) {
         String sql = "delete from cliente where idCliente='" + obj.getIdCliente() + "'";
         
@@ -134,5 +161,9 @@ public class ClienteDao {
         }
 
         return false;
+    }
+
+    public Object selectId(ArrayList<Venta> ventas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
