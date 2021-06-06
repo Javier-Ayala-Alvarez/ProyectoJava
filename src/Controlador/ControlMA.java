@@ -430,13 +430,14 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
         ////////////******ClienteMA********/////////////////
 
         else if (padreActiva.equals("consultarCliente")) {
+            double totalV = 0;
             String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion","Total De Compra"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Cliente> cliente2 = daoCliente.selectAll();
             for (Cliente x : cliente2) {
                 Object datos[] = {x.getCodigo(),x.getNombre(),x.getApellido(),x.getTelefono(),x.getDireccion()};
                 modelo.addRow(datos);
-                                
+                                           
             }
             this.clienteMA.jtDatos.setModel(modelo);
             
@@ -512,6 +513,10 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
                 && padreActiva.equals("gastosGM")) {
                         int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
                         if(opccion == 0){
+                            gastoSeleccionado.setCategoria((String) gastosGM.cbTipo.getSelectedItem());
+                            gastoSeleccionado.setSaldo(Double.parseDouble(gastosGM.tfPago1.getText()));
+                            gastoSeleccionado.setFecha(gastosGM.dFecha.getDatoFecha());
+                           
                             daoGasto.update(gastoSeleccionado);
                             JOptionPane.showMessageDialog(null, "Modificado con exito");
                         }
@@ -519,6 +524,10 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
                 && padreActiva.equals("consultarCliente")) {
                         int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
                         if(opccion == 0){
+                             clienteSeleccionado.setNombre(ClienteMA.tfNombre.getText());
+                            clienteSeleccionado.setApellido(ClienteMA.tfApellido.getText());
+                            clienteSeleccionado.setTelefono(ClienteMA.tfTelefono.getText());
+                            clienteSeleccionado.setDireccion(ClienteMA.tfDireccion.getText());
                             daoCliente.update(clienteSeleccionado);
                             JOptionPane.showMessageDialog(null, "Modificado con exito");
                         }
@@ -638,7 +647,6 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
             int fila = GastosGM.jtDatos.getSelectedRow();
             String id = GastosGM.jtDatos.getValueAt(fila, 0).toString();
             ArrayList<GastoEmpresa> lista = daoGasto.selectAllTo("codigoGasto", id);
-            gastoSeleccionado = lista.get(0);
             String codigo = GastosGM.jtDatos.getValueAt(fila, 0).toString();
             String cate = GastosGM.jtDatos.getValueAt(fila, 4).toString();
             String pago = GastosGM.jtDatos.getValueAt(fila, 3).toString();

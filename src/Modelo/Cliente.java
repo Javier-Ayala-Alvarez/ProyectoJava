@@ -55,6 +55,7 @@ public class Cliente extends Persona{
     }
 
     public ArrayList<Venta> getVentas() {
+        
         return ventas;
     }
     public void setVentas(ArrayList<Venta> venta) {
