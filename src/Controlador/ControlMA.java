@@ -113,10 +113,8 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
         } else if (e.getActionCommand().equals("eliminarFacturaItem")) {
             llamarVistaConsulta("eliminarFacturaItem");
         } else if (e.getActionCommand().equals("guardarProducto")) {
-            padreActiva="productoModi";
-            llamarVistaConsulta("productoModi");
-//            llamarVistaConsulta("guardarProducto");
-        } else if (e.getActionCommand().equals("modificarProducto")) {
+            llamarVistaConsulta("guardarProducto");
+        } else if (e.getActionCommand().equals("modificarProducto")) {;
             llamarVistaConsulta("modificarProducto");
         } else if (e.getActionCommand().equals("eliminarProducto")) {
             llamarVistaConsulta("eliminarProducto");
@@ -271,7 +269,7 @@ public class ControlMA  extends MouseAdapter implements ActionListener, KeyListe
             EliminarVentas elimFac = new EliminarVentas(menuAdministrador, true);
             elimFac.iniciar();
         } else if (vista.equals("guardarProducto")) {
-            padreActiva = "productoModi";
+            padreActiva = "productoModi1";
             this.productoModi = new ProductoModi(menuAdministrador, true);
             this.productoModi.setControlador(this);
             mostrarDatos();
