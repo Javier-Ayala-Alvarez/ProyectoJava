@@ -75,18 +75,13 @@ public class GastosGM extends javax.swing.JDialog {
         lbCodigo10 = new javax.swing.JLabel();
         lbAguaC = new javax.swing.JLabel();
         lbAguaTotal = new javax.swing.JLabel();
-        lbIsssC = new javax.swing.JLabel();
+        lbSalarioC = new javax.swing.JLabel();
         lbCodigo12 = new javax.swing.JLabel();
-        lbISSSTotal = new javax.swing.JLabel();
-        lbCodigo14 = new javax.swing.JLabel();
-        lbAfpC = new javax.swing.JLabel();
-        lbAFPTotal = new javax.swing.JLabel();
-        lbIvaC = new javax.swing.JLabel();
-        lbCodigo16 = new javax.swing.JLabel();
-        lbIVATotal = new javax.swing.JLabel();
+        lbSalarioT = new javax.swing.JLabel();
         lbCodigo18 = new javax.swing.JLabel();
         lbTotalReporte = new javax.swing.JLabel();
         lbEnergiaC = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -119,7 +114,7 @@ public class GastosGM extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Gasto");
+        jLabel1.setText("Pago");
         panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 70, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -134,10 +129,10 @@ public class GastosGM extends javax.swing.JDialog {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Pago");
-        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 70, 30));
+        jLabel7.setText("Efectivo");
+        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 90, 30));
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Impuesto de Alcaldia", "Pago de Energia", "Pago de Alquiler", "Pago de Agua", "ISSS", "AFP", "IVA" }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Impuesto de Alcaldia", "Pago de Energia", "Pago de Alquiler", "Pago de Agua" }));
         cbTipo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbTipoMouseClicked(evt);
@@ -333,41 +328,17 @@ public class GastosGM extends javax.swing.JDialog {
         lbAguaTotal.setForeground(new java.awt.Color(255, 0, 0));
         lbAguaTotal.setText("$0.00");
 
-        lbIsssC.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbIsssC.setForeground(new java.awt.Color(255, 0, 0));
-        lbIsssC.setText("0");
+        lbSalarioC.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        lbSalarioC.setForeground(new java.awt.Color(255, 0, 0));
+        lbSalarioC.setText("0");
 
         lbCodigo12.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
         lbCodigo12.setForeground(new java.awt.Color(255, 0, 0));
-        lbCodigo12.setText("Pago de ISSS  ...................");
+        lbCodigo12.setText("Pago de Salarios  ...................");
 
-        lbISSSTotal.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbISSSTotal.setForeground(new java.awt.Color(255, 0, 0));
-        lbISSSTotal.setText("$0.00");
-
-        lbCodigo14.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbCodigo14.setForeground(new java.awt.Color(255, 0, 0));
-        lbCodigo14.setText("Pago de AFP  ...................");
-
-        lbAfpC.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbAfpC.setForeground(new java.awt.Color(255, 0, 0));
-        lbAfpC.setText("0");
-
-        lbAFPTotal.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbAFPTotal.setForeground(new java.awt.Color(255, 0, 0));
-        lbAFPTotal.setText("$0.00");
-
-        lbIvaC.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbIvaC.setForeground(new java.awt.Color(255, 0, 0));
-        lbIvaC.setText("0");
-
-        lbCodigo16.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbCodigo16.setForeground(new java.awt.Color(255, 0, 0));
-        lbCodigo16.setText("Pago de IVA ...................");
-
-        lbIVATotal.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbIVATotal.setForeground(new java.awt.Color(255, 0, 0));
-        lbIVATotal.setText("$0.00");
+        lbSalarioT.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        lbSalarioT.setForeground(new java.awt.Color(255, 0, 0));
+        lbSalarioT.setText("$0.00");
 
         lbCodigo18.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
         lbCodigo18.setForeground(new java.awt.Color(0, 0, 153));
@@ -391,40 +362,29 @@ public class GastosGM extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbIvaC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbAlquilerC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbAguaC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbIsssC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbAfpC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lbAlquilerC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbAguaC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbSalarioC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbAlcaldiaC, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbEnergiaC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lbCodigo8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lbCodigo6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lbCodigo8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbCodigo6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lbCodigo12, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lbCodigo10, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lbCodigo14, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lbCodigo16, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lbCodigo18))
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbCodigo3)
-                                            .addComponent(lbAlcaldiaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(60, 60, 60))))
+                                        .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lbCodigo3)
+                                        .addGap(50, 50, 50)))
+                                .addContainerGap())
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(216, 216, 216)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,87 +392,74 @@ public class GastosGM extends javax.swing.JDialog {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lbAlquilerTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                                         .addComponent(lbAguaTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lbISSSTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lbAFPTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lbIVATotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lbTotalReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addContainerGap())))
+                                        .addComponent(lbSalarioT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lbTotalReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lbAlcaldiaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(lbCodigo4)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
-                                        .addComponent(lbCodigo5)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(26, 26, 26)
+                                .addComponent(lbCodigo5)))
+                        .addContainerGap(234, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jLabel9)
+                .addGap(6, 6, 6)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(lbCodigo4)
-                                            .addComponent(lbCodigo3)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(lbCodigo5)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbCodigo)
-                                    .addComponent(lbAlcaldiaC)
-                                    .addComponent(lbAlcaldiaTotal))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbCodigo6)
-                                    .addComponent(lbEnergiaTotal)
-                                    .addComponent(lbEnergiaC))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbCodigo8)
-                                    .addComponent(lbAlquilerC)))
-                            .addComponent(lbAlquilerTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbCodigo10)
-                            .addComponent(lbAguaC)))
+                        .addGap(12, 12, 12)
+                        .addComponent(lbCodigo4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(lbAguaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(10, 10, 10)
+                        .addComponent(lbCodigo5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbCodigo3)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCodigo)
+                    .addComponent(lbAlcaldiaC)
+                    .addComponent(lbAlcaldiaTotal))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCodigo6)
+                    .addComponent(lbEnergiaTotal)
+                    .addComponent(lbEnergiaC))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCodigo8)
+                    .addComponent(lbAlquilerC)
+                    .addComponent(lbAlquilerTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbCodigo10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbAguaC)
+                        .addComponent(lbAguaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCodigo12)
-                    .addComponent(lbIsssC)
-                    .addComponent(lbISSSTotal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCodigo14)
-                    .addComponent(lbAfpC)
-                    .addComponent(lbAFPTotal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCodigo16)
-                    .addComponent(lbIvaC)
-                    .addComponent(lbIVATotal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(lbSalarioC)
+                    .addComponent(lbSalarioT))
+                .addGap(40, 40, 40)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCodigo18)
                     .addComponent(lbTotalReporte))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         panelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 360, 420));
@@ -520,8 +467,8 @@ public class GastosGM extends javax.swing.JDialog {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Gastos/ Agregar/ Modificar / Eliminar / Reporte");
-        panelFondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 530, 60));
+        jLabel8.setText("Pagos Administrativos/ Agregar/ Modificar / Eliminar / Reporte");
+        panelFondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 680, 60));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
@@ -555,7 +502,7 @@ public class GastosGM extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -675,17 +622,16 @@ public class GastosGM extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    public static javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JPanel jpLogo1;
     public static final javax.swing.JTable jtDatos = new javax.swing.JTable();
-    public javax.swing.JLabel lbAFPTotal;
-    public javax.swing.JLabel lbAfpC;
     public javax.swing.JLabel lbAguaC;
     public javax.swing.JLabel lbAguaTotal;
     public javax.swing.JLabel lbAlcaldiaC;
@@ -696,8 +642,6 @@ public class GastosGM extends javax.swing.JDialog {
     private javax.swing.JLabel lbCodigo1;
     private javax.swing.JLabel lbCodigo10;
     private javax.swing.JLabel lbCodigo12;
-    private javax.swing.JLabel lbCodigo14;
-    private javax.swing.JLabel lbCodigo16;
     private javax.swing.JLabel lbCodigo18;
     private javax.swing.JLabel lbCodigo3;
     private javax.swing.JLabel lbCodigo4;
@@ -706,11 +650,9 @@ public class GastosGM extends javax.swing.JDialog {
     private javax.swing.JLabel lbCodigo8;
     public javax.swing.JLabel lbEnergiaC;
     public javax.swing.JLabel lbEnergiaTotal;
-    public javax.swing.JLabel lbISSSTotal;
-    public javax.swing.JLabel lbIVATotal;
-    public javax.swing.JLabel lbIsssC;
-    public javax.swing.JLabel lbIvaC;
     public javax.swing.JLabel lbPago;
+    public javax.swing.JLabel lbSalarioC;
+    public javax.swing.JLabel lbSalarioT;
     public javax.swing.JLabel lbTotalReporte;
     private principal.MaterialButtonCircle materialButtonCircle1;
     private principal.MaterialButtonCircle materialButtonCircle2;

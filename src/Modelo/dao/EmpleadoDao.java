@@ -37,9 +37,10 @@ public class EmpleadoDao {
     
     public ArrayList<Empleados> buscar(String dato) {
         String sql = "SELECT * fROM Empleado WHERE idEmpleado like '" + dato 
-                       + "%' or cargoEmpleado like '" + dato + "%' or nombreEmpleado like '" + dato + "%' ";
+                       + "%' or codigoEmpleado like '" + dato + "%' or cargoEmpleado like '" + dato + "%' or nombreEmpleado like '" + dato + "%' ";
         return select(sql);
     }
+    
     
     public boolean insert(Empleados obj){
         String sql = "INSERT  INTO Empleado (codigoEmpleado, nombre, apellido, telefonoEmpleado,dirrecionEmpleado,"
@@ -67,8 +68,8 @@ public class EmpleadoDao {
             while(rs.next()) {
               
                 obj = new Empleados();
-                Usuario usuario = new Usuario(rs.getInt(("usuario_idUsuario")));
-                Empresa empresa = new Empresa(rs.getInt("idEmpresa"));
+                
+                obj.setIdEmpleado(rs.getInt("idEmpleado"));
                 obj.setIdPersona(rs.getInt("idEmpleado"));
                 obj.setCodigoEmpleado(rs.getString("codigoEmpleado"));
                 obj.setNombre(rs.getString("nombre"));
@@ -81,6 +82,8 @@ public class EmpleadoDao {
                 obj.setIsss(rs.getDouble("isss"));
                 obj.setFechaContratacion(rs.getDate("contratacion"));
                 obj.setEstado(rs.getInt("estado"));
+                Usuario usuario = new Usuario(rs.getInt(("usuario_idUsuario")));
+                Empresa empresa = new Empresa(rs.getInt("idEmpresa"));
                 obj.addUsuario(usuario);
                 obj.setEmpresa(empresa);
                 

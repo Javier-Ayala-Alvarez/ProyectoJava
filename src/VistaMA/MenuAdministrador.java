@@ -17,6 +17,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         initComponents();
         //this.setResizable(false);//No Maximo
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);//PANTALLA COMPLETA
+        
         jpEscritorio.setBorder(new Fondo("/img/Fondo.jpg"));
         xm = "xm";
         jMenu.setBackground(Color.yellow);
@@ -46,6 +47,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.consultarCliente.setActionCommand("consultarCliente");
         menuGDS.setActionCommand("menuGDS");
         this.opcionesGDS.setActionCommand("opcionesGDS");
+        this.opcionesGDS1.setActionCommand("opcionesGDS1");
         this.modificarEmpresa.setActionCommand("modificarEmpresa");
         this.consultarEmpresa.setActionCommand("consultarEmpresa");
         
@@ -88,6 +90,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.menuCliente.addActionListener(controlMA);
         this.consultarCliente.addActionListener(controlMA);
         this.opcionesGDS.addActionListener(controlMA);
+        this.opcionesGDS1.addActionListener(controlMA);
         this.consultarEmpresa.addActionListener(controlMA);
         this.modificarEmpresa.addActionListener(controlMA);
         
@@ -171,6 +174,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         consultarCliente = new javax.swing.JMenuItem();
         menuGDS = new javax.swing.JMenu();
         opcionesGDS = new javax.swing.JMenuItem();
+        opcionesGDS1 = new javax.swing.JMenuItem();
         jMenu13 = new javax.swing.JMenu();
         modificarEmpresa = new javax.swing.JMenuItem();
         consultarEmpresa = new javax.swing.JMenuItem();
@@ -815,15 +819,23 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jMenu.add(menuCliente);
 
         menuGDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gastos.png"))); // NOI18N
-        menuGDS.setText("Gastos de Sucursal");
+        menuGDS.setText("Pagos de Sucursal");
 
-        opcionesGDS.setText("Opciones");
+        opcionesGDS.setText("Gastos Administrativo");
         opcionesGDS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opcionesGDSActionPerformed(evt);
             }
         });
         menuGDS.add(opcionesGDS);
+
+        opcionesGDS1.setText("Pago de Empleados");
+        opcionesGDS1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcionesGDS1ActionPerformed(evt);
+            }
+        });
+        menuGDS.add(opcionesGDS1);
 
         jMenu.add(menuGDS);
 
@@ -957,6 +969,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_consultarClienteActionPerformed
 
+    private void opcionesGDS1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionesGDS1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opcionesGDS1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public principal.MaterialButtonCircle btnCerrarMenuAdmin;
@@ -1021,6 +1037,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem modificarEmpresa;
     public javax.swing.JMenuItem modificarProducto;
     public javax.swing.JMenuItem opcionesGDS;
+    public javax.swing.JMenuItem opcionesGDS1;
     public javax.swing.JPanel panel1;
     public javax.swing.JPanel panel2;
     public javax.swing.JPanel panel3;

@@ -309,7 +309,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/gastos.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Gastos de Sucursal"/>
+            <Property name="text" type="java.lang.String" value="Pagos de Sucursal"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -317,10 +317,21 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="opcionesGDS">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Opciones"/>
+                <Property name="text" type="java.lang.String" value="Gastos Administrativo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="opcionesGDSActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="opcionesGDS1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pago de Empleados"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="opcionesGDS1ActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
