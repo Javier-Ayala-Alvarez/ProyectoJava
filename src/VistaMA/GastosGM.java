@@ -32,6 +32,7 @@ public class GastosGM extends javax.swing.JDialog {
         btnGenerar.addActionListener(control1);
         tfBuscar.addKeyListener(control1);
         jtDatos.addMouseListener(control1);
+        cbTipo.addItemListener(control1);
         
     }
 
@@ -481,6 +482,7 @@ public class GastosGM extends javax.swing.JDialog {
         panelFondo.add(lbCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 120, 40));
 
         tfPago1.setBackground(new java.awt.Color(213, 216, 221));
+        tfPago1.setForeground(new java.awt.Color(0, 0, 0));
         tfPago1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfPago1KeyTyped(evt);
