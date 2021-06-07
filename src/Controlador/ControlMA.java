@@ -24,6 +24,7 @@ import VistaMA.RegistrosDeProductos;
 import VistaMA.RegistrosDeVentas;
 import VistaMA.VistaEmpresa;
 import VistaMV.Factura;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -308,19 +309,27 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             padreActiva = "gastosGM";
             this.gastosGM = new GastosGM(menuAdministrador, true);
             this.gastosGM.setControlador(this);
+            
             mostrarDatos();
             this.gastosGM.iniciar();
         } else if (vista.equals("gastosGM1")) {
            
-            padreActiva = "gastosGM1";
+            
             this.gastosGM = new GastosGM(menuAdministrador, true);
             this.gastosGM.setControlador(this);
+            gastosGM.tfPago1.setEditable(false);
             gastosGM.cbTipo.removeAllItems();
+            
+            
             llenarCombo();
+            padreActiva = "gastosGM1";
             mostrarDatos();
-            this.gastosGM.lbPago.setVisible(false);
-            this.gastosGM.tfPago1.setVisible(false);
-            this.gastosGM.jLabel7.setVisible(false);
+            
+            
+            
+//            this.gastosGM.lbPago.setVisible(false);
+//            this.gastosGM.tfPago1.setVisible(false);
+//            this.gastosGM.jLabel7.setVisible(false);
             this.gastosGM.iniciar();
              
         } /////////////////////////////////
@@ -719,18 +728,15 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (padreActiva == "gastosGM1") {
-            ArrayList<Empleados> empleado = daoEmpleado.selectAll();
-            String vq[] = gastosGM.cbTipo.getSelectedItem().toString().split(" - ");
-
-            int idEmpleado = 0;
-            for (Empleados x : empleado) {
-                if (vq[0].equals(x.getCodigoEmpleado())) {
-
-                    gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
-                }
-
-            }
+            
+            ArrayList<Empleados> empleado1 = daoEmpleado.selectAll();
+           String vq[] = gastosGM.cbTipo.getSelectedItem().toString().split(" - ");
+                for (Empleados x : empleado1) {
+                    if (vq[0].equals(x.getCodigoEmpleado())) {                     
+                        gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
+                    }
         }
+    }
     }
 
     public void mostrarBusqueda(ArrayList lista) {
