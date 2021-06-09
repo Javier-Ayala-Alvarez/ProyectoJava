@@ -9,6 +9,7 @@ import VistaLogin.Login;
 import VistaMA.MenuAdministrador;
 import VistaMV.Factura;
 import VistaMV.Facturacion;
+import VistaMV.FacturacionD;
 import VistaMV.Mensaje;
 import VistaMV.Producto;
 import java.awt.event.ActionEvent;
@@ -29,6 +30,7 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
     Facturacion facturacion;
     Mensaje mensaje;
     Producto producto;
+    FacturacionD fD;
     /*Objetos para el Construtor de ControlLogin*/
     Login login;
 
@@ -60,6 +62,9 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
             case "cerrarFactura":
                 llamarVFactura("cerrarFactura");
                 break;
+            case "x":
+                llamarVFactura("cerrarF");
+                break;
             default:
                 break;
         }
@@ -89,7 +94,9 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
         } else if (vista.equals("tiket")) {
             JOptionPane.showMessageDialog(null, "Tiket está vacío");
         } else if (vista.equals("facturacion")) {
-            JOptionPane.showMessageDialog(null, "Facturación está vacío");
+            this.fD = new FacturacionD(factura, true);
+            this.fD.setControl(this);
+            fD.iniciar();
         } else if (vista.equals("administrador")) {
             int opc = JOptionPane.showConfirmDialog(null, "¿Desea ingresar al Login?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opc == 0) {

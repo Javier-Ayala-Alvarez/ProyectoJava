@@ -1,6 +1,6 @@
 
 package Modelo;
-import ejemplocompleto.vistas.Alerta;
+import VistaLogin.Alerta;
 import java.sql.*;
 
 public class Conexion {
@@ -9,7 +9,7 @@ Connection cn;
 public Connection getConexion() {
      String driver = "com.mysql.cj.jdbc.Driver";
      String user = "root";  
-     String nombreBd= "ventasjava";
+     String nombreBd= "dTienda";
      String password = "";  
      String url = "jdbc:mysql://localhost:3306/"+nombreBd+"?useUnicode=true&use"
              + "JDBCCompliantTimezoneShift=true&uselegacyDateTimeCode=false&"

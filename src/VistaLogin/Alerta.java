@@ -4,8 +4,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 public class Alerta extends javax.swing.JDialog {
 
-    public Alerta(java.awt.Frame parent, boolean modal,String msg, String r) {
-         super(parent, modal);
+    public Alerta(String msg, String r) {
+         
         initComponents();
         this.setLocationRelativeTo(null);
          msj.setText(msg);

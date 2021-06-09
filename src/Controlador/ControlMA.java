@@ -185,18 +185,18 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 //vistaEmpresa.tfCorreo.getText(),vistaEmpresa.tfCodigoEmpresa.getText());
                 if (daoEmpresa.update(empresaSeleccionanda)) {
                     System.out.println(empresaSeleccionanda.getIdEmpresa() + empresaSeleccionanda.getNombre());
-                    Alerta aler = new Alerta(menuAdministrador, true, "Datos Modificados Con exito", "/img/Succes.png");
+                    Alerta aler = new Alerta( "Datos Modificados Con exito", "/img/Succes.png");
                     aler.show();
                     this.vistaEmpresa.dispose();
                 } else {
 
-                    Alerta aler = new Alerta(menuAdministrador, true, "Error realisando la operación", "/img/error.png");
+                    Alerta aler = new Alerta("Error realisando la operación", "/img/error.png");
                     aler.show();
                     this.vistaEmpresa.dispose();
                 }
 
             } else {
-                Alerta aler = new Alerta(menuAdministrador, true, "complete los datos para poder realizar un cambio", "/img/error.png");
+                Alerta aler = new Alerta("complete los datos para poder realizar un cambio", "/img/error.png");
                 aler.show();
 
             }

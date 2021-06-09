@@ -68,7 +68,7 @@ public class EmpresaDao {
             }
             
         }catch(Exception e) {
-            Alerta alert = new Alerta(null,true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta("Error en sql", "/img/error.png");
             alert.show();
             e.printStackTrace();
         }finally{
@@ -98,7 +98,7 @@ public class EmpresaDao {
             System.out.println("ujhuuj");
             return true;
         }catch(Exception e) {
-            Alerta alert = new Alerta(null,true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta("Error en sql", "/img/error.png");
             alert.show();
             //e.printStackTrace();
         }finally{
