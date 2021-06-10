@@ -126,7 +126,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } else if (e.getActionCommand().equals("consultarEmpleado")) {
             llamarVistaConsulta("consultarEmpleado");
         } else if (e.getActionCommand().equals("consultarCliente")) {
-            padreActiva = "consultarCliente";
             llamarVistaConsulta("consultarCliente");
         } else if (e.getActionCommand().equals("opcionesGDS")) {
             llamarVistaConsulta("gastosGM");
@@ -293,9 +292,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } else if (vista.equals("consultarEmpleado")) {
 
         } else if (vista.equals("consultarCliente")) {
-            padreActiva = "consultarCliente";
+            
             this.clienteMA = new ClienteMA(menuAdministrador, true);
             this.clienteMA.setControlador(this);
+            
+            padreActiva = "consultarCliente";
             mostrarDatos();
             this.clienteMA.iniciar();
         } else if (vista.equals("gastosGM")) {
@@ -520,6 +521,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             double totalV = 0;
             String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion", "Total De Compra"};
             modelo.setColumnIdentifiers(titulos);
+             this.clienteMA.jtDatos.setModel(modelo);
             ArrayList<Cliente> cliente2 = daoCliente.selectAll();
             for (Cliente x : cliente2) {
                 Object datos[] = {x.getCodigo(), x.getNombre(), x.getApellido(), x.getTelefono(), x.getDireccion()};
@@ -580,7 +582,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("codigoGasto", gastosGM.tfCodigo.getText());
                     if (existe.isEmpty()) {
                         if (daoGasto.insert(gasto)) {
-vaciarVista();
+                            vaciarVista();
                             Alerta aler = new Alerta("Guardado con exito", "/img/Succes.png");
                             aler.show();
 
@@ -680,10 +682,11 @@ vaciarVista();
                 && padreActiva.equals("gastosGM")) {
             int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opccion == 0) {
+                gastoSeleccionado.setCodigoGastos(gastosGM.tfCodigo.getText());
+                gastoSeleccionado.setFecha(gastosGM.dFecha.getDatoFecha());
                 gastoSeleccionado.setCategoria((String) gastosGM.cbTipo.getSelectedItem());
                 gastoSeleccionado.setSaldo(Double.parseDouble(gastosGM.tfPago1.getText()));
-                gastoSeleccionado.setFecha(gastosGM.dFecha.getDatoFecha());
-
+                gastoSeleccionado.getEmpresa().getIdEmpresa();
                 daoGasto.update(gastoSeleccionado);
                 vaciarVista();
                 Alerta aler = new Alerta("Modificado con exito", "/img/Succes.png");
@@ -907,7 +910,7 @@ vaciarVista();
         if (padreActiva.equals("consultarCliente")) {
             String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion", "Total De Compra"};
             modelo.setColumnIdentifiers(titulos);
-
+             this.clienteMA.jtDatos.setModel(modelo);
             ArrayList<Cliente> cliente = daoCliente.selectAll();
             for (Object a : lista) {
                 Cliente x = (Cliente) a;

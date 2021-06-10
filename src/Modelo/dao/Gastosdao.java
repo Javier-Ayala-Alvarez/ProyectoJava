@@ -61,13 +61,10 @@ public class Gastosdao {
 
     
     public void update(GastoEmpresa obj) {
-        String sql = "update gastoempresa set codigoGasto =?, fecha =?, tipo =?, saldo =?, idEmpresa =?, where idGastos=" + obj.getIdGasto();
+        String sql = "update gastoempresa set codigoGasto =?, fecha =?, tipo =?, saldo =?, idEmpresa =? where idGastos=" + obj.getIdGasto();
         alterarRegistro(sql, obj);
     }
-    public void update1(GastoEmpresa obj) {
-        String sql = "update gastoempresa set fecha =?, tipo =?, saldo =?, idEmpresa =?, idEmpleado =? where idGastos=" + obj.getIdGasto();
-        alterarRegistro1(sql, obj);
-    }
+    
     
     private ArrayList<GastoEmpresa> select(String sql){
         ArrayList<GastoEmpresa> lista = new ArrayList();
