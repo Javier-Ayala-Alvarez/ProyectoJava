@@ -44,6 +44,7 @@ public class Mensaje extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
         label1 = new java.awt.Label();
 
+        setModal(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);

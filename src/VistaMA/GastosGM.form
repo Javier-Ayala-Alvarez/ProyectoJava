@@ -136,12 +136,7 @@
         <Component class="javax.swing.JComboBox" name="cbTipo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Impuesto de Alcaldia"/>
-                <StringItem index="1" value="Pago de Energia"/>
-                <StringItem index="2" value="Pago de Alquiler"/>
-                <StringItem index="3" value="Pago de Agua"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
@@ -374,7 +369,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="600" y="80" width="360" height="420"/>
+              <AbsoluteConstraints x="600" y="80" width="350" height="450"/>
             </Constraint>
           </Constraints>
 
@@ -514,7 +509,7 @@
                           <Component id="lbCodigo18" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lbTotalReporte" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="75" max="32767" attributes="0"/>
+                      <EmptySpace pref="105" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

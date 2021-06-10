@@ -32,6 +32,7 @@ public class GastosGM extends javax.swing.JDialog {
         btnGenerar.addActionListener(control1);
         tfBuscar.addKeyListener(control1);
         jtDatos.addMouseListener(control1);
+        cbTipo.addItemListener(control1);
         
     }
 
@@ -132,7 +133,6 @@ public class GastosGM extends javax.swing.JDialog {
         jLabel7.setText("Efectivo");
         panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 90, 30));
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Impuesto de Alcaldia", "Pago de Energia", "Pago de Alquiler", "Pago de Agua" }));
         cbTipo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbTipoMouseClicked(evt);
@@ -459,10 +459,10 @@ public class GastosGM extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCodigo18)
                     .addComponent(lbTotalReporte))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
-        panelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 360, 420));
+        panelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 350, 450));
         panelFondo.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 960, 20));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N

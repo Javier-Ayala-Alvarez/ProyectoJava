@@ -6,6 +6,7 @@ import Modelo.Empleados;
 import Modelo.Empresa;
 import Modelo.InicioCaja;
 import Modelo.Venta;
+import VistaLogin.Alerta;
 import VistaMV.FacturacionD;
 import java.sql.Connection;
 import java.sql.Date;
@@ -77,7 +78,8 @@ public class VentaDao {
             }
             
         }catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Error en sql");
+             Alerta alert = new Alerta("Error en sql", "/img/error.png");
+            alert.show();
             e.printStackTrace();
         }finally{
             try {
@@ -105,7 +107,8 @@ public class VentaDao {
             
             return true;
         }catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Error en sql");
+             Alerta alert = new Alerta("Error en sql", "/img/error.png");
+            alert.show();
             e.printStackTrace();
         }finally{
             try {
@@ -127,7 +130,8 @@ public class VentaDao {
             ps.execute();
             return true;
         }catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Error en sql");
+            Alerta alert = new Alerta("Error en sql", "/img/error.png");
+            alert.show();
             e.printStackTrace();
         }finally{
             try {

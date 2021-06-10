@@ -69,8 +69,8 @@ public class ProductoDao {
             }
             
         }catch(Exception e) {
-            //Alerta alert = new Alerta("Error en sql", "/img/error.png");
-            //alert.show();
+             Alerta alert = new Alerta("Error en sql", "/img/error.png");
+            alert.show();
             e.printStackTrace();
         }finally{
             try {
@@ -100,9 +100,9 @@ public class ProductoDao {
             
             return true;
         }catch(Exception e) {
-            //Alerta alert = new Alerta("Error en sql", "/img/error.png");
-            //alert.show();
-            //e.printStackTrace();
+             Alerta alert = new Alerta("Error en sql", "/img/error.png");
+            alert.show();
+            e.printStackTrace();
         }finally{
             try {
                 ps.close();

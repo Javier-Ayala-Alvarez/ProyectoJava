@@ -31,6 +31,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -128,10 +129,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             padreActiva = "consultarCliente";
             llamarVistaConsulta("consultarCliente");
         } else if (e.getActionCommand().equals("opcionesGDS")) {
-            padreActiva = "gastosGM";
             llamarVistaConsulta("gastosGM");
         } else if (e.getActionCommand().equals("opcionesGDS1")) {
-            padreActiva = "gastosGM";
             llamarVistaConsulta("gastosGM1");
         } else if (e.getActionCommand().equals("valanceGDS")) {
             llamarVistaConsulta("valanceGDS");
@@ -140,7 +139,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } else if (e.getActionCommand().equals("consultarEmpresa")) {
             llamarVistaConsulta("consultarEmpresa");
         } /*Fin de Sub-botones de los Menús*/ /**
-         * *******************************para Modificar empresa********************************
+         * *******************************para Modificar
+         * empresa********************************
          */
         else if (e.getActionCommand().equals("editarEmpresa")) {
             llamarAcciones("editarEmpresa");
@@ -148,7 +148,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         }
 
         /**
-         * ********************************fin Modificar empresa********************************
+         * ********************************fin Modificar
+         * empresa********************************
          */
         if ((e.getActionCommand().equals("Agregar"))
                 || (e.getActionCommand().equals("Eliminar"))
@@ -177,7 +178,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 //vistaEmpresa.tfCorreo.getText(),vistaEmpresa.tfCodigoEmpresa.getText());
                 if (daoEmpresa.update(empresaSeleccionanda)) {
                     System.out.println(empresaSeleccionanda.getIdEmpresa() + empresaSeleccionanda.getNombre());
-                    Alerta aler = new Alerta( "Datos Modificados Con exito", "/img/Succes.png");
+                    Alerta aler = new Alerta("Datos Modificados Con exito", "/img/Succes.png");
                     aler.show();
                     this.vistaEmpresa.dispose();
                 } else {
@@ -198,7 +199,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (padreActiva.equals("gastosGM")|| padreActiva.equals("gastosGM1")) {
+        if (padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1")) {
             ArrayList<GastoEmpresa> lista = daoGasto.buscar(GastosGM.tfBuscar.getText() + e.getKeyChar());
 
             if (lista.isEmpty()) {
@@ -298,22 +299,28 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             mostrarDatos();
             this.clienteMA.iniciar();
         } else if (vista.equals("gastosGM")) {
-            padreActiva = "gastosGM";
             this.gastosGM = new GastosGM(menuAdministrador, true);
             this.gastosGM.setControlador(this);
-            
+            padreActiva = "gastosGM";
+            gastosGM.cbTipo.addItem("Seleccione");
+            gastosGM.cbTipo.addItem("Impuesto de Alcaldia");
+            gastosGM.cbTipo.addItem("Pago de Energia");
+            gastosGM.cbTipo.addItem("Pago de Alquiler");
+            gastosGM.cbTipo.addItem("Pago de Agua");
             mostrarDatos();
             this.gastosGM.iniciar();
         } else if (vista.equals("gastosGM1")) {
             this.gastosGM = new GastosGM(menuAdministrador, true);
             this.gastosGM.setControlador(this);
             gastosGM.tfPago1.setEditable(false);
+            gastosGM.btnModificar.setVisible(false);
             gastosGM.cbTipo.removeAllItems();
+            gastosGM.cbTipo.addItem("Seleccione");
             llenarCombo();
             padreActiva = "gastosGM1";
             mostrarDatos();
             this.gastosGM.iniciar();
-             
+
         } /////////////////////////////////
         else if (vista.equals("modificarEmpresa")) {
             this.vistaEmpresa = new VistaEmpresa(menuAdministrador, true, true);
@@ -396,7 +403,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         || (x.getCategoria().equals("Pago de Agua")))) {
 
                     Object datos[] = {x.getCodigoGastos(), x.getCategoria(), x.getFecha(), x.getSaldo(), x.getEmpleado().getNombre()};
-                    
+
                     modelo.addRow(datos);
                 }
                 totalR = totalR + x.getSaldo();
@@ -418,6 +425,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 }
 
             }
+
             GastosGM.jtDatos.setModel(modelo);
             this.gastosGM.lbAlcaldiaTotal.setText("$" + String.format("%.2f", alcaldiaT));
             this.gastosGM.lbAlcaldiaC.setText(String.valueOf(alcaldiaC));
@@ -435,9 +443,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.gastosGM.lbSalarioC.setText(String.valueOf(salarioC));
 
             this.gastosGM.lbTotalReporte.setText("$" + String.format("%.2f", totalR));
-            
-
-            
 
         }
         ////////////******FINAL GASTOS EMPLEADO********/////////////////
@@ -469,7 +474,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         || (x.getCategoria().equals("Pago de Agua")))) {
 
                     Object datos[] = {x.getCodigoGastos(), x.getCategoria(), x.getFecha(), x.getSaldo(), x.getEmpresa().getNombre()};
-                    
+
                     modelo.addRow(datos);
                 }
                 totalR = totalR + x.getSaldo();
@@ -566,7 +571,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     public void accionDeBotones(ActionEvent e) {
         if (e.getActionCommand().equals("Agregar") && padreActiva.equals("gastosGM")) {
             if (!gastosGM.tfCodigo.getText().isEmpty()
-                    && (!gastosGM.tfPago1.getText().isEmpty())) {
+                    && (!gastosGM.tfPago1.getText().isEmpty())
+                    && (!gastosGM.cbTipo.getSelectedItem().equals("Seleccione"))) {
                 ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
                 String v = gastosGM.cbTipo.getSelectedItem().toString();
                 if (gastoSeleccionado == null) {
@@ -574,23 +580,33 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("codigoGasto", gastosGM.tfCodigo.getText());
                     if (existe.isEmpty()) {
                         if (daoGasto.insert(gasto)) {
-                            JOptionPane.showMessageDialog(null, "Guardado con exito");
+vaciarVista();
+                            Alerta aler = new Alerta("Guardado con exito", "/img/Succes.png");
+                            aler.show();
 
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Codigo ya Existe");
+
+                        Alerta aler = new Alerta("Codigo ya Existe", "/img/error.png");
+                        aler.show();
                     }
                 }
                 mostrarDatos();
             } else {
-                JOptionPane.showMessageDialog(null, "Campos vacios");
+
+                Alerta aler = new Alerta("Campos vacios", "/img/error.png");
+                aler.show();
+
             }
 
         } else if (e.getActionCommand().equals("Agregar") && padreActiva.equals("gastosGM1")) {
             if (!gastosGM.tfCodigo.getText().isEmpty()) {
                 int idEmpleado = 0;
                 float salario = 0;
-                String categoria ="";
+                float pago = 0;
+                double afpE = 0;
+                double isssE = 0;
+                String categoria = "";
                 ArrayList<Empleados> empleado = daoEmpleado.selectAll();
                 ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
                 String vq[] = gastosGM.cbTipo.getSelectedItem().toString().split(" - ");
@@ -601,6 +617,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         salario = (float) x.getSalarioEmpleado();
                         categoria = x.getCargoEmpleado();
                         gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
+                        afpE = x.getAfp();
+                        isssE = x.getIsss();
 
                     }
 
@@ -610,21 +628,27 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 if (gastoSeleccionado == null) {
                     double ISSS = 0.0775;
                     double AFP = 0.0775;
-                    salario = (float) ((salario + (salario*ISSS)) + (salario*AFP));
+                    pago = (float) (salario - (salario*afpE)-(salario*isssE));
+                    salario = (float) ((salario + (salario * ISSS)) + (salario * AFP));
+                    
                     GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(), gastosGM.dFecha.getDatoFecha(), categoria, salario, empresa.get(0), empleado1.get(0));
                     ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("codigoGasto", gastosGM.tfCodigo.getText());
                     if (existe.isEmpty()) {
                         if (daoGasto.insert1(gasto)) {
-                            JOptionPane.showMessageDialog(null, "Guardado con exito");
+                            vaciarVista();
+                            Alerta aler = new Alerta("Pago a retirar $"+pago+" ", "/img/Succes.png");
+                            aler.show();
 
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Codigo ya Existe");
+                        Alerta aler = new Alerta("Codigo ya Existe", "/img/error.png");
+                        aler.show();
                     }
                 }
                 mostrarDatos();
             } else {
-                JOptionPane.showMessageDialog(null, "Campos vacios");
+                Alerta aler = new Alerta("Campos vacios", "/img/error.png");
+                aler.show();
             }
 
         } else if (e.getActionCommand().equals("Generar") && (padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1"))) {
@@ -638,12 +662,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             if (opccion == 0) {
                 if (gastoSeleccionado != null) {
                     if (daoGasto.delete(gastoSeleccionado)) {
-                        JOptionPane.showMessageDialog(null, "Eliminado con exito");
+                        vaciarVista();
+                        Alerta aler = new Alerta("Eliminado con exito", "/img/Succes.png");
+                        aler.show();
 
                         mostrarDatos();
                         gastoSeleccionado = null;
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error al eliminado con exito");
+
+                        Alerta aler = new Alerta("Error al eliminado con exito", "/img/error.png");
+                        aler.show();
                     }
                 }
             }
@@ -657,7 +685,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 gastoSeleccionado.setFecha(gastosGM.dFecha.getDatoFecha());
 
                 daoGasto.update(gastoSeleccionado);
-                JOptionPane.showMessageDialog(null, "Modificado con exito");
+                vaciarVista();
+                Alerta aler = new Alerta("Modificado con exito", "/img/Succes.png");
+                aler.show();
             }
         } else if (e.getActionCommand().equals("Modificar")
                 && padreActiva.equals("consultarCliente")) {
@@ -668,7 +698,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 clienteSeleccionado.setTelefono(ClienteMA.tfTelefono.getText());
                 clienteSeleccionado.setDireccion(ClienteMA.tfDireccion.getText());
                 daoCliente.update(clienteSeleccionado);
-                JOptionPane.showMessageDialog(null, "Modificado con exito");
+                vaciarVista();
+                Alerta aler = new Alerta("Modificado con exito", "/img/bueno.png");
+                aler.show();
             }
         }
         mostrarDatos();
@@ -683,7 +715,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     ArrayList<Producto> existe = daoProducto.selectAllTo("codigoProducto", productoModi.tfCodigo.getText());
                     if (existe.isEmpty()) {
                         if (daoProducto.insert(produ)) {
-                            JOptionPane.showMessageDialog(null, "Guardado con exito");
+                            vaciarVista();
+                            Alerta aler = new Alerta("Guardado con exito", "/img/Succes.png");
+                            aler.show();
                         }
                     }
                 }
@@ -699,8 +733,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } else if (e.getActionCommand().equals("Modificar") && padreActiva.equals("productoModi")) {
             int opccion = JOptionPane.showConfirmDialog(null, "Quieres Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opccion == 0) {
+                vaciarVista();
 //                            daoProducto.update(productoSeleccionado);
-                JOptionPane.showMessageDialog(null, "Modificado con exito");
+                Alerta aler = new Alerta("Modificado con exito", "/img/Succes.png");
+                aler.show();
             }
         }
         //*****************Fin produtoModi****************//                
@@ -709,15 +745,19 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (padreActiva == "gastosGM1") {
-            
+
             ArrayList<Empleados> empleado1 = daoEmpleado.selectAll();
-           String vq[] = gastosGM.cbTipo.getSelectedItem().toString().split(" - ");
-                for (Empleados x : empleado1) {
-                    if (vq[0].equals(x.getCodigoEmpleado())) {                     
-                        gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
-                    }
+            String vq[] = gastosGM.cbTipo.getSelectedItem().toString().split(" - ");
+            for (Empleados x : empleado1) {
+                if (vq[0].equals(x.getCodigoEmpleado())) {
+                    gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
+                    crearCodigo("EG-");
+                }
+            }
+        }else  if ((padreActiva == "gastosGM")&& (!gastosGM.cbTipo.getSelectedItem().equals("Seleccione"))) {
+            
+                    crearCodigo("EG-");
         }
-    }
     }
 
     public void mostrarBusqueda(ArrayList lista) {
@@ -742,16 +782,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             //Fin de Variable
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
             for (Object a : lista) {
-                
+
                 GastoEmpresa x = (GastoEmpresa) a;
-                 if ((x.getCategoria().equals("Impuesto de Alcaldia")
+                if ((x.getCategoria().equals("Impuesto de Alcaldia")
                         || (x.getCategoria().equals("Pago de Energia"))
                         || (x.getCategoria().equals("Pago de Alquiler"))
                         || (x.getCategoria().equals("Pago de Agua")))) {
-                Object datos[] = {x.getCodigoGastos(), x.getCategoria(), x.getFecha(), x.getSaldo(), x.getEmpresa().getNombre()};
-                totalR = totalR + x.getSaldo();
-                modelo.addRow(datos);
-                 }
+                    Object datos[] = {x.getCodigoGastos(), x.getCategoria(), x.getFecha(), x.getSaldo(), x.getEmpresa().getNombre()};
+                    totalR = totalR + x.getSaldo();
+                    modelo.addRow(datos);
+                }
                 if (x.getCategoria().equals("Impuesto de Alcaldia")) {
                     alcaldiaC++;
                     alcaldiaT = alcaldiaT + x.getSaldo();
@@ -812,16 +852,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             //Fin de Variable
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll1();
             for (Object a : lista) {
-                
+
                 GastoEmpresa x = (GastoEmpresa) a;
-                 if (!(x.getCategoria().equals("Impuesto de Alcaldia")
+                if (!(x.getCategoria().equals("Impuesto de Alcaldia")
                         || (x.getCategoria().equals("Pago de Energia"))
                         || (x.getCategoria().equals("Pago de Alquiler"))
                         || (x.getCategoria().equals("Pago de Agua")))) {
-                Object datos[] = {x.getCodigoGastos(), x.getCategoria(), x.getFecha(), x.getSaldo(), x.getEmpleado().getNombre()};
-                totalR = totalR + x.getSaldo();
-                modelo.addRow(datos);
-                 }
+                    Object datos[] = {x.getCodigoGastos(), x.getCategoria(), x.getFecha(), x.getSaldo(), x.getEmpleado().getNombre()};
+                    totalR = totalR + x.getSaldo();
+                    modelo.addRow(datos);
+                }
                 if (x.getCategoria().equals("Impuesto de Alcaldia")) {
                     alcaldiaC++;
                     alcaldiaT = alcaldiaT + x.getSaldo();
@@ -899,7 +939,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     @Override
     public void mouseClicked(MouseEvent me) {
         /* Gastos */
-        if (padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1")) {
+        if (padreActiva.equals("gastosGM")) {
             int fila = GastosGM.jtDatos.getSelectedRow();
             String id = GastosGM.jtDatos.getValueAt(fila, 0).toString();
             ArrayList<GastoEmpresa> lista = daoGasto.selectAllTo("codigoGasto", id);
@@ -917,6 +957,12 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     gastosGM.cbTipo.setSelectedItem(x.getCategoria());
                 }
             }
+        } else if (padreActiva.equals("gastosGM1")) {
+            int fila = GastosGM.jtDatos.getSelectedRow();
+            String id = GastosGM.jtDatos.getValueAt(fila, 0).toString();
+            ArrayList<GastoEmpresa> lista = daoGasto.selectAllTo("codigoGasto", id);
+            gastoSeleccionado = lista.get(0);
+
         } else if (padreActiva.equals("consultarCliente")) {
             int fila = ClienteMA.jtDatos.getSelectedRow();
             String id = ClienteMA.jtDatos.getValueAt(fila, 0).toString();
@@ -940,13 +986,31 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
     }
 
-public void llenarCombo(){
-    ArrayList<Empleados> empleado = daoEmpleado.selectAll();
-            for (Empleados x : empleado) {
-                String selec = x.getCodigoEmpleado() + " - " + x.getNombre() + " - " + x.getApellido();
+    public void llenarCombo() {
+        ArrayList<Empleados> empleado = daoEmpleado.selectAll();
+        for (Empleados x : empleado) {
+            String selec = x.getCodigoEmpleado() + " - " + x.getNombre() + " - " + x.getApellido();
 
-                gastosGM.cbTipo.addItem(selec);
+            gastosGM.cbTipo.addItem(selec);
 
-            }
-}
+        }
+    }
+
+    public void vaciarVista() {
+        if (padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1")) {
+            this.gastosGM.tfCodigo.setText("");
+            this.gastosGM.tfPago1.setText("");
+            this.gastosGM.dFecha.setDatoFecha(new Date());
+            this.gastosGM.cbTipo.setSelectedIndex(0);
+            
+        
+        }else if (padreActiva.equals("consultarCliente")) {
+            this.clienteMA.tfNombre.setText("");
+            this.clienteMA.tfApellido.setText("");
+            this.clienteMA.tfTelefono.setText("");
+            this.clienteMA.tfDireccion.setText("");
+
+        }
+        
+    }
 }

@@ -5,6 +5,7 @@ import Modelo.Conexion;
 import Modelo.Empleados;
 import Modelo.Empresa;
 import Modelo.GastoEmpresa;
+import VistaLogin.Alerta;
 import VistaMA.GastosGM;
 import java.sql.Connection;
 import java.sql.Date;
@@ -125,7 +126,8 @@ public class Gastosdao {
             }
             
         }catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Error en sql");
+             Alerta alert = new Alerta("Error en sql", "/img/error.png");
+            alert.show();
             e.printStackTrace();
         }finally{
             try {
@@ -153,7 +155,8 @@ public class Gastosdao {
             
             return true;
         }catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Error en sql");
+            Alerta alert = new Alerta("Error en sql", "/img/error.png");
+            alert.show();
             e.printStackTrace();
         }finally{
             try {
@@ -180,7 +183,8 @@ public class Gastosdao {
             
             return true;
         }catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Error en sql");
+             Alerta alert = new Alerta("Error en sql", "/img/error.png");
+            alert.show();
             e.printStackTrace();
         }finally{
             try {
@@ -202,7 +206,8 @@ public class Gastosdao {
             ps.execute();
             return true;
         }catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Error en sql");
+            Alerta alert = new Alerta("Error en sql", "/img/error.png");
+            alert.show();
             e.printStackTrace();
         }finally{
             try {

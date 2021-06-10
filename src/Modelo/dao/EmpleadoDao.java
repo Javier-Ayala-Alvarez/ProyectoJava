@@ -127,7 +127,7 @@ public class EmpleadoDao {
             ps.setDouble(9,obj.getIsss());
             ps.setDate(10 , (Date) obj.getFechaContratacion());
             ps.setInt(11, obj.getEstado());
-            ps.setInt(12, obj.getUsuario().getIdUsuario());
+            ps.setInt(13, obj.getUsuario().getIdUsuario());
             
             
             
