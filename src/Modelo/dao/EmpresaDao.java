@@ -63,7 +63,7 @@ public class EmpresaDao {
                 obj.setCodigoEmpresa(rs.getString("codigoEmpresa"));
                 obj.setNombre(rs.getString("nombreEmpresa"));
                 obj.setDireccion(rs.getString("dirrecionEmpresa"));
-                obj.setCorreo(rs.getString("CorreoEmpresa"));
+                obj.setCorreo(rs.getString("correoEmpresa"));
                 lista.add(obj);
             }
             

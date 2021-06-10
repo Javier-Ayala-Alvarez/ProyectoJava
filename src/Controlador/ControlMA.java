@@ -10,21 +10,18 @@ import Modelo.dao.EmpleadoDao;
 import Modelo.dao.EmpresaDao;
 import Modelo.dao.Gastosdao;
 import Modelo.dao.ProductoDao;
-
 import VistaLogin.Alerta;
 import VistaLogin.Login;
 import VistaMA.ClienteMA;
 import VistaMA.EliminarVentas;
 import VistaMA.EmpleadoGM;
 import VistaMA.GastosGM;
-import static VistaMA.GastosGM.tfPago1;
 import VistaMA.MenuAdministrador;
 import VistaMA.ProductoModi;
 import VistaMA.RegistrosDeProductos;
 import VistaMA.RegistrosDeVentas;
 import VistaMA.VistaEmpresa;
 import VistaMV.Factura;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -34,7 +31,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,7 +41,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     Login login;
     EmpleadoGM empleadoGM;
     EmpleadoDao daoEmpleado = new EmpleadoDao();
-
     //****GastoGM****//
     GastosGM gastosGM;
     Gastosdao daoGasto = new Gastosdao();
@@ -59,20 +54,17 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     ClienteDao daoCliente = new ClienteDao();
     //****Fin ClienteMA****//
     //****Empresa****//
-
     VistaEmpresa vistaEmpresa;
     EmpresaDao daoEmpresa = new EmpresaDao();
     Empresa empresa;
     Empresa empresaSeleccionanda = null;
     //****Fin GastoGM****//
-
     //****productoModi****//
     ProductoModi productoModi;
     ProductoDao daoProducto = new ProductoDao();
     ProductoModi productoSeleccionado = null;
     //    ProductoModi producto = new ProductoModi();
     //****Fin productoModi****//
-
     RegistrosDeProductos registrosDeProductos;
     RegistrosDeVentas registrosDeVentas;
     EliminarVentas eliminarVentas;
@@ -118,7 +110,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             llamarVistaConsulta("eliminarFacturaItem");
         } else if (e.getActionCommand().equals("guardarProducto")) {
             llamarVistaConsulta("guardarProducto");
-        } else if (e.getActionCommand().equals("modificarProducto")) {;
+        } else if (e.getActionCommand().equals("modificarProducto")) {
             llamarVistaConsulta("modificarProducto");
         } else if (e.getActionCommand().equals("eliminarProducto")) {
             llamarVistaConsulta("eliminarProducto");
@@ -313,29 +305,18 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             mostrarDatos();
             this.gastosGM.iniciar();
         } else if (vista.equals("gastosGM1")) {
-           
-            
             this.gastosGM = new GastosGM(menuAdministrador, true);
             this.gastosGM.setControlador(this);
             gastosGM.tfPago1.setEditable(false);
             gastosGM.cbTipo.removeAllItems();
-            
-            
             llenarCombo();
             padreActiva = "gastosGM1";
             mostrarDatos();
-            
-            
-            
-//            this.gastosGM.lbPago.setVisible(false);
-//            this.gastosGM.tfPago1.setVisible(false);
-//            this.gastosGM.jLabel7.setVisible(false);
             this.gastosGM.iniciar();
              
         } /////////////////////////////////
         else if (vista.equals("modificarEmpresa")) {
             this.vistaEmpresa = new VistaEmpresa(menuAdministrador, true, true);
-
             empresaSeleccionanda = daoEmpresa.selectAll().get(0);
             System.out.println("hola");
             this.vistaEmpresa.setControladorMA(this);

@@ -21,37 +21,37 @@ public class EmpleadoDao {
     }
     
     public ArrayList<Empleados> selectAll() {
-        String sql = "SELECT * fROM Empleado";
+        String sql = "SELECT * fROM empleado";
         return select(sql);
     }
     
     public ArrayList<Empleados> selectAllTo(String atributo, String condicion) {
-        String sql = "SELECT * fROM Empleado WHERE  " + atributo + "='" + condicion + "'";
+        String sql = "SELECT * fROM empleado WHERE  " + atributo + "='" + condicion + "'";
         return select(sql);
     }
     
     public ArrayList<Empleados> selectId(int id) {
-        String sql = "SELECT * fROM Empleado WHERE  idEmpleado = " + id;
+        String sql = "SELECT * fROM empleado WHERE  idEmpleado = " + id;
         return select(sql);
     } 
     
     public ArrayList<Empleados> buscar(String dato) {
-        String sql = "SELECT * fROM Empleado WHERE idEmpleado like '" + dato 
-                       + "%' or codigoEmpleado like '" + dato + "%' or cargoEmpleado like '" + dato + "%' or nombreEmpleado like '" + dato + "%' ";
+        String sql = "SELECT * fROM empleado WHERE idEmpleado like '" + dato 
+                       + "%' or codigoEmpleado like '" + dato + "%' or cargoEmpleado like '" + dato + "%' or nombre like '" + dato + "%' ";
         return select(sql);
     }
     
     
     public boolean insert(Empleados obj){
-        String sql = "INSERT  INTO Empleado (codigoEmpleado, nombre, apellido, telefonoEmpleado,dirrecionEmpleado,"
-                      + "salarioEmpleado,cargoEmpleado,afp,isss,contatacion,estado,idEmpresa,usuario_idUsuario) VALUES "
+        String sql = "INSERT  INTO empleado (codigoEmpleado, nombre, apellido, telefonoEmpleado,dirrecionEmpleado,"
+                      + "salarioEmpleado,cargoEmpleado,afp,isss,contratacion,estado,idEmpresa,idUsuario) VALUES "
                        + "(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         return alterarRegistro(sql, obj);
     }
     //UPDATE `Empleado` SET `codigoEmpleados`='2', `nombreEmpleados`='Tienda1', `dirrecionEmpleados`='San vicente1' WHERE (`idEmpleados`='1')
     public boolean update(Empleados obj) {
-        String sql = "UPDATE Empleado SET codigoEmpleado = ?, nombre = ?, apellido = ?, telefonoEmpleado = ?,dirrecionEmpleado = ?,"
-                      + "salarioEmpleado = ?,cargoEmpleado = ?,afp = ?,isss = ?,contatacion = ?,estado = ?,idEmpresa = ?,usuario_idUsuario = ?"
+        String sql = "UPDATE empleado SET codigoEmpleado = ?, nombre = ?, apellido = ?, telefonoEmpleado = ?,dirrecionEmpleado = ?,"
+                      + "salarioEmpleado = ?,cargoEmpleado = ?,afp = ?,isss = ?,contratacion = ?,estado = ?,idEmpresa = ?,idUsuario = ?"
                       + " WHERE idEmpleado = " + obj.getIdPersona();
         return alterarRegistro(sql, obj);
     }
@@ -82,10 +82,12 @@ public class EmpleadoDao {
                 obj.setIsss(rs.getDouble("isss"));
                 obj.setFechaContratacion(rs.getDate("contratacion"));
                 obj.setEstado(rs.getInt("estado"));
-                Usuario usuario = new Usuario(rs.getInt(("usuario_idUsuario")));
+                
                 Empresa empresa = new Empresa(rs.getInt("idEmpresa"));
-                obj.addUsuario(usuario);
+                Usuario usuario = new Usuario(rs.getInt(("idUsuario")));
                 obj.setEmpresa(empresa);
+                obj.addUsuario(usuario);
+                
                 
                 
                  

@@ -56,9 +56,11 @@ public class GastoEmpresa {
         this.empresa = empresa;
         this.empleado = empleado;
     }
-
-    
-
+    public GastoEmpresa() {
+        }
+    public GastoEmpresa(Empleados empleado) {
+        this.empleado = empleado;
+    }
     public Empleados getEmpleado() {
         EmpleadoDao daoEmpleado = new EmpleadoDao();
         empleado = daoEmpleado.selectId(empleado.getIdEmpleado()).get(0);
@@ -70,11 +72,7 @@ public class GastoEmpresa {
         this.empleado = empleado;
     }
 
-
     
-
-    public GastoEmpresa() {
-    }
 
 
 
