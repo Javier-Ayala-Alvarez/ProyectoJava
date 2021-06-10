@@ -295,7 +295,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             
             this.clienteMA = new ClienteMA(menuAdministrador, true);
             this.clienteMA.setControlador(this);
-            
             padreActiva = "consultarCliente";
             mostrarDatos();
             this.clienteMA.iniciar();
@@ -326,7 +325,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         else if (vista.equals("modificarEmpresa")) {
             this.vistaEmpresa = new VistaEmpresa(menuAdministrador, true, true);
             empresaSeleccionanda = daoEmpresa.selectAll().get(0);
-            System.out.println("hola");
             this.vistaEmpresa.setControladorMA(this);
             this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
             this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
@@ -338,7 +336,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } else if (vista.equals("consultarEmpresa")) {
             this.vistaEmpresa = new VistaEmpresa(menuAdministrador, true, false);
             empresaSeleccionanda = daoEmpresa.selectAll().get(0);
-            System.out.println("hola");
             this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
             this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
             this.vistaEmpresa.tfDireccion.setText(empresaSeleccionanda.getDireccion());
@@ -521,7 +518,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             double totalV = 0;
             String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion", "Total De Compra"};
             modelo.setColumnIdentifiers(titulos);
-             this.clienteMA.jtDatos.setModel(modelo);
             ArrayList<Cliente> cliente2 = daoCliente.selectAll();
             for (Cliente x : cliente2) {
                 Object datos[] = {x.getCodigo(), x.getNombre(), x.getApellido(), x.getTelefono(), x.getDireccion()};
@@ -696,6 +692,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 && padreActiva.equals("consultarCliente")) {
             int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opccion == 0) {
+                clienteSeleccionado.getCodigo();
                 clienteSeleccionado.setNombre(ClienteMA.tfNombre.getText());
                 clienteSeleccionado.setApellido(ClienteMA.tfApellido.getText());
                 clienteSeleccionado.setTelefono(ClienteMA.tfTelefono.getText());

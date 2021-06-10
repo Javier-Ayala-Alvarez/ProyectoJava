@@ -49,8 +49,8 @@ public class ClienteDao {
     }
     
     public void update(Cliente obj) {
-        String sql = "update cliente set nombre =?, apellido =?, telefonoCliente =?, direccionCliente =?, where idCliente=" + obj.getIdCliente();
-        alterarRegistro1(sql, obj);
+        String sql = "update cliente set codigoCliente =?, nombre =?, apellido =?, telefonoCliente =?, direccionCliente =? where idCliente=" + obj.getIdCliente();
+        alterarRegistro(sql, obj);
     }
     
     
@@ -107,32 +107,6 @@ public class ClienteDao {
             return true;
         }catch(Exception e) {
             Alerta alert = new Alerta("Error en sql", "/img/error.png");
-            alert.show();
-            e.printStackTrace();
-        }finally{
-            try {
-                ps.close();
-            } catch (Exception ex) {
-                
-            }
-            conectar.closeConexion(con);
-        }
-        return false; 
-    }
-     private boolean alterarRegistro1(String sql, Cliente obj){
-        try {
-            con = conectar.getConexion();
-            ps = con.prepareStatement(sql);
-            
-            ps.setString(2, obj.getNombre());
-            ps.setString(3, obj.getApellido());
-            ps.setString(4, obj.getTelefono());
-            ps.setString(5, obj.getDireccion());
-            ps.execute();
-            
-            return true;
-        }catch(Exception e) {
-             Alerta alert = new Alerta("Error en sql", "/img/error.png");
             alert.show();
             e.printStackTrace();
         }finally{
