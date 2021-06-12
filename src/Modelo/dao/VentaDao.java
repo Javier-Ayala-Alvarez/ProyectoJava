@@ -6,8 +6,7 @@ import Modelo.Empleados;
 import Modelo.Empresa;
 import Modelo.InicioCaja;
 import Modelo.Venta;
-import VistaLogin.Alerta;
-import VistaMV.FacturacionD;
+import VistaMV.Facturacion;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -41,7 +40,7 @@ public class VentaDao {
     } 
     
     public ArrayList<Venta> buscar(String dato) {
-        String sql = "select * from venta where idVenta like '" + dato + "%' or nFactura like '" + dato + "%'";
+        String sql = "select * from venta where idVenta like '" + dato + "%' or  nFactura like '" + dato + "%' or fechaVenta like '" + dato + "%' or precioTotal like '" + dato + "%'";
         return select(sql);
     }
     
@@ -67,19 +66,19 @@ public class VentaDao {
             while(rs.next()) {
                 obj = new Venta();
                 //obj.setIdGasto(rs.getInt("idGastos"));
-                obj.setIdFactura(rs.getInt("nFactura"));
+                obj.setIdFactura(rs.getInt("idVenta"));
+                obj.setnFactura(rs.getString("nFactura"));
                 obj.setFechaVenta(rs.getDate("fechaVenta"));
                 obj.setSaldoTotal(rs.getDouble("precioTotal"));
-//                obj.setCliente(new Cliente(rs.getInt("idCliente")));
-//                obj.setInicioCaja(new InicioCaja(rs.getInt("idCaja")));
-//                obj.setEmpleado(new Empleados(rs.getInt("idEmpleado")));
+                obj.setCliente(new Cliente(rs.getInt("idCliente")));
+                obj.setInicioCaja(new InicioCaja(rs.getInt("idCaja")));
+                obj.setEmpleado(new Empleados(rs.getInt("idEmpleado")));
 //                obj.setEmpresa(new Empresa(rs.getInt("idEmpresa")));
                 lista.add(obj);
             }
             
         }catch(Exception e) {
-             Alerta alert = new Alerta("Error en sql", "/img/error.png");
-            alert.show();
+            JOptionPane.showMessageDialog(null, "Error en sql");
             e.printStackTrace();
         }finally{
             try {
@@ -107,8 +106,7 @@ public class VentaDao {
             
             return true;
         }catch(Exception e) {
-             Alerta alert = new Alerta("Error en sql", "/img/error.png");
-            alert.show();
+            JOptionPane.showMessageDialog(null, "Error en sql");
             e.printStackTrace();
         }finally{
             try {
@@ -130,8 +128,7 @@ public class VentaDao {
             ps.execute();
             return true;
         }catch(Exception e) {
-            Alerta alert = new Alerta("Error en sql", "/img/error.png");
-            alert.show();
+            JOptionPane.showMessageDialog(null, "Error en sql");
             e.printStackTrace();
         }finally{
             try {

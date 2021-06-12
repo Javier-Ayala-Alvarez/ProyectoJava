@@ -1,19 +1,22 @@
 package VistaMA;
 
+import Controlador.ControlMA;
 import VistaMV.Fondo;
 
-public class EliminarVentas extends javax.swing.JDialog {
+public class ConsultarVentas extends javax.swing.JDialog {
     
     public static String x;
     
-    public EliminarVentas(java.awt.Frame parent, boolean modal) {
+    public ConsultarVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         x = "x";
         jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
         
     }
-    
+    public void setControlador(ControlMA control) {
+        
+    }
     public void iniciar() {
         this.setVisible(true);
     }
@@ -41,7 +44,6 @@ public class EliminarVentas extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnEliminarFactura = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         materialButtonCircle3 = new principal.MaterialButtonCircle();
 
@@ -149,6 +151,11 @@ public class EliminarVentas extends javax.swing.JDialog {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
@@ -165,20 +172,11 @@ public class EliminarVentas extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 850, 180));
-
-        btnEliminarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
-        btnEliminarFactura.setText("Eliminar Factura");
-        btnEliminarFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarFacturaActionPerformed(evt);
-            }
-        });
-        panelFondo.add(btnEliminarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 480, -1, -1));
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 850, 250));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setText("Total: ");
-        panelFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, -1, -1));
+        panelFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, -1, -1));
 
         materialButtonCircle3.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle3.setText("X");
@@ -239,10 +237,6 @@ public class EliminarVentas extends javax.swing.JDialog {
         x = null;
     }//GEN-LAST:event_materialButtonCircle3ActionPerformed
 
-    private void btnEliminarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFacturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarFacturaActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -271,7 +265,6 @@ public class EliminarVentas extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnEliminarFactura;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;

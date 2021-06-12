@@ -5,15 +5,18 @@ import Modelo.Empleados;
 import Modelo.Empresa;
 import Modelo.GastoEmpresa;
 import Modelo.Producto;
+import Modelo.Registro;
+import Modelo.Venta;
 import Modelo.dao.ClienteDao;
 import Modelo.dao.EmpleadoDao;
 import Modelo.dao.EmpresaDao;
 import Modelo.dao.Gastosdao;
 import Modelo.dao.ProductoDao;
+import Modelo.dao.VentaDao;
 import VistaLogin.Alerta;
 import VistaLogin.Login;
 import VistaMA.ClienteMA;
-import VistaMA.EliminarVentas;
+import VistaMA.ConsultarVentas;
 import VistaMA.EmpleadoGM;
 import VistaMA.GastosGM;
 import VistaMA.MenuAdministrador;
@@ -67,12 +70,20 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     //    ProductoModi producto = new ProductoModi();
     //****Fin productoModi****//
     RegistrosDeProductos registrosDeProductos;
-    RegistrosDeVentas registrosDeVentas;
-    EliminarVentas eliminarVentas;
+    ///******Consulta Factura******////
+    ConsultarVentas consultarVentas;
+    
+    Registro registro;
+    ///******Fin Consulta Factura******////
+    //******Ventas**************//
+    RegistrosDeVentas registrosDeVenta;
+    VentaDao daoVenta = new VentaDao();
+    Venta venta;
+    //******Fin Venta***********//
 
     private String padreActiva = "";
 
-    public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, RegistrosDeProductos registrosDeProductos, ProductoModi productoModi, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas, ClienteMA clienteMA) {
+    public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, RegistrosDeProductos registrosDeProductos, ProductoModi productoModi, RegistrosDeVentas registrosDeVentas, ConsultarVentas consultarVentas, ClienteMA clienteMA) {
         //this.daoGasto = new GastoDao();
         this.menuAdministrador = menuAdministrador;
         this.login = login;
@@ -80,8 +91,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         this.gastosGM = gastosGM;
         this.registrosDeProductos = registrosDeProductos;
         this.productoModi = productoModi;
-        this.registrosDeVentas = registrosDeVentas;
-        this.eliminarVentas = eliminarVentas;
+        this.registrosDeVenta = registrosDeVentas;
+        this.consultarVentas = consultarVentas;
         llamarVistaConsulta("menuAdministrador");
 
     }
@@ -107,14 +118,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
  /*Inicio de Sub-botones de los Menús*/
         if (e.getActionCommand().equals("registrarFacturaItem")) {
             llamarVistaConsulta("registroVentas");
-        } else if (e.getActionCommand().equals("eliminarFacturaItem")) {
-            llamarVistaConsulta("eliminarFacturaItem");
-        } else if (e.getActionCommand().equals("guardarProducto")) {
+        } else if (e.getActionCommand().equals("ConsultarFactura")) {
+            llamarVistaConsulta("ConsultarFactura");
+        }else if (e.getActionCommand().equals("guardarProducto")) {
             llamarVistaConsulta("guardarProducto");
-        } else if (e.getActionCommand().equals("modificarProducto")) {
-            llamarVistaConsulta("modificarProducto");
-        } else if (e.getActionCommand().equals("eliminarProducto")) {
-            llamarVistaConsulta("eliminarProducto");
         } else if (e.getActionCommand().equals("consultarProducto")) {
             llamarVistaConsulta("consultarProducto");
         } else if (e.getActionCommand().equals("guardarEmpleado")) {
@@ -208,8 +215,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
             }
 
-        }
-        if (padreActiva.equals("consultarCliente")) {
+        }else if (padreActiva.equals("consultarCliente")) {
             ArrayList<Cliente> lista = daoCliente.buscar(ClienteMA.tfBuscar.getText() + e.getKeyChar());
 
             if (lista.isEmpty()) {
@@ -219,7 +225,18 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
             }
 
+        }else if (padreActiva.equals("registroVentas")) {
+            ArrayList<Venta> lista = daoVenta.buscar(RegistrosDeVentas.tfBuscar.getText() + e.getKeyChar());
+
+            if (lista.isEmpty()) {
+                mostrarDatos();
+            } else {
+                mostrarBusqueda(lista);
+
+            }
+
         }
+        
     }
 
     @Override
@@ -258,24 +275,26 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
  /*----------------------------------------------------------------------*/
  /*Ejecuciones de los Sub-botones de los subMenús*/
         if (vista.equals("registroVentas")) {
-            RegistrosDeVentas registroVen = new RegistrosDeVentas(menuAdministrador, true);
-            registroVen.iniciar();
-        } else if (vista.equals("eliminarFacturaItem")) {
-            EliminarVentas elimFac = new EliminarVentas(menuAdministrador, true);
-            elimFac.iniciar();
+            padreActiva ="registroVentas";
+            this.registrosDeVenta = new RegistrosDeVentas(menuAdministrador, true);
+            this.registrosDeVenta.setControlador(this);
+            mostrarDatos();
+            registrosDeVenta.iniciar();
+        } else if (vista.equals("ConsultarFactura")) {
+            this.consultarVentas = new ConsultarVentas(menuAdministrador, true);
+            padreActiva ="ConsultarFactura";
+            this.consultarVentas.setControlador(this);
+            mostrarDatos();
+            consultarVentas.iniciar();
+            
         } else if (vista.equals("guardarProducto")) {
             padreActiva = "productoModi1";
             this.productoModi = new ProductoModi(menuAdministrador, true);
             this.productoModi.setControlador(this);
             mostrarDatos();
             this.productoModi.iniciar();
-
-        } else if (vista.equals("modificarProducto")) {
-
-        } else if (vista.equals("eliminarProducto")) {
-
         } else if (vista.equals("consultarProducto")) {
-            registrosDeProductos = new RegistrosDeProductos(menuAdministrador, true);
+            this.registrosDeProductos = new RegistrosDeProductos(menuAdministrador, true);
             this.registrosDeProductos.iniciar();
         } else if (vista.equals("guardarEmpleado")) {
             this.empleadoGM = new EmpleadoGM(menuAdministrador, true);
@@ -531,7 +550,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
         //**************ProductoModi****************//
         if (padreActiva.equals("productoModi")) {
-            String titulos[] = {"N", "Nombre", "Cantidad", "precio", "max", "min"};
+            String titulos[] = {"N", "Nombre", "Cantidad", "Precio", "Max", "Min"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Producto> producto = daoProducto.selectAll();
             int i = 1;
@@ -543,24 +562,41 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.productoModi.jtDatos.setModel(modelo);
         }
         //************Fin productoModi*************//
+        
+         //**************registroVentas****************//
+        if (padreActiva.equals("registroVentas")) {
+            String titulos[] = {"N", "Fecha", "Cliente","Empleado", "Precio Total"};
+            modelo.setColumnIdentifiers(titulos);
+            ArrayList<Venta> venta = daoVenta.selectAll();
+            float total1 = 0;
+            for (Venta x : venta) {
+                Object datos[] = {x.getnFactura(),x.getFechaVenta(),x.getCliente().getNombre(),x.getEmpleado().getNombre(),x.getSaldoTotal()};
+                modelo.addRow(datos);
+                total1 = (float) (total1 + x.getSaldoTotal());
+            }
+            registrosDeVenta.jtDatos.setModel(modelo);
+            registrosDeVenta.lbTotal.setText(String.format("%.2f", total1));
+        }
+        //************Fin registroVentas*************//
     }
 
     public void crearCodigo(String a) {
         ////////////******GASTOS********///////////////////////
-        String iniciales = a;
-        String correlativo = iniciales;
-        int corre = 1;
+        
+        String correlativo = a;
+        int corre = 0;
         ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
+
         for (GastoEmpresa x : gastos) {
             corre = x.getIdGasto();
-
-        }
-        for (int i = 0; i < 6; i++) {
-            if (correlativo.length() + corre < 7) {
-                correlativo = correlativo + "0";
-            }
-        }
-        correlativo = correlativo + corre;
+        }                
+                        for (int i = 0; i < 6; i++) {
+                    if ((correlativo.length() + String.valueOf(corre).length()) < 7) {
+                        correlativo = correlativo + "0";
+                    }
+                }
+                correlativo = correlativo + String.valueOf(corre);
+            
 
         this.gastosGM.tfCodigo.setText(correlativo);
         ////////////******FINAL GASTOS********/////////////////
@@ -689,7 +725,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 aler.show();
             }
         } else if (e.getActionCommand().equals("Modificar")
-                && padreActiva.equals("consultarCliente")) {
+                && padreActiva.equals("consultarCliente") ) {
             int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opccion == 0) {
                 clienteSeleccionado.getCodigo();
@@ -751,12 +787,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             for (Empleados x : empleado1) {
                 if (vq[0].equals(x.getCodigoEmpleado())) {
                     gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
-                    crearCodigo("EG-");
+                    
                 }
             }
         }else  if ((padreActiva == "gastosGM")&& (!gastosGM.cbTipo.getSelectedItem().equals("Seleccione"))) {
-            
-                    crearCodigo("EG-");
         }
     }
 
@@ -934,6 +968,23 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.productoModi.jtDatos.setModel(modelo);
         }
         //***********Fin ProductoModi**********//
+        //**************MostrarVenta**************//
+        if (padreActiva.equals("registroVentas")) {
+            String titulos[] = {"N", "Fecha", "Cliente","Empleado", "Precio Total"};
+            modelo.setColumnIdentifiers(titulos);
+            float total1 = 0;
+            for (Object x : lista) {
+                Venta obj = (Venta) x;
+                Object datos[] = {obj.getnFactura(),obj.getFechaVenta(),obj.getCliente().getNombre(),obj.getEmpleado().getNombre(),obj.getSaldoTotal()};
+                modelo.addRow(datos);
+                total1 = (float) (total1 + obj.getSaldoTotal());
+            }
+            registrosDeVenta.jtDatos.setModel(modelo);
+           registrosDeVenta.lbTotal.setText(String.format("%.2f", total1));
+        }
+        //***********Fin mostrarVenta**********//
+        
+                
     }
 
     @Override

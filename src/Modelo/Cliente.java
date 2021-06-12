@@ -25,6 +25,10 @@ public class Cliente extends Persona{
        
     }
 
+    public Cliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
     public Cliente(int idCliente, String codigo, ArrayList<Venta> ventas, String nombre, String apellido, String telefono, String direccion) {
         super(nombre, apellido, telefono, direccion);
         this.idCliente = idCliente;
@@ -56,11 +60,12 @@ public class Cliente extends Persona{
     }
 
     public ArrayList<Venta> getVentas() {
-//         VentaDao daoVenta = new VentaDao();
-//        ventas = daoVenta.selectId(ventas.get).get(0);
+        
         return ventas;
     }
     public void setVentas(ArrayList<Venta> venta) {
+        VentaDao daoVenta = new VentaDao();
+        this.ventas = daoVenta.selectAllTo("idCliente", String.valueOf(this.getIdCliente()));
         this.ventas = venta;
     }
    

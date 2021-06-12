@@ -31,12 +31,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
 //        Gastos = new ArrayList();
         /*ActionCommand de los menus y sub-botones*/
         menuVenta.setActionCommand("menuVenta");
-        registrarFacturaItem.setActionCommand("registrarFacturaItem");
-        this.eliminarFacturaItem.setActionCommand("eliminarFacturaItem");
+        btnRegistrarFacturaItem.setActionCommand("registrarFacturaItem");
+        btnConsultarFactura.setActionCommand("ConsultarFactura");
         menuProductos.setActionCommand("menuProductos");
         this.guardarProducto.setActionCommand("guardarProducto");
-        this.modificarProducto.setActionCommand("modificarProducto");
-        this.eliminarProducto.setActionCommand("eliminarProducto");
         this.consultarProducto.setActionCommand("consultarProducto");
         menuEmpleado.setActionCommand("menuEmpleado");
         this.guardarEmpleado.setActionCommand("guardarEmpleado");
@@ -75,13 +73,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
         /*Agregando menus y sub-botones*/
         menuVenta.addActionListener(controlMA);
         jpEscritorio.addMouseListener(controlMA);
-        registrarFacturaItem.addActionListener(controlMA);
-        eliminarFacturaItem.addActionListener(controlMA);
-        //guardarEmpleado.addActionListener(controlMA);
+        this.btnRegistrarFacturaItem.addActionListener(controlMA);
+        this.btnConsultarFactura.addActionListener(controlMA);
         this.menuProductos.addActionListener(controlMA);
         this.guardarProducto.addActionListener(controlMA);
-        this.modificarProducto.addActionListener(controlMA);
-        this.eliminarProducto.addActionListener(controlMA);
         this.consultarProducto.addActionListener(controlMA);
         this.guardarEmpleado.addActionListener(controlMA);
         this.modificarEmpleado.addActionListener(controlMA);
@@ -158,12 +153,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jMenu = new javax.swing.JMenuBar();
         menuVenta = new javax.swing.JMenu();
-        registrarFacturaItem = new javax.swing.JMenuItem();
-        eliminarFacturaItem = new javax.swing.JMenuItem();
+        btnRegistrarFacturaItem = new javax.swing.JMenuItem();
+        btnConsultarFactura = new javax.swing.JMenuItem();
         menuProductos = new javax.swing.JMenu();
         guardarProducto = new javax.swing.JMenuItem();
-        modificarProducto = new javax.swing.JMenuItem();
-        eliminarProducto = new javax.swing.JMenuItem();
         consultarProducto = new javax.swing.JMenuItem();
         menuEmpleado = new javax.swing.JMenu();
         guardarEmpleado = new javax.swing.JMenuItem();
@@ -709,22 +702,23 @@ public class MenuAdministrador extends javax.swing.JFrame {
         menuVenta.setText("Venta");
         menuVenta.setActionCommand("menuVenta");
 
-        registrarFacturaItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
-        registrarFacturaItem.setText("Registro de Factura");
-        registrarFacturaItem.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarFacturaItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        btnRegistrarFacturaItem.setText("Registro de Factura");
+        btnRegistrarFacturaItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarFacturaItemActionPerformed(evt);
+                btnRegistrarFacturaItemActionPerformed(evt);
             }
         });
-        menuVenta.add(registrarFacturaItem);
+        menuVenta.add(btnRegistrarFacturaItem);
 
-        eliminarFacturaItem.setText("Eliminar");
-        eliminarFacturaItem.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarFactura.setText("Consultar de Factura");
+        btnConsultarFactura.setActionCommand("ConsultarFactura");
+        btnConsultarFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarFacturaItemActionPerformed(evt);
+                btnConsultarFacturaActionPerformed(evt);
             }
         });
-        menuVenta.add(eliminarFacturaItem);
+        menuVenta.add(btnConsultarFactura);
 
         jMenu.add(menuVenta);
 
@@ -733,29 +727,13 @@ public class MenuAdministrador extends javax.swing.JFrame {
         menuProductos.setActionCommand("menuProductos");
 
         guardarProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        guardarProducto.setText("Guardar");
+        guardarProducto.setText("Productos");
         guardarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarProductoActionPerformed(evt);
             }
         });
         menuProductos.add(guardarProducto);
-
-        modificarProducto.setText("Modificar");
-        modificarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarProductoActionPerformed(evt);
-            }
-        });
-        menuProductos.add(modificarProducto);
-
-        eliminarProducto.setText("Eliminar");
-        eliminarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarProductoActionPerformed(evt);
-            }
-        });
-        menuProductos.add(eliminarProducto);
 
         consultarProducto.setText("Consultar");
         consultarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -892,13 +870,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_guardarProductoActionPerformed
 
-    private void eliminarFacturaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarFacturaItemActionPerformed
+    private void btnRegistrarFacturaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarFacturaItemActionPerformed
 
-    }//GEN-LAST:event_eliminarFacturaItemActionPerformed
-
-    private void registrarFacturaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarFacturaItemActionPerformed
-
-    }//GEN-LAST:event_registrarFacturaItemActionPerformed
+    }//GEN-LAST:event_btnRegistrarFacturaItemActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         xm = null;
@@ -953,14 +927,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVentasActionPerformed
 
-    private void modificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificarProductoActionPerformed
-
-    private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarProductoActionPerformed
-
     private void consultarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarEmpleadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_consultarEmpleadoActionPerformed
@@ -973,21 +939,25 @@ public class MenuAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_opcionesGDS1ActionPerformed
 
+    private void btnConsultarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarFacturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarFacturaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public principal.MaterialButtonCircle btnCerrarMenuAdmin;
     public rojeru_san.complementos.RSButtonHover btnCliente;
+    public javax.swing.JMenuItem btnConsultarFactura;
     public rojeru_san.complementos.RSButtonHover btnEmpleado;
     public rojeru_san.complementos.RSButtonHover btnGastos;
     public rojeru_san.complementos.RSButtonHover btnHome;
+    public javax.swing.JMenuItem btnRegistrarFacturaItem;
     public rojeru_san.complementos.RSButtonHover btnVentas;
     public javax.swing.JMenuItem consultarCliente;
     public javax.swing.JMenuItem consultarEmpleado;
     private javax.swing.JMenuItem consultarEmpresa;
     public javax.swing.JMenuItem consultarProducto;
     public javax.swing.JMenuItem eliminarEmpleado;
-    public javax.swing.JMenuItem eliminarFacturaItem;
-    public javax.swing.JMenuItem eliminarProducto;
     public javax.swing.JMenuItem guardarEmpleado;
     public javax.swing.JMenuItem guardarProducto;
     private javax.swing.JLabel jLabel1;
@@ -1035,7 +1005,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JMenu menuVenta;
     public javax.swing.JMenuItem modificarEmpleado;
     private javax.swing.JMenuItem modificarEmpresa;
-    public javax.swing.JMenuItem modificarProducto;
     public javax.swing.JMenuItem opcionesGDS;
     public javax.swing.JMenuItem opcionesGDS1;
     public javax.swing.JPanel panel1;
@@ -1044,7 +1013,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JPanel panel4;
     public javax.swing.JPanel panel5;
     public javax.swing.JPanel panel6;
-    public javax.swing.JMenuItem registrarFacturaItem;
     public static javax.swing.JLabel tfClienteT;
     // End of variables declaration//GEN-END:variables
 }
