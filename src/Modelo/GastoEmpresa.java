@@ -1,6 +1,7 @@
 
 
 package Modelo;
+import Modelo.dao.EmpleadoDao;
 import Modelo.dao.EmpresaDao;
 import java.util.Date;
 
@@ -15,6 +16,7 @@ public class GastoEmpresa {
     private String categoria;
     private double saldo;
     private Empresa empresa;
+    private Empleados empleado;
 
     public GastoEmpresa(int idGasto, Date fecha, String categoria, double saldo) {
         this.idGasto = idGasto;
@@ -38,8 +40,39 @@ public class GastoEmpresa {
         this.saldo = saldo;
     }
 
-    public GastoEmpresa() {
+    public GastoEmpresa(String codigoGastos, Date fecha, String categoria, double saldo, Empleados empleado) {
+        this.codigoGastos = codigoGastos;
+        this.fecha = fecha;
+        this.categoria = categoria;
+        this.saldo = saldo;
+        this.empleado = empleado;
     }
+
+    public GastoEmpresa(String codigoGastos, Date fecha, String categoria, double saldo, Empresa empresa, Empleados empleado) {
+        this.codigoGastos = codigoGastos;
+        this.fecha = fecha;
+        this.categoria = categoria;
+        this.saldo = saldo;
+        this.empresa = empresa;
+        this.empleado = empleado;
+    }
+    public GastoEmpresa() {
+        }
+    public GastoEmpresa(Empleados empleado) {
+        this.empleado = empleado;
+    }
+    public Empleados getEmpleado() {
+        EmpleadoDao daoEmpleado = new EmpleadoDao();
+        empleado = daoEmpleado.selectId(empleado.getIdPersona()).get(0);
+
+        return empleado;
+    }
+
+    public void setEmpleado(Empleados empleado) {
+        this.empleado = empleado;
+    }
+
+    
 
 
 

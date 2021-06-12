@@ -46,16 +46,16 @@ public class ClienteMA extends javax.swing.JDialog {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         tfDireccion = new principal.MaterialTextField();
-        lbPago = new javax.swing.JLabel();
+        lbDirrecion = new javax.swing.JLabel();
         tfNombre = new principal.MaterialTextField();
         tfApellido = new principal.MaterialTextField();
         tfTelefono = new principal.MaterialTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        lbPago1 = new javax.swing.JLabel();
-        lbPago2 = new javax.swing.JLabel();
-        lbPago3 = new javax.swing.JLabel();
+        lbNombre = new javax.swing.JLabel();
+        lbApellido = new javax.swing.JLabel();
+        lbtelefono = new javax.swing.JLabel();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -181,10 +181,10 @@ public class ClienteMA extends javax.swing.JDialog {
         });
         panelFondo.add(tfDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 400, 40));
 
-        lbPago.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbPago.setForeground(new java.awt.Color(255, 0, 0));
-        lbPago.setText(".");
-        panelFondo.add(lbPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 70, -1));
+        lbDirrecion.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        lbDirrecion.setForeground(new java.awt.Color(255, 0, 0));
+        lbDirrecion.setText(".");
+        panelFondo.add(lbDirrecion, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 70, -1));
 
         tfNombre.setBackground(new java.awt.Color(213, 216, 221));
         tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -212,7 +212,7 @@ public class ClienteMA extends javax.swing.JDialog {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("Dirrecion");
+        jLabel10.setText("Direccion");
         panelFondo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, 30));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -225,20 +225,20 @@ public class ClienteMA extends javax.swing.JDialog {
         jLabel13.setText("Telefono");
         panelFondo.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, 30));
 
-        lbPago1.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbPago1.setForeground(new java.awt.Color(255, 0, 0));
-        lbPago1.setText(".");
-        panelFondo.add(lbPago1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 70, -1));
+        lbNombre.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        lbNombre.setForeground(new java.awt.Color(255, 0, 0));
+        lbNombre.setText(".");
+        panelFondo.add(lbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 70, -1));
 
-        lbPago2.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbPago2.setForeground(new java.awt.Color(255, 0, 0));
-        lbPago2.setText(".");
-        panelFondo.add(lbPago2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 70, -1));
+        lbApellido.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        lbApellido.setForeground(new java.awt.Color(255, 0, 0));
+        lbApellido.setText(".");
+        panelFondo.add(lbApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 70, -1));
 
-        lbPago3.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbPago3.setForeground(new java.awt.Color(255, 0, 0));
-        lbPago3.setText(".");
-        panelFondo.add(lbPago3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 70, -1));
+        lbtelefono.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        lbtelefono.setForeground(new java.awt.Color(255, 0, 0));
+        lbtelefono.setText(".");
+        panelFondo.add(lbtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 70, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,14 +269,7 @@ public class ClienteMA extends javax.swing.JDialog {
     }//GEN-LAST:event_materialButtonCircle1ActionPerformed
 
     private void tfDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDireccionKeyTyped
-        char c = evt.getKeyChar();
-
-        if((c >= 46 && c <= 57 )){
-            lbPago.setText("");
-        }else{
-            lbPago.setText("numeros");
-            evt.consume();
-        }
+        
     }//GEN-LAST:event_tfDireccionKeyTyped
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -304,15 +297,36 @@ public class ClienteMA extends javax.swing.JDialog {
     }//GEN-LAST:event_tfBuscarKeyTyped
 
     private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
-        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if(!(c >= 46 && c <= 57 )){
+            lbNombre.setText("");
+        }else{
+            lbNombre.setText("Letras");
+            evt.consume();
+        }
     }//GEN-LAST:event_tfNombreKeyTyped
 
     private void tfApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApellidoKeyTyped
-        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if(!(c >= 46 && c <= 57 )){
+            lbApellido.setText("");
+        }else{
+            lbApellido.setText("Letras");
+            evt.consume();
+        }
     }//GEN-LAST:event_tfApellidoKeyTyped
 
     private void tfTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTelefonoKeyTyped
-        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if((c >= 46 && c <= 57 )){
+            lbtelefono.setText("");
+        }else{
+            lbtelefono.setText("numeros");
+            evt.consume();
+        }
     }//GEN-LAST:event_tfTelefonoKeyTyped
 
     /**
@@ -354,10 +368,10 @@ public class ClienteMA extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JPanel jpLogo1;
     public static final javax.swing.JTable jtDatos = new javax.swing.JTable();
-    public javax.swing.JLabel lbPago;
-    public javax.swing.JLabel lbPago1;
-    public javax.swing.JLabel lbPago2;
-    public javax.swing.JLabel lbPago3;
+    public javax.swing.JLabel lbApellido;
+    public javax.swing.JLabel lbDirrecion;
+    public javax.swing.JLabel lbNombre;
+    public javax.swing.JLabel lbtelefono;
     private principal.MaterialButtonCircle materialButtonCircle1;
     private principal.MaterialButtonCircle materialButtonCircle2;
     private javax.swing.JPanel panelFondo;

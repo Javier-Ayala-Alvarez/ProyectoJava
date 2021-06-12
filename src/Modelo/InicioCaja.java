@@ -41,6 +41,12 @@ public class InicioCaja {
        
     }
 
+    public InicioCaja(int idAdminCaja) {
+        this.idAdminCaja = idAdminCaja;
+    }
+    
+    
+
     public int getIdAdminCaja() {
         return idAdminCaja;
     }

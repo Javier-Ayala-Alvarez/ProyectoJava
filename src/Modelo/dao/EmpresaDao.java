@@ -63,12 +63,12 @@ public class EmpresaDao {
                 obj.setCodigoEmpresa(rs.getString("codigoEmpresa"));
                 obj.setNombre(rs.getString("nombreEmpresa"));
                 obj.setDireccion(rs.getString("dirrecionEmpresa"));
-                obj.setCorreo(rs.getString("CorreoEmpresa"));
+                obj.setCorreo(rs.getString("correoEmpresa"));
                 lista.add(obj);
             }
             
         }catch(Exception e) {
-            Alerta alert = new Alerta(null,true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
             alert.show();
             e.printStackTrace();
         }finally{
@@ -98,7 +98,7 @@ public class EmpresaDao {
             System.out.println("ujhuuj");
             return true;
         }catch(Exception e) {
-            Alerta alert = new Alerta(null,true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
             alert.show();
             //e.printStackTrace();
         }finally{

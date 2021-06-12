@@ -1,6 +1,6 @@
 
 package Modelo;
-import Vista.Alerta;
+import VistaLogin.Alerta;
 import java.sql.*;
 
 public class Conexion {
@@ -19,7 +19,7 @@ public Connection getConexion() {
             Class.forName(driver);
             cn= DriverManager.getConnection(url,user , password);
         } catch (Exception ex) {
-         Alerta alert=new Alerta("Error en la conexión","img/error.png");
+         Alerta alert=new Alerta(null, true,"Error en la conexión","img/error.png");
             alert.show();           
             ex.printStackTrace();
         }
@@ -32,7 +32,7 @@ public Connection getConexion() {
           conn.close();
       }
   }catch(SQLException sql){
-       Alerta alert=new Alerta("Error al cerrar conexión","img/error.png");
+       Alerta alert=new Alerta(null, true,"Error al cerrar conexión","img/error.png");
             alert.show(); 
     sql.printStackTrace();
   }

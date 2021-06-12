@@ -5,9 +5,10 @@
  */
 package Controlador;
 
+import VistaLogin.Alerta;
 import VistaLogin.Login;
 import VistaMA.ClienteMA;
-import VistaMA.EliminarVentas;
+import VistaMA.ConsultarVentas;
 import VistaMA.EmpleadoGM;
 import VistaMA.vistaEmpleadoGM;
 import VistaMA.GastosGM;
@@ -45,7 +46,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
     RegistrosDeProductos registrosDeProductos;
     ProductoModi productoModi;
     RegistrosDeVentas registrosDeVentas;
-    EliminarVentas eliminarVentas;
+    ConsultarVentas consultarVentas;
     /*Objetos para el Constructor de ControlFactura*/
     Facturacion facturacion;
     Mensaje mensaje;
@@ -113,9 +114,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         } else if (vista.equals("Admin")) {
             login.dispose();
             menuAdministrador.setControlador(this);
-            //MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, RegistrosDeProductos registrosDeProductos, ProductoModi productoModi, RegistrosDeVentas registrosDeVentas, EliminarVentas eliminarVentas,ClienteMA clienteMA
-            ControlMA controlMA = new ControlMA(menuAdministrador, login, empleadoGM, gastosGM, registrosDeProductos, productoModi, registrosDeVentas, eliminarVentas,clienteMA);
-             
+            ControlMA controlMA = new ControlMA(menuAdministrador, login, empleadoGM, gastosGM, registrosDeProductos, productoModi, registrosDeVentas, consultarVentas,clienteMA);
         }
     }
 
@@ -126,6 +125,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
             JOptionPane.showMessageDialog(null, "¡Ningún campo debe quedar en blanco!", "Error", JOptionPane.ERROR_MESSAGE);
         } else if ((login.pfPass.getText().equals("1") && (login.tfUser.getText().equals("AD")))) {
             int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Administracion?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+          
             if (opccion == 0) {
                 login.dispose();
                 g = "Admin";

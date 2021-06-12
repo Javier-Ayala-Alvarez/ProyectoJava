@@ -1,6 +1,7 @@
 
 package Modelo;
 
+import Modelo.dao.VentaDao;
 import java.util.ArrayList;
 
 
@@ -24,7 +25,11 @@ public class Cliente extends Persona{
        
     }
 
-    public Cliente(int idCliente, String codigo,  String nombre, String apellido, String telefono, String direccion) {
+    public Cliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Cliente(int idCliente, String codigo, ArrayList<Venta> ventas, String nombre, String apellido, String telefono, String direccion) {
         super(nombre, apellido, telefono, direccion);
         this.idCliente = idCliente;
         this.codigo = codigo;
@@ -59,6 +64,8 @@ public class Cliente extends Persona{
         return ventas;
     }
     public void setVentas(ArrayList<Venta> venta) {
+        VentaDao daoVenta = new VentaDao();
+        this.ventas = daoVenta.selectAllTo("idCliente", String.valueOf(this.getIdCliente()));
         this.ventas = venta;
     }
    
