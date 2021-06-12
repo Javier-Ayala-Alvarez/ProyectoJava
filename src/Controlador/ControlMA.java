@@ -127,7 +127,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         this.registrosDeVenta = registrosDeVentas;
         this.consultarVentas = consultarVentas;
         llamarVistaConsulta("menuAdministrador");
-
+//usuario dao
     }
 
     @Override
