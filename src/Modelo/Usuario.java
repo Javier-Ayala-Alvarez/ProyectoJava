@@ -1,6 +1,7 @@
 
 package Modelo;
 
+import Modelo.dao.EmpleadoDao;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,11 +11,21 @@ public class Usuario{
     private String usuario;
     private String contraseña;
     private ArrayList<InicioCaja>administrarCajas;
+    Empleados empleados;
 
     public Usuario() {
+        empleados = new Empleados();
     }
 
     public Usuario(String usuario, String contraseña) {
+        empleados = new Empleados();
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+    }
+
+    public Usuario(int estado, String usuario, String contraseña) {
+        empleados = new Empleados();
+        
         this.usuario = usuario;
         this.contraseña = contraseña;
     }
@@ -58,6 +69,17 @@ public class Usuario{
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+    public void AddEpleado(String id)
+    {
+        EmpleadoDao empleadoDao = new EmpleadoDao();
+        if (empleadoDao.selectCodigo(id).get(0) != null) {
+            this.empleados = empleadoDao.selectCodigo(id).get(0);
+        }
+    }
+
+    public Empleados getEmpleados() {
+        return empleados;
     }
     
 }

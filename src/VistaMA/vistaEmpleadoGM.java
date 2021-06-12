@@ -1,6 +1,8 @@
 package VistaMA;
 
+import Controlador.ControlMA;
 import VistaMV.Fondo;
+import java.util.Date;
 
 public class vistaEmpleadoGM extends javax.swing.JDialog {
 
@@ -11,19 +13,24 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         initComponents();
         x = "x";
         jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
-//        btnGuardar.setActionCommand("btnGuardarEmpleado");
+        this.btnGuardar.setActionCommand("Agregar");
+        //this.tfSalario.setActionCommand("salario");
+        tfFecha.setDatoFecha(new Date());
+        this.tfAfp.setEditable(false);
+        this.tfIsss.setEditable(false);
+        this.tfCodigo.setEditable(false);
 //        btnModificar.setActionCommand("btnModificarEmpleado");
 
     }
 
     public vistaEmpleadoGM() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-//    public void setControladorMA(ControlMA controlMA){
-//        this.btnGuardar.addActionListener(controlMA);
-//        this.btnModificar.addActionListener(controlMA);
-//    }
+    public void setControladorMA(ControlMA controlMA){
+       this.btnGuardar.addActionListener(controlMA);
+       this.tfSalario.addKeyListener(controlMA);
+    }
 
     public void iniciar() {
         this.setVisible(true);
@@ -31,7 +38,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    public void initComponents() {
 
         rSCalendar1 = new rojeru_san.componentes.RSCalendar();
         roboto1 = new efectos.Roboto();
@@ -40,8 +47,6 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jpLogo1 = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -51,30 +56,31 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         tfCombobox = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        tfDireccion = new principal.MaterialTextField();
+        tfIsss = new principal.MaterialTextField();
         jPanel4 = new javax.swing.JPanel();
         hhu = new javax.swing.JLabel();
         tfNombre = new principal.MaterialTextField();
         validacion2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        tfApellido1 = new principal.MaterialTextField();
+        tfApellido = new principal.MaterialTextField();
         validacion3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         tfTelefono1 = new principal.MaterialTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        tfDireccion1 = new principal.MaterialTextField();
+        tfDireccion = new principal.MaterialTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        tfDireccion2 = new principal.MaterialTextField();
+        tfSalario = new principal.MaterialTextField();
         jPanel9 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        tfDireccion3 = new principal.MaterialTextField();
+        tfFecha = new rojeru_san.componentes.RSDateChooser();
         jPanel10 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        tfDireccion4 = new principal.MaterialTextField();
+        tfAfp = new principal.MaterialTextField();
+        btnGuardar = new rojeru_san.complementos.RSButtonHover();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -116,22 +122,6 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         );
 
         panelFondo.add(jpLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
-
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-        panelFondo.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, 170, 50));
-
-        btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-        panelFondo.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 470, 150, 50));
 
         materialButtonCircle2.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle2.setText("X");
@@ -182,7 +172,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Cargo");
 
-        tfCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cajero", "Administrador", "Supervisor", " " }));
+        tfCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Administrador", "Supervisor", " Cajero","ordenaza" }));
         tfCombobox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tfComboboxMouseClicked(evt);
@@ -214,7 +204,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
                     .addComponent(tfCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        panelFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 350, 60));
+        panelFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 410, 60));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -222,10 +212,10 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("ISSS");
 
-        tfDireccion.setBackground(new java.awt.Color(213, 216, 221));
-        tfDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfIsss.setBackground(new java.awt.Color(213, 216, 221));
+        tfIsss.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfDireccionKeyTyped(evt);
+                tfIsssKeyTyped(evt);
             }
         });
 
@@ -237,7 +227,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfIsss, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -245,7 +235,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfIsss, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -307,10 +297,10 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Apellidos");
 
-        tfApellido1.setBackground(new java.awt.Color(213, 216, 221));
-        tfApellido1.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfApellido.setBackground(new java.awt.Color(213, 216, 221));
+        tfApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfApellido1KeyTyped(evt);
+                tfApellidoKeyTyped(evt);
             }
         });
 
@@ -325,7 +315,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tfApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
@@ -338,7 +328,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,10 +382,10 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("Dirección");
 
-        tfDireccion1.setBackground(new java.awt.Color(213, 216, 221));
-        tfDireccion1.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfDireccion.setBackground(new java.awt.Color(213, 216, 221));
+        tfDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfDireccion1KeyTyped(evt);
+                tfDireccionKeyTyped(evt);
             }
         });
 
@@ -407,7 +397,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tfDireccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -415,7 +405,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfDireccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -428,10 +418,10 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("Salario");
 
-        tfDireccion2.setBackground(new java.awt.Color(213, 216, 221));
-        tfDireccion2.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfSalario.setBackground(new java.awt.Color(213, 216, 221));
+        tfSalario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfDireccion2KeyTyped(evt);
+                tfSalarioKeyTyped(evt);
             }
         });
 
@@ -443,7 +433,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tfDireccion2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -451,7 +441,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfDireccion2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -464,13 +454,6 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setText("Fecha ");
 
-        tfDireccion3.setBackground(new java.awt.Color(213, 216, 221));
-        tfDireccion3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfDireccion3KeyTyped(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -479,20 +462,22 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tfDireccion3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tfFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfDireccion3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tfFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
-        panelFondo.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 360, 60));
+        panelFondo.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 360, 70));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -500,10 +485,10 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
         jLabel13.setText("AFP");
 
-        tfDireccion4.setBackground(new java.awt.Color(213, 216, 221));
-        tfDireccion4.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfAfp.setBackground(new java.awt.Color(213, 216, 221));
+        tfAfp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfDireccion4KeyTyped(evt);
+                tfAfpKeyTyped(evt);
             }
         });
 
@@ -515,7 +500,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tfDireccion4, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfAfp, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -523,12 +508,15 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfDireccion4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfAfp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelFondo.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 360, 60));
+
+        btnGuardar.setText("Guardar");
+        panelFondo.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -550,7 +538,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDireccionKeyTyped
+    public void tfIsssKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIsssKeyTyped
 //        char c = evt.getKeyChar();
 //
 //        if (Character.isDigit(c)) {
@@ -559,35 +547,27 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
 //            lbEnergia.setText("solo numeros");
 //            evt.consume();
 //        }
-    }//GEN-LAST:event_tfDireccionKeyTyped
+    }//GEN-LAST:event_tfIsssKeyTyped
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+    public void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         x = null;
     }//GEN-LAST:event_formWindowClosed
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    public void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 
     }//GEN-LAST:event_formWindowClosing
 
-    private void materialButtonCircle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle1ActionPerformed
+    public void materialButtonCircle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle1ActionPerformed
 
 
     }//GEN-LAST:event_materialButtonCircle1ActionPerformed
 
-    private void materialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle2ActionPerformed
+    public void materialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle2ActionPerformed
         this.dispose();
         x = null;
     }//GEN-LAST:event_materialButtonCircle2ActionPerformed
 
-    private void tfComboboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfComboboxMouseClicked
+    public void tfComboboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfComboboxMouseClicked
 //        if (opc == 1) {
 //            btnGuardar.setEnabled(true);
 //        } else {
@@ -595,37 +575,33 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
 //        }
     }//GEN-LAST:event_tfComboboxMouseClicked
 
-    private void tfComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfComboboxActionPerformed
+    public void tfComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfComboboxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfComboboxActionPerformed
 
-    private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
+    public void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNombreKeyTyped
 
-    private void tfApellido1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApellido1KeyTyped
+    public void tfApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApellidoKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfApellido1KeyTyped
+    }//GEN-LAST:event_tfApellidoKeyTyped
 
-    private void tfTelefono1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTelefono1KeyTyped
+    public void tfTelefono1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTelefono1KeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_tfTelefono1KeyTyped
 
-    private void tfDireccion1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDireccion1KeyTyped
+    public void tfDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDireccionKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfDireccion1KeyTyped
+    }//GEN-LAST:event_tfDireccionKeyTyped
 
-    private void tfDireccion2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDireccion2KeyTyped
+    public void tfSalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSalarioKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfDireccion2KeyTyped
+    }//GEN-LAST:event_tfSalarioKeyTyped
 
-    private void tfDireccion3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDireccion3KeyTyped
+    public void tfAfpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAfpKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfDireccion3KeyTyped
-
-    private void tfDireccion4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDireccion4KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDireccion4KeyTyped
+    }//GEN-LAST:event_tfAfpKeyTyped
 
     /**
      * @param args the command line arguments
@@ -655,22 +631,21 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnGuardar;
-    public javax.swing.JButton btnModificar;
-    private javax.swing.JLabel hhu;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    public rojeru_san.complementos.RSButtonHover btnGuardar;
+    public javax.swing.JLabel hhu;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel10;
+    public javax.swing.JLabel jLabel11;
+    public javax.swing.JLabel jLabel12;
+    public javax.swing.JLabel jLabel13;
+    public javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabel7;
+    public javax.swing.JLabel jLabel8;
+    public javax.swing.JLabel jLabel9;
+    public javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel2;
     public javax.swing.JPanel jPanel3;
     public javax.swing.JPanel jPanel4;
     public javax.swing.JPanel jPanel5;
@@ -678,24 +653,24 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
     public javax.swing.JPanel jPanel7;
     public javax.swing.JPanel jPanel8;
     public javax.swing.JPanel jPanel9;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JPanel jpLogo1;
-    private principal.MaterialButtonCircle materialButtonCircle1;
-    private principal.MaterialButtonCircle materialButtonCircle2;
-    private javax.swing.JPanel panelFondo;
-    private rojeru_san.componentes.RSCalendar rSCalendar1;
-    private efectos.Roboto roboto1;
-    private principal.MaterialTextField tfApellido1;
-    private principal.MaterialTextField tfCodigo;
-    private javax.swing.JComboBox<String> tfCombobox;
-    private principal.MaterialTextField tfDireccion;
-    private principal.MaterialTextField tfDireccion1;
-    private principal.MaterialTextField tfDireccion2;
-    private principal.MaterialTextField tfDireccion3;
-    private principal.MaterialTextField tfDireccion4;
-    private principal.MaterialTextField tfNombre;
-    private principal.MaterialTextField tfTelefono1;
-    private javax.swing.JLabel validacion2;
-    private javax.swing.JLabel validacion3;
+    public javax.swing.JSeparator jSeparator1;
+    public javax.swing.JPanel jpLogo1;
+    public principal.MaterialButtonCircle materialButtonCircle1;
+    public principal.MaterialButtonCircle materialButtonCircle2;
+    public javax.swing.JPanel panelFondo;
+    public rojeru_san.componentes.RSCalendar rSCalendar1;
+    public efectos.Roboto roboto1;
+    public principal.MaterialTextField tfAfp;
+    public principal.MaterialTextField tfApellido;
+    public principal.MaterialTextField tfCodigo;
+    public javax.swing.JComboBox<String> tfCombobox;
+    public principal.MaterialTextField tfDireccion;
+    public rojeru_san.componentes.RSDateChooser tfFecha;
+    public principal.MaterialTextField tfIsss;
+    public principal.MaterialTextField tfNombre;
+    public principal.MaterialTextField tfSalario;
+    public principal.MaterialTextField tfTelefono1;
+    public javax.swing.JLabel validacion2;
+    public javax.swing.JLabel validacion3;
     // End of variables declaration//GEN-END:variables
 }

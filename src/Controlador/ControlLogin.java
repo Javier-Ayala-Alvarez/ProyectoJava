@@ -103,6 +103,9 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         if (vista.equals("login")) {
             login.setControlador(this);
             login.iniciar();
+            login.tfUser.setText("AD");
+            login.pfPass.setText("1");
+            
         } else if (vista.equals("admin")) {
             login.dispose();
             factura.setControlador(this);

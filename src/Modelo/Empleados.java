@@ -1,6 +1,7 @@
 package Modelo;
 
 
+import Modelo.dao.EmpresaDao;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,7 +24,7 @@ public class Empleados extends Persona{
         this.afp = afp;
         this.isss = isss;
         this.fechaContratacion = fechaContratacion;
-        this.usuario = usuario;
+        this.usuario = usuario = new Usuario(0);
         ventas = new ArrayList();
         
     }
@@ -32,15 +33,30 @@ public class Empleados extends Persona{
         ventas = new ArrayList();
     }
 
-    public Empleados(String cargoEmpleado, double salarioEmpleado, double afp, double isss, Date fechaContratacion, Usuario usuario, String nombre, String apellido, String telefono, String direccion) {
+    public Empleados(int idPersona) {
+        super(idPersona);
+    }
+
+    public Empleados(String cargoEmpleado, double salarioEmpleado, double afp, double isss, Date fechaContratacion, String nombre, String apellido, String telefono, String direccion) {
         super(nombre, apellido, telefono, direccion);
         this.cargoEmpleado = cargoEmpleado;
         this.salarioEmpleado = salarioEmpleado;
         this.afp = afp;
         this.isss = isss;
         this.fechaContratacion = fechaContratacion;
-        this.usuario = usuario;
+        
         ventas = new ArrayList();
+    }
+
+    public Empleados(String cargoEmpleado, String codigoEmpleado, double salarioEmpleado, double afp, double isss, Date fechaContratacion, int estado, String nombre, String apellido, String telefono, String direccion) {
+        super(nombre, apellido, telefono, direccion);
+        this.cargoEmpleado = cargoEmpleado;
+        this.codigoEmpleado = codigoEmpleado;
+        this.salarioEmpleado = salarioEmpleado;
+        this.afp = afp;
+        this.isss = isss;
+        this.fechaContratacion = fechaContratacion;
+        this.estado = estado;
     }
 
    
@@ -100,6 +116,11 @@ public class Empleados extends Persona{
     public void addUsuario(Usuario x){
         this.usuario = x;
     }
+    public void addEmpresa(){
+         EmpresaDao daoempresa = new EmpresaDao();
+       this.empresa = daoempresa.selectId(1).get(0);
+        System.out.println("sa");
+    }
 
     public String getCodigoEmpleado() {
         return codigoEmpleado;
@@ -126,6 +147,7 @@ public class Empleados extends Persona{
     }
 
     public Empresa getEmpresa() {
+       
         return empresa;
     }
 

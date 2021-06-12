@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Bono  {
     private Double bono;
+    private int idBono;
 
     public Bono() {
     }

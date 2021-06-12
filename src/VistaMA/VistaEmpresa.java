@@ -18,8 +18,9 @@ public class VistaEmpresa extends javax.swing.JDialog {
      */
     public VistaEmpresa(java.awt.Frame parent, boolean modal, boolean estado) {
         super(parent, modal);
-   
+   setUndecorated(true);
         initComponents();
+        
         setEstado(estado);
         
         this.dato3.setActionCommand("editarEmpresa");

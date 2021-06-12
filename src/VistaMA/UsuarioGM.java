@@ -3,19 +3,18 @@ package VistaMA;
 import Controlador.ControlMA;
 import VistaMV.Fondo;
 
-public class EmpleadoGM extends javax.swing.JDialog {
+public class UsuarioGM extends javax.swing.JDialog {
 
   //  public static String x;
     
-    public EmpleadoGM(java.awt.Frame parent, boolean modal,boolean parametro) {
+    public UsuarioGM(java.awt.Frame parent, boolean modal,boolean parametro) {
         super(parent, modal);
 
         initComponents();
        setEstado(parametro);
         jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
          btnModificar.setActionCommand("Modificar");
-         btnEliminar1.setActionCommand("Eliminar");
-         
+           
          
     }
     
@@ -27,15 +26,15 @@ public class EmpleadoGM extends javax.swing.JDialog {
        if (!estado) {
     
             btnModificar.setVisible(false);
-            btnEliminar1.setVisible(false);
+            
         }else{
             btnModificar.setVisible(true);
-            btnEliminar1.setVisible(true);
+            
         }
     }
       public void setControlador(ControlMA control){
         this.btnModificar.addActionListener(control);
-         this.btnEliminar1.addActionListener(control);
+         
         this.tbEmpleados.addMouseListener(control);
         this.buscar.addKeyListener(control);
     }
@@ -49,13 +48,12 @@ public class EmpleadoGM extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         panelFondo = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
+        Usuario = new javax.swing.JLabel();
         jpLogo1 = new javax.swing.JPanel();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbEmpleados = new javax.swing.JTable();
         btnModificar = new rojeru_san.complementos.RSButtonHover();
-        btnEliminar1 = new rojeru_san.complementos.RSButtonHover();
         buscar = new principal.MaterialTextField();
         jLabel1 = new javax.swing.JLabel();
 
@@ -86,10 +84,10 @@ public class EmpleadoGM extends javax.swing.JDialog {
         panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1050, 20));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Empleado");
-        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 210, 60));
+        Usuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Usuario.setForeground(new java.awt.Color(102, 102, 102));
+        Usuario.setText("Usuarios");
+        panelFondo.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 210, 60));
 
         javax.swing.GroupLayout jpLogo1Layout = new javax.swing.GroupLayout(jpLogo1);
         jpLogo1.setLayout(jpLogo1Layout);
@@ -153,21 +151,13 @@ public class EmpleadoGM extends javax.swing.JDialog {
 
         panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1000, 410));
 
-        btnModificar.setText("Modificar");
+        btnModificar.setText("Modificar Contraseña");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
-        panelFondo.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 550, 130, 40));
-
-        btnEliminar1.setText("Eliminar");
-        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminar1ActionPerformed(evt);
-            }
-        });
-        panelFondo.add(btnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 550, 130, 40));
+        panelFondo.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 550, 180, 40));
 
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,10 +206,6 @@ public class EmpleadoGM extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminar1ActionPerformed
-
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buscarActionPerformed
@@ -252,12 +238,11 @@ public class EmpleadoGM extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public rojeru_san.complementos.RSButtonHover btnEliminar1;
+    private javax.swing.JLabel Usuario;
     public rojeru_san.complementos.RSButtonHover btnModificar;
     public principal.MaterialTextField buscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jpLogo1;

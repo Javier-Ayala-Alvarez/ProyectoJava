@@ -24,6 +24,10 @@ public abstract class Persona {
     public Persona() {
     }
 
+    public Persona(int idPersona) {
+        this.idPersona = idPersona;
+    }
+
     public Persona(int idPersona, String nombre, String apellido, String telefono, String direccion) {
         this.idPersona = idPersona;
         this.nombre = nombre;

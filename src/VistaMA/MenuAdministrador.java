@@ -37,11 +37,13 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.modificarProducto.setActionCommand("modificarProducto");
         this.eliminarProducto.setActionCommand("eliminarProducto");
         this.consultarProducto.setActionCommand("consultarProducto");
+        //para empleado
         menuEmpleado.setActionCommand("menuEmpleado");
         this.guardarEmpleado.setActionCommand("guardarEmpleado");
-        this.modificarEmpleado.setActionCommand("modificarEmpleado");
-        this.eliminarEmpleado.setActionCommand("eliminarEmpleado");
+        this.guardarUsuario.setActionCommand("guardarUsuario");
+        this.ConsultarUsuario.setActionCommand("consultarUsuario");
         this.consultarEmpleado.setActionCommand("consultarEmpleado");
+        //fin Empleado
         menuCliente.setActionCommand("menuCliente");
         this.consultarCliente.setActionCommand("consultarCliente");
         menuGDS.setActionCommand("menuGDS");
@@ -82,8 +84,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.eliminarProducto.addActionListener(controlMA);
         this.consultarProducto.addActionListener(controlMA);
         this.guardarEmpleado.addActionListener(controlMA);
-        this.modificarEmpleado.addActionListener(controlMA);
-        this.eliminarEmpleado.addActionListener(controlMA);
+        this.ConsultarUsuario.addActionListener(controlMA);
+        this.guardarUsuario.addActionListener(controlMA);
         this.consultarEmpleado.addActionListener(controlMA);
         this.menuCliente.addActionListener(controlMA);
         this.consultarCliente.addActionListener(controlMA);
@@ -163,10 +165,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
         eliminarProducto = new javax.swing.JMenuItem();
         consultarProducto = new javax.swing.JMenuItem();
         menuEmpleado = new javax.swing.JMenu();
-        guardarEmpleado = new javax.swing.JMenuItem();
-        modificarEmpleado = new javax.swing.JMenuItem();
-        eliminarEmpleado = new javax.swing.JMenuItem();
         consultarEmpleado = new javax.swing.JMenuItem();
+        guardarEmpleado = new javax.swing.JMenuItem();
+        ConsultarUsuario = new javax.swing.JMenuItem();
+        guardarUsuario = new javax.swing.JMenuItem();
         menuCliente = new javax.swing.JMenu();
         consultarCliente = new javax.swing.JMenuItem();
         menuGDS = new javax.swing.JMenu();
@@ -767,7 +769,15 @@ public class MenuAdministrador extends javax.swing.JFrame {
         menuEmpleado.setText("Empleado");
         menuEmpleado.setActionCommand("menuEmpleado");
 
-        guardarEmpleado.setText("Añadir");
+        consultarEmpleado.setText("Consultar Empleados");
+        consultarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarEmpleadoActionPerformed(evt);
+            }
+        });
+        menuEmpleado.add(consultarEmpleado);
+
+        guardarEmpleado.setText("Añadir Empleado");
         guardarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarEmpleadoActionPerformed(evt);
@@ -775,29 +785,21 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuEmpleado.add(guardarEmpleado);
 
-        modificarEmpleado.setText("Modificar");
-        modificarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+        ConsultarUsuario.setText("Consultar Usuarios");
+        ConsultarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarEmpleadoActionPerformed(evt);
+                ConsultarUsuarioActionPerformed(evt);
             }
         });
-        menuEmpleado.add(modificarEmpleado);
+        menuEmpleado.add(ConsultarUsuario);
 
-        eliminarEmpleado.setText("Eliminar");
-        eliminarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+        guardarUsuario.setText("Añadir Usuario");
+        guardarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarEmpleadoActionPerformed(evt);
+                guardarUsuarioActionPerformed(evt);
             }
         });
-        menuEmpleado.add(eliminarEmpleado);
-
-        consultarEmpleado.setText("Consultar");
-        consultarEmpleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultarEmpleadoActionPerformed(evt);
-            }
-        });
-        menuEmpleado.add(consultarEmpleado);
+        menuEmpleado.add(guardarUsuario);
 
         jMenu.add(menuEmpleado);
 
@@ -864,10 +866,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modificarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarEmpleadoActionPerformed
-
-    }//GEN-LAST:event_modificarEmpleadoActionPerformed
-
     private void guardarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEmpleadoActionPerformed
 
     }//GEN-LAST:event_guardarEmpleadoActionPerformed
@@ -913,10 +911,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_opcionesGDSActionPerformed
 
-    private void eliminarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEmpleadoActionPerformed
-
-    }//GEN-LAST:event_eliminarEmpleadoActionPerformed
-
     private void btnEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEmpleadoActionPerformed
@@ -957,8 +951,17 @@ public class MenuAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_consultarClienteActionPerformed
 
+    private void ConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ConsultarUsuarioActionPerformed
+
+    private void guardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardarUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JMenuItem ConsultarUsuario;
     public principal.MaterialButtonCircle btnCerrarMenuAdmin;
     public rojeru_san.complementos.RSButtonHover btnCliente;
     public rojeru_san.complementos.RSButtonHover btnEmpleado;
@@ -969,11 +972,11 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JMenuItem consultarEmpleado;
     private javax.swing.JMenuItem consultarEmpresa;
     public javax.swing.JMenuItem consultarProducto;
-    public javax.swing.JMenuItem eliminarEmpleado;
     public javax.swing.JMenuItem eliminarFacturaItem;
     public javax.swing.JMenuItem eliminarProducto;
     public javax.swing.JMenuItem guardarEmpleado;
     public javax.swing.JMenuItem guardarProducto;
+    public javax.swing.JMenuItem guardarUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1017,7 +1020,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JMenu menuGDS;
     public javax.swing.JMenu menuProductos;
     public javax.swing.JMenu menuVenta;
-    public javax.swing.JMenuItem modificarEmpleado;
     private javax.swing.JMenuItem modificarEmpresa;
     public javax.swing.JMenuItem modificarProducto;
     public javax.swing.JMenuItem opcionesGDS;

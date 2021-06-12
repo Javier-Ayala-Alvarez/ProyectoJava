@@ -1,6 +1,6 @@
 
 package Modelo;
-import ejemplocompleto.vistas.Alerta;
+import Vista.Alerta;
 import java.sql.*;
 
 public class Conexion {
