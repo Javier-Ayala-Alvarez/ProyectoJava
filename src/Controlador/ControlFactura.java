@@ -9,7 +9,7 @@ import VistaLogin.Login;
 import VistaMA.MenuAdministrador;
 import VistaMV.Factura;
 import VistaMV.Facturacion;
-import VistaMV.FacturacionD;
+import VistaMV.Facturacion;
 import VistaMV.Mensaje;
 import VistaMV.Producto;
 import java.awt.event.ActionEvent;
@@ -30,7 +30,7 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
     Facturacion facturacion;
     Mensaje mensaje;
     Producto producto;
-    FacturacionD fD;
+    Facturacion fD;
     /*Objetos para el Construtor de ControlLogin*/
     Login login;
 
@@ -94,7 +94,7 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
         } else if (vista.equals("tiket")) {
             JOptionPane.showMessageDialog(null, "Tiket está vacío");
         } else if (vista.equals("facturacion")) {
-            this.fD = new FacturacionD(factura, true);
+            this.fD = new Facturacion(factura, true);
             this.fD.setControl(this);
             fD.iniciar();
         } else if (vista.equals("administrador")) {
@@ -116,5 +116,5 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
             ControlLogin controlLo = new ControlLogin(logg, vistaFf, vistaMAa, logg.tfUser.getText());
         }
     }
-
+//hola
 }
