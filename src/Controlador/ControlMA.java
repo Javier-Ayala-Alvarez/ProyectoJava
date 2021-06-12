@@ -414,6 +414,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             //Fin de Variable
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll1();
             for (GastoEmpresa x : gastos) {
+                if(x.getEmpleado().getEstado()==1){
                 if (!(x.getCategoria().equals("Impuesto de Alcaldia")
                         || (x.getCategoria().equals("Pago de Energia"))
                         || (x.getCategoria().equals("Pago de Alquiler"))
@@ -460,7 +461,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.gastosGM.lbSalarioC.setText(String.valueOf(salarioC));
 
             this.gastosGM.lbTotalReporte.setText("$" + String.format("%.2f", totalR));
-
+            }
         }
         ////////////******FINAL GASTOS EMPLEADO********/////////////////
         ////////////******GASTOS EMPRESA********/////////////////
@@ -570,6 +571,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             ArrayList<Venta> venta = daoVenta.selectAll();
             float total1 = 0;
             for (Venta x : venta) {
+                
                 Object datos[] = {x.getnFactura(),x.getFechaVenta(),x.getCliente().getNombre(),x.getEmpleado().getNombre(),x.getSaldoTotal()};
                 modelo.addRow(datos);
                 total1 = (float) (total1 + x.getSaldoTotal());
@@ -886,8 +888,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             //Fin de Variable
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll1();
             for (Object a : lista) {
+                 GastoEmpresa x = (GastoEmpresa) a;
+                if(x.getEmpleado().getEstado()==1){
 
-                GastoEmpresa x = (GastoEmpresa) a;
+               
                 if (!(x.getCategoria().equals("Impuesto de Alcaldia")
                         || (x.getCategoria().equals("Pago de Energia"))
                         || (x.getCategoria().equals("Pago de Alquiler"))
@@ -933,6 +937,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.gastosGM.lbSalarioC.setText(String.valueOf(salarioC));
 
             this.gastosGM.lbTotalReporte.setText("$" + String.format("%.2f", totalR));
+            }
 
         }
         ////////////******FINAL GASTOS EMPLEADO********/////////////////
