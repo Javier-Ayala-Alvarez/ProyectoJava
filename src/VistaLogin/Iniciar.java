@@ -21,7 +21,8 @@ public class Iniciar {
         Factura vistaF = new Factura();
         MenuAdministrador vistaMA = new MenuAdministrador();
         Facturacion facturacion = new Facturacion();
-        ControlLogin control = new ControlLogin(vista, facturacion, vistaF, vistaMA, vista.tfUser.getText());
+        //ControlLogin control = new ControlLogin(vista, facturacion, vistaF, vistaMA, );
+        ControlLogin control = new ControlLogin(vista, vistaF, vistaMA, vista.tfUser.getText());
     }
 
 }
