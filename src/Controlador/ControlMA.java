@@ -441,8 +441,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             gastosGM.btnModificar.setVisible(false);
             gastosGM.cbTipo.removeAllItems();
             gastosGM.cbTipo.addItem("Seleccione");
-            llenarCombo();
             padreActiva = "gastosGM1";
+            llenarCombo();
+            
             mostrarDatos();
             this.gastosGM.iniciar();
 
@@ -495,16 +496,17 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     
                 }
                 
-         } 
-         //no funciona 
-         /*
+         }else if(padreActiva.equals("gastosGM1")){
+         
          ArrayList<Empleados> empleado = daoEmpleado.selectAll();
         for (Empleados x : empleado) {
+            if(x.getEstado() == 1){
             String selec = x.getCodigoEmpleado() + " - " + x.getNombre() + " - " + x.getApellido();
 
             gastosGM.cbTipo.addItem(selec);
-
-        }*/
+            }
+        }
+         }
     }
 
     public void mostrarDatos() {
@@ -554,7 +556,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             //Fin de Variable
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll1();
             for (GastoEmpresa x : gastos) {
-                if(x.getEmpleado().getEstado()==1){
+
                 if (!(x.getCategoria().equals("Impuesto de Alcaldia")
                         || (x.getCategoria().equals("Pago de Energia"))
                         || (x.getCategoria().equals("Pago de Alquiler"))
@@ -582,7 +584,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     salarioT = salarioT + x.getSaldo();
                 }
 
-            }
 
             GastosGM.jtDatos.setModel(modelo);
             this.gastosGM.lbAlcaldiaTotal.setText("$" + String.format("%.2f", alcaldiaT));
@@ -786,12 +787,12 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 corre = x.getIdPersona();
             }
         }
-        for (int i = 0; i < 6; i++) {
-            if (correlativo.length() + corre < 7) {
-                correlativo = correlativo + "0";
-            }
-        }
-        correlativo = correlativo + corre;
+         for (int i = 0; i < 6; i++) {
+                    if ((correlativo.length() + String.valueOf(corre).length()) < 7) {
+                        correlativo = correlativo + "0";
+                    }
+                }
+        correlativo = correlativo + String.valueOf(corre);
 
         return correlativo;
         ////////////******FINAL GASTOS********/////////////////
@@ -884,7 +885,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } else if (e.getActionCommand().equals("Generar") && (padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1"))) {
             String iniciales = "EG-";
 
-            crearCodigo(iniciales,padreActiva);
+            this.gastosGM.tfCodigo.setText(crearCodigo(iniciales,padreActiva));
 
         } else if (e.getActionCommand().equals("Eliminar")
                 && (padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1"))) {
@@ -1170,9 +1171,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     
                 }
             }
-        }else  if ((padreActiva == "gastosGM")&& (!gastosGM.cbTipo.getSelectedItem().equals("Seleccione"))) {
-        }
-         if (padreActiva.equals("vistaUsuario") && vistaUsuario.tfCombobox.getSelectedIndex() > 0) {
+        }else  if (padreActiva.equals("vistaUsuario") && vistaUsuario.tfCombobox.getSelectedIndex() > 0) {
             String codigoEmpleado[] = vistaUsuario.tfCombobox.getSelectedItem().toString().split(" / ");
               vistaUsuario.tfUsuario.setText(codigoEmpleado[1]);
             

@@ -5,11 +5,10 @@ import Modelo.Conexion;
 import Modelo.Empleados;
 import Modelo.Empresa;
 import Modelo.GastoEmpresa;
-
 import VistaLogin.Alerta;
 import VistaMA.GastosGM;
-
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -89,7 +88,8 @@ public class Gastosdao {
             }
             
         }catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Error en sql");
+            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            alert.show();
             e.printStackTrace();
         }finally{
             try {
@@ -176,7 +176,7 @@ public class Gastosdao {
             ps.setString(3, obj.getCategoria());
             ps.setDouble(4, obj.getSaldo());
             ps.setInt(5, obj.getEmpresa().getIdEmpresa());
-            ps.setInt(6, obj.getEmpleado().getIdPersona());
+            ps.setInt(6, obj.getEmpleado().getIdEmpleado());
             ps.execute();
             
             return true;
