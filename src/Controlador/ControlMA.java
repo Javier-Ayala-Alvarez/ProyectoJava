@@ -437,14 +437,13 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } else if (vista.equals("gastosGM1")) {
             this.gastosGM = new GastosGM(menuAdministrador, true);
             this.gastosGM.setControlador(this);
+            padreActiva = "gastosGM1";
             gastosGM.tfPago1.setEditable(false);
             gastosGM.btnModificar.setVisible(false);
             gastosGM.cbTipo.removeAllItems();
             gastosGM.cbTipo.addItem("Seleccione");
-            padreActiva = "gastosGM1";
-            llenarCombo();
-            
             mostrarDatos();
+            llenarCombo();
             this.gastosGM.iniciar();
 
         } /////////////////////////////////
@@ -607,7 +606,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         ////////////******FINAL GASTOS EMPLEADO********/////////////////
         ////////////******GASTOS EMPRESA********/////////////////
 
-        if (padreActiva.equals("gastosGM")) {
+        else if (padreActiva.equals("gastosGM")) {
 
             String titulos[] = {"Codigo", "Categoria", "Fecha", "Saldo", "Empresa"};
             modelo.setColumnIdentifiers(titulos);
@@ -691,7 +690,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         ////////////******FINAL ClienteMA********/////////////////
 
         //**************ProductoModi****************//
-        if (padreActiva.equals("productoModi")) {
+       else if (padreActiva.equals("productoModi")) {
             String titulos[] = {"N", "Nombre", "Cantidad", "Precio", "Max", "Min"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Producto> producto = daoProducto.selectAll();
@@ -706,7 +705,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         //************Fin productoModi*************//
 
         // ------------------------------------------------Inicio Empleado------------------------------------------------//
-        if (padreActiva.equals("empleadoGM")) {
+       else if (padreActiva.equals("empleadoGM")) {
             String titulos[] = {"N", "codigo", "Nombre", "Apellido", "Telefono", "Direccion", "Salario", "afp", "isss", "Salario Total", "Cargo", "Fecha Contratacion"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Empleados> empleados = daoEmpleado.selectAll();
@@ -728,7 +727,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         
         
         // ------------------------------------------------Inicio Usuario------------------------------------------------//
-        if (padreActiva.equals("usuarioGM")) {
+      else  if (padreActiva.equals("usuarioGM")) {
             String titulos[] = {"N", "usuario","Nombre Empleado","cargo"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Usuario> usuarios = daoUsuario.selectAll();
@@ -751,7 +750,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         //------------------------------------------------fin Usuario------------------------------------------------//
         
          //**************registroVentas****************//
-        if (padreActiva.equals("registroVentas")) {
+       else if (padreActiva.equals("registroVentas")) {
             String titulos[] = {"N", "Fecha", "Cliente","Empleado", "Precio Total"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Venta> venta = daoVenta.selectAll();
@@ -773,12 +772,13 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         
         String correlativo = a;
         int corre = 0;
-        if (activa.equals("GastosGM")) {
+        if (activa.equals("GastosGM") || activa.equals("GastosGM1")) {
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
             for (GastoEmpresa x : gastos) {
                 corre = x.getIdGasto();
 
             }
+            corre = corre +1;
         }
         if (activa.equals("vistaEmpleadoGM")) {
             ArrayList<Empleados> empleados;
@@ -837,6 +837,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 float pago = 0;
                 double afpE = 0;
                 double isssE = 0;
+                double bono = 0;
                 String categoria = "";
                 ArrayList<Empleados> empleado = daoEmpleado.selectAll();
                 ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
@@ -850,6 +851,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
                         afpE = x.getAfp();
                         isssE = x.getIsss();
+                        //bono = x.getBono().getBono();
 
                     }
 
@@ -859,9 +861,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 if (gastoSeleccionado == null) {
                     double ISSS = 0.0775;
                     double AFP = 0.0775;
-                    pago = (float) (salario - (salario*afpE)-(salario*isssE));
-                    salario = (float) ((salario + (salario * ISSS)) + (salario * AFP));
-                    
+                    pago = (float) (salario - (afpE+isssE));
+                    salario = (float) ((pago + (salario * ISSS)) + (salario * AFP));
                     GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(), gastosGM.dFecha.getDatoFecha(), categoria, salario, empresa.get(0), empleado1.get(0));
                     ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("codigoGasto", gastosGM.tfCodigo.getText());
                     if (existe.isEmpty()) {
@@ -893,11 +894,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             if (opccion == 0) {
                 if (gastoSeleccionado != null) {
                     if (daoGasto.delete(gastoSeleccionado)) {
+                        mostrarDatos();
                         vaciarVista();
+                        
                         Alerta aler = new Alerta(menuAdministrador, true,"Eliminado con exito", "/img/Succes.png");
                         aler.show();
-
-                        mostrarDatos();
                         gastoSeleccionado = null;
                     } else {
 
@@ -1154,10 +1155,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
         ////////////////////////////////////fin  Usuario////////////////////////////////////
     }
-
-    
-                         
-    
 
     @Override
     public void itemStateChanged(ItemEvent e) {
