@@ -52,6 +52,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
     Mensaje mensaje;
     Producto producto;
     String g;
+    
 
     public ControlLogin(Login login, Factura factura, MenuAdministrador menuAdministrador, String acceso) {
         this.login = login;

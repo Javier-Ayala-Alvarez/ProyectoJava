@@ -19,6 +19,7 @@ import Modelo.dao.UsuarioDao;
 import Modelo.dao.VentaDao;
 import VistaLogin.Alerta;
 import VistaLogin.Login;
+import static VistaLogin.Login.LogoE;
 import VistaMA.ClienteMA;
 import VistaMA.ConsultarVentas;
 
@@ -33,6 +34,8 @@ import VistaMA.UsuarioGM;
 import VistaMA.VistaEmpresa;
 import VistaMA.VistaUsuario;
 import VistaMV.Factura;
+import VistaMV.Fondo;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -43,6 +46,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -100,6 +105,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     RegistrosDeVentas registrosDeVentas;
 
     private String padreActiva = "", hijaActiva = "";
+    private JLabel label = new JLabel();
+    private ImageIcon iconoAumentar = new ImageIcon(getClass().getResource("/img/Logo.jpg"));
 
     ///******Consulta Factura******////
     ConsultarVentas consultarVentas;
@@ -267,6 +274,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
             }
 
+        }else if (padreActiva.equals("registrosDeProductos")) {
+            ArrayList<Producto> lista = daoProducto.buscar(registrosDeProductos.tfBuscar.getText() + e.getKeyChar());
+
+            if (lista.isEmpty()) {
+                mostrarDatos();
+            } else {
+                mostrarBusqueda(lista);
+
+            }
+
         }
 
     }
@@ -360,7 +377,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             mostrarDatos();
             this.productoModi.iniciar();
         } else if (vista.equals("consultarProducto")) {
+            padreActiva = "registrosDeProductos";
             this.registrosDeProductos = new RegistrosDeProductos(menuAdministrador, true);
+            this.registrosDeProductos.setControlador(this);
+            mostrarDatos();
             this.registrosDeProductos.iniciar();
 
         } //empleado
@@ -678,18 +698,31 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
         } ////////////******FINAL ClienteMA********/////////////////
         //**************ProductoModi****************//
-        else if (padreActiva.equals("productoModi")) {
-            String titulos[] = {"N", "Nombre", "Cantidad", "Precio", "Max", "Min"};
+       else if (padreActiva.equals("registrosDeProductos")) {
+            String titulos[] = {"Codigo", "Nombre", "Cantidad", "Precio Unitario", "Iva", "Ganacia","Precio Compra", "Precio Venta", "fecha de Vencimiento", "Max", "Min",  "Empresa",  "Total"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Producto> producto = daoProducto.selectAll();
-            int i = 1;
+            float precioUni = 0;
+            float totalUni = 0;
+            float total2 = 0;
+            int i = 0;
             for (Producto x : producto) {
-                Object datos[] = {i, x.getNombreProducto(), x.getCantidad(), x.getPrecioCompra(), x.getMax(), x.getMin()};
+                this.registrosDeProductos.jtDatos.editCellAt(3, i);
+                precioUni = (float) (x.getPrecioCompra()/x.getCantidad());
+                totalUni = (float) (x.getPrecioVenta()*x.getCantidad());
+                Object datos[] = {x.getCodigoProducto(),x.getNombreProducto(), x.getCantidad(),precioUni,x.getIva()
+                        ,x.getGananciaUni(),x.getPrecioCompra(),x.getPrecioVenta(),x.getFechaVencimiento(), 
+                        x.getMax(), x.getMin(),x.getEmpresa().getNombre(),totalUni};///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                total2 = total2 +totalUni;
                 modelo.addRow(datos);
                 i++;
+              
             }
-            this.productoModi.jtDatos.setModel(modelo);
-        } //************Fin productoModi*************//
+            this.registrosDeProductos.jtDatos.setModel(modelo);
+            this.registrosDeProductos.lbTotal.setText("$"+String.format("%.2f", total2));
+        }
+        //************Fin productoModi*************//
+
         // ------------------------------------------------Inicio Empleado------------------------------------------------//
         else if (padreActiva.equals("empleadoGM")) {
             String titulos[] = {"N", "codigo", "Nombre", "Apellido", "Telefono", "Direccion", "Salario", "afp", "isss", "Salario Total", "Cargo", "Fecha Contratacion"};
@@ -1358,7 +1391,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         //------------------------------------------------fin Usuario------------------------------------------------//
 
         //**************ProductoModi**************//
-        if (padreActiva.equals("productoModi")) {
+        else if (padreActiva.equals("productoModi")) {
             String titulos[] = {"N", "Nombre", "Cantidad", "Precio", "Max", "Min"};
             modelo.setColumnIdentifiers(titulos);
             int i = 1;
@@ -1371,8 +1404,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.productoModi.jtDatos.setModel(modelo);
         }
         //***********Fin ProductoModi**********//
+        
         //**************MostrarVenta**************//
-        if (padreActiva.equals("registroVentas")) {
+        else if (padreActiva.equals("registroVentas")) {
             String titulos[] = {"N", "Fecha", "Cliente", "Empleado", "Precio Total"};
             modelo.setColumnIdentifiers(titulos);
             float total1 = 0;
@@ -1386,6 +1420,33 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             registrosDeVenta.lbTotal.setText(String.format("%.2f", total1));
         }
         //***********Fin mostrarVenta**********//
+        //        //**************ProductoModi****************//
+       else if (padreActiva.equals("registrosDeProductos")) {
+            String titulos[] = {"Codigo", "Nombre", "Cantidad", "Precio Unitario", "Iva", "Ganacia","Precio Compra", "Precio Venta", "fecha de Vencimiento", "Max", "Min",  "Empresa",  "Total"};
+            modelo.setColumnIdentifiers(titulos);
+            
+            float precioUni = 0;
+            float totalUni = 0;
+            float total2 = 0;
+            int i = 0;
+            for (Object obj : lista) {
+                Producto x = (Producto) obj;
+                this.registrosDeProductos.jtDatos.editCellAt(3, i);
+                precioUni = (float) (x.getPrecioCompra()/x.getCantidad());
+                totalUni = (float) (x.getPrecioVenta()*x.getCantidad());
+                Object datos[] = {x.getCodigoProducto(),x.getNombreProducto(), x.getCantidad(),precioUni,x.getIva()
+                        ,x.getGananciaUni(),x.getPrecioCompra(),x.getPrecioVenta(),x.getFechaVencimiento(), 
+                        x.getMax(), x.getMin(),x.getEmpresa().getNombre(),totalUni};///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                total2 = total2 +totalUni;
+                modelo.addRow(datos);
+                i++;
+              
+            }
+            this.registrosDeProductos.jtDatos.setModel(modelo);
+            this.registrosDeProductos.lbTotal.setText("$"+String.format("%.2f", total2));
+        }
+        //************Fin productoModi*************//
+        
 
     }
 

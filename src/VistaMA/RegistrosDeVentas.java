@@ -1,6 +1,7 @@
 package VistaMA;
 
 import Controlador.ControlMA;
+import static VistaLogin.Login.LogoE;
 import VistaMV.Fondo;
 
 public class RegistrosDeVentas extends javax.swing.JDialog {
@@ -12,7 +13,7 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         x = "x";
-        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
+        jpLogo1.setBorder(new Fondo(LogoE));
         
     }
      public void setControlador(ControlMA control1) {

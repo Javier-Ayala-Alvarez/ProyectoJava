@@ -5,12 +5,14 @@ import VistaMV.Fondo;
 import javax.swing.ImageIcon;
 
 public class Login extends javax.swing.JFrame {
-
+public static String LogoE= "/img/Logo.jpg";
     /**
      * Creates new form inicio
      */
     public Login() {
         initComponents();
+        
+        this.setIconImage(new ImageIcon(getClass().getResource(LogoE)).getImage());
         this.btnEntrar.setActionCommand("Entrar");
         setLocationRelativeTo(null);
         jpLogo12.setBorder(new Fondo("/img/login.png"));
@@ -72,7 +74,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
+        setTitle("Sistema de Venta");
         setBackground(new java.awt.Color(102, 0, 102));
         setFocusCycleRoot(false);
         setFocusTraversalPolicyProvider(true);

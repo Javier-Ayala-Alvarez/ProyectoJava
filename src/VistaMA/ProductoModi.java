@@ -5,6 +5,7 @@ import Controlador.ControlMA;
 import VistaMV.*;
 import VistaMA.*;
 import Modelo.GastoEmpresa;
+import static VistaLogin.Login.LogoE;
 import static VistaMA.GastosGM.tfBuscar;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,7 +27,7 @@ public class ProductoModi extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
+        jpLogo1.setBorder(new Fondo(LogoE));
         btAgregar.setActionCommand("Agregar");
         btModificar.setActionCommand("Modificar");
         btGenerar.setActionCommand("Generar");

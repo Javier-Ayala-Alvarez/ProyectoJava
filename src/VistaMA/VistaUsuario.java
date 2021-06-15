@@ -1,6 +1,7 @@
 package VistaMA;
 
 import Controlador.ControlMA;
+import static VistaLogin.Login.LogoE;
 import VistaMV.Fondo;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ public class VistaUsuario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         x = "x";
-        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
+        jpLogo1.setBorder(new Fondo(LogoE));
         this.btnGuardar.setActionCommand("Agregar");
         this.tfUsuario.setEditable(false);
 

@@ -1,5 +1,6 @@
 package VistaMA;
 import Controlador.ControlMA;
+import static VistaLogin.Login.LogoE;
 import javax.swing.table.DefaultTableModel;
 import VistaMV.Fondo;
 import java.util.Date;
@@ -12,7 +13,7 @@ public class ClienteMA extends javax.swing.JDialog {
     public ClienteMA(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
+        jpLogo1.setBorder(new Fondo(LogoE));
         btnModificar.setActionCommand("Modificar");
         
 

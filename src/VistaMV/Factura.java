@@ -2,6 +2,8 @@ package VistaMV;
 
 import Controlador.ControlFactura;
 import Controlador.ControlLogin;
+import static VistaLogin.Login.LogoE;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class Factura extends javax.swing.JFrame {
@@ -11,10 +13,10 @@ public class Factura extends javax.swing.JFrame {
     public Factura() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);//PANTALLA COMPLETA
-        escritorioFactura.setBorder(new Fondo("/img/Fondo.jpg"));
+        escritorioFactura.setBorder(new Fondo(LogoE));
         jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
         res = "res";
-        //jpEscritorio1 (nombreOriginal)
+        this.setIconImage(new ImageIcon(getClass().getResource(LogoE)).getImage());
         tfBuscar.setActionCommand("buscar");
         btnTiket.setActionCommand("tiket");
         btnFacturacion.setActionCommand("facturacion");

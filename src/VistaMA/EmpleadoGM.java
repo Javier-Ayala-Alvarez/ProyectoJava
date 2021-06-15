@@ -1,6 +1,7 @@
 package VistaMA;
 
 import Controlador.ControlMA;
+import static VistaLogin.Login.LogoE;
 import VistaMV.Fondo;
 
 public class EmpleadoGM extends javax.swing.JDialog {
@@ -12,7 +13,7 @@ public class EmpleadoGM extends javax.swing.JDialog {
 
         initComponents();
        setEstado(parametro);
-        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
+        jpLogo1.setBorder(new Fondo(LogoE));
          btnModificar.setActionCommand("Modificar");
          btnEliminar1.setActionCommand("Eliminar");
          

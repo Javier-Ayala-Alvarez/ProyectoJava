@@ -2,9 +2,11 @@ package VistaMA;
 
 import Controlador.ControlLogin;
 import Controlador.ControlMA;
+import static VistaLogin.Login.LogoE;
 import java.awt.Color;
 import javax.swing.JFrame;
 import VistaMV.Fondo;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class MenuAdministrador extends javax.swing.JFrame {
@@ -17,7 +19,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         initComponents();
         //this.setResizable(false);//No Maximo
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);//PANTALLA COMPLETA
-        
+        this.setIconImage(new ImageIcon(getClass().getResource(LogoE)).getImage());
         jpEscritorio.setBorder(new Fondo("/img/Fondo.jpg"));
         xm = "xm";
         jMenu.setBackground(Color.yellow);

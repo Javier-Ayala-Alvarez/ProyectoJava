@@ -1,5 +1,6 @@
 package VistaMA;
 import Controlador.ControlMA;
+import static VistaLogin.Login.LogoE;
 import javax.swing.table.DefaultTableModel;
 import VistaMV.Fondo;
 import java.util.Date;
@@ -12,7 +13,7 @@ public class GastosGM extends javax.swing.JDialog {
     public GastosGM(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
+        jpLogo1.setBorder(new Fondo(LogoE));
         btnAgregar.setActionCommand("Agregar");
         btnEliminar.setActionCommand("Eliminar");
         btnModificar.setActionCommand("Modificar");

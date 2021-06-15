@@ -1,6 +1,7 @@
 
 package Modelo;
 
+import Modelo.dao.EmpresaDao;
 import java.util.Date;
 
 public class Producto {
@@ -176,6 +177,9 @@ public class Producto {
     }
 
     public Empresa getEmpresa() {
+        EmpresaDao daoEmpresa = new EmpresaDao();
+        empresa = daoEmpresa.selectId(empresa.getIdEmpresa()).get(0);
+
         return empresa;
     }
 
