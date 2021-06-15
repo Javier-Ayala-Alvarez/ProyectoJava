@@ -555,12 +555,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             //Fin de Variable
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll1();
             for (GastoEmpresa x : gastos) {
-
                 if (!(x.getCategoria().equals("Impuesto de Alcaldia")
                         || (x.getCategoria().equals("Pago de Energia"))
                         || (x.getCategoria().equals("Pago de Alquiler"))
                         || (x.getCategoria().equals("Pago de Agua")))) {
-
                     Object datos[] = {x.getCodigoGastos(), x.getCategoria(), x.getFecha(), x.getSaldo(), x.getEmpleado().getNombre()};
 
                     modelo.addRow(datos);
@@ -583,7 +581,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     salarioT = salarioT + x.getSaldo();
                 }
 
-
+            }
             GastosGM.jtDatos.setModel(modelo);
             this.gastosGM.lbAlcaldiaTotal.setText("$" + String.format("%.2f", alcaldiaT));
             this.gastosGM.lbAlcaldiaC.setText(String.valueOf(alcaldiaC));
@@ -601,7 +599,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.gastosGM.lbSalarioC.setText(String.valueOf(salarioC));
 
             this.gastosGM.lbTotalReporte.setText("$" + String.format("%.2f", totalR));
-            }
+           
         }
         ////////////******FINAL GASTOS EMPLEADO********/////////////////
         ////////////******GASTOS EMPRESA********/////////////////
@@ -772,9 +770,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         
         String correlativo = a;
         int corre = 0;
-        if (activa.equals("GastosGM") || activa.equals("GastosGM1")) {
-            ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
-            for (GastoEmpresa x : gastos) {
+        if (activa.equals("Gastos")) {
+            ArrayList<GastoEmpresa> gasto;
+            gasto = daoGasto.selectAll();
+            for (GastoEmpresa x : gasto) {
                 corre = x.getIdGasto();
 
             }
@@ -883,10 +882,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 aler.show();
             }
 
-        } else if (e.getActionCommand().equals("Generar") && (padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1"))) {
+        } else if (e.getActionCommand().equals("Generar") && ((padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1")))) {
             String iniciales = "EG-";
 
-            this.gastosGM.tfCodigo.setText(crearCodigo(iniciales,padreActiva));
+            this.gastosGM.tfCodigo.setText(crearCodigo(iniciales,"Gastos"));
 
         } else if (e.getActionCommand().equals("Eliminar")
                 && (padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1"))) {
@@ -1374,15 +1373,13 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     @Override
     public void mouseClicked(MouseEvent me) {
         /* Gastos */
-        if (padreActiva.equals("gastosGM")) {
+        if (padreActiva.equals("gastosGM1")||padreActiva.equals("gastosGM")) {
             int fila = GastosGM.jtDatos.getSelectedRow();
             String id = GastosGM.jtDatos.getValueAt(fila, 0).toString();
             ArrayList<GastoEmpresa> lista = daoGasto.selectAllTo("codigoGasto", id);
             gastoSeleccionado = lista.get(0);
             String codigo = GastosGM.jtDatos.getValueAt(fila, 0).toString();
-            String cate = GastosGM.jtDatos.getValueAt(fila, 3).toString();
             String pago = GastosGM.jtDatos.getValueAt(fila, 3).toString();
-            String fecha = GastosGM.jtDatos.getValueAt(fila, 2).toString();
             GastosGM.tfCodigo.setText(codigo);
             GastosGM.tfPago1.setText(pago);
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
@@ -1392,11 +1389,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     gastosGM.cbTipo.setSelectedItem(x.getCategoria());
                 }
             }
-        } else if (padreActiva.equals("gastosGM1")) {
-            int fila = GastosGM.jtDatos.getSelectedRow();
-            String id = GastosGM.jtDatos.getValueAt(fila, 0).toString();
-            ArrayList<GastoEmpresa> lista = daoGasto.selectAllTo("codigoGasto", id);
-            gastoSeleccionado = lista.get(0);
+//        } else if (padreActiva.equals("gastosGM")) {
+//            int fila = GastosGM.jtDatos.getSelectedRow();
+//            String id = GastosGM.jtDatos.getValueAt(fila, 0).toString();
+//            ArrayList<GastoEmpresa> lista = daoGasto.selectAllTo("codigoGasto", id);
+//            gastoSeleccionado = lista.get(0);
 
         } else if (padreActiva.equals("consultarCliente")) {
             int fila = ClienteMA.jtDatos.getSelectedRow();
