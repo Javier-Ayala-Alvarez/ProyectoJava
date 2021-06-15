@@ -1373,7 +1373,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     @Override
     public void mouseClicked(MouseEvent me) {
         /* Gastos */
-        if (padreActiva.equals("gastosGM1")||padreActiva.equals("gastosGM")) {
+        if (padreActiva.equals("gastosGM")) {
             int fila = GastosGM.jtDatos.getSelectedRow();
             String id = GastosGM.jtDatos.getValueAt(fila, 0).toString();
             ArrayList<GastoEmpresa> lista = daoGasto.selectAllTo("codigoGasto", id);
@@ -1389,11 +1389,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     gastosGM.cbTipo.setSelectedItem(x.getCategoria());
                 }
             }
-//        } else if (padreActiva.equals("gastosGM")) {
-//            int fila = GastosGM.jtDatos.getSelectedRow();
-//            String id = GastosGM.jtDatos.getValueAt(fila, 0).toString();
-//            ArrayList<GastoEmpresa> lista = daoGasto.selectAllTo("codigoGasto", id);
-//            gastoSeleccionado = lista.get(0);
+        } else if (padreActiva.equals("gastosGM1")) {
+            int fila = GastosGM.jtDatos.getSelectedRow();
+            String id = GastosGM.jtDatos.getValueAt(fila, 0).toString();
+            ArrayList<GastoEmpresa> lista = daoGasto.selectAllTo("codigoGasto", id);
+            gastoSeleccionado = lista.get(0);
 
         } else if (padreActiva.equals("consultarCliente")) {
             int fila = ClienteMA.jtDatos.getSelectedRow();
