@@ -674,7 +674,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         ////////////******ClienteMA********/////////////////
         else if (padreActiva.equals("consultarCliente")) {
             double totalV = 0;
-            String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion", "Total De Compra"};
+            String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Cliente> cliente2 = daoCliente.selectAll();
             for (Cliente x : cliente2) {
@@ -1322,7 +1322,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
         ////////////******ClienteMA********/////////////////
         if (padreActiva.equals("consultarCliente")) {
-            String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion", "Total De Compra"};
+            String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion"};
             modelo.setColumnIdentifiers(titulos);
              this.clienteMA.jtDatos.setModel(modelo);
             ArrayList<Cliente> cliente = daoCliente.selectAll();
