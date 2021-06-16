@@ -22,8 +22,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource(LogoE)).getImage());
         jpEscritorio.setBorder(new Fondo("/img/Fondo.jpg"));
         xm = "xm";
-        jMenu.setBackground(Color.yellow);
-        jMenu.setBackground(Color.yellow);
+       
         jpCaja.setBorder(new Fondo("/img/dolar.png"));
         jpCompras.setBorder(new Fondo("/img/Compra.png"));
         jpProductos.setBorder(new Fondo("/img/producto2.png"));
@@ -342,7 +341,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
                 .addComponent(btnEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         panel1.setBackground(new java.awt.Color(142, 177, 213));
@@ -691,8 +690,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jMenu.setBackground(new java.awt.Color(54, 139, 200));
-        jMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        jMenu.setBackground(new java.awt.Color(71, 139, 184));
+        jMenu.setBorder(null);
+        jMenu.setAlignmentX(1.0F);
         jMenu.setAlignmentY(22.0F);
         jMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -700,11 +700,13 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jMenu.setFocusCycleRoot(true);
         jMenu.setFocusTraversalPolicyProvider(true);
         jMenu.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jMenu.setMinimumSize(new java.awt.Dimension(10, 10));
+        jMenu.setMinimumSize(new java.awt.Dimension(12, 12));
 
+        menuVenta.setForeground(new java.awt.Color(255, 255, 255));
         menuVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/venta.png"))); // NOI18N
         menuVenta.setText("Venta");
         menuVenta.setActionCommand("menuVenta");
+        menuVenta.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         btnRegistrarFacturaItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         btnRegistrarFacturaItem.setText("Registro de Factura");
@@ -726,9 +728,11 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         jMenu.add(menuVenta);
 
+        menuProductos.setForeground(new java.awt.Color(255, 255, 255));
         menuProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/producto.png"))); // NOI18N
         menuProductos.setText("Productos");
         menuProductos.setActionCommand("menuProductos");
+        menuProductos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         guardarProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         guardarProducto.setText("Productos");
@@ -749,9 +753,11 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         jMenu.add(menuProductos);
 
+        menuEmpleado.setForeground(new java.awt.Color(255, 255, 255));
         menuEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Empleado.png"))); // NOI18N
         menuEmpleado.setText("Empleado");
         menuEmpleado.setActionCommand("menuEmpleado");
+        menuEmpleado.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         consultarEmpleado.setText("Consultar Empleados");
         consultarEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -787,8 +793,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         jMenu.add(menuEmpleado);
 
+        menuCliente.setForeground(new java.awt.Color(255, 255, 255));
         menuCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cliente.png"))); // NOI18N
         menuCliente.setText("Cliente");
+        menuCliente.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         consultarCliente.setText("Consultar");
         consultarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -800,8 +808,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         jMenu.add(menuCliente);
 
+        menuGDS.setForeground(new java.awt.Color(255, 255, 255));
         menuGDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gastos.png"))); // NOI18N
         menuGDS.setText("Pagos de Sucursal");
+        menuGDS.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         opcionesGDS.setText("Gastos Administrativo");
         opcionesGDS.addActionListener(new java.awt.event.ActionListener() {
@@ -821,8 +831,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         jMenu.add(menuGDS);
 
+        jMenu13.setForeground(new java.awt.Color(255, 255, 255));
         jMenu13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/configuracion.png"))); // NOI18N
         jMenu13.setText("Configuraciones");
+        jMenu13.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         modificarEmpresa.setText("Modificar");
         modificarEmpresa.addActionListener(new java.awt.event.ActionListener() {
@@ -961,9 +973,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JMenuItem consultarEmpleado;
     private javax.swing.JMenuItem consultarEmpresa;
     public javax.swing.JMenuItem consultarProducto;
-    public javax.swing.JMenuItem eliminarFacturaItem;
-    public javax.swing.JMenuItem eliminarProducto;
-    public javax.swing.JMenuItem eliminarEmpleado;
     public javax.swing.JMenuItem guardarEmpleado;
     public javax.swing.JMenuItem guardarProducto;
     public javax.swing.JMenuItem guardarUsuario;

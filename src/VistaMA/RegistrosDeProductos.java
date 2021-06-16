@@ -11,6 +11,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
     public RegistrosDeProductos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocation(40, 80);
         x = "x";
         jpLogo1.setBorder(new Fondo(LogoE));
         
@@ -27,11 +28,6 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rSCalendar1 = new rojeru_san.componentes.RSCalendar();
-        roboto1 = new efectos.Roboto();
-        materialButtonCircle1 = new principal.MaterialButtonCircle();
-        jLabel2 = new javax.swing.JLabel();
-        btnEliminar = new javax.swing.JButton();
         panelFondo = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
@@ -43,23 +39,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         jLabel4 = new javax.swing.JLabel();
-
-        materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
-        materialButtonCircle1.setText("X");
-        materialButtonCircle1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                materialButtonCircle1ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("TOTAL");
-
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
+        btnAumentar = new rojeru_san.complementos.RSButtonHover();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -74,7 +54,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
 
         panelFondo.setBackground(new java.awt.Color(255, 255, 255));
         panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 960, 20));
+        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1080, 20));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
@@ -97,7 +77,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         lbTotal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lbTotal.setForeground(new java.awt.Color(204, 0, 0));
         lbTotal.setText(".");
-        panelFondo.add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 500, 80, -1));
+        panelFondo.add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 520, 80, -1));
 
         jtDatos.setBackground(new java.awt.Color(218, 220, 222));
         jtDatos.setModel(new javax.swing.table.DefaultTableModel(
@@ -137,7 +117,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jtDatos);
 
-        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 960, 340));
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 1060, 340));
 
         tfBuscar.setBackground(new java.awt.Color(213, 216, 221));
         tfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -145,12 +125,12 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
                 tfBuscarKeyTyped(evt);
             }
         });
-        panelFondo.add(tfBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 90, 250, 30));
+        panelFondo.add(tfBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 290, 40));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Buscar...");
-        panelFondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 80, 50));
+        panelFondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 80, 50));
 
         materialButtonCircle2.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle2.setText("X");
@@ -164,22 +144,31 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
                 materialButtonCircle2ActionPerformed(evt);
             }
         });
-        panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 50, 50));
+        panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 10, 50, 50));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("TOTAL:");
-        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 500, -1, -1));
+        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 520, -1, -1));
+
+        btnAumentar.setBackground(new java.awt.Color(0, 102, 102));
+        btnAumentar.setText("Comprar");
+        btnAumentar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAumentarActionPerformed(evt);
+            }
+        });
+        panelFondo.add(btnAumentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 190, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -194,15 +183,6 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         
     }//GEN-LAST:event_formWindowClosing
 
-    private void materialButtonCircle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle1ActionPerformed
-        
-
-    }//GEN-LAST:event_materialButtonCircle1ActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
     private void tfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyTyped
 
     }//GEN-LAST:event_tfBuscarKeyTyped
@@ -214,6 +194,10 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
     private void materialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle2ActionPerformed
 
     }//GEN-LAST:event_materialButtonCircle2ActionPerformed
+
+    private void btnAumentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAumentarActionPerformed
+
+    }//GEN-LAST:event_btnAumentarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,8 +227,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JLabel jLabel2;
+    public rojeru_san.complementos.RSButtonHover btnAumentar;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -253,11 +236,8 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
     private javax.swing.JPanel jpLogo1;
     public static javax.swing.JTable jtDatos;
     public static javax.swing.JLabel lbTotal;
-    private principal.MaterialButtonCircle materialButtonCircle1;
     private principal.MaterialButtonCircle materialButtonCircle2;
     private javax.swing.JPanel panelFondo;
-    private rojeru_san.componentes.RSCalendar rSCalendar1;
-    private efectos.Roboto roboto1;
     public static principal.MaterialTextField tfBuscar;
     // End of variables declaration//GEN-END:variables
 }
