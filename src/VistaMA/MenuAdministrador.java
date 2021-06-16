@@ -132,7 +132,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         btnVentas = new rojeru_san.complementos.RSButtonHover();
         panel1 = new javax.swing.JPanel();
         jpCaja = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lbCaja = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         panel2 = new javax.swing.JPanel();
         jpCompras = new javax.swing.JPanel();
@@ -140,7 +140,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         panel3 = new javax.swing.JPanel();
         jpProductos = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        lbProducto1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         panel4 = new javax.swing.JPanel();
         jpPercede = new javax.swing.JPanel();
@@ -152,7 +152,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         panel6 = new javax.swing.JPanel();
         jpCliente = new javax.swing.JPanel();
-        tfClienteT = new javax.swing.JLabel();
+        lbClienteT = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jMenu = new javax.swing.JMenuBar();
         menuVenta = new javax.swing.JMenu();
@@ -359,8 +359,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
             .addGap(0, 62, Short.MAX_VALUE)
         );
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel3.setText("$0:00");
+        lbCaja.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lbCaja.setText("$0:00");
 
         jLabel4.setText("Inicio de caja");
 
@@ -370,7 +370,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel3)
+                .addComponent(lbCaja)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(jpCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -385,7 +385,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(jLabel3))
+                        .addComponent(lbCaja))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jpCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -460,8 +460,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
             .addGap(0, 62, Short.MAX_VALUE)
         );
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel7.setText("$0:00");
+        lbProducto1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lbProducto1.setText("$0:00");
 
         jLabel8.setText("Productos ingresados");
 
@@ -471,7 +471,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel7)
+                .addComponent(lbProducto1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jpProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -486,7 +486,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
                 .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel3Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(jLabel7)
+                        .addComponent(lbProducto1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -613,8 +613,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
             .addGap(0, 62, Short.MAX_VALUE)
         );
 
-        tfClienteT.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        tfClienteT.setText("0:00");
+        lbClienteT.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lbClienteT.setText("0:00");
 
         jLabel16.setText("Cliente");
 
@@ -624,7 +624,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
             panel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(tfClienteT)
+                .addComponent(lbClienteT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(jpCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
@@ -639,7 +639,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
                 .addGroup(panel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel6Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(tfClienteT)
+                        .addComponent(lbClienteT)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -982,11 +982,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public static javax.swing.JMenuBar jMenu;
@@ -1011,7 +1009,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel jpPercede;
     private javax.swing.JPanel jpProductos;
     private javax.swing.JPanel jpVencer;
+    public javax.swing.JLabel lbCaja;
+    public static javax.swing.JLabel lbClienteT;
     public static javax.swing.JLabel lbEmpresa1;
+    public static javax.swing.JLabel lbProducto1;
     private efectos.MaterialShadowCircle materialShadowCircle1;
     private efectos.MaterialShadowCircle materialShadowCircle2;
     public javax.swing.JMenu menuCliente;
@@ -1028,6 +1029,5 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JPanel panel4;
     public javax.swing.JPanel panel5;
     public javax.swing.JPanel panel6;
-    public static javax.swing.JLabel tfClienteT;
     // End of variables declaration//GEN-END:variables
 }

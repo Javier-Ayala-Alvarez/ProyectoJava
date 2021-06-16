@@ -152,7 +152,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 520, -1, -1));
 
         btnAumentar.setBackground(new java.awt.Color(0, 102, 102));
-        btnAumentar.setText("Comprar");
+        btnAumentar.setText("Actualizar Cantidad");
         btnAumentar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAumentarActionPerformed(evt);
@@ -168,7 +168,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
         );
 
         pack();

@@ -5,6 +5,7 @@ import Modelo.Empleados;
 import Modelo.Empresa;
 import Modelo.Encriptacion;
 import Modelo.GastoEmpresa;
+import Modelo.InicioCaja;
 import Modelo.Producto;
 import Modelo.Usuario;
 import Modelo.Registro;
@@ -13,13 +14,13 @@ import Modelo.dao.ClienteDao;
 import Modelo.dao.EmpleadoDao;
 import Modelo.dao.EmpresaDao;
 import Modelo.dao.Gastosdao;
+import Modelo.dao.InicioCajaDao;
 import Modelo.dao.ProductoDao;
 import Modelo.dao.UsuarioDao;
 
 import Modelo.dao.VentaDao;
 import VistaLogin.Alerta;
 import VistaLogin.Login;
-import static VistaLogin.Login.LogoE;
 import VistaMA.ClienteMA;
 import VistaMA.ConsultarVentas;
 
@@ -34,8 +35,6 @@ import VistaMA.UsuarioGM;
 import VistaMA.VistaEmpresa;
 import VistaMA.VistaUsuario;
 import VistaMV.Factura;
-import VistaMV.Fondo;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -103,6 +102,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     //****Fin productoModi****//
     RegistrosDeProductos registrosDeProductos;
     RegistrosDeVentas registrosDeVentas;
+    InicioCajaDao daoCaja;
+    InicioCaja inicioCaja;
 
     private String padreActiva = "", hijaActiva = "";
     private JLabel label = new JLabel();
@@ -524,7 +525,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
     public void mostrarDatos() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel();              
+        ////////////******TOTAL InicioCaja********/////////////////
+                
+//       ArrayList<InicioCaja> caja1 = daoCaja.selectAll();
+//        double inicio = 0;
+//        for (InicioCaja x : caja1) {
+//            inicio = x.getDineroInicio();
+//        }
+//        this.menuAdministrador.lbCaja.setText("$"+String.format("%.2f", inicio));
+        ////////////******FIN DE TOTAL InicioCaja********/////////////////
         ////////////******NOMBRE DE LA TIENDA********/////////////////
         String nombre = "";
         ArrayList<Empresa> empresa = daoEmpresa.selectAll();
@@ -545,8 +555,19 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         for (Cliente x : cliente) {
             total++;
         }
-        this.menuAdministrador.tfClienteT.setText(String.format("%.2f", total));
+        this.menuAdministrador.lbClienteT.setText(String.format("%.2f", total));
         ////////////******FIN DE TOTAL CLIENTE********/////////////////
+
+        ///////////*******PRODUCTO********************////////////////
+        float totalV = 0;
+        float totalUni1 = 0;
+        ArrayList<Producto> producto1 = daoProducto.selectAll();
+            for (Producto x : producto1) {
+                totalUni1 = (float) (x.getPrecioVenta()*x.getCantidad());
+                totalV = (float) (totalV + totalUni1);
+            }
+        this.menuAdministrador.lbProducto1.setText(String.format("%.2f", totalV));
+        ///////////*******fIN DE PRODUCTO************////////////////
         ////////////******GASTOS EMPLEADO********/////////////////
 
         if (padreActiva.equals("gastosGM1")) {
@@ -685,7 +706,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } ////////////******FINAL EMPRESA********/////////////////
         ////////////******ClienteMA********/////////////////
         else if (padreActiva.equals("consultarCliente")) {
-            double totalV = 0;
+            
             String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Cliente> cliente2 = daoCliente.selectAll();
@@ -704,7 +725,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             ArrayList<Producto> producto = daoProducto.selectAll();
             float precioUni = 0;
             float totalUni = 0;
-            float total2 = 0;
+            float total0 = 0;
             int i = 0;
             for (Producto x : producto) {
                 this.registrosDeProductos.jtDatos.editCellAt(3, i);
@@ -713,13 +734,13 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 Object datos[] = {x.getCodigoProducto(),x.getNombreProducto(), x.getCantidad(),precioUni,x.getIva()
                         ,x.getGananciaUni(),x.getPrecioCompra(),x.getPrecioVenta(),x.getFechaVencimiento(), 
                         x.getMax(), x.getMin(),x.getEmpresa().getNombre(),totalUni};///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                total2 = total2 +totalUni;
+                total0 = total0 +totalUni;
                 modelo.addRow(datos);
                 i++;
               
             }
             this.registrosDeProductos.jtDatos.setModel(modelo);
-            this.registrosDeProductos.lbTotal.setText("$"+String.format("%.2f", total2));
+            this.registrosDeProductos.lbTotal.setText("$"+String.format("%.2f", total0));
         }
         //************Fin productoModi*************//
 
@@ -766,9 +787,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         else if (padreActiva.equals("registroVentas")) {
             String titulos[] = {"N", "Fecha", "Cliente", "Empleado", "Precio Total"};
             modelo.setColumnIdentifiers(titulos);
-            ArrayList<Venta> venta = daoVenta.selectAll();
+            ArrayList<Venta> venta1 = daoVenta.selectAll();
             float total1 = 0;
-            for (Venta x : venta) {
+            for (Venta x : venta1) {
 
                 Object datos[] = {x.getnFactura(), x.getFechaVenta(), x.getCliente().getNombre(), x.getEmpleado().getNombre(), x.getSaldoTotal()};
                 modelo.addRow(datos);
@@ -777,6 +798,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             registrosDeVenta.jtDatos.setModel(modelo);
             registrosDeVenta.lbTotal.setText(String.format("%.2f", total1));
         }
+        
         //************Fin registroVentas*************//
     }
 

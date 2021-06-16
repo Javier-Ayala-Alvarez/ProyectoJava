@@ -15,10 +15,13 @@ import java.util.Date;
  */
 public class InicioCaja {
     private int idAdminCaja;
+     private String codigoCaja;
     private Date fechaInicio,fechaCierre;
     private double dineroInicio,dineroCierre;
-    private ArrayList<Venta> ventas;
+
     private  Usuario usuario;
+    
+   
   
 
     public InicioCaja(int idAdminCaja, Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre) {
@@ -43,6 +46,10 @@ public class InicioCaja {
 
     public InicioCaja(int idAdminCaja) {
         this.idAdminCaja = idAdminCaja;
+    }
+
+    public InicioCaja(double dineroInicio) {
+        this.dineroInicio = dineroInicio;
     }
     
     
@@ -87,15 +94,26 @@ public class InicioCaja {
         this.dineroCierre = dineroCierre;
     }
 
-   
-    
-    public void addVenta(Venta x)
-    {
-        ventas.add(x);
-    }
      public void addUsuario(Usuario x)
     {
        this.usuario =x;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getCodigoCaja() {
+        return codigoCaja;
+    }
+
+    public void setCodigoCaja(String codigoCaja) {
+        this.codigoCaja = codigoCaja;
+    }
+     
+     
 }
