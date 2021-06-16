@@ -15,7 +15,7 @@ public class vistaBono extends javax.swing.JDialog {
         x = "x";
         jpLogo1.setBorder(new Fondo(LogoE));
         this.btnGuardar.setActionCommand("Agregar");
-        this.tfUsuario.setEditable(false);
+       
 
     }
 
@@ -47,7 +47,7 @@ public class vistaBono extends javax.swing.JDialog {
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        tfUsuario = new principal.MaterialTextField();
+        tfBono = new principal.MaterialTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tfCombobox = new javax.swing.JComboBox<>();
@@ -109,10 +109,10 @@ public class vistaBono extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Cantidad");
 
-        tfUsuario.setBackground(new java.awt.Color(213, 216, 221));
-        tfUsuario.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        tfUsuario.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        tfUsuario.setSelectionColor(new java.awt.Color(102, 153, 255));
+        tfBono.setBackground(new java.awt.Color(213, 216, 221));
+        tfBono.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        tfBono.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        tfBono.setSelectionColor(new java.awt.Color(102, 153, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,7 +122,7 @@ public class vistaBono extends javax.swing.JDialog {
                 .addContainerGap(80, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
-                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfBono, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(116, 116, 116))
         );
         jPanel1Layout.setVerticalGroup(
@@ -130,7 +130,7 @@ public class vistaBono extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfBono, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -143,7 +143,7 @@ public class vistaBono extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Tipo de empleado");
 
-        tfCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cajero", "Administrador", "Supervisor", " " }));
+        tfCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Cajero", "Administrador", "Supervisor", "ordenanza" }));
         tfCombobox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tfComboboxMouseClicked(evt);
@@ -269,7 +269,7 @@ public class vistaBono extends javax.swing.JDialog {
     private javax.swing.JPanel panelFondo;
     private rojeru_san.componentes.RSCalendar rSCalendar1;
     private efectos.Roboto roboto1;
+    public principal.MaterialTextField tfBono;
     public javax.swing.JComboBox<String> tfCombobox;
-    public principal.MaterialTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

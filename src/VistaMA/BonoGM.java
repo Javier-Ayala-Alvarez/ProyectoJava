@@ -3,21 +3,20 @@ package VistaMA;
 import Controlador.ControlMA;
 import static VistaLogin.Login.LogoE;
 import VistaMV.Fondo;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.category.DefaultCategoryDataset;
 
-public class UsuarioGM extends javax.swing.JDialog {
-    
+public class BonoGM extends javax.swing.JDialog {
+
   //  public static String x;
     
-    public UsuarioGM(java.awt.Frame parent, boolean modal,boolean parametro) {
+    public BonoGM(java.awt.Frame parent, boolean modal,boolean parametro) {
         super(parent, modal);
 
         initComponents();
        setEstado(parametro);
         jpLogo1.setBorder(new Fondo(LogoE));
          btnModificar.setActionCommand("Modificar");
-           
+        
+         
          
     }
     
@@ -29,17 +28,17 @@ public class UsuarioGM extends javax.swing.JDialog {
        if (!estado) {
     
             btnModificar.setVisible(false);
-            
+           
         }else{
             btnModificar.setVisible(true);
-            
+           
         }
     }
       public void setControlador(ControlMA control){
         this.btnModificar.addActionListener(control);
-         
-        this.tbEmpleados.addMouseListener(control);
-        this.buscar.addKeyListener(control);
+       
+        this.tbBono.addMouseListener(control);
+       
     }
 
     
@@ -51,14 +50,12 @@ public class UsuarioGM extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         panelFondo = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        Usuario = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jpLogo1 = new javax.swing.JPanel();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbEmpleados = new javax.swing.JTable();
+        tbBono = new javax.swing.JTable();
         btnModificar = new rojeru_san.complementos.RSButtonHover();
-        buscar = new principal.MaterialTextField();
-        jLabel1 = new javax.swing.JLabel();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -85,12 +82,12 @@ public class UsuarioGM extends javax.swing.JDialog {
         panelFondo.setMinimumSize(new java.awt.Dimension(1050, 590));
         panelFondo.setPreferredSize(new java.awt.Dimension(1050, 590));
         panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1050, 20));
+        panelFondo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 580, 20));
 
-        Usuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Usuario.setForeground(new java.awt.Color(102, 102, 102));
-        Usuario.setText("Usuarios");
-        panelFondo.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 210, 60));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setText("BONO");
+        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, -1, 60));
 
         javax.swing.GroupLayout jpLogo1Layout = new javax.swing.GroupLayout(jpLogo1);
         jpLogo1.setLayout(jpLogo1Layout);
@@ -112,10 +109,10 @@ public class UsuarioGM extends javax.swing.JDialog {
                 materialButtonCircle2ActionPerformed(evt);
             }
         });
-        panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 10, 50, 50));
+        panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 50, 50));
 
-        tbEmpleados.setBackground(new java.awt.Color(218, 220, 222));
-        tbEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+        tbBono.setBackground(new java.awt.Color(218, 220, 222));
+        tbBono.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -150,37 +147,27 @@ public class UsuarioGM extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbEmpleados);
+        jScrollPane1.setViewportView(tbBono);
 
-        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1000, 410));
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 410, 300));
 
-        btnModificar.setText("Modificar Contraseña");
+        btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
-        panelFondo.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 550, 180, 40));
-
-        buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
-            }
-        });
-        panelFondo.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 9, 180, 40));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
-        panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 40, 60));
+        panelFondo.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 130, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 452, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -208,10 +195,6 @@ public class UsuarioGM extends javax.swing.JDialog {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 
     }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,17 +224,15 @@ public class UsuarioGM extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Usuario;
     public rojeru_san.complementos.RSButtonHover btnModificar;
-    public principal.MaterialTextField buscar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jpLogo1;
     private principal.MaterialButtonCircle materialButtonCircle1;
     private principal.MaterialButtonCircle materialButtonCircle2;
     public javax.swing.JPanel panelFondo;
-    public javax.swing.JTable tbEmpleados;
+    public javax.swing.JTable tbBono;
     // End of variables declaration//GEN-END:variables
 }

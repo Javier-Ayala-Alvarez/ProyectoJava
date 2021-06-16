@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.Bono;
 import Modelo.Cliente;
 import Modelo.Empleados;
 import Modelo.Empresa;
@@ -10,6 +11,7 @@ import Modelo.Producto;
 import Modelo.Usuario;
 import Modelo.Registro;
 import Modelo.Venta;
+import Modelo.dao.BonoDao;
 import Modelo.dao.ClienteDao;
 import Modelo.dao.EmpleadoDao;
 import Modelo.dao.EmpresaDao;
@@ -21,6 +23,7 @@ import Modelo.dao.UsuarioDao;
 import Modelo.dao.VentaDao;
 import VistaLogin.Alerta;
 import VistaLogin.Login;
+import VistaMA.BonoGM;
 import VistaMA.ClienteMA;
 import VistaMA.ConsultarVentas;
 
@@ -34,6 +37,7 @@ import VistaMA.RegistrosDeVentas;
 import VistaMA.UsuarioGM;
 import VistaMA.VistaEmpresa;
 import VistaMA.VistaUsuario;
+import VistaMA.vistaBono;
 import VistaMV.Factura;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,8 +53,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 public class ControlMA extends MouseAdapter implements ActionListener, KeyListener, ItemListener {
+    
+    //para las graficas
+    JFreeChart grafico;
+    DefaultCategoryDataset dato = new DefaultCategoryDataset();
 // constantes//
 
     static final double AFP = 7.75;
@@ -67,6 +77,13 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     Empleados empleado;
     Empleados empleadosSeleccionanda = null;
     //****Fin Empleado
+       //****Bono****//
+    vistaBono vistaBono;
+    BonoGM bonoGM;
+    BonoDao daoBono = new BonoDao();
+    Bono bono;
+    Bono bonoSelecionado = null;
+    //****Fin Bono
     //****Usuario****//
     VistaUsuario vistaUsuario;
     UsuarioGM usuarioGM;
@@ -106,8 +123,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     InicioCaja inicioCaja;
 
     private String padreActiva = "", hijaActiva = "";
-    private JLabel label = new JLabel();
-    private ImageIcon iconoAumentar = new ImageIcon(getClass().getResource("/img/Logo.jpg"));
+    private final JLabel label = new JLabel();
+    private final ImageIcon iconoAumentar = new ImageIcon(getClass().getResource("/img/Logo.jpg"));
 
     ///******Consulta Factura******////
     ConsultarVentas consultarVentas;
@@ -170,7 +187,13 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             llamarVistaConsulta("consultarUsuario");
         } else if (e.getActionCommand().equals("guardarUsuario")) {
             llamarVistaConsulta("guardarUsuario");
-        } else if (e.getActionCommand().equals("consultarEmpleado")) {
+            
+        } else if (e.getActionCommand().equals("consultarBono")) {
+            llamarVistaConsulta("consultarBono");
+        } else if (e.getActionCommand().equals("guardarBono")) {
+            llamarVistaConsulta("guardarBono");
+            
+        }  else if (e.getActionCommand().equals("consultarEmpleado")) {
             llamarVistaConsulta("consultarEmpleado");
             //finEmpleado
         } else if (e.getActionCommand().equals("consultarCliente")) {
@@ -431,7 +454,32 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             llenarCombo();
             this.vistaUsuario.iniciar();
 
-        } else if (vista.equals("consultarCliente")) {
+        }//fin Usuario
+        //inicio bono
+        else if (vista.equals("consultarBono")) {
+            padreActiva = "bonoGM";
+            this.bonoGM = new BonoGM(menuAdministrador, true, false);
+            this.bonoGM.setControlador(this);
+            mostrarDatos();
+            this.bonoGM.iniciar();
+        } else if (vista.equals("guardarBono")) {
+            this.vistaBono = new vistaBono(menuAdministrador, true);
+            this.vistaBono.setControladorMA(this);
+            padreActiva = "vistaBono";
+            this.vistaBono.iniciar();
+
+        }else if (vista.equals("modificarBono")) {
+            hijaActiva = "vistaBono";
+            this.vistaBono = new vistaBono(menuAdministrador, true);
+            this.vistaBono.setControladorMA(this);
+            this.vistaBono.tfBono.setText(bonoSelecionado.getBono().toString());
+             vistaBono.tfCombobox.removeAllItems();
+            this.vistaBono.tfCombobox.addItem(bonoSelecionado.getCargoEmpleado());
+            this.vistaBono.iniciar();
+            
+
+        }
+        else if (vista.equals("consultarCliente")) {
 
             this.clienteMA = new ClienteMA(menuAdministrador, true);
             this.clienteMA.setControlador(this);
@@ -783,6 +831,19 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             }
             this.usuarioGM.tbEmpleados.setModel(modelo);
         } //------------------------------------------------fin Usuario------------------------------------------------//
+         // ------------------------------------------------Inicio bono------------------------------------------------//
+        else if (padreActiva.equals("bonoGM")) {
+            String titulos[] = {"N", " $ ", "Cargo del Empleado "};
+            modelo.setColumnIdentifiers(titulos);
+            ArrayList<Bono> bonos = daoBono.selectAll();
+            int i = 1;
+            for (Bono x : bonos) {
+                        Object datos[] = {i, x.getBono(), x.getCargoEmpleado()};
+                        modelo.addRow(datos);
+                        i++;
+            }
+            this.bonoGM.tbBono.setModel(modelo);
+        } //------------------------------------------------fin Usuario------------------------------------------------//
         //**************registroVentas****************//
         else if (padreActiva.equals("registroVentas")) {
             String titulos[] = {"N", "Fecha", "Cliente", "Empleado", "Precio Total"};
@@ -1114,6 +1175,69 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         }
 
         ////////////////////////////////////fin  Empleado////////////////////////////////////
+        
+        
+        ////////////////////////////////////para bono////////////////////////////////////
+        if (e.getActionCommand().equals("Agregar") && padreActiva.equals("vistaBono")) {
+            if ((!vistaBono.tfBono.getText().isEmpty())  && vistaBono.tfCombobox.getSelectedIndex() > 0) {
+
+                bono = new Bono(Double.valueOf(vistaBono.tfBono.getText()), vistaBono.tfCombobox.getSelectedItem().toString());
+
+                ArrayList<Bono> existe = daoBono.selectAllTo("cargoEmpleado", vistaBono.tfCombobox.getSelectedItem().toString());
+                if (existe.isEmpty()) {
+                    if (daoBono.insert(bono)) {
+                        Alerta aler = new Alerta(menuAdministrador, true, "Bono añadido con exito", "/img/Succes.png");
+                        aler.show();
+                        this.vistaBono.dispose();
+                    } else {
+                        Alerta aler = new Alerta(menuAdministrador, true, "Error añadiendo el bono vuelva a intentarlo", "/img/error.png");
+                        aler.show();
+                    }
+
+                } else {
+                    Alerta aler = new Alerta(menuAdministrador, true, "Ya Existe un bono para este tipo de usuario", "/img/error.png");
+                    aler.show();
+                }
+
+            } else {
+                Alerta aler = new Alerta(menuAdministrador, true, "Campos vacios ", "/img/error.png");
+                aler.show();
+            }
+            //modificar
+        } else if (e.getActionCommand().equals("Modificar")
+                && padreActiva.equals("bonoGM") && bonoSelecionado != null) {
+            int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (opccion == 0) {
+                llamarVistaConsulta("modificarBono");
+            }
+        } else if (e.getActionCommand().equals("Agregar") && hijaActiva.equals("vistaBono")) {
+            System.out.println("null");
+            if ((!vistaBono.tfBono.getText().isEmpty())) {
+
+                
+                bonoSelecionado.setBono(Double.valueOf(vistaBono.tfBono.getText()));
+                bonoSelecionado.setCargoEmpleado(vistaBono.tfCombobox.getSelectedItem().toString());
+                if (daoBono.update(bonoSelecionado)) {
+                    Alerta aler = new Alerta(menuAdministrador, true, "Bono modificado con exito", "/img/Succes.png");
+                    bonoSelecionado = null;
+                    mostrarDatos();
+                    aler.show();
+                    this.vistaBono.dispose();
+                } else {
+                    Alerta aler = new Alerta(menuAdministrador, true, "Error modificado el bono vuelva a intentarlo", "/img/error.png");
+                    aler.show();
+                }
+              
+                
+                
+            } else {
+                Alerta aler = new Alerta(menuAdministrador, true, "Campos vacios ", "/img/error.png");
+                aler.show();
+            }
+
+        }
+
+        ////////////////////////////////////fin  bono////////////////////////////////////
         ////////////////////////////////////para Usuario////////////////////////////////////
         if (e.getActionCommand().equals("Agregar") && padreActiva.equals("vistaUsuario")) {
             if ((!vistaUsuario.tfUsuario.getText().isEmpty())
@@ -1532,6 +1656,18 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             System.out.println(usuarioSeleccionando.getUsuario());
             if (usuarioSeleccionando != null) {
                 usuarioGM.setEstado(true);
+            }
+        }
+        //inicio bono
+        else if (padreActiva.equals("bonoGM")) {
+            int fila = bonoGM.tbBono.getSelectedRow();
+            String id = bonoGM.tbBono.getValueAt(fila, 2).toString();
+            System.out.println(id);
+            ArrayList<Bono> lista = daoBono.selectAllTo("cargoEmpleado", id);
+            bonoSelecionado = lista.get(0);
+            //System.out.println(usuarioSeleccionando.getUsuario());
+            if (bonoSelecionado != null) {
+                bonoGM.setEstado(true);
             }
         }
 

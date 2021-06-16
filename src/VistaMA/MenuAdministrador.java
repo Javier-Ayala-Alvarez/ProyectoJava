@@ -43,6 +43,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.guardarUsuario.setActionCommand("guardarUsuario");
         this.ConsultarUsuario.setActionCommand("consultarUsuario");
         this.consultarEmpleado.setActionCommand("consultarEmpleado");
+        this.guardarBono.setActionCommand("guardarBono");
+        this.ConsultarBono.setActionCommand("consultarBono");
         //fin Empleado
         menuCliente.setActionCommand("menuCliente");
         this.consultarCliente.setActionCommand("consultarCliente");
@@ -85,6 +87,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.ConsultarUsuario.addActionListener(controlMA);
         this.guardarUsuario.addActionListener(controlMA);
         this.consultarEmpleado.addActionListener(controlMA);
+        this.ConsultarBono.addActionListener(controlMA);
+        this.guardarBono.addActionListener(controlMA);
         this.menuCliente.addActionListener(controlMA);
         this.consultarCliente.addActionListener(controlMA);
         this.opcionesGDS.addActionListener(controlMA);
@@ -166,6 +170,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
         guardarEmpleado = new javax.swing.JMenuItem();
         ConsultarUsuario = new javax.swing.JMenuItem();
         guardarUsuario = new javax.swing.JMenuItem();
+        ConsultarBono = new javax.swing.JMenuItem();
+        guardarBono = new javax.swing.JMenuItem();
         menuCliente = new javax.swing.JMenu();
         consultarCliente = new javax.swing.JMenuItem();
         menuGDS = new javax.swing.JMenu();
@@ -791,6 +797,22 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuEmpleado.add(guardarUsuario);
 
+        ConsultarBono.setText("Consultar Bonos");
+        ConsultarBono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultarBonoActionPerformed(evt);
+            }
+        });
+        menuEmpleado.add(ConsultarBono);
+
+        guardarBono.setText("Añadir Bono");
+        guardarBono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarBonoActionPerformed(evt);
+            }
+        });
+        menuEmpleado.add(guardarBono);
+
         jMenu.add(menuEmpleado);
 
         menuCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -958,8 +980,17 @@ public class MenuAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConsultarFacturaActionPerformed
 
+    private void guardarBonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardarBonoActionPerformed
+
+    private void ConsultarBonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarBonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ConsultarBonoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JMenuItem ConsultarBono;
     public javax.swing.JMenuItem ConsultarUsuario;
     public principal.MaterialButtonCircle btnCerrarMenuAdmin;
     public rojeru_san.complementos.RSButtonHover btnCliente;
@@ -973,6 +1004,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JMenuItem consultarEmpleado;
     private javax.swing.JMenuItem consultarEmpresa;
     public javax.swing.JMenuItem consultarProducto;
+    public javax.swing.JMenuItem guardarBono;
     public javax.swing.JMenuItem guardarEmpleado;
     public javax.swing.JMenuItem guardarProducto;
     public javax.swing.JMenuItem guardarUsuario;
