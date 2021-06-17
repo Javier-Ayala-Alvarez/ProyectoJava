@@ -31,6 +31,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
     public void setControladorMA(ControlMA controlMA){
        this.btnGuardar.addActionListener(controlMA);
        this.tfSalario.addKeyListener(controlMA);
+        this.tfCombobox.addItemListener(controlMA);
     }
 
     public void iniciar() {
@@ -39,7 +40,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    public void initComponents() {
+    private void initComponents() {
 
         rSCalendar1 = new rojeru_san.componentes.RSCalendar();
         roboto1 = new efectos.Roboto();
@@ -61,7 +62,6 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         hhu = new javax.swing.JLabel();
         tfNombre = new principal.MaterialTextField();
-        validacion2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         tfApellido = new principal.MaterialTextField();
@@ -82,6 +82,8 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jLabel13 = new javax.swing.JLabel();
         tfAfp = new principal.MaterialTextField();
         btnGuardar = new rojeru_san.complementos.RSButtonHover();
+        tfCombobox_1 = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -173,7 +175,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Cargo");
 
-        tfCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Administrador", "Supervisor", " Cajero","ordenaza" }));
+        tfCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccione", "Cajero", "Administrador", "Supervisor" }));
         tfCombobox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tfComboboxMouseClicked(evt);
@@ -256,9 +258,6 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
             }
         });
 
-        validacion2.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        validacion2.setForeground(new java.awt.Color(255, 0, 0));
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -268,12 +267,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
                 .addComponent(hhu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 220, Short.MAX_VALUE)
-                    .addComponent(validacion2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,11 +277,6 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hhu, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(10, 21, Short.MAX_VALUE)
-                    .addComponent(validacion2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 21, Short.MAX_VALUE)))
         );
 
         panelFondo.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 360, 60));
@@ -517,7 +506,25 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         panelFondo.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 360, 60));
 
         btnGuardar.setText("Guardar");
-        panelFondo.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, -1, -1));
+        panelFondo.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, 220, -1));
+
+        tfCombobox_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Cajero", "Administrador", "Supervisor" }));
+        tfCombobox_1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tfCombobox_1MouseClicked(evt);
+            }
+        });
+        tfCombobox_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCombobox_1ActionPerformed(evt);
+            }
+        });
+        panelFondo.add(tfCombobox_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 210, 40));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel14.setText("Bono");
+        panelFondo.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 70, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -530,9 +537,8 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -580,10 +586,6 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfComboboxActionPerformed
 
-    public void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfNombreKeyTyped
-
     public void tfApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApellidoKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_tfApellidoKeyTyped
@@ -603,6 +605,18 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
     public void tfAfpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAfpKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_tfAfpKeyTyped
+
+    private void tfCombobox_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfCombobox_1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCombobox_1MouseClicked
+
+    private void tfCombobox_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCombobox_1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCombobox_1ActionPerformed
+
+    private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNombreKeyTyped
 
     /**
      * @param args the command line arguments
@@ -632,21 +646,22 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public rojeru_san.complementos.RSButtonHover btnGuardar;
-    public javax.swing.JLabel hhu;
-    public javax.swing.JLabel jLabel1;
-    public javax.swing.JLabel jLabel10;
-    public javax.swing.JLabel jLabel11;
-    public javax.swing.JLabel jLabel12;
-    public javax.swing.JLabel jLabel13;
-    public javax.swing.JLabel jLabel4;
-    public javax.swing.JLabel jLabel5;
-    public javax.swing.JLabel jLabel7;
-    public javax.swing.JLabel jLabel8;
-    public javax.swing.JLabel jLabel9;
-    public javax.swing.JPanel jPanel1;
+    private rojeru_san.complementos.RSButtonHover btnGuardar;
+    private javax.swing.JLabel hhu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel10;
-    public javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel2;
     public javax.swing.JPanel jPanel3;
     public javax.swing.JPanel jPanel4;
     public javax.swing.JPanel jPanel5;
@@ -654,24 +669,24 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
     public javax.swing.JPanel jPanel7;
     public javax.swing.JPanel jPanel8;
     public javax.swing.JPanel jPanel9;
-    public javax.swing.JSeparator jSeparator1;
-    public javax.swing.JPanel jpLogo1;
-    public principal.MaterialButtonCircle materialButtonCircle1;
-    public principal.MaterialButtonCircle materialButtonCircle2;
-    public javax.swing.JPanel panelFondo;
-    public rojeru_san.componentes.RSCalendar rSCalendar1;
-    public efectos.Roboto roboto1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jpLogo1;
+    private principal.MaterialButtonCircle materialButtonCircle1;
+    private principal.MaterialButtonCircle materialButtonCircle2;
+    private javax.swing.JPanel panelFondo;
+    private rojeru_san.componentes.RSCalendar rSCalendar1;
+    private efectos.Roboto roboto1;
     public principal.MaterialTextField tfAfp;
     public principal.MaterialTextField tfApellido;
     public principal.MaterialTextField tfCodigo;
     public javax.swing.JComboBox<String> tfCombobox;
+    public javax.swing.JComboBox<String> tfCombobox_1;
     public principal.MaterialTextField tfDireccion;
     public rojeru_san.componentes.RSDateChooser tfFecha;
     public principal.MaterialTextField tfIsss;
     public principal.MaterialTextField tfNombre;
     public principal.MaterialTextField tfSalario;
     public principal.MaterialTextField tfTelefono1;
-    public javax.swing.JLabel validacion2;
-    public javax.swing.JLabel validacion3;
+    private javax.swing.JLabel validacion3;
     // End of variables declaration//GEN-END:variables
 }

@@ -126,7 +126,7 @@ public class Empleados extends Persona{
     public void addEmpresa(){
          EmpresaDao daoempresa = new EmpresaDao();
        this.empresa = daoempresa.selectId(1).get(0);
-        System.out.println("sa");
+       // System.out.println("sa");
     }
 
     public String getCodigoEmpleado() {

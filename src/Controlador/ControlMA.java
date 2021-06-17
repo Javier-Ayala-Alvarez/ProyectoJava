@@ -434,6 +434,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.vistaEmpleadoGM.tfDireccion.setText(empleadosSeleccionanda.getDireccion());
             this.vistaEmpleadoGM.tfSalario.setText(Double.toString(empleadosSeleccionanda.getSalarioEmpleado()));
             this.vistaEmpleadoGM.tfCombobox.setSelectedItem(empleadosSeleccionanda.getCargoEmpleado());
+            llenarCombo();
             this.vistaEmpleadoGM.tfAfp.setText(Double.toString(empleadosSeleccionanda.getAfp()));
             this.vistaEmpleadoGM.tfIsss.setText(Double.toString(empleadosSeleccionanda.getIsss()));
             this.vistaEmpleadoGM.tfFecha.setDatoFecha(empleadosSeleccionanda.getFechaContratacion());
@@ -568,6 +569,19 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     gastosGM.cbTipo.addItem(selec);
                 }
             }
+        }
+          if (padreActiva.equals("vistaEmpleadoGM") || hijaActiva.equals("vistaEmpleadoGM")) {
+            vistaEmpleadoGM.tfCombobox_1.removeAllItems();
+            vistaEmpleadoGM.tfCombobox_1.addItem("Seleccione");
+          
+            String dato = "";
+
+            ArrayList<Bono> lista = daoBono.selectAllTo("cargoEmpleado", vistaEmpleadoGM.tfCombobox.getSelectedItem().toString());
+              if (!lista.isEmpty()) {
+                   vistaEmpleadoGM.tfCombobox_1.addItem("$"+ lista.get(0).getBono().toString());
+              }
+           
+                vistaEmpleadoGM.tfCombobox_1.addItem("no añadir Bono");
         }
     }
 
@@ -1083,7 +1097,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     && (!vistaEmpleadoGM.tfAfp.getText().isEmpty())
                     && (!vistaEmpleadoGM.tfIsss.getText().isEmpty())
                     && (!vistaEmpleadoGM.tfSalario.getText().isEmpty())
-                    && vistaEmpleadoGM.tfCombobox.getSelectedIndex() > 0) {
+                    && vistaEmpleadoGM.tfCombobox.getSelectedIndex() > 0
+                    && vistaEmpleadoGM.tfCombobox_1.getSelectedIndex()>0) {
 
                 empleado = new Empleados(vistaEmpleadoGM.tfCombobox.getSelectedItem().toString(),
                         vistaEmpleadoGM.tfCodigo.getText(),
@@ -1092,10 +1107,26 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         vistaEmpleadoGM.tfFecha.getDatoFecha(), 1, vistaEmpleadoGM.tfNombre.getText(), vistaEmpleadoGM.tfApellido.getText(),
                         vistaEmpleadoGM.tfTelefono1.getText(), vistaEmpleadoGM.tfDireccion.getText());
                 empleado.addEmpresa();
-
+                
+                
+                
                 ArrayList<Empleados> existe = daoEmpleado.selectAllTo("codigoEmpleado", vistaEmpleadoGM.tfCodigo.getText());
                 if (existe.isEmpty()) {
+
                     if (daoEmpleado.insert(empleado)) {
+
+                       if (!vistaEmpleadoGM.tfCombobox_1.getSelectedItem().toString().equals("no añadir Bono")) {
+                            bono = daoBono.selectAllTo("cargoEmpleado", vistaEmpleadoGM.tfCombobox.getSelectedItem().toString()).get(0);
+                           // System.out.println(bono.getCargoEmpleado());
+                            if (bono != null) {
+                                
+                                empleado.addBono(bono);
+                                if ( daoEmpleado.agregarBono(empleado)) {
+                                    System.out.println(bono.getCargoEmpleado());
+                                }
+                                    
+                                }
+                        }
                         Alerta aler = new Alerta(menuAdministrador, true, "Empleado añadido con exito", "/img/Succes.png");
                         aler.show();
                         this.vistaEmpleadoGM.dispose();
@@ -1131,7 +1162,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     && (!vistaEmpleadoGM.tfAfp.getText().isEmpty())
                     && (!vistaEmpleadoGM.tfIsss.getText().isEmpty())
                     && (!vistaEmpleadoGM.tfSalario.getText().isEmpty())
-                    && vistaEmpleadoGM.tfCombobox.getSelectedIndex() > 0) {
+                    && vistaEmpleadoGM.tfCombobox.getSelectedIndex() > 0
+                    && vistaEmpleadoGM.tfCombobox_1.getSelectedIndex() > 0) {
 
                 empleadosSeleccionanda.setNombre(vistaEmpleadoGM.tfNombre.getText());
                 empleadosSeleccionanda.setApellido(vistaEmpleadoGM.tfApellido.getText());
@@ -1142,7 +1174,30 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 empleadosSeleccionanda.setIsss(Double.parseDouble(vistaEmpleadoGM.tfIsss.getText()));
                 empleadosSeleccionanda.setSalarioEmpleado(Double.parseDouble(vistaEmpleadoGM.tfSalario.getText()));
                 empleadosSeleccionanda.setCargoEmpleado(vistaEmpleadoGM.tfCombobox.getSelectedItem().toString());
+                
                 if (daoEmpleado.update(empleadosSeleccionanda)) {
+                   
+                         if (!vistaEmpleadoGM.tfCombobox_1.getSelectedItem().toString().equals("no añadir Bono")) {
+                            bono = daoBono.selectAllTo("cargoEmpleado", vistaEmpleadoGM.tfCombobox.getSelectedItem().toString()).get(0);
+                            if (bono != null) {
+                                empleadosSeleccionanda.addBono(bono);
+                                daoEmpleado.agregarBono(empleadosSeleccionanda);
+                                    
+                                }
+                        }else{
+                             try {
+                                 Empleados evaluar = daoEmpleado.selectConCondicion("WHERE idEmpleado = " + empleadosSeleccionanda.getIdPersona()
+                                         + " AND  idBono IS NOT NULL ").get(0);
+                                 if (evaluar != null) {
+                                    
+                                     daoEmpleado.quitarBono(empleadosSeleccionanda);
+                                 }
+                             } catch (Exception exeption) {
+                                 System.out.println("vacio");
+                             }
+    
+                         }
+                        
                     Alerta aler = new Alerta(menuAdministrador, true, "Empleado modificado con exito", "/img/Succes.png");
                     empleadosSeleccionanda = null;
                     mostrarDatos();
@@ -1329,6 +1384,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             String codigoEmpleado[] = vistaUsuario.tfCombobox.getSelectedItem().toString().split(" / ");
             vistaUsuario.tfUsuario.setText(codigoEmpleado[1]);
 
+        }
+        else if ((padreActiva.equals("vistaEmpleadoGM")|| hijaActiva.equals("vistaEmpleadoGM")) && vistaEmpleadoGM.tfCombobox.getSelectedIndex()>0) {
+            llenarCombo();
         }
     }
 

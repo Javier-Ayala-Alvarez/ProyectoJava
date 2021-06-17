@@ -1,5 +1,6 @@
 package Modelo.dao;
 
+import Modelo.Bono;
 import Modelo.Conexion;
 import Modelo.Empleados;
 import Modelo.Empresa;
@@ -64,8 +65,17 @@ public class EmpleadoDao {
 
     public boolean agregarUsuario(Usuario obj) {
         String sql = "UPDATE empleado SET idUsuario = '"+obj.getIdUsuario()+"'  WHERE idEmpleado = " + obj.getEmpleados().getIdPersona();
-        return addUser(sql);
+        return addSql(sql);
     }
+      public boolean agregarBono(Empleados obj) {
+        String sql = "UPDATE empleado SET idBono = '"+obj.getBono().getIdBono()+"'WHERE idEmpleado = " + obj.getIdPersona();
+        return addSql(sql);
+    }
+       public boolean quitarBono(Empleados obj) {
+        String sql = "UPDATE empleado SET idBono = NULL WHERE idEmpleado = " + obj.getIdPersona();
+        return addSql(sql);
+    }
+
 
     private ArrayList<Empleados> select(String sql) {
         ArrayList<Empleados> lista = new ArrayList();
@@ -181,7 +191,7 @@ public class EmpleadoDao {
         return false;
     }
 
-    private boolean addUser(String sql) {
+    private boolean addSql(String sql) {
         try {
 
             con = conectar.getConexion();
@@ -200,7 +210,7 @@ public class EmpleadoDao {
             try {
                 ps.close();
             } catch (Exception ex) {
-
+                
             }
             conectar.closeConexion(con);
         }
