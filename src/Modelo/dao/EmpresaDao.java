@@ -39,7 +39,8 @@ public class EmpresaDao {
     }
     
     public boolean insert(Empresa obj){
-        String sql = "INSERT  INTO empresa (codigoEmpresa, nombreEmpresa, dirrecionEmpresa, Correo) VALUES (????)";
+      //iNSERT INTO `ventasjava`.`empresa` (`codigoEmpresa`, `nombreEmpresa`, `dirrecionEmpresa`, `correoEmpresa`) VALUES ('1', '2', '2', '2');
+        String sql = "INSERT INTO empresa (codigoEmpresa , nombreEmpresa , dirrecionEmpresa , correoEmpresa) VALUES (?,?,?,?)";
         return alterarRegistro(sql, obj);
     }
     //UPDATE `empresa` SET `codigoEmpresa`='2', `nombreEmpresa`='Tienda1', `dirrecionEmpresa`='San vicente1' WHERE (`idEmpresa`='1')
@@ -85,22 +86,21 @@ public class EmpresaDao {
     
     private boolean alterarRegistro(String sql, Empresa obj){
         try {
-            //UPDATE empresa SET codigoEmpresa = ? , nombreEmpresa = ?, dirrecionEmpresa = ?, correoEmpresa = ? WHERE idEmpresa
-            con = conectar.getConexion();
+            //UNSERT INTO `ventasjava`.`empresa` (`codigoEmpresa`, `nombreEmpresa`, `dirrecionEmpresa`, `correoEmpresa`) VALUES ('1', '2', '2', '2');
+           con = conectar.getConexion();
             ps = con.prepareStatement(sql);
-            ps.setString(1,obj.getCodigoEmpresa());
-            ps.setString(2,obj.getNombre());
-            ps.setString(3,obj.getDireccion());
-            ps.setString(4,obj.getCorreo());
-            
-            
+
+            ps.setString(1, obj.getCodigoEmpresa());
+            ps.setString(2, obj.getNombre());
+            ps.setString(3, obj.getDireccion());
+            ps.setString(4, obj.getCorreo());
             ps.execute();
             System.out.println("ujhuuj");
             return true;
         }catch(Exception e) {
             Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
             alert.show();
-            //e.printStackTrace();
+            e.printStackTrace();
         }finally{
             try {
                 ps.close();

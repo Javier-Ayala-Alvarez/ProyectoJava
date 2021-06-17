@@ -26,6 +26,13 @@ public class Empresa {
          empleados = new ArrayList();
     }
 
+    public Empresa(String codigoEmpresa, String nombre, String direccion, String correo) {
+        this.codigoEmpresa = codigoEmpresa;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.correo = correo;
+    }
+
     public Empresa(String nombre, String direccion, String correo) {
         this.nombre = nombre;
         this.direccion = direccion;

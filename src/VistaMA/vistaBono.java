@@ -26,6 +26,7 @@ public class vistaBono extends javax.swing.JDialog {
     public void setControladorMA(ControlMA controlMA){
        this.btnGuardar.addActionListener(controlMA);
        this.tfCombobox.addItemListener(controlMA);
+       this.tfBono.addKeyListener(controlMA);
        
     }
 
@@ -52,6 +53,7 @@ public class vistaBono extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         tfCombobox = new javax.swing.JComboBox<>();
         btnGuardar = new rojeru_san.complementos.RSButtonHover();
+        alerta1 = new javax.swing.JLabel();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -183,6 +185,9 @@ public class vistaBono extends javax.swing.JDialog {
         btnGuardar.setText("Guardar");
         panelFondo.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, -1, -1));
 
+        alerta1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        panelFondo.add(alerta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 300, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,7 +196,7 @@ public class vistaBono extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -256,6 +261,7 @@ public class vistaBono extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel alerta1;
     public rojeru_san.complementos.RSButtonHover btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;

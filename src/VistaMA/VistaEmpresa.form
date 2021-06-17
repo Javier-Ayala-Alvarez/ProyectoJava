@@ -316,7 +316,7 @@
             </Container>
             <Component class="rojeru_san.complementos.RSButtonHover" name="dato3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Modificar"/>
+                <Property name="text" type="java.lang.String" value="Guardar"/>
                 <Property name="actionCommand" type="java.lang.String" value="Editar"/>
               </Properties>
               <Events>

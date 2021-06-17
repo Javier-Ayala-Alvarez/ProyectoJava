@@ -32,6 +32,17 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
        this.btnGuardar.addActionListener(controlMA);
        this.tfSalario.addKeyListener(controlMA);
         this.tfCombobox.addItemListener(controlMA);
+        this.tfCodigo.addKeyListener(controlMA);
+        this.tfAfp.addKeyListener(controlMA);
+        this.tfApellido.addKeyListener(controlMA);
+        this.tfDireccion.addKeyListener(controlMA);
+        this.tfIsss.addKeyListener(controlMA);
+        this.tfNombre.addKeyListener(controlMA);
+        this.tfTelefono1.addKeyListener(controlMA);
+       
+        
+      //  this.alerta2.addFocusListener(controlMA);
+        
     }
 
     public void iniciar() {
@@ -84,6 +95,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         btnGuardar = new rojeru_san.complementos.RSButtonHover();
         tfCombobox_1 = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
+        alerta1 = new javax.swing.JLabel();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -373,6 +385,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jLabel10.setText("Dirección");
 
         tfDireccion.setBackground(new java.awt.Color(213, 216, 221));
+        tfDireccion.setName("vacio"); // NOI18N
         tfDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfDireccionKeyTyped(evt);
@@ -526,6 +539,9 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         jLabel14.setText("Bono");
         panelFondo.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 70, -1));
 
+        alerta1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        panelFondo.add(alerta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, 570, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -646,6 +662,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel alerta1;
     private rojeru_san.complementos.RSButtonHover btnGuardar;
     private javax.swing.JLabel hhu;
     private javax.swing.JLabel jLabel1;

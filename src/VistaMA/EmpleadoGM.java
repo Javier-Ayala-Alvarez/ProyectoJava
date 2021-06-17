@@ -59,6 +59,7 @@ public class EmpleadoGM extends javax.swing.JDialog {
         btnEliminar1 = new rojeru_san.complementos.RSButtonHover();
         buscar = new principal.MaterialTextField();
         jLabel1 = new javax.swing.JLabel();
+        alerta1 = new javax.swing.JLabel();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -179,6 +180,7 @@ public class EmpleadoGM extends javax.swing.JDialog {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
         panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 40, 60));
+        panelFondo.add(alerta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 240, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,6 +255,7 @@ public class EmpleadoGM extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel alerta1;
     public rojeru_san.complementos.RSButtonHover btnEliminar1;
     public rojeru_san.complementos.RSButtonHover btnModificar;
     public principal.MaterialTextField buscar;

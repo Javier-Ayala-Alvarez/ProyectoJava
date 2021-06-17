@@ -16,7 +16,7 @@ public class VistaUsuario extends javax.swing.JDialog {
         jpLogo1.setBorder(new Fondo(LogoE));
         this.btnGuardar.setActionCommand("Agregar");
         this.tfUsuario.setEditable(false);
-
+        
     }
 
     public VistaUsuario() {
@@ -26,6 +26,7 @@ public class VistaUsuario extends javax.swing.JDialog {
     public void setControladorMA(ControlMA controlMA){
        this.btnGuardar.addActionListener(controlMA);
        this.tfCombobox.addItemListener(controlMA);
+       this.tfContraseña.addKeyListener(controlMA);
        
     }
 
@@ -54,8 +55,8 @@ public class VistaUsuario extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         hhu = new javax.swing.JLabel();
         tfContraseña = new principal.MaterialTextField();
-        validacion2 = new javax.swing.JLabel();
         btnGuardar = new rojeru_san.complementos.RSButtonHover();
+        alerta1 = new javax.swing.JLabel();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -197,9 +198,6 @@ public class VistaUsuario extends javax.swing.JDialog {
             }
         });
 
-        validacion2.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        validacion2.setForeground(new java.awt.Color(255, 0, 0));
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -210,11 +208,6 @@ public class VistaUsuario extends javax.swing.JDialog {
                 .addGap(27, 27, 27)
                 .addComponent(tfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(75, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 559, Short.MAX_VALUE)
-                    .addComponent(validacion2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,17 +217,16 @@ public class VistaUsuario extends javax.swing.JDialog {
                     .addComponent(tfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hhu, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(10, 21, Short.MAX_VALUE)
-                    .addComponent(validacion2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 21, Short.MAX_VALUE)))
         );
 
         panelFondo.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 700, 60));
 
         btnGuardar.setText("Guardar");
         panelFondo.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, -1, -1));
+
+        alerta1.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
+        alerta1.setForeground(new java.awt.Color(255, 0, 0));
+        panelFondo.add(alerta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 360, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -313,6 +305,7 @@ public class VistaUsuario extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel alerta1;
     public rojeru_san.complementos.RSButtonHover btnGuardar;
     private javax.swing.JLabel hhu;
     private javax.swing.JLabel jLabel1;
@@ -331,6 +324,5 @@ public class VistaUsuario extends javax.swing.JDialog {
     public javax.swing.JComboBox<String> tfCombobox;
     public principal.MaterialTextField tfContraseña;
     public principal.MaterialTextField tfUsuario;
-    private javax.swing.JLabel validacion2;
     // End of variables declaration//GEN-END:variables
 }

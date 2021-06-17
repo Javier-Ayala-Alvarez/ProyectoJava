@@ -141,7 +141,7 @@ public class VistaEmpresa extends javax.swing.JDialog {
         dato1.setToolTipText("");
         jPanel2.add(dato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 40));
 
-        dato3.setText("Modificar");
+        dato3.setText("Guardar");
         dato3.setActionCommand("Editar");
         dato3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

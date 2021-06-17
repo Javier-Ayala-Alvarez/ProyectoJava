@@ -41,6 +41,8 @@ import VistaMA.vistaBono;
 import VistaMV.Factura;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
@@ -56,8 +58,8 @@ import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-public class ControlMA extends MouseAdapter implements ActionListener, KeyListener, ItemListener {
-    
+public class ControlMA extends MouseAdapter implements ActionListener, KeyListener, ItemListener, FocusListener {
+
     //para las graficas
     JFreeChart grafico;
     DefaultCategoryDataset dato = new DefaultCategoryDataset();
@@ -77,7 +79,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     Empleados empleado;
     Empleados empleadosSeleccionanda = null;
     //****Fin Empleado
-       //****Bono****//
+    //****Bono****//
     vistaBono vistaBono;
     BonoGM bonoGM;
     BonoDao daoBono = new BonoDao();
@@ -187,13 +189,13 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             llamarVistaConsulta("consultarUsuario");
         } else if (e.getActionCommand().equals("guardarUsuario")) {
             llamarVistaConsulta("guardarUsuario");
-            
+
         } else if (e.getActionCommand().equals("consultarBono")) {
             llamarVistaConsulta("consultarBono");
         } else if (e.getActionCommand().equals("guardarBono")) {
             llamarVistaConsulta("guardarBono");
-            
-        }  else if (e.getActionCommand().equals("consultarEmpleado")) {
+
+        } else if (e.getActionCommand().equals("consultarEmpleado")) {
             llamarVistaConsulta("consultarEmpleado");
             //finEmpleado
         } else if (e.getActionCommand().equals("consultarCliente")) {
@@ -232,10 +234,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
     public void llamarAcciones(String nombreAccion) {
         //para boton modificar en vistaEmpresa
-        if (nombreAccion.equals("editarEmpresa")) {
+        if (nombreAccion.equals("editarEmpresa") && empresaSeleccionanda != null) {
             if ((!vistaEmpresa.tfNombre.getText().isEmpty())
                     && (!vistaEmpresa.tfDireccion.getText().isEmpty())
-                    && (!vistaEmpresa.tfCorreo.getText().isEmpty())) {
+                    && (!vistaEmpresa.tfCorreo.getText().isEmpty())
+                    && (!vistaEmpresa.tfCodigoEmpresa.getText().isEmpty())) {
 
                 empresaSeleccionanda.setNombre(vistaEmpresa.tfNombre.getText());
                 empresaSeleccionanda.setCorreo(vistaEmpresa.tfCorreo.getText());
@@ -247,12 +250,38 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 //vistaEmpresa.tfCorreo.getText(),vistaEmpresa.tfCodigoEmpresa.getText());
                 if (daoEmpresa.update(empresaSeleccionanda)) {
                     System.out.println(empresaSeleccionanda.getIdEmpresa() + empresaSeleccionanda.getNombre());
+                    mostrarDatos();
                     Alerta aler = new Alerta(menuAdministrador, true, "Datos Modificados Con exito", "/img/Succes.png");
                     aler.show();
                     this.vistaEmpresa.dispose();
                 } else {
 
                     Alerta aler = new Alerta(menuAdministrador, true, "Error realisando la operación", "/img/error.png");
+                    aler.show();
+                    this.vistaEmpresa.dispose();
+                }
+
+            } else {
+                Alerta aler = new Alerta(menuAdministrador, true, "complete los datos para poder realizar un cambio", "/img/error.png");
+                aler.show();
+
+            }
+
+        } else if (empresaSeleccionanda == null && nombreAccion.equals("editarEmpresa")) {
+            if ((!vistaEmpresa.tfNombre.getText().isEmpty())
+                    && (!vistaEmpresa.tfDireccion.getText().isEmpty())
+                    && (!vistaEmpresa.tfCorreo.getText().isEmpty())
+                    && (!vistaEmpresa.tfCodigoEmpresa.getText().isEmpty())) {
+                empresa = new Empresa(vistaEmpresa.tfCodigoEmpresa.getText(), vistaEmpresa.tfNombre.getText(),
+                        vistaEmpresa.tfDireccion.getText(), vistaEmpresa.tfCorreo.getText());
+                if (daoEmpresa.insert(empresa)) {
+                    Alerta aler = new Alerta(menuAdministrador, true, "Datos Modificados Con exito", "/img/Succes.png");
+                    aler.show();
+                    mostrarDatos();
+                    this.vistaEmpresa.dispose();
+                } else {
+
+                    Alerta aler = new Alerta(menuAdministrador, true, "Error  la operación", "/img/error.png");
                     aler.show();
                     this.vistaEmpresa.dispose();
                 }
@@ -298,7 +327,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
             }
 
-        }else if (padreActiva.equals("registrosDeProductos")) {
+        } else if (padreActiva.equals("registrosDeProductos")) {
             ArrayList<Producto> lista = daoProducto.buscar(registrosDeProductos.tfBuscar.getText() + e.getKeyChar());
 
             if (lista.isEmpty()) {
@@ -314,41 +343,252 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
     @Override
     public void keyReleased(KeyEvent e) {
-        //para empleado
-        if (padreActiva.equals("vistaEmpleadoGM") || hijaActiva.equals("vistaEmpleadoGM")) {
-            double Salario = Double.valueOf(vistaEmpleadoGM.tfSalario.getText()), aux;
-            // System.out.println("aaa");
-            if (Salario > 0) {
-                //System.out.println("qq");
-                aux = (Salario * AFP) / 100;
-                vistaEmpleadoGM.tfAfp.setText(Double.toString(aux));
-                aux = (Salario * ISSS) / 100;
-                vistaEmpleadoGM.tfIsss.setText(Double.toString(aux));
+
+        //******************************************INICIO_EMPLEADO********************************************************************//
+        if ((padreActiva.equals("vistaEmpleadoGM") || hijaActiva.equals("vistaEmpleadoGM"))) {
+            if ((!vistaEmpleadoGM.tfSalario.getText().isEmpty())) {
+                try {
+                    double Salario = Double.valueOf(vistaEmpleadoGM.tfSalario.getText()), aux;
+                    // System.out.println("aaa");
+                    if (Salario > 0) {
+                        //System.out.println("qq");
+                        aux = (Salario * AFP) / 100;
+                        vistaEmpleadoGM.tfAfp.setText(Double.toString(aux));
+                        aux = (Salario * ISSS) / 100;
+                        vistaEmpleadoGM.tfIsss.setText(Double.toString(aux));
+                    }
+
+                } catch (Exception exeException) {
+                    vistaEmpleadoGM.alerta1.setText("por favor ingrese solo numeros");
+                }
             }
+            if ((!vistaEmpleadoGM.tfDireccion.getText().isEmpty())) {
+                // System.out.println(e.paramString());
+                char c = e.getKeyChar();
+                String comilla = "'";
+                char comprobar = vistaEmpleadoGM.tfDireccion.getText().charAt(vistaEmpleadoGM.tfDireccion.getText().length() - 1);
+                if (comprobar == c) {
+
+                    if (Character.toString(c).equals("'")) {
+                        e.consume();
+
+                        vistaEmpleadoGM.alerta1.setText("Caracter ' es invalido");
+                        vistaEmpleadoGM.tfDireccion.setText(vistaEmpleadoGM.tfDireccion.getText().replace(comilla, ""));
+                    } else {
+                        vistaEmpleadoGM.alerta1.setText("");
+                    }
+                }
+
+            }
+            if ((!vistaEmpleadoGM.tfNombre.getText().isEmpty())) {
+                char c = e.getKeyChar();
+                // System.out.println(e.paramString());
+                char comprobar = vistaEmpleadoGM.tfNombre.getText().charAt(vistaEmpleadoGM.tfNombre.getText().length() - 1);
+                if (comprobar == c) {
+                    if (Character.isDigit(c)) {
+                        e.consume();
+
+                        vistaEmpleadoGM.alerta1.setText("por favor ingrese solo letras");
+                        vistaEmpleadoGM.tfNombre.setText(vistaEmpleadoGM.tfNombre.getText().replace(Character.toString(c), ""));
+                    } else {
+                        vistaEmpleadoGM.alerta1.setText("");
+                    }
+                }
+
+            }
+            if ((!vistaEmpleadoGM.tfApellido.getText().isEmpty())) {
+                char c = e.getKeyChar();
+
+                char comprobar = vistaEmpleadoGM.tfApellido.getText().charAt(vistaEmpleadoGM.tfApellido.getText().length() - 1);
+                if (comprobar == c) {
+                    if (Character.isDigit(c)) {
+                        // e.consume();
+
+                        vistaEmpleadoGM.alerta1.setText("por favor ingrese solo letras");
+                        vistaEmpleadoGM.tfApellido.setText(vistaEmpleadoGM.tfApellido.getText().replace(Character.toString(c), ""));
+                    } else {
+                        vistaEmpleadoGM.alerta1.setText("");
+                    }
+                }
+
+            }
+            if ((!vistaEmpleadoGM.tfTelefono1.getText().isEmpty())) {
+                char c = e.getKeyChar();
+
+                char comprobar = vistaEmpleadoGM.tfTelefono1.getText().charAt(vistaEmpleadoGM.tfTelefono1.getText().length() - 1);
+                if (comprobar == c) {
+                    if (!Character.isDigit(c)) {
+                        e.consume();
+
+                        vistaEmpleadoGM.alerta1.setText("por favor ingrese solo numeros");
+                        vistaEmpleadoGM.tfTelefono1.setText(vistaEmpleadoGM.tfTelefono1.getText().replace(Character.toString(c), ""));
+                    } else {
+                        vistaEmpleadoGM.alerta1.setText("");
+                    }
+                }
+
+            }
+            if ((!vistaEmpleadoGM.tfSalario.getText().isEmpty())) {
+                char c = e.getKeyChar();
+                System.out.println(c + " +");
+
+                char comprobar = vistaEmpleadoGM.tfSalario.getText().charAt(vistaEmpleadoGM.tfSalario.getText().length() - 1);
+                System.out.println(comprobar);
+                if (comprobar == c) {
+
+                    if (!validarDouble(Character.toString(c))) {
+                        e.consume();
+
+                        vistaEmpleadoGM.alerta1.setText("por favor ingrese solo  numeros");
+                        vistaEmpleadoGM.tfSalario.setText(vistaEmpleadoGM.tfSalario.getText().replace(Character.toString(c), ""));
+                    } else {
+                        vistaEmpleadoGM.alerta1.setText("");
+                    }
+                }
+
+            }
+
         }
         if (padreActiva.equals("empleadoGM")) {
-            ArrayList<Empleados> lista = daoEmpleado.buscar(empleadoGM.buscar.getText());
-            if (lista.isEmpty()) {
-                System.out.println("busca");
-                mostrarDatos();
-            } else {
-                mostrarBusqueda(lista);
-                System.out.println("NObusca");
+            if ((!empleadoGM.buscar.getText().isEmpty())) {
+                // System.out.println(e.paramString());
+                char c = e.getKeyChar();
+                String comilla = "'";
+                char comprobar = empleadoGM.buscar.getText().charAt(empleadoGM.buscar.getText().length() - 1);
+                if (comprobar == c) {
+
+                    if (Character.toString(c).equals("'")) {
+                        e.consume();
+
+                        empleadoGM.alerta1.setText("Caracter ' es invalido");
+                        empleadoGM.buscar.setText(empleadoGM.buscar.getText().replace(comilla, ""));
+                    } else {
+                        empleadoGM.alerta1.setText("");
+                    }
+                }
+                ArrayList<Empleados> lista = daoEmpleado.buscar(empleadoGM.buscar.getText());
+                if (lista.isEmpty()) {
+                    //System.out.println("busca");
+                    mostrarDatos();
+                } else {
+                    mostrarBusqueda(lista);
+                    //System.out.println("NObusca");
+
+                }
+            }
+
+        }
+        //******************************************FIN_EMPLEADO********************************************************************//
+
+        //******************************************INICIO_USUARIO********************************************************************//
+        if ((padreActiva.equals("vistaUsuario") || hijaActiva.equals("vistaUsuario"))) {
+
+            if (!vistaUsuario.tfContraseña.getText().isEmpty()) {
+                // System.out.println(e.paramString());
+                char c = e.getKeyChar();
+                String comilla = "'";
+                char comprobar = vistaUsuario.tfContraseña.getText().charAt(vistaUsuario.tfContraseña.getText().length() - 1);
+                if (comprobar == c) {
+
+                    if (Character.toString(c).equals("'")) {
+                        e.consume();
+
+                        vistaUsuario.alerta1.setText("Caracter ' es invalido");
+                        vistaUsuario.tfContraseña.setText(vistaUsuario.tfContraseña.getText().replace(comilla, ""));
+
+                    } else if (vistaUsuario.tfContraseña.getText().length() > 8) {
+                        e.consume();
+
+                        vistaUsuario.alerta1.setText("contraseña de 8 caracteres como maximo");
+                        vistaUsuario.tfContraseña.setText(vistaUsuario.tfContraseña.getText().replace(Character.toString(c), ""));
+                    } else if (vistaUsuario.tfContraseña.getText().length() > 1) {
+                        comprobar = vistaUsuario.tfContraseña.getText().charAt(vistaUsuario.tfContraseña.getText().length() - 2);
+                        System.out.println(comprobar);
+                        if (c == comprobar) {
+                            e.consume();
+
+                            vistaUsuario.alerta1.setText("ingrese caracteres distintos");
+                            vistaUsuario.tfContraseña.setText(vistaUsuario.tfContraseña.getText().replace(Character.toString(c), ""));
+                        }
+                    } else {
+                        vistaUsuario.alerta1.setText("");
+                    }
+                }
 
             }
+
         }
         if (padreActiva.equals("usuarioGM")) {
-            ArrayList<Usuario> lista = daoUsuario.buscar(usuarioGM.buscar.getText());
-            if (lista.isEmpty()) {
-                System.out.println("no buscA");
-                mostrarDatos();
-            } else {
-                mostrarBusqueda(lista);
-                System.out.println("busca");
+
+            if ((!usuarioGM.buscar.getText().isEmpty())) {
+                // System.out.println(e.paramString());
+                char c = e.getKeyChar();
+                String comilla = "'";
+                char comprobar = usuarioGM.buscar.getText().charAt(usuarioGM.buscar.getText().length() - 1);
+                if (comprobar == c) {
+
+                    if (Character.toString(c).equals("'")) {
+                        e.consume();
+
+                        usuarioGM.alerta1.setText("Caracter ' es invalido");
+                        usuarioGM.buscar.setText(usuarioGM.buscar.getText().replace(comilla, ""));
+                    } else {
+                        usuarioGM.alerta1.setText("");
+                        ArrayList<Usuario> lista = daoUsuario.buscar(usuarioGM.buscar.getText());
+                        if (lista.isEmpty()) {
+                            //System.out.println("no buscA");
+                            mostrarDatos();
+                        } else {
+                            mostrarBusqueda(lista);
+                            //System.out.println("busca");
+
+                        }
+                    }
+                }
+
+            }
+
+        }
+        //******************************************fin_USUARIO********************************************************************//
+
+        //******************************************inicio_bono********************************************************************//
+        if ((padreActiva.equals("vistaBono") || hijaActiva.equals("vistaBono"))) {
+            if ((!vistaBono.tfBono.getText().isEmpty())) {
+                char c = e.getKeyChar();
+                //System.out.println(c + " +");
+
+                char comprobar = vistaBono.tfBono.getText().charAt(vistaBono.tfBono.getText().length() - 1);
+                System.out.println(comprobar);
+                if (comprobar == c) {
+                    if (!validarDouble(Character.toString(c))) {
+                        e.consume();
+
+                        vistaBono.alerta1.setText("por favor ingrese solo  numeros");
+                        vistaBono.tfBono.setText(vistaBono.tfBono.getText().replace(Character.toString(c), ""));
+                    } else {
+                        vistaBono.alerta1.setText("");
+                    }
+                }
 
             }
         }
-        //fin empleado
+
+        //******************************************fin_bono********************************************************************//
+    }
+
+    public boolean validarDouble(String c) {
+        try {
+            if (!c.equals(".")) {
+                Double.parseDouble(c);
+                return true;
+            } else {
+                return true;
+            }
+
+        } catch (Exception e) {
+
+        }
+        return false;
     }
 
     public void llamarVistaConsulta(String vista) {
@@ -469,18 +709,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             padreActiva = "vistaBono";
             this.vistaBono.iniciar();
 
-        }else if (vista.equals("modificarBono")) {
+        } else if (vista.equals("modificarBono")) {
             hijaActiva = "vistaBono";
             this.vistaBono = new vistaBono(menuAdministrador, true);
             this.vistaBono.setControladorMA(this);
             this.vistaBono.tfBono.setText(bonoSelecionado.getBono().toString());
-             vistaBono.tfCombobox.removeAllItems();
+            vistaBono.tfCombobox.removeAllItems();
             this.vistaBono.tfCombobox.addItem(bonoSelecionado.getCargoEmpleado());
             this.vistaBono.iniciar();
-            
 
-        }
-        else if (vista.equals("consultarCliente")) {
+        } else if (vista.equals("consultarCliente")) {
 
             this.clienteMA = new ClienteMA(menuAdministrador, true);
             this.clienteMA.setControlador(this);
@@ -513,13 +751,18 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } /////////////////////////////////
         else if (vista.equals("modificarEmpresa")) {
             this.vistaEmpresa = new VistaEmpresa(menuAdministrador, true, true);
-            empresaSeleccionanda = daoEmpresa.selectAll().get(0);
-            this.vistaEmpresa.setControladorMA(this);
-            this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
+            try {
+                empresaSeleccionanda = daoEmpresa.selectAll().get(0);
+                 this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
             this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
             this.vistaEmpresa.tfDireccion.setText(empresaSeleccionanda.getDireccion());
             this.vistaEmpresa.tfCorreo.setText(empresaSeleccionanda.getCorreo());
             mostrarDatos();
+            } catch (Exception e) {
+                empresaSeleccionanda = null;
+            }
+            this.vistaEmpresa.setControladorMA(this);
+           
             this.vistaEmpresa.iniciar();
 
         } else if (vista.equals("consultarEmpresa")) {
@@ -570,26 +813,26 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 }
             }
         }
-          if (padreActiva.equals("vistaEmpleadoGM") || hijaActiva.equals("vistaEmpleadoGM")) {
+        if (padreActiva.equals("vistaEmpleadoGM") || hijaActiva.equals("vistaEmpleadoGM")) {
             vistaEmpleadoGM.tfCombobox_1.removeAllItems();
             vistaEmpleadoGM.tfCombobox_1.addItem("Seleccione");
-          
+
             String dato = "";
 
             ArrayList<Bono> lista = daoBono.selectAllTo("cargoEmpleado", vistaEmpleadoGM.tfCombobox.getSelectedItem().toString());
-              if (!lista.isEmpty()) {
-                   vistaEmpleadoGM.tfCombobox_1.addItem("$"+ lista.get(0).getBono().toString());
-              }
-           
-                vistaEmpleadoGM.tfCombobox_1.addItem("no añadir Bono");
+            if (!lista.isEmpty()) {
+                vistaEmpleadoGM.tfCombobox_1.addItem("$" + lista.get(0).getBono().toString());
+            }
+
+            vistaEmpleadoGM.tfCombobox_1.addItem("no añadir Bono");
         }
     }
 
     public void mostrarDatos() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo = new DefaultTableModel();              
+        modelo = new DefaultTableModel();
         ////////////******TOTAL InicioCaja********/////////////////
-                
+
 //       ArrayList<InicioCaja> caja1 = daoCaja.selectAll();
 //        double inicio = 0;
 //        for (InicioCaja x : caja1) {
@@ -624,10 +867,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         float totalV = 0;
         float totalUni1 = 0;
         ArrayList<Producto> producto1 = daoProducto.selectAll();
-            for (Producto x : producto1) {
-                totalUni1 = (float) (x.getPrecioVenta()*x.getCantidad());
-                totalV = (float) (totalV + totalUni1);
-            }
+        for (Producto x : producto1) {
+            totalUni1 = (float) (x.getPrecioVenta() * x.getCantidad());
+            totalV = (float) (totalV + totalUni1);
+        }
         this.menuAdministrador.lbProducto1.setText(String.format("%.2f", totalV));
         ///////////*******fIN DE PRODUCTO************////////////////
         ////////////******GASTOS EMPLEADO********/////////////////
@@ -768,7 +1011,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } ////////////******FINAL EMPRESA********/////////////////
         ////////////******ClienteMA********/////////////////
         else if (padreActiva.equals("consultarCliente")) {
-            
+
             String titulos[] = {"Codigo", "Nombre", "Apellido", "Telefono", "Direccion"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Cliente> cliente2 = daoCliente.selectAll();
@@ -781,8 +1024,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
         } ////////////******FINAL ClienteMA********/////////////////
         //**************ProductoModi****************//
-       else if (padreActiva.equals("registrosDeProductos")) {
-            String titulos[] = {"Codigo", "Nombre", "Cantidad", "Precio Unitario", "Iva", "Ganacia","Precio Compra", "Precio Venta", "fecha de Vencimiento", "Max", "Min",  "Empresa",  "Total"};
+        else if (padreActiva.equals("registrosDeProductos")) {
+            String titulos[] = {"Codigo", "Nombre", "Cantidad", "Precio Unitario", "Iva", "Ganacia", "Precio Compra", "Precio Venta", "fecha de Vencimiento", "Max", "Min", "Empresa", "Total"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Producto> producto = daoProducto.selectAll();
             float precioUni = 0;
@@ -791,21 +1034,19 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             int i = 0;
             for (Producto x : producto) {
                 this.registrosDeProductos.jtDatos.editCellAt(3, i);
-                precioUni = (float) (x.getPrecioCompra()/x.getCantidad());
-                totalUni = (float) (x.getPrecioVenta()*x.getCantidad());
-                Object datos[] = {x.getCodigoProducto(),x.getNombreProducto(), x.getCantidad(),precioUni,x.getIva()
-                        ,x.getGananciaUni(),x.getPrecioCompra(),x.getPrecioVenta(),x.getFechaVencimiento(), 
-                        x.getMax(), x.getMin(),x.getEmpresa().getNombre(),totalUni};///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                total0 = total0 +totalUni;
+                precioUni = (float) (x.getPrecioCompra() / x.getCantidad());
+                totalUni = (float) (x.getPrecioVenta() * x.getCantidad());
+                Object datos[] = {x.getCodigoProducto(), x.getNombreProducto(), x.getCantidad(), precioUni, x.getIva(),
+                    x.getGananciaUni(), x.getPrecioCompra(), x.getPrecioVenta(), x.getFechaVencimiento(),
+                    x.getMax(), x.getMin(), x.getEmpresa().getNombre(), totalUni};///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                total0 = total0 + totalUni;
                 modelo.addRow(datos);
                 i++;
-              
+
             }
             this.registrosDeProductos.jtDatos.setModel(modelo);
-            this.registrosDeProductos.lbTotal.setText("$"+String.format("%.2f", total0));
-        }
-        //************Fin productoModi*************//
-
+            this.registrosDeProductos.lbTotal.setText("$" + String.format("%.2f", total0));
+        } //************Fin productoModi*************//
         // ------------------------------------------------Inicio Empleado------------------------------------------------//
         else if (padreActiva.equals("empleadoGM")) {
             String titulos[] = {"N", "codigo", "Nombre", "Apellido", "Telefono", "Direccion", "Salario", "afp", "isss", "Salario Total", "Cargo", "Fecha Contratacion"};
@@ -845,16 +1086,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             }
             this.usuarioGM.tbEmpleados.setModel(modelo);
         } //------------------------------------------------fin Usuario------------------------------------------------//
-         // ------------------------------------------------Inicio bono------------------------------------------------//
+        // ------------------------------------------------Inicio bono------------------------------------------------//
         else if (padreActiva.equals("bonoGM")) {
             String titulos[] = {"N", " $ ", "Cargo del Empleado "};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Bono> bonos = daoBono.selectAll();
             int i = 1;
             for (Bono x : bonos) {
-                        Object datos[] = {i, x.getBono(), x.getCargoEmpleado()};
-                        modelo.addRow(datos);
-                        i++;
+                Object datos[] = {i, x.getBono(), x.getCargoEmpleado()};
+                modelo.addRow(datos);
+                i++;
             }
             this.bonoGM.tbBono.setModel(modelo);
         } //------------------------------------------------fin Usuario------------------------------------------------//
@@ -873,7 +1114,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             registrosDeVenta.jtDatos.setModel(modelo);
             registrosDeVenta.lbTotal.setText(String.format("%.2f", total1));
         }
-        
+
         //************Fin registroVentas*************//
     }
 
@@ -1098,7 +1339,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     && (!vistaEmpleadoGM.tfIsss.getText().isEmpty())
                     && (!vistaEmpleadoGM.tfSalario.getText().isEmpty())
                     && vistaEmpleadoGM.tfCombobox.getSelectedIndex() > 0
-                    && vistaEmpleadoGM.tfCombobox_1.getSelectedIndex()>0) {
+                    && vistaEmpleadoGM.tfCombobox_1.getSelectedIndex() > 0) {
 
                 empleado = new Empleados(vistaEmpleadoGM.tfCombobox.getSelectedItem().toString(),
                         vistaEmpleadoGM.tfCodigo.getText(),
@@ -1107,25 +1348,23 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         vistaEmpleadoGM.tfFecha.getDatoFecha(), 1, vistaEmpleadoGM.tfNombre.getText(), vistaEmpleadoGM.tfApellido.getText(),
                         vistaEmpleadoGM.tfTelefono1.getText(), vistaEmpleadoGM.tfDireccion.getText());
                 empleado.addEmpresa();
-                
-                
-                
+
                 ArrayList<Empleados> existe = daoEmpleado.selectAllTo("codigoEmpleado", vistaEmpleadoGM.tfCodigo.getText());
                 if (existe.isEmpty()) {
 
                     if (daoEmpleado.insert(empleado)) {
 
-                       if (!vistaEmpleadoGM.tfCombobox_1.getSelectedItem().toString().equals("no añadir Bono")) {
+                        if (!vistaEmpleadoGM.tfCombobox_1.getSelectedItem().toString().equals("no añadir Bono")) {
                             bono = daoBono.selectAllTo("cargoEmpleado", vistaEmpleadoGM.tfCombobox.getSelectedItem().toString()).get(0);
-                           // System.out.println(bono.getCargoEmpleado());
+                            // System.out.println(bono.getCargoEmpleado());
                             if (bono != null) {
-                                
+
                                 empleado.addBono(bono);
-                                if ( daoEmpleado.agregarBono(empleado)) {
+                                if (daoEmpleado.agregarBono(empleado)) {
                                     System.out.println(bono.getCargoEmpleado());
                                 }
-                                    
-                                }
+
+                            }
                         }
                         Alerta aler = new Alerta(menuAdministrador, true, "Empleado añadido con exito", "/img/Succes.png");
                         aler.show();
@@ -1174,30 +1413,30 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 empleadosSeleccionanda.setIsss(Double.parseDouble(vistaEmpleadoGM.tfIsss.getText()));
                 empleadosSeleccionanda.setSalarioEmpleado(Double.parseDouble(vistaEmpleadoGM.tfSalario.getText()));
                 empleadosSeleccionanda.setCargoEmpleado(vistaEmpleadoGM.tfCombobox.getSelectedItem().toString());
-                
+
                 if (daoEmpleado.update(empleadosSeleccionanda)) {
-                   
-                         if (!vistaEmpleadoGM.tfCombobox_1.getSelectedItem().toString().equals("no añadir Bono")) {
-                            bono = daoBono.selectAllTo("cargoEmpleado", vistaEmpleadoGM.tfCombobox.getSelectedItem().toString()).get(0);
-                            if (bono != null) {
-                                empleadosSeleccionanda.addBono(bono);
-                                daoEmpleado.agregarBono(empleadosSeleccionanda);
-                                    
-                                }
-                        }else{
-                             try {
-                                 Empleados evaluar = daoEmpleado.selectConCondicion("WHERE idEmpleado = " + empleadosSeleccionanda.getIdPersona()
-                                         + " AND  idBono IS NOT NULL ").get(0);
-                                 if (evaluar != null) {
-                                    
-                                     daoEmpleado.quitarBono(empleadosSeleccionanda);
-                                 }
-                             } catch (Exception exeption) {
-                                 System.out.println("vacio");
-                             }
-    
-                         }
-                        
+
+                    if (!vistaEmpleadoGM.tfCombobox_1.getSelectedItem().toString().equals("no añadir Bono")) {
+                        bono = daoBono.selectAllTo("cargoEmpleado", vistaEmpleadoGM.tfCombobox.getSelectedItem().toString()).get(0);
+                        if (bono != null) {
+                            empleadosSeleccionanda.addBono(bono);
+                            daoEmpleado.agregarBono(empleadosSeleccionanda);
+
+                        }
+                    } else {
+                        try {
+                            Empleados evaluar = daoEmpleado.selectConCondicion("WHERE idEmpleado = " + empleadosSeleccionanda.getIdPersona()
+                                    + " AND  idBono IS NOT NULL ").get(0);
+                            if (evaluar != null) {
+
+                                daoEmpleado.quitarBono(empleadosSeleccionanda);
+                            }
+                        } catch (Exception exeption) {
+                            System.out.println("vacio");
+                        }
+
+                    }
+
                     Alerta aler = new Alerta(menuAdministrador, true, "Empleado modificado con exito", "/img/Succes.png");
                     empleadosSeleccionanda = null;
                     mostrarDatos();
@@ -1230,11 +1469,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         }
 
         ////////////////////////////////////fin  Empleado////////////////////////////////////
-        
-        
         ////////////////////////////////////para bono////////////////////////////////////
         if (e.getActionCommand().equals("Agregar") && padreActiva.equals("vistaBono")) {
-            if ((!vistaBono.tfBono.getText().isEmpty())  && vistaBono.tfCombobox.getSelectedIndex() > 0) {
+            if ((!vistaBono.tfBono.getText().isEmpty()) && vistaBono.tfCombobox.getSelectedIndex() > 0) {
 
                 bono = new Bono(Double.valueOf(vistaBono.tfBono.getText()), vistaBono.tfCombobox.getSelectedItem().toString());
 
@@ -1269,7 +1506,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             System.out.println("null");
             if ((!vistaBono.tfBono.getText().isEmpty())) {
 
-                
                 bonoSelecionado.setBono(Double.valueOf(vistaBono.tfBono.getText()));
                 bonoSelecionado.setCargoEmpleado(vistaBono.tfCombobox.getSelectedItem().toString());
                 if (daoBono.update(bonoSelecionado)) {
@@ -1282,9 +1518,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     Alerta aler = new Alerta(menuAdministrador, true, "Error modificado el bono vuelva a intentarlo", "/img/error.png");
                     aler.show();
                 }
-              
-                
-                
+
             } else {
                 Alerta aler = new Alerta(menuAdministrador, true, "Campos vacios ", "/img/error.png");
                 aler.show();
@@ -1384,8 +1618,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             String codigoEmpleado[] = vistaUsuario.tfCombobox.getSelectedItem().toString().split(" / ");
             vistaUsuario.tfUsuario.setText(codigoEmpleado[1]);
 
-        }
-        else if ((padreActiva.equals("vistaEmpleadoGM")|| hijaActiva.equals("vistaEmpleadoGM")) && vistaEmpleadoGM.tfCombobox.getSelectedIndex()>0) {
+        } else if ((padreActiva.equals("vistaEmpleadoGM") || hijaActiva.equals("vistaEmpleadoGM")) && vistaEmpleadoGM.tfCombobox.getSelectedIndex() > 0) {
             llenarCombo();
         }
     }
@@ -1591,9 +1824,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 }
             }
             this.usuarioGM.tbEmpleados.setModel(modelo);
-        }
-        //------------------------------------------------fin Usuario------------------------------------------------//
-
+        } //------------------------------------------------fin Usuario------------------------------------------------//
         //**************ProductoModi**************//
         else if (padreActiva.equals("productoModi")) {
             String titulos[] = {"N", "Nombre", "Cantidad", "Precio", "Max", "Min"};
@@ -1606,9 +1837,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 i++;
             }
             this.productoModi.jtDatos.setModel(modelo);
-        }
-        //***********Fin ProductoModi**********//
-        
+        } //***********Fin ProductoModi**********//
         //**************MostrarVenta**************//
         else if (padreActiva.equals("registroVentas")) {
             String titulos[] = {"N", "Fecha", "Cliente", "Empleado", "Precio Total"};
@@ -1622,13 +1851,12 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             }
             registrosDeVenta.jtDatos.setModel(modelo);
             registrosDeVenta.lbTotal.setText(String.format("%.2f", total1));
-        }
-        //***********Fin mostrarVenta**********//
+        } //***********Fin mostrarVenta**********//
         //        //**************ProductoModi****************//
-       else if (padreActiva.equals("registrosDeProductos")) {
-            String titulos[] = {"Codigo", "Nombre", "Cantidad", "Precio Unitario", "Iva", "Ganacia","Precio Compra", "Precio Venta", "fecha de Vencimiento", "Max", "Min",  "Empresa",  "Total"};
+        else if (padreActiva.equals("registrosDeProductos")) {
+            String titulos[] = {"Codigo", "Nombre", "Cantidad", "Precio Unitario", "Iva", "Ganacia", "Precio Compra", "Precio Venta", "fecha de Vencimiento", "Max", "Min", "Empresa", "Total"};
             modelo.setColumnIdentifiers(titulos);
-            
+
             float precioUni = 0;
             float totalUni = 0;
             float total2 = 0;
@@ -1636,21 +1864,20 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             for (Object obj : lista) {
                 Producto x = (Producto) obj;
                 this.registrosDeProductos.jtDatos.editCellAt(3, i);
-                precioUni = (float) (x.getPrecioCompra()/x.getCantidad());
-                totalUni = (float) (x.getPrecioVenta()*x.getCantidad());
-                Object datos[] = {x.getCodigoProducto(),x.getNombreProducto(), x.getCantidad(),precioUni,x.getIva()
-                        ,x.getGananciaUni(),x.getPrecioCompra(),x.getPrecioVenta(),x.getFechaVencimiento(), 
-                        x.getMax(), x.getMin(),x.getEmpresa().getNombre(),totalUni};///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                total2 = total2 +totalUni;
+                precioUni = (float) (x.getPrecioCompra() / x.getCantidad());
+                totalUni = (float) (x.getPrecioVenta() * x.getCantidad());
+                Object datos[] = {x.getCodigoProducto(), x.getNombreProducto(), x.getCantidad(), precioUni, x.getIva(),
+                    x.getGananciaUni(), x.getPrecioCompra(), x.getPrecioVenta(), x.getFechaVencimiento(),
+                    x.getMax(), x.getMin(), x.getEmpresa().getNombre(), totalUni};///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                total2 = total2 + totalUni;
                 modelo.addRow(datos);
                 i++;
-              
+
             }
             this.registrosDeProductos.jtDatos.setModel(modelo);
-            this.registrosDeProductos.lbTotal.setText("$"+String.format("%.2f", total2));
+            this.registrosDeProductos.lbTotal.setText("$" + String.format("%.2f", total2));
         }
         //************Fin productoModi*************//
-        
 
     }
 
@@ -1715,8 +1942,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             if (usuarioSeleccionando != null) {
                 usuarioGM.setEstado(true);
             }
-        }
-        //inicio bono
+        } //inicio bono
         else if (padreActiva.equals("bonoGM")) {
             int fila = bonoGM.tbBono.getSelectedRow();
             String id = bonoGM.tbBono.getValueAt(fila, 2).toString();
@@ -1750,6 +1976,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.clienteMA.tfDireccion.setText("");
 
         }
+
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
 
     }
 }
