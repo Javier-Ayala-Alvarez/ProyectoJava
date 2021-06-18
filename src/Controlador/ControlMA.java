@@ -1190,7 +1190,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 ArrayList<Empleados> empleado = daoEmpleado.selectAll();
                 ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
                 String vq[] = gastosGM.cbTipo.getSelectedItem().toString().split(" - ");
-
+                    
                 for (Empleados x : empleado) {
                     if (vq[0].equals(x.getCodigoEmpleado())) {
                         idEmpleado = x.getIdPersona();
@@ -1200,24 +1200,28 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         afpE = x.getAfp();
                         isssE = x.getIsss();
                         bono = x.getBono().getBono();
+                        
                      
                     }
 
                 }
+                    
+                
                 ArrayList<Empleados> empleado1 = daoEmpleado.selectAllTo("idEmpleado", String.valueOf(idEmpleado));
+
                 String v = gastosGM.cbTipo.getSelectedItem().toString();
                 if (gastoSeleccionado == null) {
                     double ISSS = 0.0775;
                     double AFP = 0.0775;
                     pago = (float) (salario - (afpE + isssE));
-                    salario = (float) ((salario + (salario * ISSS)) + (salario * AFP));
-                    retiro = (float)salario + bono;
+                    salario = (float) ((salario + (salario * ISSS)) + (salario * AFP)+bono);
+                    retiro = (float)pago + bono;
                     GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(), gastosGM.dFecha.getDatoFecha(), categoria, salario, empresa.get(0), empleado1.get(0));
                     ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("codigoGasto", gastosGM.tfCodigo.getText());
                     if (existe.isEmpty()) {
                         if (daoGasto.insert1(gasto)) {
                             vaciarVista();
-                            Alerta aler = new Alerta(menuAdministrador, true, "Salario $" + pago +  " + Bono" + bono + " = " + retiro, "/img/Succes.png");
+                            Alerta aler = new Alerta(menuAdministrador, true, "Salario $" + pago +  " + Bono " + bono + " = " + retiro, "/img/Succes.png");
                             aler.show();
                            
                         }

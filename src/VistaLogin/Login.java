@@ -14,6 +14,8 @@ public static String LogoE= "/img/Logo.jpg";
         
         this.setIconImage(new ImageIcon(getClass().getResource(LogoE)).getImage());
         this.btnEntrar.setActionCommand("Entrar");
+        
+       
         setLocationRelativeTo(null);
         jpLogo12.setBorder(new Fondo("/img/login.png"));
         cerrar();
@@ -21,6 +23,7 @@ public static String LogoE= "/img/Logo.jpg";
 
     public void setControlador(ControlLogin control) {
         btnEntrar.addActionListener(control);
+       
     }
 
     public void iniciar() {
@@ -52,7 +55,6 @@ public static String LogoE= "/img/Logo.jpg";
         jLabel1 = new javax.swing.JLabel();
         btnCerrar = new principal.MaterialButtonCircle();
         btnEntrar = new javax.swing.JButton();
-        lbError1 = new javax.swing.JLabel();
         lbPass = new javax.swing.JLabel();
         tfUser = new principal.MaterialTextField();
         lbUser = new javax.swing.JLabel();
@@ -127,8 +129,6 @@ public static String LogoE= "/img/Logo.jpg";
             }
         });
 
-        lbError1.setBackground(new java.awt.Color(204, 0, 0));
-
         lbPass.setBackground(new java.awt.Color(255, 255, 255));
         lbPass.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbPass.setText("Contraseña:");
@@ -168,7 +168,7 @@ public static String LogoE= "/img/Logo.jpg";
         jpLogo12.setLayout(jpLogo12Layout);
         jpLogo12Layout.setHorizontalGroup(
             jpLogo12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 178, Short.MAX_VALUE)
+            .addGap(0, 161, Short.MAX_VALUE)
         );
         jpLogo12Layout.setVerticalGroup(
             jpLogo12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,23 +184,24 @@ public static String LogoE= "/img/Logo.jpg";
         panel3.setLayout(panel3Layout);
         panel3Layout.setHorizontalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(jpLogo12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
             .addGroup(panel3Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(lbUser1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel3Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jpLogo12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel3Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(lbUser1)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         panel3Layout.setVerticalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel3Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(67, 67, 67)
                 .addComponent(jpLogo12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(38, 38, 38)
                 .addComponent(lbUser1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,22 +213,18 @@ public static String LogoE= "/img/Logo.jpg";
                 .addComponent(panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(lbError1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(52, 52, 52))
+                        .addGap(54, 54, 54)
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lbUser, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfUser, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                            .addComponent(lbPass, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pfPass, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(30, 30, 30))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lbUser, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbPass, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(pfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24))))
             .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -249,11 +246,9 @@ public static String LogoE= "/img/Logo.jpg";
                         .addComponent(lbPass)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
+                        .addGap(26, 26, 26)
                         .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbError1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 20, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
 
         getAccessibleContext().setAccessibleParent(this);
@@ -319,7 +314,6 @@ public static String LogoE= "/img/Logo.jpg";
     private javax.swing.JPanel jpLogo;
     public static javax.swing.JPanel jpLogo12;
     private javax.swing.JLabel lbError;
-    private javax.swing.JLabel lbError1;
     private javax.swing.JLabel lbPass;
     private javax.swing.JLabel lbUser;
     private javax.swing.JLabel lbUser1;

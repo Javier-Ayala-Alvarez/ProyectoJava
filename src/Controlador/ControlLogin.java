@@ -74,25 +74,21 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         if (e.getActionCommand().equals("Entrar")) {
             String respuesta = direccion();
             llamarVistaConsulta(respuesta);
+        }else if(e.getActionCommand().equals("Olvide")){
+            recuperar();
         }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        char c = e.getKeyChar();
-        if (Character.isDigit(c)) {
-            e.consume();
-            login.tfUser.setBackground(Color.red);
-            JOptionPane.showMessageDialog(null, "No se permiten números");
-        } else {
-            login.tfUser.setBackground(Color.WHITE);
-        }
+               
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
 
     }
+
 
     @Override
     public void keyReleased(KeyEvent e) {
@@ -107,8 +103,10 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
     public void llamarVistaConsulta(String vista) {
         /*Esta función realiza la acción al presionar un determinado botón
         con su respectivo ActionCommand proveniente de la función ActionPerformed*/
+        try{
         if (vista.equals("login")) {
             login.setControlador(this);
+            
             login.iniciar();
 
         } else if (vista.equals("admin")) {
@@ -119,6 +117,9 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
             login.dispose();
             menuAdministrador.setControlador(this);
             ControlMA controlMA = new ControlMA(menuAdministrador, login, empleadoGM, gastosGM, registrosDeProductos, productoModi, registrosDeVentas, consultarVentas, clienteMA);
+        }
+        }catch(Exception ex){
+        
         }
     }
 
@@ -177,5 +178,8 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         limpiar();
         return g;
 
+    }
+    public void recuperar(){
+    
     }
 }
