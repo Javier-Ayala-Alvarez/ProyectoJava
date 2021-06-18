@@ -77,8 +77,16 @@ public class Usuario{
             this.empleados = empleadoDao.selectCodigo(id).get(0);
         }
     }
+        public void AddEpleado1(String id)
+    {
+        EmpleadoDao empleadoDao = new EmpleadoDao();
+//        if (empleadoDao.selectCodigo(id).get(0) != null) {
+            this.empleados = empleadoDao.selectAllTo("idUsuario", id).get(0);
+        //}
+    }
 
     public Empleados getEmpleados() {
+
         return empleados;
     }
     

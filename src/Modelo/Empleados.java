@@ -1,6 +1,7 @@
 package Modelo;
 
 
+import Modelo.dao.BonoDao;
 import Modelo.dao.EmpresaDao;
 import java.util.ArrayList;
 import java.util.Date;
@@ -146,6 +147,8 @@ public class Empleados extends Persona{
     }
 
     public Bono getBono() {
+        BonoDao daoBono = new BonoDao();
+        bono = daoBono.selectId(bono.getIdBono()).get(0);
         return bono;
     }
 

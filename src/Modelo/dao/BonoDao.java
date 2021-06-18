@@ -64,7 +64,6 @@ public class BonoDao {
             while(rs.next()) {
               
                 obj = new Bono();
-                
                 obj.setIdBono(rs.getInt("idBono"));
                 obj.setBono(rs.getDouble("bono"));
                 obj.setCargoEmpleado(rs.getString("cargoEmpleado"));

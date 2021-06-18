@@ -32,6 +32,10 @@ public class EmpleadoDao {
         String sql = "SELECT * fROM empleado WHERE  " + atributo + "='" + condicion + "'";
         return select(sql);
     }
+    public ArrayList<Empleados> selectAllTo(String atributo, int condicion) {
+        String sql = "SELECT * fROM empleado WHERE  " + atributo + "='" + condicion + "'";
+        return select(sql);
+    }
 
     public ArrayList<Empleados> selectId(int id) {
         String sql = "SELECT * fROM empleado WHERE  idEmpleado = " + id;
@@ -41,6 +45,8 @@ public class EmpleadoDao {
         String sql = "SELECT * fROM empleado WHERE codigoEmpleado  = '" + id + "'";
         return select(sql);
     }
+        
+
 
     public ArrayList<Empleados> buscar(String dato) {
         String sql = "SELECT * fROM empleado WHERE codigoEmpleado like '" + dato

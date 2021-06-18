@@ -39,7 +39,6 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         jLabel4 = new javax.swing.JLabel();
-        btnAumentar = new rojeru_san.complementos.RSButtonHover();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -151,15 +150,6 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         jLabel4.setText("TOTAL:");
         panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 520, -1, -1));
 
-        btnAumentar.setBackground(new java.awt.Color(0, 102, 102));
-        btnAumentar.setText("Actualizar Cantidad");
-        btnAumentar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAumentarActionPerformed(evt);
-            }
-        });
-        panelFondo.add(btnAumentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 190, 40));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,10 +185,6 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
 
     }//GEN-LAST:event_materialButtonCircle2ActionPerformed
 
-    private void btnAumentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAumentarActionPerformed
-
-    }//GEN-LAST:event_btnAumentarActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -227,7 +213,6 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public rojeru_san.complementos.RSButtonHover btnAumentar;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

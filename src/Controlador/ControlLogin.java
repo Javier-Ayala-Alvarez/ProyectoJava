@@ -5,6 +5,9 @@
  */
 package Controlador;
 
+import Modelo.Encriptacion;
+import Modelo.Usuario;
+import Modelo.dao.UsuarioDao;
 import VistaLogin.Alerta;
 import VistaLogin.Login;
 import VistaMA.ClienteMA;
@@ -26,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,8 +55,9 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
     Facturacion facturacion;
     Mensaje mensaje;
     Producto producto;
+
+    UsuarioDao daoUsuario = new UsuarioDao();
     String g;
-    
 
     public ControlLogin(Login login, Factura factura, MenuAdministrador menuAdministrador, String acceso) {
         this.login = login;
@@ -105,9 +110,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         if (vista.equals("login")) {
             login.setControlador(this);
             login.iniciar();
-            login.tfUser.setText("AD");
-            login.pfPass.setText("1");
-            
+
         } else if (vista.equals("admin")) {
             login.dispose();
             factura.setControlador(this);
@@ -115,7 +118,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         } else if (vista.equals("Admin")) {
             login.dispose();
             menuAdministrador.setControlador(this);
-            ControlMA controlMA = new ControlMA(menuAdministrador, login, empleadoGM, gastosGM, registrosDeProductos, productoModi, registrosDeVentas, consultarVentas,clienteMA);
+            ControlMA controlMA = new ControlMA(menuAdministrador, login, empleadoGM, gastosGM, registrosDeProductos, productoModi, registrosDeVentas, consultarVentas, clienteMA);
         }
     }
 
@@ -124,25 +127,55 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
             JOptionPane.showMessageDialog(null, "¡Ambos campos vacíos!", "Error", JOptionPane.ERROR_MESSAGE);
         } else if ((login.pfPass.getText().isEmpty()) || login.tfUser.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "¡Ningún campo debe quedar en blanco!", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if ((login.pfPass.getText().equals("1") && (login.tfUser.getText().equals("AD")))) {
-            int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Administracion?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-          
-            if (opccion == 0) {
-                login.dispose();
-                g = "Admin";
-            }
-        } else if ((login.pfPass.getText().equals("1") && (login.tfUser.getText().equals("ad")))) {
-            int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Caja?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (opccion == 0) {
-                login.dispose();
-                g = "admin";
+        } else {
+            ArrayList<Usuario> usuario1 = daoUsuario.selectAllTo("usuario", login.tfUser.getText());
+            String clave = Encriptacion.getStringMessageDigest(login.pfPass.getText(), Encriptacion.SHA256);
+                try{
+            usuario1.get(0).AddEpleado1(String.valueOf(usuario1.get(0).getIdUsuario()));
+
+            if (login.tfUser.getText().equals(usuario1.get(0).getUsuario())
+                    && clave.equals(usuario1.get(0).getContraseña())
+                    && usuario1.get(0).getEmpleados().getCargoEmpleado().equals("Administrador")
+                    && usuario1.get(0).getEmpleados().getEstado() == 1) {
+                int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Administracion?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                if (opccion == 0) {
+                    login.dispose();
+                    g = "Admin";
+                }
+
+            } else if (login.tfUser.getText().equals(usuario1.get(0).getUsuario())
+                    && clave.equals(usuario1.get(0).getContraseña())
+                    && usuario1.get(0).getEmpleados().getCargoEmpleado().equals(" Cajero")
+                    && usuario1.get(0).getEmpleados().getEstado() == 1) {
+
+                int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Caja?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                if (opccion == 0) {
+                    login.dispose();
+                    g = "admin";
+                }
+
+            } else if ((login.pfPass.getText().equals("12345") && (login.tfUser.getText().equals("Admin"))) && usuario1.get(0).getUsuario().equals(null)) {
+
+                int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Administracion?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                if (opccion == 0) {
+                    login.dispose();
+                    g = "Admin";
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos Incorrectos");
+                
             }
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Datos Incorrectos");
+        }catch (Exception ex){
+               JOptionPane.showMessageDialog(null, "Datos Incorrectos");
+               }
         }
         limpiar();
         return g;
-    }
 
+    }
 }

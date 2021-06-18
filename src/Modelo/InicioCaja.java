@@ -6,6 +6,7 @@
 
 package Modelo;
 
+import Modelo.dao.UsuarioDao;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,9 +21,15 @@ public class InicioCaja {
     private double dineroInicio,dineroCierre;
 
     private  Usuario usuario;
-    
-   
-  
+
+    public InicioCaja(String codigoCaja, Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre, Usuario usuario) {
+        this.codigoCaja = codigoCaja;
+        this.fechaInicio = fechaInicio;
+        this.fechaCierre = fechaCierre;
+        this.dineroInicio = dineroInicio;
+        this.dineroCierre = dineroCierre;
+        this.usuario = usuario;
+    }
 
     public InicioCaja(int idAdminCaja, Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre) {
         this.idAdminCaja = idAdminCaja;
@@ -30,18 +37,10 @@ public class InicioCaja {
         this.fechaCierre = fechaCierre;
         this.dineroInicio = dineroInicio;
         this.dineroCierre = dineroCierre;
-       
     }
+    
 
     public InicioCaja() {
-    }
-
-    public InicioCaja(Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre) {
-        this.fechaInicio = fechaInicio;
-        this.fechaCierre = fechaCierre;
-        this.dineroInicio = dineroInicio;
-        this.dineroCierre = dineroCierre;
-       
     }
 
     public InicioCaja(int idAdminCaja) {
@@ -52,6 +51,7 @@ public class InicioCaja {
         this.dineroInicio = dineroInicio;
     }
     
+
     
 
     public int getIdAdminCaja() {
@@ -60,6 +60,14 @@ public class InicioCaja {
 
     public void setIdAdminCaja(int idAdminCaja) {
         this.idAdminCaja = idAdminCaja;
+    }
+
+    public String getCodigoCaja() {
+        return codigoCaja;
+    }
+
+    public void setCodigoCaja(String codigoCaja) {
+        this.codigoCaja = codigoCaja;
     }
 
     public Date getFechaInicio() {
@@ -94,26 +102,17 @@ public class InicioCaja {
         this.dineroCierre = dineroCierre;
     }
 
-     public void addUsuario(Usuario x)
-    {
-       this.usuario =x;
-    }
-
     public Usuario getUsuario() {
+           UsuarioDao daoUsuario = new UsuarioDao();
+        usuario = daoUsuario.selectId(usuario.getIdUsuario()).get(0);
+
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    public String getCodigoCaja() {
-        return codigoCaja;
-    }
-
-    public void setCodigoCaja(String codigoCaja) {
-        this.codigoCaja = codigoCaja;
-    }
-     
+    
+  
      
 }

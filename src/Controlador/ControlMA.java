@@ -1,6 +1,7 @@
 package Controlador;
 
-import Modelo.Bono;
+import 
+Modelo.Bono;
 import Modelo.Cliente;
 import Modelo.Empleados;
 import Modelo.Empresa;
@@ -51,8 +52,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.JFreeChart;
@@ -121,12 +120,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     //****Fin productoModi****//
     RegistrosDeProductos registrosDeProductos;
     RegistrosDeVentas registrosDeVentas;
-    InicioCajaDao daoCaja;
-    InicioCaja inicioCaja;
+    InicioCajaDao daoCaja = new InicioCajaDao();
 
     private String padreActiva = "", hijaActiva = "";
-    private final JLabel label = new JLabel();
-    private final ImageIcon iconoAumentar = new ImageIcon(getClass().getResource("/img/Logo.jpg"));
 
     ///******Consulta Factura******////
     ConsultarVentas consultarVentas;
@@ -830,15 +826,14 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
     public void mostrarDatos() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo = new DefaultTableModel();
-        ////////////******TOTAL InicioCaja********/////////////////
-
-//       ArrayList<InicioCaja> caja1 = daoCaja.selectAll();
-//        double inicio = 0;
-//        for (InicioCaja x : caja1) {
-//            inicio = x.getDineroInicio();
-//        }
-//        this.menuAdministrador.lbCaja.setText("$"+String.format("%.2f", inicio));
+        modelo = new DefaultTableModel();              
+        ////////////******TOTAL InicioCaja********/////////////////          
+       ArrayList<InicioCaja> caja1 = daoCaja.selectAll();
+        double inicio = 0;
+        for (InicioCaja x : caja1) {
+            inicio = x.getDineroInicio();
+        }
+        this.menuAdministrador.lbCaja.setText("$"+String.format("%.2f", inicio));
         ////////////******FIN DE TOTAL InicioCaja********/////////////////
         ////////////******NOMBRE DE LA TIENDA********/////////////////
         String nombre = "";
@@ -867,11 +862,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         float totalV = 0;
         float totalUni1 = 0;
         ArrayList<Producto> producto1 = daoProducto.selectAll();
-        for (Producto x : producto1) {
-            totalUni1 = (float) (x.getPrecioVenta() * x.getCantidad());
-            totalV = (float) (totalV + totalUni1);
-        }
-        this.menuAdministrador.lbProducto1.setText(String.format("%.2f", totalV));
+            for (Producto x : producto1) {
+                totalUni1 = (float) (x.getPrecioVenta()*x.getCantidad());
+                totalV = (float) (totalV + totalUni1);
+            }
+        this.menuAdministrador.lbProducto1.setText("$"+String.format("%.2f", totalV));
         ///////////*******fIN DE PRODUCTO************////////////////
         ////////////******GASTOS EMPLEADO********/////////////////
 
@@ -1190,6 +1185,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 double afpE = 0;
                 double isssE = 0;
                 double bono = 0;
+                double retiro =0;
                 String categoria = "";
                 ArrayList<Empleados> empleado = daoEmpleado.selectAll();
                 ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
@@ -1203,8 +1199,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
                         afpE = x.getAfp();
                         isssE = x.getIsss();
-                        //bono = x.getBono().getBono();
-
+                        bono = x.getBono().getBono();
+                     
                     }
 
                 }
@@ -1214,15 +1210,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     double ISSS = 0.0775;
                     double AFP = 0.0775;
                     pago = (float) (salario - (afpE + isssE));
-                    salario = (float) ((pago + (salario * ISSS)) + (salario * AFP));
+                    salario = (float) ((salario + (salario * ISSS)) + (salario * AFP));
+                    retiro = (float)salario + bono;
                     GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(), gastosGM.dFecha.getDatoFecha(), categoria, salario, empresa.get(0), empleado1.get(0));
                     ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("codigoGasto", gastosGM.tfCodigo.getText());
                     if (existe.isEmpty()) {
                         if (daoGasto.insert1(gasto)) {
                             vaciarVista();
-                            Alerta aler = new Alerta(menuAdministrador, true, "Pago a retirar $" + pago + " ", "/img/Succes.png");
+                            Alerta aler = new Alerta(menuAdministrador, true, "Salario $" + pago +  " + Bono" + bono + " = " + retiro, "/img/Succes.png");
                             aler.show();
-
+                           
                         }
                     } else {
                         Alerta aler = new Alerta(menuAdministrador, true, "Codigo ya Existe", "/img/error.png");
@@ -1987,5 +1984,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     @Override
     public void focusLost(FocusEvent e) {
 
+    }
+
+    private void printf(double bono) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
