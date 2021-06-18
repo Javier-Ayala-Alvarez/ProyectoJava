@@ -94,25 +94,24 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
         } else if (vista.equals("tiket")) {
             JOptionPane.showMessageDialog(null, "Tiket está vacío");
         } else if (vista.equals("facturacion")) {
-          
+
         } else if (vista.equals("administrador")) {
             int opc = JOptionPane.showConfirmDialog(null, "¿Desea ingresar al Login?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opc == 0) {
                 factura.dispose();
-                login.cerrar();
                 Login log = new Login();
                 Factura vistaF = new Factura();
                 MenuAdministrador vistaMA = new MenuAdministrador();
                 ControlLogin controlL = new ControlLogin(log, vistaF, vistaMA, log.tfUser.getText());
             }
         } else if (vista.equals("cerrarFactura")) {
+
             factura.dispose();
-            login.cerrar();
-            Login logg = new Login();
-            Factura vistaFf = new Factura();
-            MenuAdministrador vistaMAa = new MenuAdministrador();
-            ControlLogin controlLo = new ControlLogin(logg, vistaFf, vistaMAa, logg.tfUser.getText());
+            Login log = new Login();
+            Factura vistaF = new Factura();
+            MenuAdministrador vistaMA = new MenuAdministrador();
+            ControlLogin controlL = new ControlLogin(log, vistaF, vistaMA, log.tfUser.getText());
         }
     }
-//hola
+
 }
