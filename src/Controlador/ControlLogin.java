@@ -74,8 +74,6 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         if (e.getActionCommand().equals("Entrar")) {
             String respuesta = direccion();
             llamarVistaConsulta(respuesta);
-        }else if(e.getActionCommand().equals("Olvide")){
-            recuperar();
         }
     }
 
@@ -157,14 +155,6 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
                     g = "admin";
                 }
 
-            } else if ((login.pfPass.getText().equals("12345") && (login.tfUser.getText().equals("Admin"))) && usuario1.get(0).getUsuario().equals(null)) {
-
-                int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Administracion?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-                if (opccion == 0) {
-                    login.dispose();
-                    g = "Admin";
-                }
 
             } else {
                 JOptionPane.showMessageDialog(null, "Datos Incorrectos");
@@ -172,14 +162,24 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
             }
 
         }catch (Exception ex){
-               JOptionPane.showMessageDialog(null, "Datos Incorrectos");
-               }
+            ArrayList<Usuario> usuario2 = daoUsuario.selectAll();
+             if ((login.pfPass.getText().equals("12345") && (login.tfUser.getText().equals("Admin"))) && usuario2.isEmpty()) {
+
+                int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Administracion?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                if (opccion == 0) {
+                    login.dispose();
+                    g = "Admin";
+                }
+               
+               }else{
+                 JOptionPane.showMessageDialog(null, "Datos Incorrectos");
+             }
         }
-        limpiar();
-        return g;
+        
 
     }
-    public void recuperar(){
-    
-    }
+    limpiar();
+        return g;
+}
 }
