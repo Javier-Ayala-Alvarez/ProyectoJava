@@ -32,6 +32,7 @@ public class EmpleadoDao {
         String sql = "SELECT * fROM empleado WHERE  " + atributo + "='" + condicion + "'";
         return select(sql);
     }
+    
     public ArrayList<Empleados> selectAllTo(String atributo, int condicion) {
         String sql = "SELECT * fROM empleado WHERE  " + atributo + "='" + condicion + "'";
         return select(sql);
@@ -107,9 +108,11 @@ public class EmpleadoDao {
                 obj.setIsss(rs.getDouble("isss"));
                 obj.setFechaContratacion(rs.getDate("contratacion"));
                 obj.setEstado(rs.getInt("estado"));
+                obj.setIdUsuario(rs.getInt("idUsuario"));
                 Usuario usuario = new Usuario(rs.getInt(("idUsuario")));
                 Empresa empresa = new Empresa(rs.getInt("idEmpresa"));
                 Bono bono = new Bono(rs.getInt("idBono"));
+                
                 obj.addUsuario(usuario);
                 obj.setEmpresa(empresa);
                 obj.setBono(bono);

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Empleados extends Persona{
-
+    private int idUsuario;
     private int idEmpleado;
     private String cargoEmpleado,codigoEmpleado;
     private double salarioEmpleado, afp, isss;
@@ -60,6 +60,28 @@ public class Empleados extends Persona{
         this.fechaContratacion = fechaContratacion;
         this.estado = estado;
     }
+
+    public Empleados(int idUsuario, String cargoEmpleado) {
+        this.idUsuario = idUsuario;
+        this.cargoEmpleado = cargoEmpleado;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public ArrayList<Venta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(ArrayList<Venta> ventas) {
+        this.ventas = ventas;
+    }
+    
 
    public int getIdEmpleado() {
         return idEmpleado;
