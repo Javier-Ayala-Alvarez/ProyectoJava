@@ -61,7 +61,7 @@ public class Gastosdao {
         return lista;
         
     }
-     
+    
     
     public ArrayList<GastoEmpresa> selectAll1() {
         String sql = "select * from gastoempresa";
@@ -82,6 +82,37 @@ public class Gastosdao {
         String sql = "select * from gastoempresa where idGastos like '" + dato + "%' or codigoGasto like '" + dato + "%' or fecha like '" + dato + "%'  or tipo like '" + dato + "%'  or saldo like '" + dato + "%' or idEmpresa like '" + dato + "%' or idEmpleado like '" + dato + "%'";
         return select(sql);
     }
+     public ArrayList<GastoEmpresa> buscarDis(String dato) {
+        String sql = "select distinct tipo from gastoempresa where idGastos like '" + dato + "%' or codigoGasto like '" + dato + "%' or fecha like '" + dato + "%'  or tipo like '" + dato + "%'  or saldo like '" + dato + "%' or idEmpresa like '" + dato + "%' or idEmpleado like '" + dato + "%'";
+         ArrayList<GastoEmpresa> lista = new ArrayList();
+        GastoEmpresa obj = null;
+        try {
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while(rs.next()) {
+                obj = new GastoEmpresa();
+                obj.setCategoria(rs.getString("tipo"));               
+                lista.add(obj);
+            }
+            
+        }catch(Exception e) {
+            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            alert.show();
+            e.printStackTrace();
+        }finally{
+            try {
+                ps.close();
+            } catch (Exception ex) {
+                
+            }
+            conectar.closeConexion(con);
+        }
+        
+        return lista;
+    }
+    
     
     public boolean insert1(GastoEmpresa obj){
         String sql = "insert into gastoempresa(codigoGasto,fecha,tipo,saldo,idEmpresa,idEmpleado)VALUES(?,?,?,?,?,?)";

@@ -304,7 +304,18 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
             }
 
-        } else if (padreActiva.equals("consultarCliente")) {
+        }if (padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1")) {
+            ArrayList<GastoEmpresa> listaDis = daoGasto.buscarDis(GastosGM.tfBuscar.getText() + e.getKeyChar());
+
+            if (listaDis.isEmpty()) {
+                mostrarDatos();
+            } else {
+                filtrarReporte(listaDis);
+
+            }
+
+        }
+        else if (padreActiva.equals("consultarCliente")) {
             ArrayList<Cliente> lista = daoCliente.buscar(ClienteMA.tfBuscar.getText() + e.getKeyChar());
 
             if (lista.isEmpty()) {
@@ -1164,7 +1175,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
                         afpE = x.getAfp();
                         isssE = x.getIsss();
-                        //bono = x.getBono().getBono();
+                        bono = x.getBono().getBono();
                         
                      
                     }
@@ -1179,8 +1190,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     double ISSS = 0.0775;
                     double AFP = 0.0775;
                     pago = (float) (salario - (afpE + isssE));
-                    salario = (float) ((salario + (salario * ISSS)) + (salario * AFP));//+bono);
-                    retiro = (float)pago;// + bono;
+                    salario = (float) ((salario + (salario * ISSS)) + (salario * AFP)+bono);
+                    retiro = (float)pago + bono;
                     GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(), gastosGM.dFecha.getDatoFecha(), categoria, salario, empresa.get(0), empleado1.get(0));
                     ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("codigoGasto", gastosGM.tfCodigo.getText());
                     if (existe.isEmpty()) {
@@ -1591,8 +1602,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
     public void mostrarBusqueda(ArrayList lista) {
         DefaultTableModel modelo = new DefaultTableModel();
-        DefaultTableModel modelo1 = new DefaultTableModel();
-        modelo1 = new DefaultTableModel();     
+        
+           
         ////////////******GASTOS Empresa********/////////////////
 
         if (padreActiva.equals("gastosGM")) {
@@ -1651,28 +1662,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             }
 
         }
-        if (padreActiva.equals("gastosGM1")|| padreActiva.equals("gastosGM")) {  
- 
-        String titulos1[] = {"Cant...", "Categoria", "Total"};
-            modelo1.setColumnIdentifiers(titulos1);
-            Gastosdao gastoDao= new Gastosdao();
-        ArrayList<GastoEmpresa> muestra = gastoDao.selectAllDis();
-        for(Object a : lista ){
-            GastoEmpresa x= (GastoEmpresa) a;
-            ArrayList<GastoEmpresa> totales = gastoDao.selectAllTo("tipo",x.getCategoria());
-                double totalRegistro = 0;
-                int j = 0;
-                for(GastoEmpresa i: totales){
-                    totalRegistro = totalRegistro + i.getSaldo();
-                    j++;
-                }
-                Object datos1[] = {j,x.getCategoria(), totalRegistro};
-                
-                modelo1.addRow(datos1);
-        }
-            
-                GastosGM.jtDatosReporte.setModel(modelo1);
-        }
+       
         ////////////******FINAL GASTOS EMPLEADO********/////////////////
 
         ////////////******ClienteMA********/////////////////
@@ -1787,7 +1777,58 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         //************Fin productoModi*************//
 
     }
-
+public void filtrarReporte(ArrayList lista){
+    DefaultTableModel modelo1 = new DefaultTableModel();
+     if (padreActiva.equals("gastosGM")) {  
+ 
+        String titulos1[] = {"Cant...", "Categoria", "Total"};
+            modelo1.setColumnIdentifiers(titulos1);
+            Gastosdao gastoDao= new Gastosdao();
+        for(Object a : lista ){
+            GastoEmpresa x= (GastoEmpresa) a;
+            if (!(x.getCategoria().equals("Administrador")
+                        || (x.getCategoria().equals("Cajero"))
+                        || (x.getCategoria().equals("Supervisor")))) {
+            ArrayList<GastoEmpresa> totales = gastoDao.selectAllTo("tipo",x.getCategoria());
+                double totalRegistro = 0;
+                int j = 0;
+                for(GastoEmpresa i: totales){
+                    totalRegistro = totalRegistro + i.getSaldo();
+                    j++;
+                }
+                Object datos1[] = {j,x.getCategoria(), totalRegistro};
+                
+                modelo1.addRow(datos1);
+            }
+        }
+            
+                GastosGM.jtDatosReporte.setModel(modelo1);
+        }else  if (padreActiva.equals("gastosGM1")) {  
+ 
+        String titulos1[] = {"Cant...", "Categoria", "Total"};
+            modelo1.setColumnIdentifiers(titulos1);
+            Gastosdao gastoDao= new Gastosdao();
+        for(Object a : lista ){
+            GastoEmpresa x= (GastoEmpresa) a;
+            if ((x.getCategoria().equals("Administrador")
+                        || (x.getCategoria().equals("Cajero"))
+                        || (x.getCategoria().equals("Supervisor")))) {
+            ArrayList<GastoEmpresa> totales = gastoDao.selectAllTo("tipo",x.getCategoria());
+                double totalRegistro = 0;
+                int j = 0;
+                for(GastoEmpresa i: totales){
+                    totalRegistro = totalRegistro + i.getSaldo();
+                    j++;
+                }
+                Object datos1[] = {j,x.getCategoria(), totalRegistro};
+                
+                modelo1.addRow(datos1);
+            }
+        }
+            
+                GastosGM.jtDatosReporte.setModel(modelo1);
+        }
+}
     @Override
     public void mouseClicked(MouseEvent me) {
         /* Gastos */
