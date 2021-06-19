@@ -26,8 +26,42 @@ public class Gastosdao {
     
     public ArrayList<GastoEmpresa> selectAll() {
         String sql = "select * from gastoempresa";
+        
         return select(sql);
     }
+     public ArrayList<GastoEmpresa> selectAllDis() {
+        String sql = "select distinct tipo from gastoempresa";
+        
+         ArrayList<GastoEmpresa> lista = new ArrayList();
+        GastoEmpresa obj = null;
+        try {
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while(rs.next()) {
+                obj = new GastoEmpresa();
+                obj.setCategoria(rs.getString("tipo"));               
+                lista.add(obj);
+            }
+            
+        }catch(Exception e) {
+            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            alert.show();
+            e.printStackTrace();
+        }finally{
+            try {
+                ps.close();
+            } catch (Exception ex) {
+                
+            }
+            conectar.closeConexion(con);
+        }
+        
+        return lista;
+        
+    }
+     
     
     public ArrayList<GastoEmpresa> selectAll1() {
         String sql = "select * from gastoempresa";

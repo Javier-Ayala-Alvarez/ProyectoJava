@@ -5,8 +5,10 @@
  */
 package Controlador;
 
+import Modelo.Empleados;
 import Modelo.Encriptacion;
 import Modelo.Usuario;
+import Modelo.dao.EmpleadoDao;
 import Modelo.dao.UsuarioDao;
 import VistaLogin.Alerta;
 import VistaLogin.Login;
@@ -57,6 +59,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
     Producto producto;
 
     UsuarioDao daoUsuario = new UsuarioDao();
+     EmpleadoDao daoEmpleado = new EmpleadoDao();
     String g;
 
     public ControlLogin(Login login, Factura factura, MenuAdministrador menuAdministrador, String acceso) {
@@ -145,7 +148,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
 
             } else if (login.tfUser.getText().equals(usuario1.get(0).getUsuario())
                     && clave.equals(usuario1.get(0).getContraseña())
-                    && usuario1.get(0).getEmpleados().getCargoEmpleado().equals(" Cajero")
+                    && usuario1.get(0).getEmpleados().getCargoEmpleado().equals("Cajero")
                     && usuario1.get(0).getEmpleados().getEstado() == 1) {
 
                 int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Caja?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -163,7 +166,8 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
 
         }catch (Exception ex){
             ArrayList<Usuario> usuario2 = daoUsuario.selectAll();
-             if ((login.pfPass.getText().equals("12345") && (login.tfUser.getText().equals("Admin"))) && usuario2.isEmpty()) {
+            ArrayList<Empleados> emple = daoEmpleado.selectAllTo("cargoEmpleado", "Administracion");
+             if ((login.pfPass.getText().equals("12345") && (login.tfUser.getText().equals("Admin"))) && (usuario2.isEmpty() && emple.isEmpty())) {
 
                 int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Administracion?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 
