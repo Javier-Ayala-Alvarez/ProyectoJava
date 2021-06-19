@@ -73,7 +73,7 @@ public class ClienteDao {
                 //obj.getVentas(new Ventas(rs.getInt("idVenta")));
                 lista.add(obj);
                 
-                lista.add(obj);
+               
             }
             
         }catch(Exception e) {
