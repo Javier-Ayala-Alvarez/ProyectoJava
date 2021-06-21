@@ -108,13 +108,12 @@ public class EmpleadoDao {
                 obj.setIsss(rs.getDouble("isss"));
                 obj.setFechaContratacion(rs.getDate("contratacion"));
                 obj.setEstado(rs.getInt("estado"));
+                Empresa empresa = new Empresa(rs.getInt("idEmpresa"));
                 obj.setIdUsuario(rs.getInt("idUsuario"));
                 Usuario usuario = new Usuario(rs.getInt(("idUsuario")));
-                Empresa empresa = new Empresa(rs.getInt("idEmpresa"));
                 Bono bono = new Bono(rs.getInt("idBono"));
-                
-                obj.addUsuario(usuario);
                 obj.setEmpresa(empresa);
+                obj.addUsuario(usuario);
                 obj.setBono(bono);
 
                 lista.add(obj);

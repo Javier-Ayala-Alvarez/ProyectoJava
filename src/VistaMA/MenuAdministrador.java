@@ -33,7 +33,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         /*ActionCommand de los menus y sub-botones*/
         menuVenta.setActionCommand("menuVenta");
         btnRegistrarFacturaItem.setActionCommand("registrarFacturaItem");
-        btnConsultarFactura.setActionCommand("ConsultarFactura");
+        
         menuProductos.setActionCommand("menuProductos");
         this.guardarProducto.setActionCommand("guardarProducto");
         this.consultarProducto.setActionCommand("consultarProducto");
@@ -79,7 +79,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         menuVenta.addActionListener(controlMA);
         jpEscritorio.addMouseListener(controlMA);
         this.btnRegistrarFacturaItem.addActionListener(controlMA);
-        this.btnConsultarFactura.addActionListener(controlMA);
+       
         this.menuProductos.addActionListener(controlMA);
         this.guardarProducto.addActionListener(controlMA);
         this.consultarProducto.addActionListener(controlMA);
@@ -161,7 +161,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jMenu = new javax.swing.JMenuBar();
         menuVenta = new javax.swing.JMenu();
         btnRegistrarFacturaItem = new javax.swing.JMenuItem();
-        btnConsultarFactura = new javax.swing.JMenuItem();
         menuProductos = new javax.swing.JMenu();
         guardarProducto = new javax.swing.JMenuItem();
         consultarProducto = new javax.swing.JMenuItem();
@@ -723,15 +722,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuVenta.add(btnRegistrarFacturaItem);
 
-        btnConsultarFactura.setText("Consultar de Factura");
-        btnConsultarFactura.setActionCommand("ConsultarFactura");
-        btnConsultarFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarFacturaActionPerformed(evt);
-            }
-        });
-        menuVenta.add(btnConsultarFactura);
-
         jMenu.add(menuVenta);
 
         menuProductos.setForeground(new java.awt.Color(255, 255, 255));
@@ -976,10 +966,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_opcionesGDS1ActionPerformed
 
-    private void btnConsultarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarFacturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultarFacturaActionPerformed
-
     private void guardarBonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_guardarBonoActionPerformed
@@ -994,7 +980,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JMenuItem ConsultarUsuario;
     public principal.MaterialButtonCircle btnCerrarMenuAdmin;
     public rojeru_san.complementos.RSButtonHover btnCliente;
-    public javax.swing.JMenuItem btnConsultarFactura;
     public rojeru_san.complementos.RSButtonHover btnEmpleado;
     public rojeru_san.complementos.RSButtonHover btnGastos;
     public rojeru_san.complementos.RSButtonHover btnHome;

@@ -34,19 +34,23 @@ public class ConsultarVentas extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lbCodigo = new javax.swing.JLabel();
         lbEnergia = new javax.swing.JLabel();
         jpLogo1 = new javax.swing.JPanel();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
-        tfFactura = new javax.swing.JTextField();
-        lbCodigo2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lbTotal = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jDatos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         materialButtonCircle3 = new principal.MaterialButtonCircle();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        lbFactura = new javax.swing.JLabel();
+        lbCliente = new javax.swing.JLabel();
+        lbFecha = new javax.swing.JLabel();
+        lbEmpleado = new javax.swing.JLabel();
+        lbSucursal = new javax.swing.JLabel();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -76,17 +80,13 @@ public class ConsultarVentas extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Gastos");
+        jLabel5.setText("Factura");
         panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 210, 60));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Fecha de Ventas");
-        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 200, 60));
-
-        lbCodigo.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbCodigo.setForeground(new java.awt.Color(255, 0, 0));
-        panelFondo.add(lbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 120, 40));
+        jLabel7.setText("Empleado:");
+        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 120, 60));
 
         lbEnergia.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
         lbEnergia.setForeground(new java.awt.Color(255, 0, 0));
@@ -114,34 +114,23 @@ public class ConsultarVentas extends javax.swing.JDialog {
         });
         panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 50, 50));
 
-        tfFactura.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfFacturaKeyTyped(evt);
-            }
-        });
-        panelFondo.add(tfFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 210, 40));
-
-        lbCodigo2.setFont(new java.awt.Font("Gadugi", 1, 14)); // NOI18N
-        lbCodigo2.setForeground(new java.awt.Color(204, 0, 0));
-        panelFondo.add(lbCodigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 160, 30));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Nº Factura");
-        panelFondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 130, 60));
+        lbTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbTotal.setForeground(new java.awt.Color(0, 0, 0));
+        lbTotal.setText(".");
+        panelFondo.add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 130, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("Cliente");
-        panelFondo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 130, 60));
+        jLabel9.setText("Cliente:");
+        panelFondo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 80, 60));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("Sucursal");
-        panelFondo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 130, 60));
+        jLabel10.setText("Sucursal:");
+        panelFondo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 100, 60));
 
-        jTable1.setBackground(new java.awt.Color(217, 222, 226));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jDatos.setBackground(new java.awt.Color(217, 222, 226));
+        jDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -171,7 +160,7 @@ public class ConsultarVentas extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jDatos);
 
         panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 850, 250));
 
@@ -187,6 +176,41 @@ public class ConsultarVentas extends javax.swing.JDialog {
             }
         });
         panelFondo.add(materialButtonCircle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 50, 50));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("Fecha de Ventas:");
+        panelFondo.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 180, 60));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setText("Nº Factura:");
+        panelFondo.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, 60));
+
+        lbFactura.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbFactura.setForeground(new java.awt.Color(0, 0, 0));
+        lbFactura.setText(".");
+        panelFondo.add(lbFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 130, -1));
+
+        lbCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbCliente.setForeground(new java.awt.Color(0, 0, 0));
+        lbCliente.setText(".");
+        panelFondo.add(lbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 130, -1));
+
+        lbFecha.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbFecha.setForeground(new java.awt.Color(0, 0, 0));
+        lbFecha.setText(".");
+        panelFondo.add(lbFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 130, -1));
+
+        lbEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbEmpleado.setForeground(new java.awt.Color(0, 0, 0));
+        lbEmpleado.setText(".");
+        panelFondo.add(lbEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 130, -1));
+
+        lbSucursal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbSucursal.setForeground(new java.awt.Color(0, 0, 0));
+        lbSucursal.setText(".");
+        panelFondo.add(lbSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 130, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,16 +247,6 @@ public class ConsultarVentas extends javax.swing.JDialog {
         x = null;        
     }//GEN-LAST:event_materialButtonCircle2ActionPerformed
 
-    private void tfFacturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFacturaKeyTyped
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c)) {
-            lbCodigo.setText("");
-        } else {
-            lbCodigo.setText("solo numeros");
-            evt.consume();
-        }
-    }//GEN-LAST:event_tfFacturaKeyTyped
-
     private void materialButtonCircle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonCircle3ActionPerformed
         this.dispose();
         x = null;
@@ -266,26 +280,30 @@ public class ConsultarVentas extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTable jDatos;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    public javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpLogo1;
-    private javax.swing.JLabel lbCodigo;
+    private javax.swing.JLabel lbCliente;
     private javax.swing.JLabel lbCodigo1;
-    private javax.swing.JLabel lbCodigo2;
+    public javax.swing.JLabel lbEmpleado;
     private javax.swing.JLabel lbEnergia;
+    public javax.swing.JLabel lbFactura;
+    public javax.swing.JLabel lbFecha;
+    public javax.swing.JLabel lbSucursal;
+    public javax.swing.JLabel lbTotal;
     private principal.MaterialButtonCircle materialButtonCircle1;
     private principal.MaterialButtonCircle materialButtonCircle2;
     private principal.MaterialButtonCircle materialButtonCircle3;
     private javax.swing.JPanel panelFondo;
     private rojeru_san.componentes.RSCalendar rSCalendar1;
     private efectos.Roboto roboto1;
-    public javax.swing.JTextField tfFactura;
     // End of variables declaration//GEN-END:variables
 }

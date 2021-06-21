@@ -73,7 +73,7 @@ public class VentaDao {
                 obj.setCliente(new Cliente(rs.getInt("idCliente")));
                 obj.setInicioCaja(new InicioCaja(rs.getInt("idCaja")));
                 obj.setEmpleado(new Empleados(rs.getInt("idEmpleado")));
-//                obj.setEmpresa(new Empresa(rs.getInt("idEmpresa")));
+                obj.setEmpresa(new Empresa(rs.getInt("idEmpresa")));
                 lista.add(obj);
             }
             
