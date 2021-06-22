@@ -1,7 +1,6 @@
 package Controlador;
 
-import 
-Modelo.Bono;
+import Modelo.Bono;
 import Modelo.Cliente;
 import Modelo.Empleados;
 import Modelo.Empresa;
@@ -749,16 +748,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.vistaEmpresa = new VistaEmpresa(menuAdministrador, true, true);
             try {
                 empresaSeleccionanda = daoEmpresa.selectAll().get(0);
-                 this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
-            this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
-            this.vistaEmpresa.tfDireccion.setText(empresaSeleccionanda.getDireccion());
-            this.vistaEmpresa.tfCorreo.setText(empresaSeleccionanda.getCorreo());
-            mostrarDatos();
+                this.vistaEmpresa.tfCodigoEmpresa.setText(empresaSeleccionanda.getCodigoEmpresa());
+                this.vistaEmpresa.tfNombre.setText(empresaSeleccionanda.getNombre());
+                this.vistaEmpresa.tfDireccion.setText(empresaSeleccionanda.getDireccion());
+                this.vistaEmpresa.tfCorreo.setText(empresaSeleccionanda.getCorreo());
+                mostrarDatos();
             } catch (Exception e) {
                 empresaSeleccionanda = null;
             }
             this.vistaEmpresa.setControladorMA(this);
-           
+
             this.vistaEmpresa.iniciar();
 
         } else if (vista.equals("consultarEmpresa")) {
@@ -826,14 +825,14 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
     public void mostrarDatos() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo = new DefaultTableModel();              
+        modelo = new DefaultTableModel();
         ////////////******TOTAL InicioCaja********/////////////////          
-       ArrayList<InicioCaja> caja1 = daoCaja.selectAll();
+        ArrayList<InicioCaja> caja1 = daoCaja.selectAll();
         double inicio = 0;
         for (InicioCaja x : caja1) {
             inicio = x.getDineroInicio();
         }
-        this.menuAdministrador.lbCaja.setText("$"+String.format("%.2f", inicio));
+        this.menuAdministrador.lbCaja.setText("$" + String.format("%.2f", inicio));
         ////////////******FIN DE TOTAL InicioCaja********/////////////////
         ////////////******NOMBRE DE LA TIENDA********/////////////////
         String nombre = "";
@@ -862,11 +861,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         float totalV = 0;
         float totalUni1 = 0;
         ArrayList<Producto> producto1 = daoProducto.selectAll();
-            for (Producto x : producto1) {
-                totalUni1 = (float) (x.getPrecioVenta()*x.getCantidad());
-                totalV = (float) (totalV + totalUni1);
-            }
-        this.menuAdministrador.lbProducto1.setText("$"+String.format("%.2f", totalV));
+        for (Producto x : producto1) {
+            totalUni1 = (float) (x.getPrecioVenta() * x.getCantidad());
+            totalV = (float) (totalV + totalUni1);
+        }
+        this.menuAdministrador.lbProducto1.setText("$" + String.format("%.2f", totalV));
         ///////////*******fIN DE PRODUCTO************////////////////
         ////////////******GASTOS EMPLEADO********/////////////////
 
@@ -1185,12 +1184,12 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 double afpE = 0;
                 double isssE = 0;
                 double bono = 0;
-                double retiro =0;
+                double retiro = 0;
                 String categoria = "";
                 ArrayList<Empleados> empleado = daoEmpleado.selectAll();
                 ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
                 String vq[] = gastosGM.cbTipo.getSelectedItem().toString().split(" - ");
-                    
+
                 for (Empleados x : empleado) {
                     if (vq[0].equals(x.getCodigoEmpleado())) {
                         idEmpleado = x.getIdPersona();
@@ -1200,13 +1199,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         afpE = x.getAfp();
                         isssE = x.getIsss();
                         bono = x.getBono().getBono();
-                        
-                     
+
                     }
 
                 }
-                    
-                
+
                 ArrayList<Empleados> empleado1 = daoEmpleado.selectAllTo("idEmpleado", String.valueOf(idEmpleado));
 
                 String v = gastosGM.cbTipo.getSelectedItem().toString();
@@ -1214,16 +1211,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     double ISSS = 0.0775;
                     double AFP = 0.0775;
                     pago = (float) (salario - (afpE + isssE));
-                    salario = (float) ((salario + (salario * ISSS)) + (salario * AFP)+bono);
-                    retiro = (float)pago + bono;
+                    salario = (float) ((salario + (salario * ISSS)) + (salario * AFP) + bono);
+                    retiro = (float) pago + bono;
                     GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(), gastosGM.dFecha.getDatoFecha(), categoria, salario, empresa.get(0), empleado1.get(0));
                     ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("codigoGasto", gastosGM.tfCodigo.getText());
                     if (existe.isEmpty()) {
                         if (daoGasto.insert1(gasto)) {
                             vaciarVista();
-                            Alerta aler = new Alerta(menuAdministrador, true, "Salario $" + pago +  " + Bono " + bono + " = " + retiro, "/img/Succes.png");
+                            Alerta aler = new Alerta(menuAdministrador, true, "Salario $" + pago + " + Bono " + bono + " = " + retiro, "/img/Succes.png");
                             aler.show();
-                           
+
                         }
                     } else {
                         Alerta aler = new Alerta(menuAdministrador, true, "Codigo ya Existe", "/img/error.png");
@@ -1534,32 +1531,39 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     && (!vistaUsuario.tfContraseña.getText().isEmpty())
                     && vistaUsuario.tfCombobox.getSelectedIndex() > 0) {
 
-                String clave = Encriptacion.getStringMessageDigest(vistaUsuario.tfContraseña.getText(), Encriptacion.SHA256);
+                if (vistaUsuario.tfContraseña.getText().length() >= 8) {
+                    String clave = Encriptacion.getStringMessageDigest(vistaUsuario.tfContraseña.getText(), Encriptacion.SHA256);
 //
-                usuario = new Usuario(vistaUsuario.tfUsuario.getText(), clave);
-                String codigoEmpleado[] = vistaUsuario.tfCombobox.getSelectedItem().toString().split(" / ");
+                    usuario = new Usuario(vistaUsuario.tfUsuario.getText(), clave);
+                    String codigoEmpleado[] = vistaUsuario.tfCombobox.getSelectedItem().toString().split(" / ");
 
-                System.out.println(codigoEmpleado[1]);
+                    System.out.println(codigoEmpleado[1]);
 
-                ArrayList<Usuario> existe = daoUsuario.selectAllTo("usuario", vistaUsuario.tfUsuario.getText());
-                if (existe.isEmpty()) {
-                    //daoEmpleado.agregarUsuario(usuario.getEmpleados()) &&
-                    if (daoUsuario.insert(usuario)) {
-                        usuario = daoUsuario.selectAllTo("usuario", usuario.getUsuario()).get(0);
-                        usuario.AddEpleado(codigoEmpleado[1]);
-                        if (daoEmpleado.agregarUsuario(usuario)) {
-                            Alerta aler = new Alerta(menuAdministrador, true, "usuario añadido con exito", "/img/Succes.png");
+                    ArrayList<Usuario> existe = daoUsuario.selectAllTo("usuario", vistaUsuario.tfUsuario.getText());
+                    if (existe.isEmpty()) {
+                        //daoEmpleado.agregarUsuario(usuario.getEmpleados()) &&
+                        if (daoUsuario.insert(usuario)) {
+                            usuario = daoUsuario.selectAllTo("usuario", usuario.getUsuario()).get(0);
+                            usuario.AddEpleado(codigoEmpleado[1]);
+                            if (daoEmpleado.agregarUsuario(usuario)) {
+                                Alerta aler = new Alerta(menuAdministrador, true, "usuario añadido con exito", "/img/Succes.png");
+                                aler.show();
+                                this.vistaUsuario.dispose();
+                            }
+
+                        } else {
+                            Alerta aler = new Alerta(menuAdministrador, true, "Error añadiendo al usuario vuelva a intentarlo", "/img/error.png");
                             aler.show();
-                            this.vistaUsuario.dispose();
                         }
 
                     } else {
-                        Alerta aler = new Alerta(menuAdministrador, true, "Error añadiendo al usuario vuelva a intentarlo", "/img/error.png");
+                        Alerta aler = new Alerta(menuAdministrador, true, "Ya Existe un usuario con esos datos", "/img/error.png");
                         aler.show();
                     }
 
                 } else {
-                    Alerta aler = new Alerta(menuAdministrador, true, "Ya Existe un usuario con esos datos", "/img/error.png");
+                    Alerta aler = new Alerta(menuAdministrador, true, "debe ingresar una contraseña de 8 caracteres", "/img/error.png");
+
                     aler.show();
                 }
 
@@ -1572,24 +1576,37 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } else if (e.getActionCommand().equals("Modificar")
                 && padreActiva.equals("usuarioGM") && usuarioSeleccionando != null) {
             String claveActual = JOptionPane.showInputDialog("Ingrese La contraseña Actual");
-            String clave = Encriptacion.getStringMessageDigest(claveActual, Encriptacion.SHA256);
+            String clave;
+            try {
+                clave = Encriptacion.getStringMessageDigest(claveActual, Encriptacion.SHA256);
+            } catch (Exception exeption) {
+                clave = "";
+            }
             if (usuarioSeleccionando.getContraseña().equals(clave) && !claveActual.isEmpty()) {
                 String claveNueva = JOptionPane.showInputDialog("Ingrese La contraseña nueva");
 
                 int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-                if (opccion == 0) {
-                    clave = Encriptacion.getStringMessageDigest(claveNueva, Encriptacion.SHA256);
-                    usuarioSeleccionando.setContraseña(clave);
+                if (opccion == 0 && claveNueva.length() >= 8) {
+                    try {
+                        clave = Encriptacion.getStringMessageDigest(claveNueva, Encriptacion.SHA256);
+                        usuarioSeleccionando.setContraseña(clave);
 
-                    if (daoUsuario.update(usuarioSeleccionando)) {
-                        Alerta aler = new Alerta(menuAdministrador, true, "Contraseña modificada con exito", "/img/Succes.png");
-                        usuarioSeleccionando = null;
-                        mostrarDatos();
-                        aler.show();
+                        if (daoUsuario.update(usuarioSeleccionando)) {
+                            Alerta aler = new Alerta(menuAdministrador, true, "Contraseña modificada con exito", "/img/Succes.png");
+                            usuarioSeleccionando = null;
+                            mostrarDatos();
+                            aler.show();
+
+                        }
+                    } catch (Exception exeption) {
 
                     }
 
+                } else {
+                    Alerta aler = new Alerta(menuAdministrador, true, "debe ingresar una contraseña de 8 caracteres", "/img/error.png");
+
+                    aler.show();
                 }
             } else {
                 Alerta aler = new Alerta(menuAdministrador, true, "Contraseña incorrecta", "/img/error.png");
