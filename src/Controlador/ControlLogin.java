@@ -167,7 +167,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         }catch (Exception ex){
             ArrayList<Usuario> usuario2 = daoUsuario.selectAll();
             ArrayList<Empleados> emple = daoEmpleado.selectAllTo("cargoEmpleado","Administracion");
-             if ((login.pfPass.getText().equals("12345") && (login.tfUser.getText().equals("Admin"))) && !emple.isEmpty()) {
+             if ((login.pfPass.getText().equals("12345") && (login.tfUser.getText().equals("Admin")))) {
 
                 int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Administracion?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 
