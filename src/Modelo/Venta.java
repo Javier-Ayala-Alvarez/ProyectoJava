@@ -10,15 +10,23 @@ public class Venta {
    private String  nFactura;
    private Date fechaVenta;
    private double saldoTotal;
-   private ArrayList<Registro> registros;
+   private int estado;
+   private ArrayList<Registros> registros;
    private  InicioCaja inicioCaja;
    private Cliente cliente;
    private Empleados empleado;
+   private Empresa empresa;
+   
    
     
 
     public Venta() {
     }
+
+    public Venta(int idFactura) {
+        this.idFactura = idFactura;
+    }
+    
 
     public Venta(int idFactura, Date fechaVenta, double saldoTotal) {
         this.idFactura = idFactura;
@@ -31,7 +39,7 @@ public class Venta {
         this.saldoTotal = saldoTotal;
     }
 
-    public Venta(int idFactura, Date fechaVenta, double saldoTotal, ArrayList<Registro> registros, Empleados empleado) {
+    public Venta(int idFactura, Date fechaVenta, double saldoTotal, ArrayList<Registros> registros, Empleados empleado) {
         this.idFactura = idFactura;
         this.fechaVenta = fechaVenta;
         this.saldoTotal = saldoTotal;
@@ -39,7 +47,7 @@ public class Venta {
         this.empleado = empleado;
     }
 
-    public Venta(int idFactura, String nFactura, Date fechaVenta, double saldoTotal, ArrayList<Registro> registros, InicioCaja inicioCaja, Cliente cliente, Empleados empleado) {
+    public Venta(int idFactura, String nFactura, Date fechaVenta, double saldoTotal, ArrayList<Registros> registros, InicioCaja inicioCaja, Cliente cliente, Empleados empleado) {
         this.idFactura = idFactura;
         this.nFactura = nFactura;
         this.fechaVenta = fechaVenta;
@@ -49,6 +57,41 @@ public class Venta {
         this.cliente = cliente;
         this.empleado = empleado;
     }
+
+    public Venta(String nFactura, Date fechaVenta, double saldoTotal, InicioCaja inicioCaja, Cliente cliente, Empleados empleado) {
+        this.nFactura = nFactura;
+        this.fechaVenta = fechaVenta;
+        this.saldoTotal = saldoTotal;
+        this.inicioCaja = inicioCaja;
+        this.cliente = cliente;
+        this.empleado = empleado;
+    }
+
+    public Venta(String nFactura, Date fechaVenta,  Cliente cliente, Empleados empleado,double saldoTotal) {
+        this.nFactura = nFactura;
+        this.fechaVenta = fechaVenta;
+        this.cliente = cliente;
+        this.empleado = empleado;
+        this.saldoTotal = saldoTotal;
+    }
+    
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+    
 
     public String getnFactura() {
         return nFactura;
@@ -84,11 +127,11 @@ public class Venta {
         this.saldoTotal = saldoTotal;
     }
 
-    public ArrayList<Registro> getRegistros() {
+    public ArrayList<Registros> getRegistros() {
         return registros;
     }
     
-    public void addRegistro(Registro x){
+    public void addRegistro(Registros x){
        registros.add(x);   
     }
     
@@ -126,7 +169,7 @@ public class Venta {
         this.empleado = empleado;
     }
 
-    public void setRegistros(ArrayList<Registro> registros) {
+    public void setRegistros(ArrayList<Registros> registros) {
         this.registros = registros;
     }
 

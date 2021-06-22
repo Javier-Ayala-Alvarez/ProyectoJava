@@ -20,6 +20,11 @@ public class Bono  {
         this.CargoEmpleado = CargoEmpleado;
     }
 
+    public Bono(int idBono) {
+        this.idBono = idBono;
+    }
+    
+
     public Double getBono() {
         return bono;
     }

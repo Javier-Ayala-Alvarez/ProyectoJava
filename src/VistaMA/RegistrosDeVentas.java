@@ -14,11 +14,13 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
         initComponents();
         x = "x";
         jpLogo1.setBorder(new Fondo(LogoE));
+        btnDetalle.setActionCommand("Detalle");
         
     }
      public void setControlador(ControlMA control1) {
        
         tfBuscar.addKeyListener(control1);
+        btnDetalle.addActionListener(control1);
         
         
     }
@@ -43,10 +45,11 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
         btnCerrarRV = new principal.MaterialButtonCircle();
         lbTotal = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtDatos = new javax.swing.JTable();
+        tbDatos = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         tfBuscar = new principal.MaterialTextField();
         jLabel7 = new javax.swing.JLabel();
+        btnDetalle = new rojeru_san.complementos.RSButtonHover();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -116,8 +119,8 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
         lbTotal.setText(".");
         panelFondoRV.add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 470, 130, -1));
 
-        jtDatos.setBackground(new java.awt.Color(199, 207, 214));
-        jtDatos.setModel(new javax.swing.table.DefaultTableModel(
+        tbDatos.setBackground(new java.awt.Color(199, 207, 214));
+        tbDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -150,7 +153,7 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jtDatos);
+        jScrollPane1.setViewportView(tbDatos);
 
         panelFondoRV.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 750, 310));
 
@@ -164,12 +167,20 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
                 tfBuscarKeyTyped(evt);
             }
         });
-        panelFondoRV.add(tfBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 160, 30));
+        panelFondoRV.add(tfBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 160, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Buscar...");
-        panelFondoRV.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 80, 50));
+        panelFondoRV.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 80, 50));
+
+        btnDetalle.setText("Detalle");
+        btnDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetalleActionPerformed(evt);
+            }
+        });
+        panelFondoRV.add(btnDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 90, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -214,6 +225,10 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
 
     }//GEN-LAST:event_tfBuscarKeyTyped
 
+    private void btnDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleActionPerformed
+
+    }//GEN-LAST:event_btnDetalleActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,6 +258,7 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public principal.MaterialButtonCircle btnCerrarRV;
+    public rojeru_san.complementos.RSButtonHover btnDetalle;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -252,12 +268,12 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jpLogo1;
-    public static javax.swing.JTable jtDatos;
     public static javax.swing.JLabel lbTotal;
     private principal.MaterialButtonCircle materialButtonCircle1;
     public javax.swing.JPanel panelFondoRV;
     private rojeru_san.componentes.RSCalendar rSCalendar1;
     private efectos.Roboto roboto1;
+    public static javax.swing.JTable tbDatos;
     public static principal.MaterialTextField tfBuscar;
     // End of variables declaration//GEN-END:variables
 }

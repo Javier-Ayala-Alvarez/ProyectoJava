@@ -9,7 +9,7 @@ import Modelo.GastoEmpresa;
 import Modelo.InicioCaja;
 import Modelo.Producto;
 import Modelo.Usuario;
-import Modelo.Registro;
+import Modelo.Registros;
 import Modelo.Venta;
 import Modelo.dao.BonoDao;
 import Modelo.dao.ClienteDao;
@@ -18,6 +18,7 @@ import Modelo.dao.EmpresaDao;
 import Modelo.dao.Gastosdao;
 import Modelo.dao.InicioCajaDao;
 import Modelo.dao.ProductoDao;
+import Modelo.dao.RegistrosDao;
 import Modelo.dao.UsuarioDao;
 
 import Modelo.dao.VentaDao;
@@ -117,22 +118,24 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     ProductoModi productoSeleccionado = null;
     //    ProductoModi producto = new ProductoModi();
     //****Fin productoModi****//
+    //****Venta****//
+    Venta ventaSeleccionada = null;
+    RegistrosDeVentas registrosDeVenta;
+    VentaDao daoVenta = new VentaDao();
+    RegistrosDao Daoregistro = new RegistrosDao();
+    //****Fin Venta****//
     RegistrosDeProductos registrosDeProductos;
-    RegistrosDeVentas registrosDeVentas;
     InicioCajaDao daoCaja = new InicioCajaDao();
+    
 
     private String padreActiva = "", hijaActiva = "";
 
     ///******Consulta Factura******////
     ConsultarVentas consultarVentas;
 
-    Registro registro;
+    Registros registro;
     ///******Fin Consulta Factura******////
-    //******Ventas**************//
-    RegistrosDeVentas registrosDeVenta;
-    VentaDao daoVenta = new VentaDao();
-    Venta venta;
-    //******Fin Venta***********//
+
 
     public ControlMA(MenuAdministrador menuAdministrador, Login login, EmpleadoGM empleadoGM, GastosGM gastosGM, RegistrosDeProductos registrosDeProductos, ProductoModi productoModi, RegistrosDeVentas registrosDeVentas, ConsultarVentas consultarVentas, ClienteMA clienteMA) {
         //this.daoGasto = new GastoDao();
@@ -169,8 +172,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
  /*Inicio de Sub-botones de los Menús*/
         if (e.getActionCommand().equals("registrarFacturaItem")) {
             llamarVistaConsulta("registroVentas");
-        } else if (e.getActionCommand().equals("ConsultarFactura")) {
-            llamarVistaConsulta("ConsultarFactura");
         } else if (e.getActionCommand().equals("guardarProducto")) {
             llamarVistaConsulta("guardarProducto");
         } else if (e.getActionCommand().equals("consultarProducto")) {
@@ -220,7 +221,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         if ((e.getActionCommand().equals("Agregar"))
                 || (e.getActionCommand().equals("Eliminar"))
                 || (e.getActionCommand().equals("Modificar"))
-                || (e.getActionCommand().equals("Generar"))) {
+                || (e.getActionCommand().equals("Generar"))
+                || (e.getActionCommand().equals("Categoria"))
+                || (e.getActionCommand().equals("Detalle"))){
             accionDeBotones(e);
         }
         /*Fin de Sub-botones de los Menús*/
@@ -302,7 +305,18 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
             }
 
-        } else if (padreActiva.equals("consultarCliente")) {
+        }if (padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1")) {
+            ArrayList<GastoEmpresa> listaDis = daoGasto.buscarDis(GastosGM.tfBuscar.getText() + e.getKeyChar());
+
+            if (listaDis.isEmpty()) {
+                mostrarDatos();
+            } else {
+                filtrarReporte(listaDis);
+
+            }
+
+        }
+        else if (padreActiva.equals("consultarCliente")) {
             ArrayList<Cliente> lista = daoCliente.buscar(ClienteMA.tfBuscar.getText() + e.getKeyChar());
 
             if (lista.isEmpty()) {
@@ -622,13 +636,12 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.registrosDeVenta.setControlador(this);
             mostrarDatos();
             registrosDeVenta.iniciar();
-        } else if (vista.equals("ConsultarFactura")) {
+        } else if (vista.equals("Detalle")) {
             this.consultarVentas = new ConsultarVentas(menuAdministrador, true);
             padreActiva = "ConsultarFactura";
             this.consultarVentas.setControlador(this);
             mostrarDatos();
             consultarVentas.iniciar();
-
         } else if (vista.equals("guardarProducto")) {
             padreActiva = "productoModi1";
             this.productoModi = new ProductoModi(menuAdministrador, true);
@@ -725,10 +738,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             this.gastosGM.setControlador(this);
             padreActiva = "gastosGM";
             gastosGM.cbTipo.addItem("Seleccione");
-            gastosGM.cbTipo.addItem("Impuesto de Alcaldia");
-            gastosGM.cbTipo.addItem("Pago de Energia");
-            gastosGM.cbTipo.addItem("Pago de Alquiler");
-            gastosGM.cbTipo.addItem("Pago de Agua");
+            llenarCombo();
             mostrarDatos();
             this.gastosGM.iniciar();
         } else if (vista.equals("gastosGM1")) {
@@ -739,6 +749,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             gastosGM.btnModificar.setVisible(false);
             gastosGM.cbTipo.removeAllItems();
             gastosGM.cbTipo.addItem("Seleccione");
+            gastosGM.btnCategoria.setVisible(false);
             mostrarDatos();
             llenarCombo();
             this.gastosGM.iniciar();
@@ -782,7 +793,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             String dato = "";
 
             ArrayList<Empleados> lista = daoEmpleado.selectConCondicion(" WHERE cargoEmpleado = 'Administrador' OR "
-                    + " cargoEmpleado = 'Supervisor' OR  cargoEmpleado = ' Cajero' ");
+                    + " cargoEmpleado = 'Supervisor' OR  cargoEmpleado = 'Cajero' ");
             int i = 0;
 
             for (Empleados x : lista) {
@@ -807,7 +818,20 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     gastosGM.cbTipo.addItem(selec);
                 }
             }
+        }else if (padreActiva.equals("gastosGM")) {
+
+            ArrayList<GastoEmpresa> gasto = daoGasto.selectAllDis();
+            for (GastoEmpresa x : gasto) {
+               if(!(x.getCategoria().equals("Administrador")
+                        || (x.getCategoria().equals("Cajero"))
+                        || (x.getCategoria().equals("Supervisor")))){
+                    String selec = x.getCategoria();
+
+                    gastosGM.cbTipo.addItem(selec);
+               }
+            }
         }
+        
         if (padreActiva.equals("vistaEmpleadoGM") || hijaActiva.equals("vistaEmpleadoGM")) {
             vistaEmpleadoGM.tfCombobox_1.removeAllItems();
             vistaEmpleadoGM.tfCombobox_1.addItem("Seleccione");
@@ -824,8 +848,12 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     }
 
     public void mostrarDatos() {
+        
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(); 
+        DefaultTableModel modelo1 = new DefaultTableModel();
+        modelo1 = new DefaultTableModel();          
+    
         ////////////******TOTAL InicioCaja********/////////////////          
         ArrayList<InicioCaja> caja1 = daoCaja.selectAll();
         double inicio = 0;
@@ -874,133 +902,70 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             String titulos[] = {"Codigo", "Categoria", "Fecha", "Saldo", "Nombre"};
             modelo.setColumnIdentifiers(titulos);
             ///Variables de Reporte//
-            int alcaldiaC = 0;
-            int energiaC = 0;
-            int alquilerC = 0;
-            int aguaC = 0;
-            int salarioC = 0;
-            double salarioT = 0;
-            double alcaldiaT = 0;
-            double energiaT = 0;
-            double alquilerT = 0;
-            double aguaT = 0;
-
             double totalR = 0;
             //Fin de Variable
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll1();
             for (GastoEmpresa x : gastos) {
-                if (!(x.getCategoria().equals("Impuesto de Alcaldia")
-                        || (x.getCategoria().equals("Pago de Energia"))
-                        || (x.getCategoria().equals("Pago de Alquiler"))
-                        || (x.getCategoria().equals("Pago de Agua")))) {
+                if ((x.getCategoria().equals("Administrador")
+                        || (x.getCategoria().equals("Cajero"))
+                        || (x.getCategoria().equals("Supervisor")))) {
                     Object datos[] = {x.getCodigoGastos(), x.getCategoria(), x.getFecha(), x.getSaldo(), x.getEmpleado().getNombre()};
 
                     modelo.addRow(datos);
                 }
                 totalR = totalR + x.getSaldo();
-                if (x.getCategoria().equals("Impuesto de Alcaldia")) {
-                    alcaldiaC++;
-                    alcaldiaT = alcaldiaT + x.getSaldo();
-                } else if (x.getCategoria().equals("Pago de Energia")) {
-                    energiaC++;
-                    energiaT = energiaT + x.getSaldo();
-                } else if (x.getCategoria().equals("Pago de Alquiler")) {
-                    alquilerC++;
-                    alquilerT = alquilerT + x.getSaldo();
-                } else if (x.getCategoria().equals("Pago de Agua")) {
-                    aguaC++;
-                    aguaT = aguaT + x.getSaldo();
-                } else {
-                    salarioC++;
-                    salarioT = salarioT + x.getSaldo();
-                }
+              
 
             }
             GastosGM.jtDatos.setModel(modelo);
-            this.gastosGM.lbAlcaldiaTotal.setText("$" + String.format("%.2f", alcaldiaT));
-            this.gastosGM.lbAlcaldiaC.setText(String.valueOf(alcaldiaC));
-
-            this.gastosGM.lbEnergiaTotal.setText("$" + String.format("%.2f", energiaT));
-            this.gastosGM.lbEnergiaC.setText(String.valueOf(energiaC));
-
-            this.gastosGM.lbAlquilerTotal.setText("$" + String.format("%.2f", alquilerT));
-            this.gastosGM.lbAlquilerC.setText(String.valueOf(alquilerC));
-
-            this.gastosGM.lbAguaTotal.setText("$" + String.format("%.2f", aguaT));
-            this.gastosGM.lbAguaC.setText(String.valueOf(aguaC));
-
-            this.gastosGM.lbSalarioT.setText("$" + String.format("%.2f", salarioT));
-            this.gastosGM.lbSalarioC.setText(String.valueOf(salarioC));
-
-            this.gastosGM.lbTotalReporte.setText("$" + String.format("%.2f", totalR));
-
-        } ////////////******FINAL GASTOS EMPLEADO********/////////////////
+            GastosGM.lbTotalReporte.setText("$"+String.format("%.2f", totalR));
+            
+        }
+         ////////////******FINAL GASTOS EMPLEADO********/////////////////
         ////////////******GASTOS EMPRESA********/////////////////
         else if (padreActiva.equals("gastosGM")) {
 
             String titulos[] = {"Codigo", "Categoria", "Fecha", "Saldo", "Empresa"};
             modelo.setColumnIdentifiers(titulos);
             ///Variables de Reporte//
-            int alcaldiaC = 0;
-            int energiaC = 0;
-            int alquilerC = 0;
-            int aguaC = 0;
-            int salarioC = 0;
-            double salarioT = 0;
-            double alcaldiaT = 0;
-            double energiaT = 0;
-            double alquilerT = 0;
-            double aguaT = 0;
-
             double totalR = 0;
             //Fin de Variable
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
             for (GastoEmpresa x : gastos) {
-                if ((x.getCategoria().equals("Impuesto de Alcaldia")
-                        || (x.getCategoria().equals("Pago de Energia"))
-                        || (x.getCategoria().equals("Pago de Alquiler"))
-                        || (x.getCategoria().equals("Pago de Agua")))) {
+                if (!(x.getCategoria().equals("Administrador")
+                        || (x.getCategoria().equals("Cajero"))
+                        || (x.getCategoria().equals("Supervisor")))) {
 
                     Object datos[] = {x.getCodigoGastos(), x.getCategoria(), x.getFecha(), x.getSaldo(), x.getEmpresa().getNombre()};
 
                     modelo.addRow(datos);
                 }
                 totalR = totalR + x.getSaldo();
-                if (x.getCategoria().equals("Impuesto de Alcaldia")) {
-                    alcaldiaC++;
-                    alcaldiaT = alcaldiaT + x.getSaldo();
-                } else if (x.getCategoria().equals("Pago de Energia")) {
-                    energiaC++;
-                    energiaT = energiaT + x.getSaldo();
-                } else if (x.getCategoria().equals("Pago de Alquiler")) {
-                    alquilerC++;
-                    alquilerT = alquilerT + x.getSaldo();
-                } else if (x.getCategoria().equals("Pago de Agua")) {
-                    aguaC++;
-                    aguaT = aguaT + x.getSaldo();
-                } else {
-                    salarioC++;
-                    salarioT = salarioT + x.getSaldo();
-                }
+               
 
             }
             GastosGM.jtDatos.setModel(modelo);
-            this.gastosGM.lbAlcaldiaTotal.setText("$" + String.format("%.2f", alcaldiaT));
-            this.gastosGM.lbAlcaldiaC.setText(String.valueOf(alcaldiaC));
-
-            this.gastosGM.lbEnergiaTotal.setText("$" + String.format("%.2f", energiaT));
-            this.gastosGM.lbEnergiaC.setText(String.valueOf(energiaC));
-
-            this.gastosGM.lbAlquilerTotal.setText("$" + String.format("%.2f", alquilerT));
-            this.gastosGM.lbAlquilerC.setText(String.valueOf(alquilerC));
-
-            this.gastosGM.lbAguaTotal.setText("$" + String.format("%.2f", aguaT));
-            this.gastosGM.lbAguaC.setText(String.valueOf(aguaC));
-
-            this.gastosGM.lbSalarioT.setText("$" + String.format("%.2f", salarioT));
-            this.gastosGM.lbSalarioC.setText(String.valueOf(salarioC));
-
-            this.gastosGM.lbTotalReporte.setText("$" + String.format("%.2f", totalR));
+            GastosGM.lbTotalReporte.setText("$"+String.format("%.2f", totalR));
+        }if (padreActiva.equals("gastosGM")||padreActiva.equals("gastosGM1")) {  
+ 
+        String titulos1[] = {"Cant...", "Categoria", "Total"};
+            modelo1.setColumnIdentifiers(titulos1);
+            Gastosdao gastoDao= new Gastosdao();
+        ArrayList<GastoEmpresa> muestra = gastoDao.selectAllDis();
+        for(GastoEmpresa x: muestra ){
+            ArrayList<GastoEmpresa> totales = gastoDao.selectAllTo("tipo",x.getCategoria());
+                double totalRegistro = 0;
+                int j = 0;
+                for(GastoEmpresa i: totales){
+                    totalRegistro = totalRegistro + i.getSaldo();
+                    j++;
+                }
+                Object datos1[] = {j,x.getCategoria(), totalRegistro};
+                
+                modelo1.addRow(datos1);
+        }
+            
+                GastosGM.jtDatosReporte.setModel(modelo1);
 
         } ////////////******FINAL EMPRESA********/////////////////
         ////////////******ClienteMA********/////////////////
@@ -1105,7 +1070,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 modelo.addRow(datos);
                 total1 = (float) (total1 + x.getSaldoTotal());
             }
-            registrosDeVenta.jtDatos.setModel(modelo);
+            registrosDeVenta.tbDatos.setModel(modelo);
             registrosDeVenta.lbTotal.setText(String.format("%.2f", total1));
         }
 
@@ -1176,7 +1141,20 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
             }
 
-        } else if (e.getActionCommand().equals("Agregar") && padreActiva.equals("gastosGM1")) {
+        } else if(e.getActionCommand().equals("Categoria") && padreActiva.equals("gastosGM")){
+            String categoria = JOptionPane.showInputDialog("Ingresa la categoria");
+            int opccion = JOptionPane.showConfirmDialog(null, "Deseas Agregar?","",  JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            ArrayList<GastoEmpresa> existe = daoGasto.selectAllTo("tipo", categoria);
+            if(existe.isEmpty()){
+                if(opccion == 0){
+                this.gastosGM.cbTipo.addItem(categoria);
+                }
+            }else{
+                 Alerta aler = new Alerta(menuAdministrador, true, "Ya Existe", "/img/Succes.png");
+                            aler.show();
+            }
+        
+        }else if (e.getActionCommand().equals("Agregar") && padreActiva.equals("gastosGM1")) {
             if (!gastosGM.tfCodigo.getText().isEmpty()) {
                 int idEmpleado = 0;
                 float salario = 0;
@@ -1643,75 +1621,36 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
     public void mostrarBusqueda(ArrayList lista) {
         DefaultTableModel modelo = new DefaultTableModel();
+        
+           
         ////////////******GASTOS Empresa********/////////////////
 
         if (padreActiva.equals("gastosGM")) {
             String titulos[] = {"Codigo", "Categoria", "Fecha", "Saldo", "Empresa"};
             modelo.setColumnIdentifiers(titulos);
             ///Variables de Reporte//
-            int alcaldiaC = 0;
-            int energiaC = 0;
-            int alquilerC = 0;
-            int aguaC = 0;
-            int salarioC = 0;
-            double alcaldiaT = 0;
-            double energiaT = 0;
-            double alquilerT = 0;
-            double aguaT = 0;
-            double salarioT = 0;
             double totalR = 0;
             //Fin de Variable
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
             for (Object a : lista) {
 
                 GastoEmpresa x = (GastoEmpresa) a;
-                if ((x.getCategoria().equals("Impuesto de Alcaldia")
-                        || (x.getCategoria().equals("Pago de Energia"))
-                        || (x.getCategoria().equals("Pago de Alquiler"))
-                        || (x.getCategoria().equals("Pago de Agua")))) {
+                if (!(x.getCategoria().equals("Administrador")
+                        || (x.getCategoria().equals("Cajero"))
+                        || (x.getCategoria().equals("Supervisor")))) {
                     Object datos[] = {x.getCodigoGastos(), x.getCategoria(), x.getFecha(), x.getSaldo(), x.getEmpresa().getNombre()};
                     totalR = totalR + x.getSaldo();
                     modelo.addRow(datos);
                 }
-                if (x.getCategoria().equals("Impuesto de Alcaldia")) {
-                    alcaldiaC++;
-                    alcaldiaT = alcaldiaT + x.getSaldo();
-                } else if (x.getCategoria().equals("Pago de Energia")) {
-                    energiaC++;
-                    energiaT = energiaT + x.getSaldo();
-                } else if (x.getCategoria().equals("Pago de Alquiler")) {
-                    alquilerC++;
-                    alquilerT = alquilerT + x.getSaldo();
-                } else if (x.getCategoria().equals("Pago de Agua")) {
-                    aguaC++;
-                    aguaT = aguaT + x.getSaldo();
-
-                } else {
-                    salarioC++;
-                    salarioT = salarioT + x.getSaldo();
-                }
+                
 
             }
 
             GastosGM.jtDatos.setModel(modelo);
-            this.gastosGM.lbAlcaldiaTotal.setText("$" + String.format("%.2f", alcaldiaT));
-            this.gastosGM.lbAlcaldiaC.setText(String.valueOf(alcaldiaC));
-
-            this.gastosGM.lbEnergiaTotal.setText("$" + String.format("%.2f", energiaT));
-            this.gastosGM.lbEnergiaC.setText(String.valueOf(energiaC));
-
-            this.gastosGM.lbAlquilerTotal.setText("$" + String.format("%.2f", alquilerT));
-            this.gastosGM.lbAlquilerC.setText(String.valueOf(alquilerC));
-
-            this.gastosGM.lbAguaTotal.setText("$" + String.format("%.2f", aguaT));
-            this.gastosGM.lbAguaC.setText(String.valueOf(aguaC));
-
-            this.gastosGM.lbSalarioT.setText("$" + String.format("%.2f", salarioT));
-            this.gastosGM.lbSalarioC.setText(String.valueOf(salarioC));
-
-            this.gastosGM.lbTotalReporte.setText("$" + String.format("%.2f", totalR));
-
+            GastosGM.lbTotalReporte.setText("$"+String.format("%.2f", totalR));
+            
         }
+
         ////////////******FINAL GASTOS Empresa********/////////////////
 
         ////////////******GASTOS EMPLEADO********/////////////////
@@ -1719,16 +1658,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             String titulos[] = {"Codigo", "Categoria", "Fecha", "Saldo", "Nombre"};
             modelo.setColumnIdentifiers(titulos);
             ///Variables de Reporte//
-            int alcaldiaC = 0;
-            int energiaC = 0;
-            int alquilerC = 0;
-            int aguaC = 0;
-            int salarioC = 0;
-            double alcaldiaT = 0;
-            double energiaT = 0;
-            double alquilerT = 0;
-            double aguaT = 0;
-            double salarioT = 0;
             double totalR = 0;
             //Fin de Variable
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll1();
@@ -1736,54 +1665,23 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 GastoEmpresa x = (GastoEmpresa) a;
                 if (x.getEmpleado().getEstado() == 1) {
 
-                    if (!(x.getCategoria().equals("Impuesto de Alcaldia")
-                            || (x.getCategoria().equals("Pago de Energia"))
-                            || (x.getCategoria().equals("Pago de Alquiler"))
-                            || (x.getCategoria().equals("Pago de Agua")))) {
+                    if ((x.getCategoria().equals("Administrador")
+                        || (x.getCategoria().equals("Cajero"))
+                        || (x.getCategoria().equals("Supervisor")))) {
                         Object datos[] = {x.getCodigoGastos(), x.getCategoria(), x.getFecha(), x.getSaldo(), x.getEmpleado().getNombre()};
                         totalR = totalR + x.getSaldo();
                         modelo.addRow(datos);
                     }
-                    if (x.getCategoria().equals("Impuesto de Alcaldia")) {
-                        alcaldiaC++;
-                        alcaldiaT = alcaldiaT + x.getSaldo();
-                    } else if (x.getCategoria().equals("Pago de Energia")) {
-                        energiaC++;
-                        energiaT = energiaT + x.getSaldo();
-                    } else if (x.getCategoria().equals("Pago de Alquiler")) {
-                        alquilerC++;
-                        alquilerT = alquilerT + x.getSaldo();
-                    } else if (x.getCategoria().equals("Pago de Agua")) {
-                        aguaC++;
-                        aguaT = aguaT + x.getSaldo();
-
-                    } else {
-                        salarioC++;
-                        salarioT = salarioT + x.getSaldo();
-                    }
+                  
 
                 }
 
                 GastosGM.jtDatos.setModel(modelo);
-                this.gastosGM.lbAlcaldiaTotal.setText("$" + String.format("%.2f", alcaldiaT));
-                this.gastosGM.lbAlcaldiaC.setText(String.valueOf(alcaldiaC));
-
-                this.gastosGM.lbEnergiaTotal.setText("$" + String.format("%.2f", energiaT));
-                this.gastosGM.lbEnergiaC.setText(String.valueOf(energiaC));
-
-                this.gastosGM.lbAlquilerTotal.setText("$" + String.format("%.2f", alquilerT));
-                this.gastosGM.lbAlquilerC.setText(String.valueOf(alquilerC));
-
-                this.gastosGM.lbAguaTotal.setText("$" + String.format("%.2f", aguaT));
-                this.gastosGM.lbAguaC.setText(String.valueOf(aguaC));
-
-                this.gastosGM.lbSalarioT.setText("$" + String.format("%.2f", salarioT));
-                this.gastosGM.lbSalarioC.setText(String.valueOf(salarioC));
-
-                this.gastosGM.lbTotalReporte.setText("$" + String.format("%.2f", totalR));
+                GastosGM.lbTotalReporte.setText("$"+String.format("%.2f", totalR));
             }
 
         }
+       
         ////////////******FINAL GASTOS EMPLEADO********/////////////////
 
         ////////////******ClienteMA********/////////////////
@@ -1867,7 +1765,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 modelo.addRow(datos);
                 total1 = (float) (total1 + obj.getSaldoTotal());
             }
-            registrosDeVenta.jtDatos.setModel(modelo);
+            registrosDeVenta.tbDatos.setModel(modelo);
             registrosDeVenta.lbTotal.setText(String.format("%.2f", total1));
         } //***********Fin mostrarVenta**********//
         //        //**************ProductoModi****************//
@@ -1898,7 +1796,58 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         //************Fin productoModi*************//
 
     }
-
+public void filtrarReporte(ArrayList lista){
+    DefaultTableModel modelo1 = new DefaultTableModel();
+     if (padreActiva.equals("gastosGM")) {  
+ 
+        String titulos1[] = {"Cant...", "Categoria", "Total"};
+            modelo1.setColumnIdentifiers(titulos1);
+            Gastosdao gastoDao= new Gastosdao();
+        for(Object a : lista ){
+            GastoEmpresa x= (GastoEmpresa) a;
+            if (!(x.getCategoria().equals("Administrador")
+                        || (x.getCategoria().equals("Cajero"))
+                        || (x.getCategoria().equals("Supervisor")))) {
+            ArrayList<GastoEmpresa> totales = gastoDao.selectAllTo("tipo",x.getCategoria());
+                double totalRegistro = 0;
+                int j = 0;
+                for(GastoEmpresa i: totales){
+                    totalRegistro = totalRegistro + i.getSaldo();
+                    j++;
+                }
+                Object datos1[] = {j,x.getCategoria(), totalRegistro};
+                
+                modelo1.addRow(datos1);
+            }
+        }
+            
+                GastosGM.jtDatosReporte.setModel(modelo1);
+        }else  if (padreActiva.equals("gastosGM1")) {  
+ 
+        String titulos1[] = {"Cant...", "Categoria", "Total"};
+            modelo1.setColumnIdentifiers(titulos1);
+            Gastosdao gastoDao= new Gastosdao();
+        for(Object a : lista ){
+            GastoEmpresa x= (GastoEmpresa) a;
+            if ((x.getCategoria().equals("Administrador")
+                        || (x.getCategoria().equals("Cajero"))
+                        || (x.getCategoria().equals("Supervisor")))) {
+            ArrayList<GastoEmpresa> totales = gastoDao.selectAllTo("tipo",x.getCategoria());
+                double totalRegistro = 0;
+                int j = 0;
+                for(GastoEmpresa i: totales){
+                    totalRegistro = totalRegistro + i.getSaldo();
+                    j++;
+                }
+                Object datos1[] = {j,x.getCategoria(), totalRegistro};
+                
+                modelo1.addRow(datos1);
+            }
+        }
+            
+                GastosGM.jtDatosReporte.setModel(modelo1);
+        }
+}
     @Override
     public void mouseClicked(MouseEvent me) {
         /* Gastos */
@@ -1971,6 +1920,12 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             if (bonoSelecionado != null) {
                 bonoGM.setEstado(true);
             }
+        }else if (padreActiva.equals("ConsultarFactura")) {
+            int fila = registrosDeVenta.tbDatos.getSelectedRow();
+            String id = registrosDeVenta.tbDatos.getValueAt(fila, 0).toString();
+            ArrayList<Venta> lista = daoVenta.selectAllTo("nFactura", id);
+            ventaSeleccionada = lista.get(0);
+            
         }
 
     }

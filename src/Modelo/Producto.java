@@ -21,7 +21,13 @@ public class Producto {
   private Empresa empresa;
 
     public Producto() {
+        
     }
+
+    public Producto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+    
 
     public Producto(int idProducto, String nombreProducto, double precioCompra, double cantidad, int max, int min) {
         this.idProducto = idProducto;

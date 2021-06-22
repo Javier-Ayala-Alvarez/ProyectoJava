@@ -64,7 +64,6 @@ public class GastoEmpresa {
     public Empleados getEmpleado() {
         EmpleadoDao daoEmpleado = new EmpleadoDao();
         empleado = daoEmpleado.selectId(empleado.getIdEmpleado()).get(0);
-
         return empleado;
     }
 
