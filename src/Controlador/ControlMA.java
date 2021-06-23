@@ -660,18 +660,21 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         modelo = new DefaultTableModel(); 
             String titulos[] = {"Cantidad", "Nombre", "Precio Unitario", "Precio Total"};
              modelo.setColumnIdentifiers(titulos);
+             double totalVe= 0;
         this.consultarVentas.lbFactura.setText(ventaSeleccionada.getnFactura());
            this.consultarVentas.lbCliente.setText(ventaSeleccionada.getCliente().getNombre());
            this.consultarVentas.lbFecha.setText(String.valueOf(ventaSeleccionada.getFechaVenta()));
            this.consultarVentas.lbEmpleado.setText(ventaSeleccionada.getEmpleado().getNombre());
-           //this.consultarVentas.lbSucursal.setText(ventaSeleccionada.getEmpresa().getNombre());
+           this.consultarVentas.lbSucursal.setText(ventaSeleccionada.getEmpresa().getNombre());
            ArrayList<Registros> registros = daoRegistro.selectAllTo("idVenta", String.valueOf(ventaSeleccionada.getIdFactura()));
            for(Registros x: registros){
+           totalVe = totalVe + x.getPrecioTotalProducto();
            
            Object datos[] = {x.getCantidadProducto(),x.getProducto().getNombreProducto(),x.getProducto().getPrecioVenta(),x.getPrecioTotalProducto()};
                 modelo.addRow(datos);
            }
            consultarVentas.jDatos.setModel(modelo);
+           consultarVentas.lbTotal.setText(String.valueOf(totalVe));
         
             consultarVentas.iniciar();
         } else if (vista.equals("guardarProducto")) {
@@ -1209,8 +1212,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
                         afpE = x.getAfp();
                         isssE = x.getIsss();
+                        
                         bono = x.getBono().getBono();
 
+                        
                     }
 
                 }
@@ -1222,6 +1227,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     double ISSS = 0.0775;
                     double AFP = 0.0775;
                     pago = (float) (salario - (afpE + isssE));
+                    
                     salario = (float) ((salario + (salario * ISSS)) + (salario * AFP) + bono);
                     retiro = (float) pago + bono;
                     GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(), gastosGM.dFecha.getDatoFecha(), categoria, salario, empresa.get(0), empleado1.get(0));

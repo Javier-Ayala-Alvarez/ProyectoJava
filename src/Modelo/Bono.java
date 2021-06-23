@@ -48,6 +48,7 @@ public class Bono  {
     public void setCargoEmpleado(String CargoEmpleado) {
         this.CargoEmpleado = CargoEmpleado;
     }
+
     
     
 

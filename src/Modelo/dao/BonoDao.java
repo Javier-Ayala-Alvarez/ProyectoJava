@@ -48,7 +48,7 @@ public class BonoDao {
     }
     
     public boolean update(Bono obj) {
-        String sql = "UPDATE bono SET bono = ?, cargoEmpleado = ? WHERE idbono = " + obj.getIdBono();
+        String sql = "UPDATE bono SET bono = ?, cargoEmpleado = ? WHERE idBono = " + obj.getIdBono();
         return alterarRegistro(sql, obj);
     }
     

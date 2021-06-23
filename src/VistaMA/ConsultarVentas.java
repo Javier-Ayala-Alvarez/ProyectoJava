@@ -84,7 +84,7 @@ public class ConsultarVentas extends javax.swing.JDialog {
         panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 210, 60));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Empleado:");
         panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 120, 60));
 
@@ -114,18 +114,19 @@ public class ConsultarVentas extends javax.swing.JDialog {
         });
         panelFondo.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 50, 50));
 
-        lbTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbTotal.setBackground(new java.awt.Color(0, 0, 0));
+        lbTotal.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lbTotal.setForeground(new java.awt.Color(0, 0, 0));
         lbTotal.setText(".");
         panelFondo.add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 130, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Cliente:");
         panelFondo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 80, 60));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Sucursal:");
         panelFondo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 100, 60));
 
@@ -165,6 +166,7 @@ public class ConsultarVentas extends javax.swing.JDialog {
         panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 850, 250));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Total: ");
         panelFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, -1, -1));
 
@@ -178,37 +180,37 @@ public class ConsultarVentas extends javax.swing.JDialog {
         panelFondo.add(materialButtonCircle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 50, 50));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Fecha de Ventas:");
         panelFondo.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 180, 60));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Nº Factura:");
         panelFondo.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, 60));
 
         lbFactura.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbFactura.setForeground(new java.awt.Color(0, 0, 0));
+        lbFactura.setForeground(new java.awt.Color(102, 102, 102));
         lbFactura.setText(".");
-        panelFondo.add(lbFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 130, -1));
+        panelFondo.add(lbFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 130, -1));
 
         lbCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbCliente.setForeground(new java.awt.Color(0, 0, 0));
+        lbCliente.setForeground(new java.awt.Color(102, 102, 102));
         lbCliente.setText(".");
         panelFondo.add(lbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 130, -1));
 
         lbFecha.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbFecha.setForeground(new java.awt.Color(0, 0, 0));
+        lbFecha.setForeground(new java.awt.Color(102, 102, 102));
         lbFecha.setText(".");
         panelFondo.add(lbFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 130, -1));
 
         lbEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbEmpleado.setForeground(new java.awt.Color(0, 0, 0));
+        lbEmpleado.setForeground(new java.awt.Color(102, 102, 102));
         lbEmpleado.setText(".");
         panelFondo.add(lbEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 130, -1));
 
         lbSucursal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbSucursal.setForeground(new java.awt.Color(0, 0, 0));
+        lbSucursal.setForeground(new java.awt.Color(102, 102, 102));
         lbSucursal.setText(".");
         panelFondo.add(lbSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 130, -1));
 

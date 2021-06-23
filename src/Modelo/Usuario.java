@@ -86,7 +86,6 @@ public class Usuario{
     }
 
     public Empleados getEmpleados() {
-
         return empleados;
     }
     

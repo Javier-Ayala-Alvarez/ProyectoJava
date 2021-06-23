@@ -3,6 +3,7 @@ package Modelo.dao;
 import Modelo.Cliente;
 import Modelo.Conexion;
 import Modelo.Empleados;
+import Modelo.Empresa;
 import Modelo.InicioCaja;
 import Modelo.Producto;
 import Modelo.Venta;
@@ -73,7 +74,7 @@ public class VentaDao {
                 obj.setCliente(new Cliente(rs.getInt("idCliente")));
                 obj.setInicioCaja(new InicioCaja(rs.getInt("idCaja")));
                 obj.setEmpleado(new Empleados(rs.getInt("idEmpleado")));
-//                obj.setEmpresa(new Empresa(rs.getInt("idEmpresa")));
+                obj.setEmpresa(new Empresa(rs.getInt("idEmpresa")));
                 lista.add(obj);
             }
             
