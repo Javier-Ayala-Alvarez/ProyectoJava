@@ -39,7 +39,9 @@ import VistaMA.UsuarioGM;
 import VistaMA.VistaEmpresa;
 import VistaMA.VistaUsuario;
 import VistaMA.vistaBono;
+import VistaMA.vistaGrafica;
 import VistaMV.Factura;
+import static demo.BubbleChartDemo1.createDataset;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -51,11 +53,18 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.Dataset;
 
 public class ControlMA extends MouseAdapter implements ActionListener, KeyListener, ItemListener, FocusListener {
 
@@ -124,6 +133,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     VentaDao daoVenta = new VentaDao();
     RegistrosDao Daoregistro = new RegistrosDao();
     //****Fin Venta****//
+    vistaGrafica vistaGrafica;
+    
+    
     RegistrosDeProductos registrosDeProductos;
     InicioCajaDao daoCaja = new InicioCajaDao();
     
@@ -612,7 +624,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } else if (vista.equals("home")) {
             JOptionPane.showMessageDialog(null, "No hay nada Home");
         } else if (vista.equals("ventas")) {
-            JOptionPane.showMessageDialog(null, "NO HAY NADA VENTAS");
+             padreActiva = "vistaGraficas";
+            this.vistaGrafica = new vistaGrafica(menuAdministrador, true);
+            llenarGrafica();
+            vistaGrafica.iniciar();
+            
         } else if (vista.equals("gastos")) {
             JOptionPane.showMessageDialog(null, "NO HAY GASTOS");
         } else if (vista.equals("empleado")) {
@@ -1965,4 +1981,100 @@ public void filtrarReporte(ArrayList lista){
     private void printf(double bono) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    private void llenarGrafica(){
+        this.vistaGrafica.lbtitulo.setText("Gafico de ventas");
+        JFreeChart barChart = ChartFactory.createBarChart("ventas durante el año ",           
+         "meses",            
+         "total $",            
+         createDataset(),          
+         PlotOrientation.VERTICAL,true, true, false);
+        
+        ChartPanel chartPanel = new ChartPanel( barChart );   
+        this.vistaGrafica.contenedor.add(chartPanel);
+        
+      // this.vistaGrafica.setContentPane(chartPanel ); 
+
+       
+    }
+    private CategoryDataset createDataset( ) {
+        int mes = 0,  auxMes = 0,contadorMes = 0;
+        int bandera = 0;
+        double auxiliar = 0;
+        ArrayList<Double> ventasTotales = new ArrayList();
+        ArrayList<InicioCaja> inicioCajasAnnio = new ArrayList();
+        
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTime(date);
+        String dateYear = String.valueOf(calendar.get(Calendar.YEAR));
+        System.out.println(dateYear);
+       // select * FROM iniciocaja WHERE fechaCierre LIKE '2021%' ORDER BY fechaCierre ASC;
+        inicioCajasAnnio = daoCaja.selectAllWithCondition( "fechaCierre LIKE '"+ dateYear+"%'  ORDER BY fechaCierre ASC");
+        
+        //String 
+        for(InicioCaja x : inicioCajasAnnio){
+            
+            calendar.setTime(x.getFechaCierre());
+            mes = calendar.get(calendar.MONTH);
+            
+            if (auxMes == mes) {
+                //proceso de suma en el mes
+                System.out.println(mes);
+                System.out.println(auxMes);
+                 auxiliar+= (x.getDineroCierre()-x.getDineroInicio());
+                 bandera ++;
+            }else if (bandera>0) {
+                bandera = 1;
+                ventasTotales.add(auxiliar);
+                
+                auxMes = mes;
+                auxiliar = x.getDineroCierre()-x.getDineroInicio();
+               
+                //proceso para iniciar el nuevo mes 
+            }else if (bandera == 1 && mes != mes) {
+                
+            }
+            
+            if (bandera == 0){
+                //proceso para iniciar el 1er mes que se encuentra en el arraylist
+                contadorMes = mes;
+                auxMes = mes;
+                bandera = 1;
+                auxiliar = x.getDineroCierre()-x.getDineroInicio();
+                
+                
+                
+            }
+            
+        }
+       
+        if (ventasTotales.isEmpty()) {
+            ventasTotales.add(auxiliar);
+            contadorMes --;
+            
+        }
+        System.out.println(ventasTotales.size());
+         contadorMes+= ventasTotales.size();
+         Locale locale = new Locale("es", "ES");
+          calendar.set(Calendar.MONTH, contadorMes);
+          DefaultCategoryDataset dataset =  new DefaultCategoryDataset( );  
+          
+          
+         
+        for(Double x : ventasTotales){
+            System.out.println(x);
+            String monthName=calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, locale);
+            dataset.addValue(x, "", monthName);
+            
+        }
+        
+        
+       
+       
+      
+      return dataset; 
+    }
 }
+

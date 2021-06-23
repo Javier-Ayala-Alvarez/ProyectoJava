@@ -43,6 +43,7 @@ public class vistaGrafica extends javax.swing.JDialog {
         lbtitulo = new javax.swing.JLabel();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         alerta1 = new javax.swing.JLabel();
+        contenedor = new javax.swing.JPanel();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle1.setText("X");
@@ -82,6 +83,9 @@ public class vistaGrafica extends javax.swing.JDialog {
 
         alerta1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         panelFondo.add(alerta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, 570, 50));
+
+        contenedor.setLayout(new java.awt.BorderLayout());
+        panelFondo.add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 900, 480));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,6 +153,7 @@ public class vistaGrafica extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel alerta1;
+    public javax.swing.JPanel contenedor;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JLabel lbtitulo;
     private principal.MaterialButtonCircle materialButtonCircle1;

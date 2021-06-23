@@ -34,6 +34,11 @@ public class InicioCajaDao {
         String sql = "select * from iniciocaja where " + atributo + "='" + condicion + "'";
         return select(sql);
     }
+    public ArrayList<InicioCaja> selectAllWithCondition( String condicion) {
+        //select * FROM iniciocaja WHERE fechaCierre LIKE '2021%' ORDER BY fechaCierre ASC;
+        String sql = "select * FROM iniciocaja WHERE "  + condicion;
+        return select(sql);
+    }
 
     public ArrayList<InicioCaja> selectId(int id) {
         String sql = "select * from iniciocaja where idCaja=" + id;
