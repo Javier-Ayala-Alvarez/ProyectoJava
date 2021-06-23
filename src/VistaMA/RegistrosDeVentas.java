@@ -18,7 +18,7 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
         
     }
      public void setControlador(ControlMA control1) {
-       
+       jtDatos.addMouseListener(control1);
         tfBuscar.addKeyListener(control1);
         btnDetalle.addActionListener(control1);
         
@@ -45,7 +45,7 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
         btnCerrarRV = new principal.MaterialButtonCircle();
         lbTotal = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbDatos = new javax.swing.JTable();
+        jtDatos = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         tfBuscar = new principal.MaterialTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -119,8 +119,8 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
         lbTotal.setText(".");
         panelFondoRV.add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 470, 130, -1));
 
-        tbDatos.setBackground(new java.awt.Color(199, 207, 214));
-        tbDatos.setModel(new javax.swing.table.DefaultTableModel(
+        jtDatos.setBackground(new java.awt.Color(199, 207, 214));
+        jtDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -153,7 +153,7 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbDatos);
+        jScrollPane1.setViewportView(jtDatos);
 
         panelFondoRV.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 750, 310));
 
@@ -268,12 +268,12 @@ public class RegistrosDeVentas extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jpLogo1;
+    public static javax.swing.JTable jtDatos;
     public static javax.swing.JLabel lbTotal;
     private principal.MaterialButtonCircle materialButtonCircle1;
     public javax.swing.JPanel panelFondoRV;
     private rojeru_san.componentes.RSCalendar rSCalendar1;
     private efectos.Roboto roboto1;
-    public static javax.swing.JTable tbDatos;
     public static principal.MaterialTextField tfBuscar;
     // End of variables declaration//GEN-END:variables
 }

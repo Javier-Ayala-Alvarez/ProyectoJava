@@ -291,7 +291,7 @@ public class ConsultarVentas extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jpLogo1;
-    private javax.swing.JLabel lbCliente;
+    public javax.swing.JLabel lbCliente;
     private javax.swing.JLabel lbCodigo1;
     public javax.swing.JLabel lbEmpleado;
     private javax.swing.JLabel lbEnergia;

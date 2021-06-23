@@ -2,6 +2,7 @@
 package Modelo;
 import Modelo.dao.ClienteDao;
 import Modelo.dao.EmpleadoDao;
+import Modelo.dao.EmpresaDao;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -77,14 +78,18 @@ public class Venta {
     
 
     public int getEstado() {
+
         return estado;
     }
 
     public void setEstado(int estado) {
+
         this.estado = estado;
     }
 
     public Empresa getEmpresa() {
+       EmpresaDao daoEmpresa = new EmpresaDao();
+       empresa = daoEmpresa.selectId(empresa.getIdEmpresa()).get(0);
         return empresa;
     }
 
@@ -161,7 +166,7 @@ public class Venta {
 
     public Empleados getEmpleado() {
         EmpleadoDao daoEmpleado = new EmpleadoDao();
-        empleado = daoEmpleado.selectId(empleado.getIdPersona()).get(0);
+        empleado = daoEmpleado.selectId(empleado.getIdEmpleado()).get(0);
         return empleado;
     }
 
