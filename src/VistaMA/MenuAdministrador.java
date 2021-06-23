@@ -55,11 +55,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.consultarEmpresa.setActionCommand("consultarEmpresa");
         
         /*ActionCommand de los Botones principales*/
-        this.btnHome.setActionCommand("Home");
+       
         this.btnVentas.setActionCommand("Ventas");
-        this.btnGastos.setActionCommand("Gastos");
-        this.btnEmpleado.setActionCommand("Empleado");
-        this.btnCliente.setActionCommand("Cliente");
+        
         btnCerrarMenuAdmin.setActionCommand("cerrarMenu");
     }
 
@@ -97,11 +95,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.modificarEmpresa.addActionListener(controlMA);
         
         /*Agregando botones principales*/
-        btnHome.addActionListener(controlMA);
+        
         btnVentas.addActionListener(controlMA);
-        btnGastos.addActionListener(controlMA);
-        btnEmpleado.addActionListener(controlMA);
-        btnCliente.addActionListener(controlMA);
+       
         btnCerrarMenuAdmin.addActionListener(controlMA);
     }
 
@@ -128,11 +124,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         btnCerrarMenuAdmin = new principal.MaterialButtonCircle();
         lbEmpresa1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        btnEmpleado = new rojeru_san.complementos.RSButtonHover();
-        btnGastos = new rojeru_san.complementos.RSButtonHover();
         jLabel1 = new javax.swing.JLabel();
-        btnHome = new rojeru_san.complementos.RSButtonHover();
-        btnCliente = new rojeru_san.complementos.RSButtonHover();
         btnVentas = new rojeru_san.complementos.RSButtonHover();
         panel1 = new javax.swing.JPanel();
         jpCaja = new javax.swing.JPanel();
@@ -278,37 +270,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(71, 139, 184));
 
-        btnEmpleado.setText("Empleado");
-        btnEmpleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmpleadoActionPerformed(evt);
-            }
-        });
-
-        btnGastos.setText("Gastos");
-        btnGastos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGastosActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Graficas");
-
-        btnHome.setText("Home");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-
-        btnCliente.setText("Cliente");
-        btnCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClienteActionPerformed(evt);
-            }
-        });
 
         btnVentas.setText("Ventas");
         btnVentas.addActionListener(new java.awt.event.ActionListener() {
@@ -321,32 +285,20 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(btnEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(btnCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addContainerGap(114, Short.MAX_VALUE))
             .addComponent(btnVentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(btnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
                 .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panel1.setBackground(new java.awt.Color(142, 177, 213));
@@ -691,7 +643,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
                             .addComponent(panel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -826,7 +778,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         menuGDS.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         opcionesGDS.setText("Gastos Administrativo");
-        opcionesGDS.setBorderPainted(false);
         opcionesGDS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opcionesGDSActionPerformed(evt);
@@ -924,22 +875,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_opcionesGDSActionPerformed
 
-    private void btnEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEmpleadoActionPerformed
-
-    private void btnGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGastosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGastosActionPerformed
-
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnClienteActionPerformed
-
     private void btnCerrarMenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarMenuAdminActionPerformed
 
     }//GEN-LAST:event_btnCerrarMenuAdminActionPerformed
@@ -980,10 +915,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JMenuItem ConsultarBono;
     public javax.swing.JMenuItem ConsultarUsuario;
     public principal.MaterialButtonCircle btnCerrarMenuAdmin;
-    public rojeru_san.complementos.RSButtonHover btnCliente;
-    public rojeru_san.complementos.RSButtonHover btnEmpleado;
-    public rojeru_san.complementos.RSButtonHover btnGastos;
-    public rojeru_san.complementos.RSButtonHover btnHome;
     public javax.swing.JMenuItem btnRegistrarFacturaItem;
     public rojeru_san.complementos.RSButtonHover btnVentas;
     public javax.swing.JMenuItem consultarCliente;

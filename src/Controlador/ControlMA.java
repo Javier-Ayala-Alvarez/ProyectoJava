@@ -1998,47 +1998,50 @@ public void filtrarReporte(ArrayList lista){
        
     }
     private CategoryDataset createDataset( ) {
+        //variables a usar
         int mes = 0,  auxMes = 0,contadorMes = 0;
-        int bandera = 0;
+        int bandera = 0,i = 0;
         double auxiliar = 0;
         ArrayList<Double> ventasTotales = new ArrayList();
         ArrayList<InicioCaja> inicioCajasAnnio = new ArrayList();
-        
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
 
+        //para seleccionar el año actual
         calendar.setTime(date);
         String dateYear = String.valueOf(calendar.get(Calendar.YEAR));
         System.out.println(dateYear);
-       // select * FROM iniciocaja WHERE fechaCierre LIKE '2021%' ORDER BY fechaCierre ASC;
         inicioCajasAnnio = daoCaja.selectAllWithCondition( "fechaCierre LIKE '"+ dateYear+"%'  ORDER BY fechaCierre ASC");
         
-        //String 
+        //ciclo que sirve para generar los datos a graficar, seleccionando y sumando las ventas por mes
         for(InicioCaja x : inicioCajasAnnio){
             
+            //para seleccionar el mes de cada objeto inicioCaja
             calendar.setTime(x.getFechaCierre());
             mes = calendar.get(calendar.MONTH);
             
-            if (auxMes == mes) {
-                //proceso de suma en el mes
-                System.out.println(mes);
-                System.out.println(auxMes);
+            
+            if (auxMes == mes) { //proceso de suma en el mes
+
                  auxiliar+= (x.getDineroCierre()-x.getDineroInicio());
                  bandera ++;
-            }else if (bandera>0) {
+                 
+            }else if ( bandera > 1) { //proceso para iniciar el nuevo mes 
                 bandera = 1;
                 ventasTotales.add(auxiliar);
-                
                 auxMes = mes;
                 auxiliar = x.getDineroCierre()-x.getDineroInicio();
                
-                //proceso para iniciar el nuevo mes 
-            }else if (bandera == 1 && mes != mes) {
+            }else if (bandera == 1) {//proseso si en el mes existe unicamente una venta
+               
+                ventasTotales.add(auxiliar);
+                System.out.println(ventasTotales);
                 
+                auxMes = mes;
+                auxiliar = x.getDineroCierre()-x.getDineroInicio();
             }
-            
-            if (bandera == 0){
-                //proceso para iniciar el 1er mes que se encuentra en el arraylist
+            if (bandera == 0){//proceso para iniciar el 1er mes que se encuentra en el arraylist
+                
                 contadorMes = mes;
                 auxMes = mes;
                 bandera = 1;
@@ -2047,32 +2050,26 @@ public void filtrarReporte(ArrayList lista){
                 
                 
             }
-            
+           
         }
-       
-        if (ventasTotales.isEmpty()) {
-            ventasTotales.add(auxiliar);
-            contadorMes --;
-            
-        }
-        System.out.println(ventasTotales.size());
-         contadorMes+= ventasTotales.size();
+        ventasTotales.add(auxiliar);
+        i = contadorMes;
+         
          Locale locale = new Locale("es", "ES");
-          calendar.set(Calendar.MONTH, contadorMes);
-          DefaultCategoryDataset dataset =  new DefaultCategoryDataset( );  
+         DefaultCategoryDataset dataset =  new DefaultCategoryDataset( );  
           
           
          
         for(Double x : ventasTotales){
-            System.out.println(x);
+            System.out.println(x + "'");
+            //contadorMes+= ventasTotales.size();
+            calendar.set(Calendar.MONTH, i);
+            i ++;
             String monthName=calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, locale);
-            dataset.addValue(x, "", monthName);
+            System.out.println(monthName);
+            dataset.addValue(x, "$ "+x.toString(), monthName);
             
         }
-        
-        
-       
-       
       
       return dataset; 
     }

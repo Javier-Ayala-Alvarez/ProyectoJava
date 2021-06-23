@@ -60,9 +60,10 @@ public class InicioCajaDao {
         return alterarRegistro(sql, obj);
     }
 
-    public void update(InicioCaja obj) {
+    public boolean update(InicioCaja obj) {
         String sql = "update iniciocaja set codigoCaja =?, fechaInicio =?, fechaCierre =?, dineroCajaInicio =?, dineroCajaCierre =? where idCaja=" + obj.getIdAdminCaja();
-        alterarRegistro(sql, obj);
+        return alterarRegistro(sql, obj);
+        
     }
 
     private ArrayList<InicioCaja> select(String sql) {
