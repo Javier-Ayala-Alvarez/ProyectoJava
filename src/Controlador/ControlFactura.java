@@ -86,6 +86,7 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
         modeloTabla = new DefaultTableModel();
         String titule[] = {"Codigo", "Producto", "Cantidad", "Precio/U", "Total"};
         this.modeloTabla.setColumnIdentifiers(titule);
+        //HolaMundoooooo by Gerson
 
     }
 
