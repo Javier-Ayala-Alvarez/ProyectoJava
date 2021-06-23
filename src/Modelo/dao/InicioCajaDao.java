@@ -18,9 +18,9 @@ public class InicioCajaDao {
     
     Usuario usuario; 
 
-    public InicioCajaDao(Usuario usuario) {
-        this.usuario = usuario;
-    }
+//////    public InicioCajaDao(Usuario usuario) {
+//////        this.usuario = usuario;
+//////    }
 
     public InicioCajaDao() {
     }
@@ -216,34 +216,34 @@ public class InicioCajaDao {
         return false;
     }
     
-    public boolean validarUsuario(int k){
-        boolean existe=false;
-        String sql="SELECT * FROM usuario WHERE idUsuario='"+this.usuario.getIdUsuario()+"'"; 
-        
-        try {
-            con = conectar.getConexion();
-            ps = con.prepareStatement(sql);
-            rs=ps.executeQuery();
-            
-             while(rs.next())
-                  {
-                      existe=true;
-                  }
-            return existe; 
-            
-        } catch (Exception e){
-            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
-            alert.show();
-            e.printStackTrace();
-        } finally {
-            try {
-                ps.close();
-                conectar.closeConexion(con);
-            } catch (Exception ex) {
-            }
-        }
-        
-        return existe;
-    }
+//    public boolean validarUsuario(int k){
+//        boolean existe=false;
+//        String sql="SELECT * FROM usuario WHERE idUsuario='"+this.usuario.getIdUsuario()+"'"; 
+//        
+//        try {
+//            con = conectar.getConexion();
+//            ps = con.prepareStatement(sql);
+//            rs=ps.executeQuery();
+//            
+//             while(rs.next())
+//                  {
+//                      existe=true;
+//                  }
+//            return existe; 
+//            
+//        } catch (Exception e){
+//            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
+//            alert.show();
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                ps.close();
+//                conectar.closeConexion(con);
+//            } catch (Exception ex) {
+//            }
+//        }
+//        
+//        return existe;
+//    }
     
 }

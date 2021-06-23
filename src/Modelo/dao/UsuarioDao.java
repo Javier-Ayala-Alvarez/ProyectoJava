@@ -142,5 +142,34 @@ public class UsuarioDao {
         }
         return false; 
     }*/
+      
+    public boolean validarUsuario(int k){
+        boolean existe=false;
+        String sql="SELECT * FROM usuario WHERE idUsuario='"+k+"'"; 
         
+        try {
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            
+             while(rs.next())
+                  {
+                      existe=true;
+                  }
+            return existe; 
+            
+        } catch (Exception e){
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
+            alert.show();
+            e.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+                conectar.closeConexion(con);
+            } catch (Exception ex) {
+            }
+        }
+        
+        return existe;
+    }
 }

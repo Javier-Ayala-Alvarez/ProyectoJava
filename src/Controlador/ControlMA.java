@@ -299,7 +299,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             ArrayList<GastoEmpresa> lista = daoGasto.buscar(GastosGM.tfBuscar.getText() + e.getKeyChar());
 
             if (lista.isEmpty()) {
-                mostrarDatos();
+                mostrarDatos(); 
             } else {
                 mostrarBusqueda(lista);
 
@@ -311,7 +311,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             if (listaDis.isEmpty()) {
                 mostrarDatos();
             } else {
-                filtrarReporte(listaDis);
+                filtrarReporte(listaDis); 
 
             }
 

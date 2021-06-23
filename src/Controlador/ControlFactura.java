@@ -162,8 +162,8 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
         if (vista.equals("FACTURA")) {
             factura.setControladorF(this);
             factura.iniciar();
-          //  factura.visibilidad(true);//colocar false cuando se habiliten las Cajas
-        } /*
+            factura.visibilidad(false);//colocar false cuando se habiliten las Cajas
+       // } ///////////////////*
         } else if (vista.equals("inicioCaja")) {
             this.inicioCajaVista = new InicioCajaVista(factura, true);
             this.inicioCajaVista.setControlador(this);
@@ -174,8 +174,8 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
                 JOptionPane.showMessageDialog(null, "Llene los campos");
             } else {
                 this.usuario = new Usuario();
-                this.daoInicioCaja = new InicioCajaDao(usuario);//
-                this.daoUsuario = new UsuarioDao(usuario);
+                this.daoInicioCaja = new InicioCajaDao();//se borro usuario
+                this.daoUsuario = new UsuarioDao();//se borro usuario
                 this.usuario.setIdUsuario(Integer.parseInt(this.inicioCajaVista.tfUsuId.getText()));
                 this.inicioCaja = new InicioCaja();
                 this.inicioCaja.setCodigoCaja(this.inicioCajaVista.codigoCaja.getText());
@@ -198,7 +198,7 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
                 }
             }
 
-        }*/ else if (vista.equals("tiket")) {
+        } else if (vista.equals("tiket")) {//*/
             //this.tiket = new Tiket(factura, true);
             //this.tiket.setControlador(this);
             //this.tiket.iniciar();
@@ -266,8 +266,9 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
                 this.inicioCaja.setIdAdminCaja(fila);
                 //this.factura.btnCerrarCaja.setVisible(false);
                 if (this.daoInicioCaja.update(inicioCaja)) {
-                    this.cierreCaja.dispose();
                     JOptionPane.showMessageDialog(null, "Guardado con exito\nSalga");
+                    this.cierreCaja.dispose();
+                    this.factura.visibilidad(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR EL REGISTRO");
                 }
