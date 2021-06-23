@@ -131,6 +131,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     Venta ventaSeleccionada = null;
     RegistrosDeVentas registrosDeVenta;
     VentaDao daoVenta = new VentaDao();
+    RegistrosDao daoRegistro = new RegistrosDao();
     RegistrosDao Daoregistro = new RegistrosDao();
     //****Fin Venta****//
     vistaGrafica vistaGrafica;
@@ -653,10 +654,28 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             mostrarDatos();
             registrosDeVenta.iniciar();
         } else if (vista.equals("Detalle")) {
+            hijaActiva= "Detalle";
             this.consultarVentas = new ConsultarVentas(menuAdministrador, true);
-            padreActiva = "ConsultarFactura";
-            this.consultarVentas.setControlador(this);
-            mostrarDatos();
+            DefaultTableModel modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(); 
+            String titulos[] = {"Cantidad", "Nombre", "Precio Unitario", "Precio Total"};
+             modelo.setColumnIdentifiers(titulos);
+             double totalVe= 0;
+        this.consultarVentas.lbFactura.setText(ventaSeleccionada.getnFactura());
+           this.consultarVentas.lbCliente.setText(ventaSeleccionada.getCliente().getNombre());
+           this.consultarVentas.lbFecha.setText(String.valueOf(ventaSeleccionada.getFechaVenta()));
+           this.consultarVentas.lbEmpleado.setText(ventaSeleccionada.getEmpleado().getNombre());
+           this.consultarVentas.lbSucursal.setText(ventaSeleccionada.getEmpresa().getNombre());
+           ArrayList<Registros> registros = daoRegistro.selectAllTo("idVenta", String.valueOf(ventaSeleccionada.getIdFactura()));
+           for(Registros x: registros){
+           totalVe = totalVe + x.getPrecioTotalProducto();
+           
+           Object datos[] = {x.getCantidadProducto(),x.getProducto().getNombreProducto(),x.getProducto().getPrecioVenta(),x.getPrecioTotalProducto()};
+                modelo.addRow(datos);
+           }
+           consultarVentas.jDatos.setModel(modelo);
+           consultarVentas.lbTotal.setText(String.valueOf(totalVe));
+        
             consultarVentas.iniciar();
         } else if (vista.equals("guardarProducto")) {
             padreActiva = "productoModi1";
@@ -1086,11 +1105,12 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 modelo.addRow(datos);
                 total1 = (float) (total1 + x.getSaldoTotal());
             }
-            registrosDeVenta.tbDatos.setModel(modelo);
+            registrosDeVenta.jtDatos.setModel(modelo);
             registrosDeVenta.lbTotal.setText(String.format("%.2f", total1));
+            //************Fin registroVentas*************//
         }
-
-        //************Fin registroVentas*************//
+        
+        
     }
 
     public String crearCodigo(String a, String activa) {
@@ -1192,8 +1212,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
                         afpE = x.getAfp();
                         isssE = x.getIsss();
+                        
                         bono = x.getBono().getBono();
 
+                        
                     }
 
                 }
@@ -1205,6 +1227,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     double ISSS = 0.0775;
                     double AFP = 0.0775;
                     pago = (float) (salario - (afpE + isssE));
+                    
                     salario = (float) ((salario + (salario * ISSS)) + (salario * AFP) + bono);
                     retiro = (float) pago + bono;
                     GastoEmpresa gasto = new GastoEmpresa(gastosGM.tfCodigo.getText(), gastosGM.dFecha.getDatoFecha(), categoria, salario, empresa.get(0), empleado1.get(0));
@@ -1234,6 +1257,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
         } else if (e.getActionCommand().equals("Eliminar")
                 && (padreActiva.equals("gastosGM") || padreActiva.equals("gastosGM1"))) {
+            if(gastoSeleccionado != null){
             int opccion = JOptionPane.showConfirmDialog(null, "Deseas Eliminar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opccion == 0) {
                 if (gastoSeleccionado != null) {
@@ -1251,9 +1275,14 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     }
                 }
             }
+            }else{
+                Alerta aler = new Alerta(menuAdministrador, true, "Seleccione un Registro", "/img/error.png");
+                    aler.show();
+            }
 
         } else if (e.getActionCommand().equals("Modificar")
                 && padreActiva.equals("gastosGM")) {
+            if(gastoSeleccionado != null){
             int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opccion == 0) {
                 gastoSeleccionado.setCodigoGastos(gastosGM.tfCodigo.getText());
@@ -1265,6 +1294,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 vaciarVista();
                 Alerta aler = new Alerta(menuAdministrador, true, "Modificado con exito", "/img/Succes.png");
                 aler.show();
+            }
+            }else{
+                Alerta aler = new Alerta(menuAdministrador, true, "Seleccione un Registro", "/img/error.png");
+                    aler.show();
             }
         } else if (e.getActionCommand().equals("Modificar")
                 && padreActiva.equals("consultarCliente")) {
@@ -1608,10 +1641,17 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 mostrarDatos();
                 aler.show();
             }
-
+            ////////////////////////////////////fin  Usuario////////////////////////////////////
+        }else if (padreActiva.equals("registroVentas") && e.getActionCommand().equals("Detalle")) {
+            if(ventaSeleccionada != null){
+            llamarVistaConsulta("Detalle");
+            }else{
+                Alerta aler = new Alerta(menuAdministrador, true, "Seleccione un registro", "/img/error.png");
+                 aler.show();
+            }
         }
 
-        ////////////////////////////////////fin  Usuario////////////////////////////////////
+        
     }
 
     @Override
@@ -1781,7 +1821,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 modelo.addRow(datos);
                 total1 = (float) (total1 + obj.getSaldoTotal());
             }
-            registrosDeVenta.tbDatos.setModel(modelo);
+            registrosDeVenta.jtDatos.setModel(modelo);
             registrosDeVenta.lbTotal.setText(String.format("%.2f", total1));
         } //***********Fin mostrarVenta**********//
         //        //**************ProductoModi****************//
@@ -1808,8 +1848,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             }
             this.registrosDeProductos.jtDatos.setModel(modelo);
             this.registrosDeProductos.lbTotal.setText("$" + String.format("%.2f", total2));
-        }
-        //************Fin productoModi*************//
+            //************Fin productoModi*************//
+        } 
+        
 
     }
 public void filtrarReporte(ArrayList lista){
@@ -1936,9 +1977,9 @@ public void filtrarReporte(ArrayList lista){
             if (bonoSelecionado != null) {
                 bonoGM.setEstado(true);
             }
-        }else if (padreActiva.equals("ConsultarFactura")) {
-            int fila = registrosDeVenta.tbDatos.getSelectedRow();
-            String id = registrosDeVenta.tbDatos.getValueAt(fila, 0).toString();
+        }else if (padreActiva.equals("registroVentas")) {
+            int fila = registrosDeVenta.jtDatos.getSelectedRow();
+            String id = registrosDeVenta.jtDatos.getValueAt(fila, 0).toString();
             ArrayList<Venta> lista = daoVenta.selectAllTo("nFactura", id);
             ventaSeleccionada = lista.get(0);
             

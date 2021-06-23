@@ -1,6 +1,7 @@
 
 package Modelo;
 
+import Modelo.dao.ProductoDao;
 import java.util.ArrayList;
 
 public class Registros {
@@ -49,6 +50,8 @@ public class Registros {
     }
 
     public Producto getProducto() {
+        ProductoDao daoproducto = new ProductoDao();
+       producto = daoproducto.selectId(producto.getIdProducto()).get(0);
         return producto;
     }
 
@@ -61,6 +64,7 @@ public class Registros {
     }
 
     public Venta getVenta() {
+        
         return venta;
     }
 

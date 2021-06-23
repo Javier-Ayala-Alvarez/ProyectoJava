@@ -193,8 +193,9 @@ public class Empleados extends Persona{
 
     public Bono getBono() {
         BonoDao daoBono = new BonoDao();
-        bono = daoBono.selectId(bono.getIdBono()).get(0);
-        return bono;
+            bono = daoBono.selectId(bono.getIdBono()).get(0);
+            return bono;        
+        
     }
 
     public void setBono(Bono bono) {
