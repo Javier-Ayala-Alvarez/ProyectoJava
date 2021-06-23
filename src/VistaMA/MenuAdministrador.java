@@ -826,6 +826,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         menuGDS.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         opcionesGDS.setText("Gastos Administrativo");
+        opcionesGDS.setBorderPainted(false);
         opcionesGDS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opcionesGDSActionPerformed(evt);

@@ -3,10 +3,10 @@ package Modelo.dao;
 import Modelo.Cliente;
 import Modelo.Conexion;
 import Modelo.Empleados;
-import Modelo.Empresa;
 import Modelo.InicioCaja;
+import Modelo.Producto;
 import Modelo.Venta;
-import VistaMV.Facturacion;
+import VistaLogin.Alerta;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -73,7 +73,7 @@ public class VentaDao {
                 obj.setCliente(new Cliente(rs.getInt("idCliente")));
                 obj.setInicioCaja(new InicioCaja(rs.getInt("idCaja")));
                 obj.setEmpleado(new Empleados(rs.getInt("idEmpleado")));
-                obj.setEmpresa(new Empresa(rs.getInt("idEmpresa")));
+//                obj.setEmpresa(new Empresa(rs.getInt("idEmpresa")));
                 lista.add(obj);
             }
             
@@ -139,5 +139,96 @@ public class VentaDao {
         }
 
         return false;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public ArrayList<Producto> listaProductComb() {
+        ArrayList<Producto> listaProduc = new ArrayList();
+        ArrayList<Producto> listaProdT = new ArrayList();
+        Producto obj = null;
+        try {
+            String sql = "SELECT * FROM producto WHERE estado = 1";//1= estado producto activo
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                obj = new Producto();
+                obj.setCodigoProducto(rs.getString("codigoProducto"));
+                obj.setNombreProducto(rs.getString("nombreProducto"));
+                obj.setPrecioVenta(rs.getDouble("precioVenta"));
+                listaProduc.add(obj);
+            }
+
+        } catch (Exception e) {
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
+            alert.show();
+            e.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception ex) {
+
+            }
+            conectar.closeConexion(con);
+        }
+
+        return listaProduc;
+    }
+    
+    public ArrayList<Empleados> listaEmpleaComb() {
+        ArrayList<Empleados> listaEmple = new ArrayList();
+        Empleados obj = null;
+        try {
+            String sql = "SELECT * FROM empleado WHERE estado = 1 and cargoEmpleado = 'cajero'";//1= estado producto activo
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                obj = new Empleados();
+                obj.setNombre(rs.getString("nombre"));
+                listaEmple.add(obj);
+            }
+
+        } catch (Exception e) {
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
+            alert.show();
+            e.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception ex) {
+
+            }
+            conectar.closeConexion(con);
+        }
+
+        return listaEmple;
     }
 }

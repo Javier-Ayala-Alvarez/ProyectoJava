@@ -25,6 +25,7 @@ import VistaMV.Factura;
 import VistaMV.Facturacion;
 import VistaMV.Mensaje;
 import VistaMV.Producto;
+import VistaMV.TablaProducto;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,7 +57,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
     /*Objetos para el Constructor de ControlFactura*/
     Facturacion facturacion;
     Mensaje mensaje;
-    Producto producto;
+    TablaProducto tablaProducto;
 
     UsuarioDao daoUsuario = new UsuarioDao();
      EmpleadoDao daoEmpleado = new EmpleadoDao();
@@ -113,7 +114,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         } else if (vista.equals("admin")) {
             login.dispose();
             factura.setControlador(this);
-            ControlFactura controlF = new ControlFactura(factura, facturacion, mensaje, producto);
+            ControlFactura controlF = new ControlFactura(factura, facturacion, mensaje, tablaProducto);
         } else if (vista.equals("Admin")) {
             login.dispose();
             menuAdministrador.setControlador(this);
