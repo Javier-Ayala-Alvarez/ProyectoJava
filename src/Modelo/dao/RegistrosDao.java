@@ -1,8 +1,6 @@
 package Modelo.dao;
 
 import Modelo.Conexion;
-import Modelo.Empleados;
-import Modelo.Empresa;
 import Modelo.Producto;
 import Modelo.Registros;
 import Modelo.Venta;
@@ -69,7 +67,7 @@ public class RegistrosDao {
             }
 
         } catch (Exception e) {
-            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
             alert.show();
             e.printStackTrace();
         } finally {
@@ -84,7 +82,6 @@ public class RegistrosDao {
         return lista;
     }
 
-
     private boolean alterarRegistro(String sql, Registros obj) {
         try {
             con = conectar.getConexion();
@@ -98,7 +95,7 @@ public class RegistrosDao {
 
             return true;
         } catch (Exception e) {
-            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
             alert.show();
             e.printStackTrace();
         } finally {
@@ -112,16 +109,17 @@ public class RegistrosDao {
         return false;
     }
 
-    public boolean delete(Registros obj) {
-        String sql = "delete from registros where idRegistros='" + obj.getIdRegistros() + "'";
+    public boolean delete(int m, double n, int id) { 
+        String sql = "delete from registros where cantidadProducto='" + m + "' AND precioTotalProducto='"+n+"' AND idProducto='"+id+"'";
 
         try {
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
             ps.execute();
+
             return true;
         } catch (Exception e) {
-            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
             alert.show();
             e.printStackTrace();
         } finally {
