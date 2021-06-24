@@ -1212,10 +1212,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
                         afpE = x.getAfp();
                         isssE = x.getIsss();
-                        
-                        bono = x.getBono().getBono();
-
-                        
+                        bono = x.getBono().getBono();                        
                     }
 
                 }

@@ -32,6 +32,10 @@ public class EmpleadoDao {
         String sql = "SELECT * fROM empleado WHERE  " + atributo + "='" + condicion + "'";
         return select(sql);
     }
+    public ArrayList<Empleados> selectAllUsu() {
+        String sql = "SELECT * fROM empleado WHERE  cargoEmpleado = 'Administrador' AND estado = '1' AND idUsuario != 'null'";
+        return select(sql);
+    }
     
     public ArrayList<Empleados> selectAllTo(String atributo, int condicion) {
         String sql = "SELECT * fROM empleado WHERE  " + atributo + "='" + condicion + "'";

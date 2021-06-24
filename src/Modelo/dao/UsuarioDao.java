@@ -98,8 +98,6 @@ public class UsuarioDao {
             
             ps.setString(1,obj.getUsuario());
             ps.setString(2,obj.getContraseña());
-           
-            
             ps.execute();
             //System.out.println("ujhuuj");
             return true;
