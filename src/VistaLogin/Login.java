@@ -79,7 +79,6 @@ public static String LogoE= "/img/Logo.jpg";
         setTitle("Sistema de Venta");
         setBackground(new java.awt.Color(102, 0, 102));
         setFocusTraversalPolicyProvider(true);
-        setFocusableWindowState(false);
         setIconImages(null);
         setLocationByPlatform(true);
         setUndecorated(true);
