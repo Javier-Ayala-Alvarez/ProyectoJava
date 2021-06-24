@@ -208,6 +208,28 @@ public class ProductoDao {
     }
     
     
+    public boolean delete(Producto obj) {
+        String sql = "delete from producto where idProducto='" + obj.getIdProducto() + "'";
+        
+        try {
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            ps.execute();
+            return true;
+        }catch(Exception e) {
+            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            alert.show();
+            e.printStackTrace();
+        }finally{
+            try {
+                ps.close();
+                conectar.closeConexion(con);
+            } catch (Exception ex) {
+            }
+        }
+
+        return false;
+    }
     
     
 }
