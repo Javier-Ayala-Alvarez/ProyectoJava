@@ -465,6 +465,11 @@ public class GastosGM extends javax.swing.JDialog {
     }//GEN-LAST:event_materialButtonCircle2MouseClicked
 
     private void tfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.toString(c).equals("'")) {
+                        evt.consume();
+        }
 
     }//GEN-LAST:event_tfBuscarKeyTyped
 

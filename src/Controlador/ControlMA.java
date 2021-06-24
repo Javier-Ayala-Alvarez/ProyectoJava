@@ -1259,23 +1259,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     
                 }
 
-
-                /*for (Empleados x : empleado) {
-                    if (vq[0].equals(x.getCodigoEmpleado())) {
-                        idEmpleado = x.getIdPersona();
-                        salario = (float) x.getSalarioEmpleado();
-                        categoria = x.getCargoEmpleado();
-                        gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
-                        afpE = x.getAfp();
-                        isssE = x.getIsss();
-                        if(!x.getBono().getBono().equals(0)){
-                            bono = x.getBono().getBono();
-                        }
-                                                
-                    }
-
-                }*/
-
                 ArrayList<Empleados> empleado1 = daoEmpleado.selectAllTo("idEmpleado", String.valueOf(idEmpleado));
 
                 String v = gastosGM.cbTipo.getSelectedItem().toString();
@@ -1291,7 +1274,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     if (existe.isEmpty()) {
                         if (daoGasto.insert1(gasto)) {
                             vaciarVista();
-                            Alerta aler = new Alerta(menuAdministrador, true, "Salario $" + pago + " + Bono " + bono + " = " + retiro, "/img/Succes.png");
+                            Alerta aler = new Alerta(menuAdministrador, true, "Salario $" + pago + " + Bono " + bono + " = " + String.format("%.2f",retiro), "/img/Succes.png");
                             aler.show();
 
                         }
