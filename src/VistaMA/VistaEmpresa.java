@@ -81,6 +81,8 @@ public class VistaEmpresa extends javax.swing.JDialog {
         dato3 = new rojeru_san.complementos.RSButtonHover();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
 
+        setLocationByPlatform(true);
+
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -134,7 +136,7 @@ public class VistaEmpresa extends javax.swing.JDialog {
         dato2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         dato2.setText("Datos de la empresa");
         dato2.setToolTipText("");
-        jPanel2.add(dato2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 40));
+        jPanel2.add(dato2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 190, 40));
 
         dato1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         dato1.setText("Cambiar datos de la Empresa:");
@@ -171,7 +173,7 @@ public class VistaEmpresa extends javax.swing.JDialog {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
@@ -180,11 +182,11 @@ public class VistaEmpresa extends javax.swing.JDialog {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(dato3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 370));
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 360));
 
         materialButtonCircle2.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle2.setText("X");
@@ -193,7 +195,7 @@ public class VistaEmpresa extends javax.swing.JDialog {
                 materialButtonCircle2ActionPerformed(evt);
             }
         });
-        jPanel1.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 50, 50));
+        jPanel1.add(materialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 50, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,9 +209,9 @@ public class VistaEmpresa extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -230,8 +232,8 @@ public class VistaEmpresa extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel dato1;
-    public javax.swing.JLabel dato2;
+    private javax.swing.JLabel dato1;
+    private javax.swing.JLabel dato2;
     public rojeru_san.complementos.RSButtonHover dato3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;

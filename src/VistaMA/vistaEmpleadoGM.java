@@ -13,6 +13,7 @@ public class vistaEmpleadoGM extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         x = "x";
+        this.setLocation(40, 80);
         jpLogo1.setBorder(new Fondo(LogoE));
         this.btnGuardar.setActionCommand("Agregar");
         //this.tfSalario.setActionCommand("salario");
