@@ -246,6 +246,7 @@ public class EmpleadoDao {
                 obj = new Empleados();
                 Usuario usuario = new Usuario(rs.getInt(("idUsuario")));
                 Empresa empresa = new Empresa(rs.getInt("idEmpresa"));
+                Bono bono = new Bono(rs.getInt("idBono"));
                 obj.setIdPersona(rs.getInt("idEmpleado"));
                 obj.setCodigoEmpleado(rs.getString("codigoEmpleado"));
                 obj.setNombre(rs.getString("nombre"));
@@ -260,7 +261,7 @@ public class EmpleadoDao {
                 obj.setEstado(rs.getInt("estado"));
                 obj.addUsuario(usuario);
                 obj.setEmpresa(empresa);
-
+                obj.setBono(bono);
                 lista.add(obj);
             }
 

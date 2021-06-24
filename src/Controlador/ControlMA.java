@@ -1191,11 +1191,33 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 double bono = 0;
                 double retiro = 0;
                 String categoria = "";
-                ArrayList<Empleados> empleado = daoEmpleado.selectAll();
+                 String vq[] = gastosGM.cbTipo.getSelectedItem().toString().split(" - ");
+                ArrayList<Empleados> empleado = daoEmpleado.selectConCondicion("WHERE codigoEmpleado = '" + vq[0] + "'");
                 ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
-                String vq[] = gastosGM.cbTipo.getSelectedItem().toString().split(" - ");
+                try {
+                    if (empleado.get(0) != null) {
+                        idEmpleado = empleado.get(0).getIdPersona();
+                        salario = (float) empleado.get(0).getSalarioEmpleado();
+                        categoria = empleado.get(0).getCargoEmpleado();
+                        gastosGM.tfPago1.setText(String.valueOf(empleado.get(0).getSalarioEmpleado()));
+                        afpE = empleado.get(0).getAfp();
+                        isssE = empleado.get(0).getIsss();
+                        if (empleado.get(0).getBono().getIdBono()>0) {
+                           bono = empleado.get(0).getBono().getBono();
+                        }else{
+                            bono = 0;
+                            
+                        }
+                    }else{
+                        Alerta aler = new Alerta(menuAdministrador, true, "usuario no encontrado", "/img/error.png");
+                            aler.show();
+                    }
+                } catch (Exception exeption) {
+                    
+                }
 
-                for (Empleados x : empleado) {
+
+                /*for (Empleados x : empleado) {
                     if (vq[0].equals(x.getCodigoEmpleado())) {
                         idEmpleado = x.getIdPersona();
                         salario = (float) x.getSalarioEmpleado();
@@ -1209,7 +1231,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                                                 
                     }
 
-                }
+                }*/
 
                 ArrayList<Empleados> empleado1 = daoEmpleado.selectAllTo("idEmpleado", String.valueOf(idEmpleado));
 
