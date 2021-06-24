@@ -73,9 +73,28 @@ public class Producto {
         this.empresa = empresa;
     }
     
+    public Producto(String codigoProducto, String nombreProducto, double precioCompra, double cantidad, Date fechaVencimiento, String porcentaje, int max, int min, int estado, double gananciaUni, double iva, double precioVenta, Empresa empresa) {
+        this.codigoProducto = codigoProducto;
+        this.nombreProducto = nombreProducto;
+        this.precioCompra = precioCompra;
+        this.cantidad = cantidad;
+        this.fechaVencimiento = fechaVencimiento;
+        this.max = max;
+        this.min = min;
+        this.estado = estado;
+        this.gananciaUni = gananciaUni;
+        this.iva = iva;
+        this.precioVenta = precioVenta;
+        this.empresa = empresa;
+    }
+    
 
     public Producto(String text, String text0, String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         
+    }
+
+    public Producto(String text, String text0, double parseDouble, double parseDouble0, Date datoFecha, String text1, String text2, double parseDouble1, Empresa get) {
+        
     }
 
     public int getIdProducto() {
