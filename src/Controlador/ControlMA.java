@@ -622,20 +622,11 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             menuAdministrador.setControladorMA(this);
             mostrarDatos();
             menuAdministrador.iniciar();
-        } else if (vista.equals("home")) {
-            JOptionPane.showMessageDialog(null, "No hay nada Home");
         } else if (vista.equals("ventas")) {
              padreActiva = "vistaGraficas";
             this.vistaGrafica = new vistaGrafica(menuAdministrador, true);
             llenarGrafica();
             vistaGrafica.iniciar();
-            
-        } else if (vista.equals("gastos")) {
-            JOptionPane.showMessageDialog(null, "NO HAY GASTOS");
-        } else if (vista.equals("empleado")) {
-            JOptionPane.showMessageDialog(null, "NO HAY NADA EMPLEADO");
-        } else if (vista.equals("cliente")) {
-            JOptionPane.showMessageDialog(null, "NO HAY CLIENTE");
         } else if (vista.equals("cerrarMenu")) {
             menuAdministrador.dispose();
             login.cerrar();
@@ -1212,7 +1203,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         gastosGM.tfPago1.setText(String.valueOf(x.getSalarioEmpleado()));
                         afpE = x.getAfp();
                         isssE = x.getIsss();
-                        bono = x.getBono().getBono();                        
+                        if(!x.getBono().getBono().equals(0)){
+                            bono = x.getBono().getBono();
+                        }
+                                                
                     }
 
                 }
