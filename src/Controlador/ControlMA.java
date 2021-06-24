@@ -124,7 +124,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     //****productoModi****//
     ProductoModi productoModi;
     ProductoDao daoProducto = new ProductoDao();
-    ProductoModi productoSeleccionado = null;
+    Producto producto;
+    Producto productoSeleccionado = null;
     //    ProductoModi producto = new ProductoModi();
     //****Fin productoModi****//
     //****Venta****//
@@ -349,7 +350,17 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
             }
 
-        } else if (padreActiva.equals("registrosDeProductos")) {
+        } else if (padreActiva.equals("productoModi")) {
+            ArrayList<Producto> lista = daoProducto.buscar(productoModi.tfBuscar.getText() + e.getKeyChar());
+
+            if (lista.isEmpty()) {
+                mostrarDatos();
+            } else {
+                mostrarBusqueda(lista);
+
+            }
+
+        }else if (padreActiva.equals("registrosDeProductos")) {
             ArrayList<Producto> lista = daoProducto.buscar(registrosDeProductos.tfBuscar.getText() + e.getKeyChar());
 
             if (lista.isEmpty()) {
@@ -1009,6 +1020,28 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
         } ////////////******FINAL ClienteMA********/////////////////
         //**************ProductoModi****************//
+       else if (padreActiva.equals("productoModi")) {
+            String titulos[] = {"Codigo", "Nombre", "Cantidad", "Maximo", "Minimo", "Precio Compra", "Precio Venta","Precio Unidad", "Ganancia", "Vence", "Iva", "Empresa"};
+            modelo.setColumnIdentifiers(titulos);
+            ArrayList<Producto> producto = daoProducto.selectAll();
+            float precioUni = 0;
+            int i = 0;
+            for (Producto x : producto) {
+                //this.registrosDeProductos.jtDatos.editCellAt(3, i);
+                precioUni = (float) (x.getPrecioCompra() / x.getCantidad());
+                //gananciaUni = (float) (x)
+                Object datos[] = {x.getCodigoProducto(), x.getNombreProducto(), x.getCantidad(), x.getMax(), x.getMin(),
+                    x.getPrecioCompra(), x.getPrecioVenta(), precioUni, x.getGananciaUni(), x.getFechaVencimiento(),
+                    x.getIva(), x.getEmpresa()};
+                
+                modelo.addRow(datos);
+                i++;
+              
+            }
+            this.productoModi.jtDatos.setModel(modelo);
+        }
+        //************Fin productoModi*************//
+        //**************Registro Producto****************//
         else if (padreActiva.equals("registrosDeProductos")) {
             String titulos[] = {"Codigo", "Nombre", "Cantidad", "Precio Unitario", "Iva", "Ganacia", "Precio Compra", "Precio Venta", "fecha de Vencimiento", "Max", "Min", "Empresa", "Total"};
             modelo.setColumnIdentifiers(titulos);
@@ -1031,7 +1064,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             }
             this.registrosDeProductos.jtDatos.setModel(modelo);
             this.registrosDeProductos.lbTotal.setText("$" + String.format("%.2f", total0));
-        } //************Fin productoModi*************//
+        } //************Fin registro producto*************//
         // ------------------------------------------------Inicio Empleado------------------------------------------------//
         else if (padreActiva.equals("empleadoGM")) {
             String titulos[] = {"N", "codigo", "Nombre", "Apellido", "Telefono", "Direccion", "Salario", "afp", "isss", "Salario Total", "Cargo", "Fecha Contratacion"};
@@ -1118,6 +1151,16 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             }
             corre = corre + 1;
         }
+        
+        if (activa.equals("productoModi")) {
+            ArrayList<Producto> producto;
+            producto = daoProducto.selectAll();
+            for (Producto x : producto) {
+                corre = x.getIdProducto();
+            }
+            corre = corre + 1;
+        }
+        
         if (activa.equals("vistaEmpleadoGM")) {
             ArrayList<Empleados> empleados;
             empleados = daoEmpleado.selectAll();
@@ -1333,37 +1376,87 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         //**********ProductoModi************//
         if (e.getActionCommand().equals("Agregar") && padreActiva.equals("productoModi")) {
             if (!productoModi.tfCodigo.getText().isEmpty()
-                    && (!productoModi.tfBuscar.getText().isEmpty())) {
-                if (productoSeleccionado == null) {
-                    Producto produ = new Producto(productoModi.tfCodigo.getText(), productoModi.tfNombre.getText(), (productoModi.tfBuscar.getText()));
+                    && (!productoModi.tfNombre.getText().isEmpty())
+                    && (!productoModi.tfCantidad.getText().isEmpty())
+                    && (!productoModi.tfMaximo.getText().isEmpty())
+                    && (!productoModi.tfMinimo.getText().isEmpty())
+                    && (!productoModi.tfPrecioCompra.getText().isEmpty())
+                    && (!productoModi.tfPrecioVenta.getText().isEmpty())
+                    && (!productoModi.tfEmpresa.getText().isEmpty()) ) {
+                ArrayList<Producto> producto = daoProducto.selectAllTo("idProducto", "1");
+                ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
+                if (productoSeleccionado == null) {                 
+                    Producto productoo = new Producto(productoModi.tfCodigo.getText(), productoModi.tfNombre.getText(), Double.parseDouble(productoModi.tfPrecioCompra.getText()), Double.parseDouble(productoModi.tfCantidad.getText()), productoModi.dVence.getDatoFecha(), productoModi.tfMaximo.getText(), productoModi.tfMinimo.getText(), Double.parseDouble(productoModi.tfPrecioVenta.getText()), empresa.get(0));
                     ArrayList<Producto> existe = daoProducto.selectAllTo("codigoProducto", productoModi.tfCodigo.getText());
                     if (existe.isEmpty()) {
-                        if (daoProducto.insert(produ)) {
+                        if (daoProducto.insert(productoo)) {
                             vaciarVista();
                             Alerta aler = new Alerta(menuAdministrador, true, "Guardado con exito", "/img/Succes.png");
+
                             aler.show();
+
                         }
+                    } else {
+
+                        Alerta aler = new Alerta(menuAdministrador, true, "Codigo ya Existe", "/img/error.png");
+                        aler.show();
                     }
                 }
-
+                mostrarDatos();
             } else {
-                JOptionPane.showMessageDialog(null, "Campos vacios");
+
+                Alerta aler = new Alerta(menuAdministrador, true, "Campos vacios", "/img/error.png");
+                aler.show();
+
             }
 
-        } else if (e.getActionCommand().equals("Generar") && padreActiva.equals("productoModi")) {
-            String code = "PR-";
-            //crearCodigo(code);
+        } else if (e.getActionCommand().equals("Generar") && ((padreActiva.equals("productoModi") ))) {
+            String iniciales = "PR-";
 
-        } else if (e.getActionCommand().equals("Modificar") && padreActiva.equals("productoModi")) {
-            int opccion = JOptionPane.showConfirmDialog(null, "Quieres Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            this.productoModi.tfCodigo.setText(crearCodigo(iniciales, "productoModi"));
+
+        } else if (e.getActionCommand().equals("Modificar")
+                && padreActiva.equals("productoModi")) {
+            int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opccion == 0) {
+                productoSeleccionado.setCodigoProducto(productoModi.tfCodigo.getText());
+                productoSeleccionado.setNombreProducto(productoModi.tfNombre.getText());
+                productoSeleccionado.setPrecioCompra(Double.parseDouble(productoModi.tfPrecioCompra.getText()));
+                productoSeleccionado.setCantidad(Double.parseDouble(productoModi.tfCantidad.getText()));
+                productoSeleccionado.setFechaVencimiento(productoModi.dVence.getDatoFecha());
+                //productoSeleccionado.setMax(productoModi.tfMaximo.getText());
+                //productoSeleccionado.setMin(productoModi.tfMinimo.getText());
+                productoSeleccionado.setPrecioVenta(Double.parseDouble(productoModi.tfPrecioVenta.getText()));
+                gastoSeleccionado.getEmpresa().getIdEmpresa();
+                daoGasto.update(gastoSeleccionado);
                 vaciarVista();
-                //                            daoProducto.update(productoSeleccionado);
                 Alerta aler = new Alerta(menuAdministrador, true, "Modificado con exito", "/img/Succes.png");
                 aler.show();
             }
-        }
-        //*****************Fin produtoModi****************//        
+        }else if (e.getActionCommand().equals("Eliminar")
+                && (padreActiva.equals("productoModi"))) {
+            int opccion = JOptionPane.showConfirmDialog(null, "Deseas Eliminar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (opccion == 0) {
+                if (productoSeleccionado != null) {
+                    if (daoProducto.delete(productoSeleccionado)) {
+                        mostrarDatos();
+                        vaciarVista();
+
+                        Alerta aler = new Alerta(menuAdministrador, true, "Eliminado con exito", "/img/Succes.png");
+                        aler.show();
+                        productoSeleccionado = null;
+                    } else {
+
+                        Alerta aler = new Alerta(menuAdministrador, true, "Error al eliminado con exito", "/img/error.png");
+                        aler.show();
+                    }
+                }
+            }
+
+        } 
+        mostrarDatos();
+        productoSeleccionado = null;
+        //*****************Fin produtoModi****************//       
 
         ////////////////////////////////////para Empleado////////////////////////////////////
         if (e.getActionCommand().equals("Agregar") && padreActiva.equals("vistaEmpleadoGM")) {
@@ -1812,17 +1905,20 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } //------------------------------------------------fin Usuario------------------------------------------------//
         //**************ProductoModi**************//
         else if (padreActiva.equals("productoModi")) {
-            String titulos[] = {"N", "Nombre", "Cantidad", "Precio", "Max", "Min"};
+            String titulos[] = {"N", "CodigoProducto", "Nombre Producto", "Cantidad", "Maximo", "Minimo", "Estado", "Precio Compra", "Precio Venta", "Ganancia", "Vence", "Iva", "Empresa"};
             modelo.setColumnIdentifiers(titulos);
             int i = 1;
             for (Object x : lista) {
                 Producto obj = (Producto) x;
-                Object datos[] = {i, obj.getNombreProducto(), obj.getCantidad(), obj.getPrecioCompra(), obj.getMax(), obj.getMin()};
+                Object datos[] = {i, obj.getCodigoProducto(), obj.getNombreProducto(), obj.getCantidad(),
+                    obj.getMax(), obj.getMin(), obj.getEstado(), obj.getPrecioCompra(), obj.getPrecioVenta(),
+                    obj.getGananciaUni(), obj.getFechaVencimiento(), obj.getIva(), obj.getEmpresa()};
                 modelo.addRow(datos);
                 i++;
             }
             this.productoModi.jtDatos.setModel(modelo);
-        } //***********Fin ProductoModi**********//
+        }
+        //***********Fin ProductoModi**********//
         //**************MostrarVenta**************//
         else if (padreActiva.equals("registroVentas")) {
             String titulos[] = {"N", "Fecha", "Cliente", "Empleado", "Precio Total"};
@@ -2018,6 +2114,17 @@ public void filtrarReporte(ArrayList lista){
             this.clienteMA.tfTelefono.setText("");
             this.clienteMA.tfDireccion.setText("");
 
+        }else if (padreActiva.equals("productoModi")) {
+            this.productoModi.tfCodigo.setText("");
+            this.productoModi.tfNombre.setText("");
+            this.productoModi.tfCantidad.setText("");
+            this.productoModi.tfMinimo.setText("");
+            this.productoModi.tfMaximo.setText("");
+            this.productoModi.tfPrecioCompra.setText("");
+            this.productoModi.tfPrecioVenta.setText("");
+            this.productoModi.tfEmpresa.setText("");
+            this.productoModi.dVence.setDatoFecha(new Date());
+            
         }
 
     }
