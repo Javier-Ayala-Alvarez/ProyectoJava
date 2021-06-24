@@ -210,9 +210,6 @@ public class EmpleadoDao {
 
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
-
-           
-
             ps.execute();
             //System.out.println("ujhuuj");
             return true;

@@ -5,6 +5,7 @@ import Controlador.ControlMA;
 import VistaMV.*;
 import VistaMA.*;
 import Modelo.GastoEmpresa;
+import static VistaLogin.Login.LogoE;
 import static VistaMA.GastosGM.tfBuscar;
 import static VistaMA.RegistrosDeProductos.jtDatos;
 import java.text.DateFormat;
@@ -26,8 +27,8 @@ public class ProductoModi extends javax.swing.JDialog {
     public ProductoModi(java.awt.Frame parent, boolean modal ) {
         super(parent, modal);
         initComponents();
-
-        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
+        this.setLocation(70, 60);
+        jpLogo1.setBorder(new Fondo(LogoE));
         btAgregar.setActionCommand("Agregar");
         btModificar.setActionCommand("Modificar");
         btEliminar.setActionCommand("Eliminar");
@@ -230,7 +231,7 @@ public class ProductoModi extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jtDatos);
 
-        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 970, 220));
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 970, 220));
         panelFondo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 20));
 
         btGenerar.setText("Generar");
@@ -248,7 +249,7 @@ public class ProductoModi extends javax.swing.JDialog {
                 btModificarActionPerformed(evt);
             }
         });
-        panelFondo.add(btModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 610, 160, 50));
+        panelFondo.add(btModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 570, 160, 50));
 
         btAgregar.setText("Agregar");
         btAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -256,7 +257,7 @@ public class ProductoModi extends javax.swing.JDialog {
                 btAgregarActionPerformed(evt);
             }
         });
-        panelFondo.add(btAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, 160, 50));
+        panelFondo.add(btAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 160, 50));
 
         tfBuscar.setBackground(new java.awt.Color(213, 216, 221));
         tfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -370,13 +371,14 @@ public class ProductoModi extends javax.swing.JDialog {
         });
         panelFondo.add(tfEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 310, 40));
 
+        btEliminar.setBackground(new java.awt.Color(204, 0, 51));
         btEliminar.setText("Eliminar");
         btEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEliminarActionPerformed(evt);
             }
         });
-        panelFondo.add(btEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 610, 160, 50));
+        panelFondo.add(btEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 570, 160, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -386,7 +388,7 @@ public class ProductoModi extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
         );
 
         pack();

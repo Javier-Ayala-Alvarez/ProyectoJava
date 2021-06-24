@@ -1778,7 +1778,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             //Fin de Variable
             ArrayList<GastoEmpresa> gastos = daoGasto.selectAll();
             for (Object a : lista) {
-
                 GastoEmpresa x = (GastoEmpresa) a;
                 if (!(x.getCategoria().equals("Administrador")
                         || (x.getCategoria().equals("Cajero"))

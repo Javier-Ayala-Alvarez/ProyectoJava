@@ -149,6 +149,12 @@ public class GastosGM extends javax.swing.JDialog {
 
         tfBuscar.setBackground(new java.awt.Color(213, 216, 221));
         tfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfBuscarKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfBuscarKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfBuscarKeyTyped(evt);
             }
@@ -465,11 +471,7 @@ public class GastosGM extends javax.swing.JDialog {
     }//GEN-LAST:event_materialButtonCircle2MouseClicked
 
     private void tfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyTyped
-        char c = evt.getKeyChar();
-
-        if (Character.toString(c).equals("'")) {
-                        evt.consume();
-        }
+        
 
     }//GEN-LAST:event_tfBuscarKeyTyped
 
@@ -496,6 +498,14 @@ public class GastosGM extends javax.swing.JDialog {
     private void btnCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCategoriaActionPerformed
+
+    private void tfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyReleased
+     
+    }//GEN-LAST:event_tfBuscarKeyReleased
+
+    private void tfBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyPressed
+       
+    }//GEN-LAST:event_tfBuscarKeyPressed
 
     /**
      * @param args the command line arguments
