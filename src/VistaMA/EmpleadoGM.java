@@ -12,6 +12,7 @@ public class EmpleadoGM extends javax.swing.JDialog {
         super(parent, modal);
 
         initComponents();
+        this.setLocation(40, 80);
        setEstado(parametro);
         jpLogo1.setBorder(new Fondo(LogoE));
          btnModificar.setActionCommand("Modificar");

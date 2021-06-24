@@ -15,6 +15,7 @@ public class UsuarioGM extends javax.swing.JDialog {
 
         initComponents();
        setEstado(parametro);
+       this.setLocation(40, 80);
         jpLogo1.setBorder(new Fondo(LogoE));
          btnModificar.setActionCommand("Modificar");
            
