@@ -104,7 +104,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -275,8 +274,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Graficas");
 
-        btnVentas.setText("Agregar");
-        btnVentas.setActionCommand("Agregar1");
+        btnVentas.setText("Ventas");
         btnVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentasActionPerformed(evt);
@@ -291,23 +289,16 @@ public class MenuAdministrador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addContainerGap(114, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(btnVentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+                .addGap(28, 28, 28)
+                .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         panel1.setBackground(new java.awt.Color(142, 177, 213));
@@ -674,9 +665,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         menuVenta.setActionCommand("menuVenta");
         menuVenta.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, btnVentas, org.jdesktop.beansbinding.ELProperty.create("G"), menuVenta, org.jdesktop.beansbinding.BeanProperty.create("mnemonic"));
-        bindingGroup.addBinding(binding);
-
         btnRegistrarFacturaItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         btnRegistrarFacturaItem.setText("Registro de Factura");
         btnRegistrarFacturaItem.addActionListener(new java.awt.event.ActionListener() {
@@ -703,7 +691,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuProductos.add(guardarProducto);
 
-        consultarProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         consultarProducto.setText("Consultar");
         consultarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -720,7 +707,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         menuEmpleado.setActionCommand("menuEmpleado");
         menuEmpleado.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
-        consultarEmpleado.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         consultarEmpleado.setText("Consultar Empleados");
         consultarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -729,7 +715,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuEmpleado.add(consultarEmpleado);
 
-        guardarEmpleado.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         guardarEmpleado.setText("Añadir Empleado");
         guardarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -738,7 +723,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuEmpleado.add(guardarEmpleado);
 
-        ConsultarUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         ConsultarUsuario.setText("Consultar Usuarios");
         ConsultarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -747,7 +731,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuEmpleado.add(ConsultarUsuario);
 
-        guardarUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         guardarUsuario.setText("Añadir Usuario");
         guardarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -756,7 +739,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuEmpleado.add(guardarUsuario);
 
-        ConsultarBono.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         ConsultarBono.setText("Consultar Bonos");
         ConsultarBono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -765,7 +747,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuEmpleado.add(ConsultarBono);
 
-        guardarBono.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
         guardarBono.setText("Añadir Bono");
         guardarBono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -781,7 +762,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         menuCliente.setText("Cliente");
         menuCliente.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
-        consultarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         consultarCliente.setText("Consultar");
         consultarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -797,7 +777,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         menuGDS.setText("Pagos de Sucursal");
         menuGDS.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
-        opcionesGDS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         opcionesGDS.setText("Gastos Administrativo");
         opcionesGDS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -806,7 +785,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         menuGDS.add(opcionesGDS);
 
-        opcionesGDS1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         opcionesGDS1.setText("Pago de Empleados");
         opcionesGDS1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -822,7 +800,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jMenu13.setText("Configuraciones");
         jMenu13.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
-        modificarEmpresa.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         modificarEmpresa.setText("Modificar");
         modificarEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -831,7 +808,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         jMenu13.add(modificarEmpresa);
 
-        consultarEmpresa.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         consultarEmpresa.setText("Consultar");
         consultarEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -854,8 +830,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpEscritorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -905,6 +879,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCerrarMenuAdminActionPerformed
 
+    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVentasActionPerformed
+
     private void consultarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarEmpleadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_consultarEmpleadoActionPerformed
@@ -931,10 +909,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private void ConsultarBonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarBonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ConsultarBonoActionPerformed
-
-    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-
-    }//GEN-LAST:event_btnVentasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1004,6 +978,5 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public javax.swing.JPanel panel4;
     public javax.swing.JPanel panel5;
     public javax.swing.JPanel panel6;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
