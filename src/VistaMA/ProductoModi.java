@@ -2,20 +2,7 @@ package VistaMA;
 
 
 import Controlador.ControlMA;
-import VistaMV.*;
-import VistaMA.*;
-import Modelo.GastoEmpresa;
-import static VistaLogin.Login.LogoE;
-import static VistaMA.GastosGM.tfBuscar;
-import static VistaMA.RegistrosDeProductos.jtDatos;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import VistaMV.Fondo;
 
@@ -27,8 +14,8 @@ public class ProductoModi extends javax.swing.JDialog {
     public ProductoModi(java.awt.Frame parent, boolean modal ) {
         super(parent, modal);
         initComponents();
-        this.setLocation(70, 60);
-        jpLogo1.setBorder(new Fondo(LogoE));
+
+        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
         btAgregar.setActionCommand("Agregar");
         btModificar.setActionCommand("Modificar");
         btEliminar.setActionCommand("Eliminar");
@@ -36,11 +23,7 @@ public class ProductoModi extends javax.swing.JDialog {
         dVence.setDatoFecha(new Date());
     }
 
-//    public ProductoModi() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
 
-   
 
     public void iniciar() {
         this.setVisible(true);
@@ -81,8 +64,6 @@ public class ProductoModi extends javax.swing.JDialog {
         tfBuscar = new principal.MaterialTextField();
         jLabel8 = new javax.swing.JLabel();
         tfCantidad = new principal.MaterialTextField();
-        tfPrecioVenta = new principal.MaterialTextField();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         dVence = new rojeru_san.componentes.RSDateChooser();
         jLabel11 = new javax.swing.JLabel();
@@ -92,7 +73,7 @@ public class ProductoModi extends javax.swing.JDialog {
         tfMaximo = new principal.MaterialTextField();
         tfMinimo = new principal.MaterialTextField();
         jLabel14 = new javax.swing.JLabel();
-        tfEmpresa = new principal.MaterialTextField();
+        tfPrecioVenta = new principal.MaterialTextField();
         btEliminar = new rojeru_san.complementos.RSButtonHover();
 
         materialButtonCircle1.setBackground(new java.awt.Color(255, 0, 0));
@@ -208,11 +189,11 @@ public class ProductoModi extends javax.swing.JDialog {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Cantidad", "Max", "Min", "Precio C.", "Precio Venta", "Precio Uni.", "Ganancia", "Vence", "Iva", "Estado", "Empresa"
+                "Codigo", "Nombre", "Cantidad", "Max", "Min", "Precio Comp.", "Precio Venta", "Precio Uni.", "Ganancia", "Vence", "Iva", "Estado", "Empresa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, true, false, false, true, false, false, true
+                true, true, true, true, true, true, true, false, false, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -231,7 +212,7 @@ public class ProductoModi extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jtDatos);
 
-        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 970, 220));
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 970, 220));
         panelFondo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 20));
 
         btGenerar.setText("Generar");
@@ -249,7 +230,7 @@ public class ProductoModi extends javax.swing.JDialog {
                 btModificarActionPerformed(evt);
             }
         });
-        panelFondo.add(btModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 570, 160, 50));
+        panelFondo.add(btModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 610, 160, 50));
 
         btAgregar.setText("Agregar");
         btAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -257,7 +238,7 @@ public class ProductoModi extends javax.swing.JDialog {
                 btAgregarActionPerformed(evt);
             }
         });
-        panelFondo.add(btAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 160, 50));
+        panelFondo.add(btAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, 160, 50));
 
         tfBuscar.setBackground(new java.awt.Color(213, 216, 221));
         tfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -270,7 +251,7 @@ public class ProductoModi extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Maximo");
-        panelFondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, 100, 60));
+        panelFondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 100, 60));
 
         tfCantidad.setBackground(new java.awt.Color(213, 216, 221));
         tfCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -279,19 +260,6 @@ public class ProductoModi extends javax.swing.JDialog {
             }
         });
         panelFondo.add(tfCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 320, 40));
-
-        tfPrecioVenta.setBackground(new java.awt.Color(213, 216, 221));
-        tfPrecioVenta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfPrecioVentaKeyTyped(evt);
-            }
-        });
-        panelFondo.add(tfPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 190, 90, 40));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("Precio V.");
-        panelFondo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 180, 140, 60));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
@@ -302,7 +270,7 @@ public class ProductoModi extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("Precio C.");
-        panelFondo.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 100, 60));
+        panelFondo.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 100, 60));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
@@ -320,12 +288,12 @@ public class ProductoModi extends javax.swing.JDialog {
                 tfPrecioCompraKeyTyped(evt);
             }
         });
-        panelFondo.add(tfPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 90, 40));
+        panelFondo.add(tfPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 310, 40));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel13.setText("Empresa");
-        panelFondo.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 100, 60));
+        jLabel13.setText("Precio V.");
+        panelFondo.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 100, 60));
 
         tfMaximo.setBackground(new java.awt.Color(213, 216, 221));
         tfMaximo.addActionListener(new java.awt.event.ActionListener() {
@@ -338,7 +306,7 @@ public class ProductoModi extends javax.swing.JDialog {
                 tfMaximoKeyTyped(evt);
             }
         });
-        panelFondo.add(tfMaximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 140, 90, 40));
+        panelFondo.add(tfMaximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 90, 40));
 
         tfMinimo.setBackground(new java.awt.Color(213, 216, 221));
         tfMinimo.addActionListener(new java.awt.event.ActionListener() {
@@ -351,34 +319,33 @@ public class ProductoModi extends javax.swing.JDialog {
                 tfMinimoKeyTyped(evt);
             }
         });
-        panelFondo.add(tfMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, 90, 40));
+        panelFondo.add(tfMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 190, 90, 40));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
         jLabel14.setText("Minimo");
-        panelFondo.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 100, 60));
+        panelFondo.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 180, 100, 60));
 
-        tfEmpresa.setBackground(new java.awt.Color(213, 216, 221));
-        tfEmpresa.addActionListener(new java.awt.event.ActionListener() {
+        tfPrecioVenta.setBackground(new java.awt.Color(213, 216, 221));
+        tfPrecioVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfEmpresaActionPerformed(evt);
+                tfPrecioVentaActionPerformed(evt);
             }
         });
-        tfEmpresa.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfPrecioVenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfEmpresaKeyTyped(evt);
+                tfPrecioVentaKeyTyped(evt);
             }
         });
-        panelFondo.add(tfEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 310, 40));
+        panelFondo.add(tfPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, 310, 40));
 
-        btEliminar.setBackground(new java.awt.Color(204, 0, 51));
         btEliminar.setText("Eliminar");
         btEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEliminarActionPerformed(evt);
             }
         });
-        panelFondo.add(btEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 570, 160, 50));
+        panelFondo.add(btEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 610, 160, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -388,7 +355,7 @@ public class ProductoModi extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
         );
 
         pack();
@@ -469,17 +436,6 @@ public class ProductoModi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tfCantidadKeyTyped
 
-    private void tfPrecioVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecioVentaKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c)) {
-            lbAlerta.setText("");
-        } else {
-            lbAlerta.setText("Solo numeros");
-            evt.consume();
-        }
-    }//GEN-LAST:event_tfPrecioVentaKeyTyped
-
     private void tfPrecioCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecioCompraKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
@@ -525,21 +481,20 @@ public class ProductoModi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tfMinimoKeyTyped
 
-    private void tfEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmpresaKeyTyped
+    private void tfPrecioVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecioVentaKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-
-        if(!(c >= 46 && c <= 57 )){
+        if (Character.isDigit(c)) {
             lbAlerta.setText("");
-        }else{
-            lbAlerta.setText("Solo letras");
+        } else {
+            lbAlerta.setText("Solo numeros");
             evt.consume();
         }
-    }//GEN-LAST:event_tfEmpresaKeyTyped
+    }//GEN-LAST:event_tfPrecioVentaKeyTyped
 
-    private void tfEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmpresaActionPerformed
+    private void tfPrecioVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPrecioVentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfEmpresaActionPerformed
+    }//GEN-LAST:event_tfPrecioVentaActionPerformed
 
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
         // TODO add your handling code here:
@@ -588,7 +543,6 @@ public class ProductoModi extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -603,7 +557,6 @@ public class ProductoModi extends javax.swing.JDialog {
     public principal.MaterialTextField tfBuscar;
     public principal.MaterialTextField tfCantidad;
     public principal.MaterialTextField tfCodigo;
-    public principal.MaterialTextField tfEmpresa;
     public principal.MaterialTextField tfMaximo;
     public principal.MaterialTextField tfMinimo;
     public principal.MaterialTextField tfNombre;
