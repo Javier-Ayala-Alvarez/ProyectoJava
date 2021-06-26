@@ -1368,10 +1368,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         if (e.getActionCommand().equals("Agregar") && padreActiva.equals("productoModi")) {
             if (!productoModi.tfCodigo.getText().isEmpty()
                     && (!productoModi.tfNombre.getText().isEmpty())
+                    && (!productoModi.tfPrecioCompra.getText().isEmpty())
                     && (!productoModi.tfCantidad.getText().isEmpty())
                     && (!productoModi.tfMaximo.getText().isEmpty())
                     && (!productoModi.tfMinimo.getText().isEmpty())
-                    && (!productoModi.tfPrecioCompra.getText().isEmpty())
                     && (!productoModi.tfPrecioVenta.getText().isEmpty()) ) {
                 
                 ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
@@ -1382,7 +1382,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     ganancia = precioUnitario - Integer.parseInt(productoModi.tfPrecioVenta.getText());
                     
                     Producto productoo = new Producto(productoModi.tfCodigo.getText(), productoModi.tfNombre.getText(), 
-                            precioUnitario, Integer.parseInt(productoModi.tfCantidad.getText()), productoModi.dVence.getDatoFecha(), 
+                            Double.parseDouble(productoModi.tfPrecioCompra.getText())
+                            , Integer.parseInt(productoModi.tfCantidad.getText()), productoModi.dVence.getDatoFecha(), 
                             Integer.parseInt(productoModi.tfMaximo.getText()), Integer.parseInt(productoModi.tfMinimo.getText()), 
                             1, ganancia, 0.13, Double.parseDouble(productoModi.tfPrecioVenta.getText()), empresa.get(0));
                     
@@ -1420,12 +1421,13 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             if (opccion == 0) {
                 double ganancia = 0;
                 double precioUnitario = 0;
-                precioUnitario = (Integer.parseInt(productoModi.tfPrecioCompra.getText()) / Integer.parseInt(productoModi.tfCantidad.getText()));
-                ganancia = precioUnitario - Integer.parseInt(productoModi.tfPrecioVenta.getText());
+                precioUnitario = (Double.parseDouble(productoModi.tfPrecioCompra.getText()) / Double.parseDouble(productoModi.tfCantidad.getText()));
+                ganancia = precioUnitario - Double.parseDouble(productoModi.tfPrecioVenta.getText());
+                
                 productoSeleccionado.setCodigoProducto(productoModi.tfCodigo.getText());
                 productoSeleccionado.setNombreProducto(productoModi.tfNombre.getText());
                 productoSeleccionado.setPrecioCompra(Double.parseDouble(productoModi.tfPrecioCompra.getText()));
-                productoSeleccionado.setCantidad(Integer.parseInt(productoModi.tfCantidad.getText()));
+                productoSeleccionado.setCantidad(Double.parseDouble(productoModi.tfCantidad.getText()));
                 productoSeleccionado.setFechaVencimiento(productoModi.dVence.getDatoFecha());
                 productoSeleccionado.setMax(Integer.parseInt(productoModi.tfMaximo.getText()));
                 productoSeleccionado.setMin(Integer.parseInt(productoModi.tfMinimo.getText()));
@@ -2100,17 +2102,17 @@ public void filtrarReporte(ArrayList lista){
             productoSeleccionado = lista.get(0);
             String codigo = productoModi.jtDatos.getValueAt(fila, 0).toString();
             String nombre = productoModi.jtDatos.getValueAt(fila, 1).toString();
+            String precioCompra = productoModi.jtDatos.getValueAt(fila, 5).toString();
             String cantidad = productoModi.jtDatos.getValueAt(fila, 2).toString();
             String maximo = productoModi.jtDatos.getValueAt(fila, 3).toString();
             String minimo = productoModi.jtDatos.getValueAt(fila, 4).toString();
-            String precioCompra = productoModi.jtDatos.getValueAt(fila, 5).toString();
-            String precioVenta = productoModi.jtDatos.getValueAt(fila, 6).toString();
+            String precioVenta = productoModi.jtDatos.getValueAt(fila, 7).toString();
             productoModi.tfCodigo.setText(codigo);
             productoModi.tfNombre.setText(nombre);
+            productoModi.tfPrecioCompra.setText(precioCompra);
             productoModi.tfCantidad.setText(cantidad);
             productoModi.tfMaximo.setText(maximo);
             productoModi.tfMinimo.setText(minimo);
-            productoModi.tfPrecioCompra.setText(precioCompra);
             productoModi.tfPrecioVenta.setText(precioVenta);
             ArrayList<Producto> producto = daoProducto.selectAll();
             for (Producto x : producto) {
