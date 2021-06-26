@@ -52,12 +52,14 @@ public class ProductoDao {
 
     
     
-    
-    
-    
-    
-    
-    
+    public boolean insertProducto(Producto obj) {
+        String sql = "INSERT INTO producto(codigoProducto, nombreProducto, precioCompra, cantidad, fechaVencimiento, max, min, estado, gananciaUni, iva, precioVenta, idEmpresa)VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        return alterarRegistro(sql, obj);
+    }
+    public boolean updateProducto(Producto obj) {
+        String sql = "update producto set codigoProducto =?, nombreProducto =?, precioCompra =?, cantidad =?, fechaVencimiento =?, max =?, min =?, estado =?, gananciaUni =?, iva =?, precioVenta =?, idEmpresa =? where idProducto=" + obj.getIdProducto();
+        return alterarRegistro(sql, obj);
+    }
     
     
     
@@ -106,28 +108,6 @@ public class ProductoDao {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     private ArrayList<Producto> select(String sql) {
         ArrayList<Producto> lista = new ArrayList();
@@ -139,7 +119,7 @@ public class ProductoDao {
 
             while (rs.next()) {
                 obj = new Producto();
-                obj.setIdProducto(rs.getInt("idProducto"));
+                //obj.setIdProducto(rs.getInt("idProducto"));
                 obj.setCodigoProducto(rs.getString("codigoProducto"));
                 obj.setNombreProducto(rs.getString("nombreProducto"));
                 obj.setPrecioCompra(rs.getDouble("precioCompra"));
