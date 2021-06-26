@@ -3,7 +3,12 @@ import Controlador.ControlMA;
 import static VistaLogin.Login.LogoE;
 import javax.swing.table.DefaultTableModel;
 import VistaMV.Fondo;
+import java.awt.Color;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 public class GastosGM extends javax.swing.JDialog {
 
@@ -358,6 +363,11 @@ public class GastosGM extends javax.swing.JDialog {
         panelFondo.add(lbCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 120, 40));
 
         tfPago1.setBackground(new java.awt.Color(213, 216, 221));
+        tfPago1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfPago1FocusLost(evt);
+            }
+        });
         tfPago1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfPago1KeyTyped(evt);
@@ -429,15 +439,20 @@ public class GastosGM extends javax.swing.JDialog {
 
     private void tfPago1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPago1KeyTyped
         char c = evt.getKeyChar();
-
-        if((c >= 46 && c <= 57 )){
+//!validadDecimal(this.tfPago1.getText()))
+        if(c >= 46 && c <= 57 ){
             lbPago.setText("");
         }else{
-            lbPago.setText("numeros");
+            lbPago.setText("numeros, decimal");
             evt.consume();
         }
     }//GEN-LAST:event_tfPago1KeyTyped
-
+public boolean validadDecimal(String pago){
+        String patron = "[0-9]\\.\\[0-9]";
+        Pattern pat = Pattern.compile(patron);
+        Matcher mat = pat.matcher(pago);
+        return mat.matches();
+    }
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -506,6 +521,10 @@ public class GastosGM extends javax.swing.JDialog {
     private void tfBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyPressed
        
     }//GEN-LAST:event_tfBuscarKeyPressed
+
+    private void tfPago1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPago1FocusLost
+
+    }//GEN-LAST:event_tfPago1FocusLost
 
     /**
      * @param args the command line arguments
