@@ -11,7 +11,6 @@ public class Producto {
   private double precioCompra;
   private double cantidad;
   private Date fechaVencimiento;
-  private String porcentaje;
   private int max;
   private int min;
   private int estado;
@@ -56,14 +55,12 @@ public class Producto {
         this.precioVenta = precioVenta;
     }
 
-    public Producto(int idProducto, String codigoProducto, String nombreProducto, double precioCompra, double cantidad, Date fechaVencimiento, String porcentaje, int max, int min, int estado, double gananciaUni, double iva, double precioVenta, Empresa empresa) {
-        this.idProducto = idProducto;
+    public Producto(String codigoProducto, String nombreProducto, double precioCompra, double cantidad, Date fechaVencimiento, int max, int min, int estado, double gananciaUni, double iva, double precioVenta, Empresa empresa) {
         this.codigoProducto = codigoProducto;
         this.nombreProducto = nombreProducto;
         this.precioCompra = precioCompra;
         this.cantidad = cantidad;
         this.fechaVencimiento = fechaVencimiento;
-        this.porcentaje = porcentaje;
         this.max = max;
         this.min = min;
         this.estado = estado;
@@ -143,14 +140,6 @@ public class Producto {
 
     public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
-    }
-
-    public String getPorcentaje() {
-        return porcentaje;
-    }
-
-    public void setPorcentaje(String porcentaje) {
-        this.porcentaje = porcentaje;
     }
 
     public int getMax() {
