@@ -932,6 +932,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         for (Producto x : producto1) {
             totalUni1 = (float) (x.getPrecioVenta()) * x.getCantidad();
             totalV = (float) (totalV + totalUni1);
+           
         }
         this.menuAdministrador.lbProducto1.setText("$" + String.format("%.2f", totalV));
         ///////////*******fIN DE PRODUCTO************////////////////

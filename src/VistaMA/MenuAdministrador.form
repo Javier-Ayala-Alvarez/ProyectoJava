@@ -135,9 +135,6 @@
               <Font name="Dialog" size="18" style="0"/>
             </Property>
           </Properties>
-          <BindingProperties>
-            <BindingProperty name="mnemonic" source="btnVentas" sourcePath="G" target="menuVenta" targetPath="mnemonic" updateStrategy="0" immediately="false"/>
-          </BindingProperties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
@@ -192,9 +189,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="consultarProducto">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+P"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
@@ -226,9 +220,6 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="consultarEmpleado">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+E"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Consultar Empleados"/>
               </Properties>
               <Events>
@@ -240,9 +231,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="guardarEmpleado">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+E"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir Empleado"/>
               </Properties>
               <Events>
@@ -254,9 +242,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ConsultarUsuario">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+U"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Consultar Usuarios"/>
               </Properties>
               <Events>
@@ -268,9 +253,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="guardarUsuario">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+U"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir Usuario"/>
               </Properties>
               <Events>
@@ -282,9 +264,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ConsultarBono">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+B"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Consultar Bonos"/>
               </Properties>
               <Events>
@@ -296,9 +275,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="guardarBono">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+B"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir Bono"/>
               </Properties>
               <Events>
@@ -329,9 +305,6 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="consultarCliente">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+C"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
@@ -362,9 +335,6 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="opcionesGDS">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+G"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Gastos Administrativo"/>
               </Properties>
               <Events>
@@ -376,9 +346,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="opcionesGDS1">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+G"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Pago de Empleados"/>
               </Properties>
               <Events>
@@ -399,7 +366,6 @@
               <Image iconType="3" name="/img/configuracion.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Configuraciones"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="18" style="0"/>
             </Property>
@@ -407,9 +373,6 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="modificarEmpresa">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+S"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Modificar"/>
               </Properties>
               <Events>
@@ -418,9 +381,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="consultarEmpresa">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+S"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
@@ -637,19 +597,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Component id="btnVentas" min="-2" pref="160" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="114" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="btnVentas" alignment="1" pref="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -657,8 +610,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                      <Component id="btnVentas" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="btnVentas" min="-2" pref="52" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -678,9 +631,7 @@
             </Component>
             <Component class="rojeru_san.complementos.RSButtonHover" name="btnVentas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Venta"/>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
-                <Property name="actionCommand" type="java.lang.String" value="Ventas"/>
+                <Property name="text" type="java.lang.String" value="Ventas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVentasActionPerformed"/>
@@ -963,7 +914,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbPercederedos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jpPercede" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
@@ -981,7 +932,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbPercederedos" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -1017,13 +968,16 @@
                 </DimensionLayout>
               </Layout>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel9">
+            <Component class="javax.swing.JLabel" name="lbPercederedos">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="$0:00"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
