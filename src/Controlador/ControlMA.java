@@ -1385,8 +1385,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 if (productoSeleccionado == null) {
                     double ganancia = 0;
                     double precioUnitario = 0;
-                    precioUnitario = (Integer.parseInt(productoModi.tfPrecioCompra.getText()) / Integer.parseInt(productoModi.tfCantidad.getText()));
-                    ganancia = precioUnitario - Integer.parseInt(productoModi.tfPrecioVenta.getText());
+                    precioUnitario = (Double.parseDouble(productoModi.tfPrecioCompra.getText()) / Integer.parseInt(productoModi.tfCantidad.getText()));
+                    ganancia = Double.parseDouble(productoModi.tfPrecioVenta.getText())- precioUnitario;
 
                     Producto productoo = new Producto(productoModi.tfCodigo.getText(), productoModi.tfNombre.getText(),
                             Double.parseDouble(productoModi.tfPrecioCompra.getText()),
@@ -2149,12 +2149,13 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             String nombre = productoModi.jtDatos.getValueAt(fila, 1).toString();
             String precioCompra = productoModi.jtDatos.getValueAt(fila, 5).toString();
             String cantidad = productoModi.jtDatos.getValueAt(fila, 2).toString();
+            double precio = Double.parseDouble(precioCompra) * Integer.parseInt(cantidad);
             String maximo = productoModi.jtDatos.getValueAt(fila, 9).toString();
             String minimo = productoModi.jtDatos.getValueAt(fila, 10).toString();
             String precioVenta = productoModi.jtDatos.getValueAt(fila, 7).toString();
             productoModi.tfCodigo.setText(codigo);
             productoModi.tfNombre.setText(nombre);
-            productoModi.tfPrecioCompra.setText(precioCompra);
+            productoModi.tfPrecioCompra.setText(String.valueOf(precio));
             productoModi.tfCantidad.setText(cantidad);
             productoModi.tfMaximo.setText(maximo);
             productoModi.tfMinimo.setText(minimo);
