@@ -1381,9 +1381,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     && (!productoModi.tfMaximo.getText().isEmpty())
                     && (!productoModi.tfMinimo.getText().isEmpty())
                     && (!productoModi.tfPrecioVenta.getText().isEmpty())) {
-
+                
                 ArrayList<Empresa> empresa = daoEmpresa.selectAllTo("idEmpresa", "1");
-                if (productoSeleccionado == null) {
+                
                     double ganancia = 0;
                     double precioUnitario = 0;
                     precioUnitario = (Double.parseDouble(productoModi.tfPrecioCompra.getText()) / Integer.parseInt(productoModi.tfCantidad.getText()));
@@ -1409,7 +1409,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         Alerta aler = new Alerta(menuAdministrador, true, "Codigo ya Existe", "/img/error.png");
                         aler.show();
                     }
-                }
+                
                 
             } else {
 
