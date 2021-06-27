@@ -678,8 +678,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             }
             consultarVentas.jDatos.setModel(modelo);
             consultarVentas.lbTotal.setText(String.valueOf(totalVe));
+            
 
             consultarVentas.iniciar();
+            ventaSeleccionada = null;
         } else if (vista.equals("guardarProducto")) {
             padreActiva = "productoModi";
             this.productoModi = new ProductoModi(menuAdministrador, true);
@@ -1393,7 +1395,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         if (daoProducto.insertProducto(productoo)) {
                             vaciarVista();
                             Alerta aler = new Alerta(menuAdministrador, true, "Guardado con exito", "/img/Succes.png");
-
+                            mostrarDatos();
                             aler.show();
 
                         }
@@ -1403,7 +1405,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                         aler.show();
                     }
                 }
-                mostrarDatos();
+                
             } else {
 
                 Alerta aler = new Alerta(menuAdministrador, true, "Campos incompletos o vacios", "/img/error.png");
@@ -1423,7 +1425,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 double ganancia = 0;
                 double precioUnitario = 0;
                 precioUnitario = (Double.parseDouble(productoModi.tfPrecioCompra.getText()) / Integer.parseInt(productoModi.tfCantidad.getText()));
-                ganancia = precioUnitario - Double.parseDouble(productoModi.tfPrecioVenta.getText());
+                ganancia =  (Double.parseDouble(productoModi.tfPrecioVenta.getText())) - precioUnitario;
 
                 productoSeleccionado.setCodigoProducto(productoModi.tfCodigo.getText());
                 productoSeleccionado.setNombreProducto(productoModi.tfNombre.getText());
@@ -1796,7 +1798,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     }
 
     public boolean validadEntero(String pago) {
-        String patron = "[0-9]";
+        String patron = "[0-9]+";
         Pattern pat = Pattern.compile(patron);
         Matcher mat = pat.matcher(pago);
         return mat.matches();
