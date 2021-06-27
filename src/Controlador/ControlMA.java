@@ -2149,8 +2149,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             String nombre = productoModi.jtDatos.getValueAt(fila, 1).toString();
             String precioCompra = productoModi.jtDatos.getValueAt(fila, 5).toString();
             String cantidad = productoModi.jtDatos.getValueAt(fila, 2).toString();
-            String maximo = productoModi.jtDatos.getValueAt(fila, 3).toString();
-            String minimo = productoModi.jtDatos.getValueAt(fila, 4).toString();
+            String maximo = productoModi.jtDatos.getValueAt(fila, 9).toString();
+            String minimo = productoModi.jtDatos.getValueAt(fila, 10).toString();
             String precioVenta = productoModi.jtDatos.getValueAt(fila, 7).toString();
             productoModi.tfCodigo.setText(codigo);
             productoModi.tfNombre.setText(nombre);
