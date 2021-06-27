@@ -71,6 +71,7 @@ public class VentaDao {
                 obj.setnFactura(rs.getString("nFactura"));
                 obj.setFechaVenta(rs.getDate("fechaVenta"));
                 obj.setSaldoTotal(rs.getDouble("precioTotal"));
+                obj.setEstado(rs.getInt("estado"));
                 obj.setCliente(new Cliente(rs.getInt("idCliente")));
                 obj.setInicioCaja(new InicioCaja(rs.getInt("idCaja")));
                 obj.setEmpleado(new Empleados(rs.getInt("idEmpleado")));

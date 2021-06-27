@@ -1447,7 +1447,9 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     vaciarVista();
                     Alerta aler = new Alerta(menuAdministrador, true, "Modificado con exito", "/img/Succes.png");
                     aler.show();
+                    productoSeleccionado = null;
                     mostrarDatos();
+                    
                 }
             }
         } else if (e.getActionCommand().equals("Eliminar")
@@ -1475,6 +1477,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     vaciarVista();
                     Alerta aler = new Alerta(menuAdministrador, true, "Eliminado con exito", "/img/Succes.png");
                     aler.show();
+                    productoSeleccionado = null;
                     mostrarDatos();
                 }
             }
