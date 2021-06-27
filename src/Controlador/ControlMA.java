@@ -1020,17 +1020,18 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         } ////////////******FINAL ClienteMA********/////////////////
         //**************ProductoModi****************//
         else if (padreActiva.equals("productoModi")) {
-            String titulos[] = {"Codigo", "Nombre", "Cantidad", "Maximo", "Minimo", "Precio Compra", "Precio Unidad", "Precio Venta", "Ganancia", "Vence", "Iva", "Estado", "Empresa"};
+            String titulos[] = {"Codigo", "Nombre", "Cantidad", "Iva", "Ganacia", "Precio Compra Unitario", "Precio Compra Total", "Precio Venta", "fecha de Vencimiento", "Max", "Min", "Empresa", "Total"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Producto> producto = daoProducto.selectAll();
-            float precioUni = 0;
+            float precioTotalCon = 0;
+            float totalUni = 0;
             int i = 0;
             for (Producto x : producto) {
-
-                Object datos[] = {x.getCodigoProducto(), x.getNombreProducto(), x.getCantidad(), x.getMax(), x.getMin(),
-                    x.getPrecioCompra(), precioUni, x.getPrecioVenta(), x.getGananciaUni(), x.getFechaVencimiento(),
-                    x.getIva(), x.getEstado(), x.getEmpresa().getNombre()};
-
+                precioTotalCon = (float) (x.getPrecioCompra() * x.getCantidad());
+                totalUni = (float) (x.getPrecioVenta() * x.getCantidad());
+                Object datos[] = {x.getCodigoProducto(), x.getNombreProducto(), x.getCantidad(), x.getIva(),
+                    x.getGananciaUni(), x.getPrecioCompra(), precioTotalCon, x.getPrecioVenta(), x.getFechaVencimiento(),
+                    x.getMax(), x.getMin(), x.getEmpresa().getNombre(), totalUni};///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 modelo.addRow(datos);
                 i++;
 
