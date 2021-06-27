@@ -97,10 +97,10 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
 
     }
 
-    public void limpiar() {
-        login.tfUser.setText("");
-        login.pfPass.setText("");
-    }
+//    public void limpiar() {
+//        login.tfUser.setText("");
+//        login.pfPass.setText("");
+//    }
 
     public void llamarVistaConsulta(String vista) {
         /*Esta función realiza la acción al presionar un determinado botón
@@ -112,9 +112,17 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
             login.iniciar();
 
         } else if (vista.equals("admin")) {
-            login.dispose();
-            factura.setControlador(this);
-            ControlFactura controlF = new ControlFactura(factura, facturacion, mensaje, tablaProducto);
+            String p = login.tfUser.getText();
+                ArrayList<Usuario> listaUsuario = new ArrayList();
+                UsuarioDao daoUser = new UsuarioDao();
+                listaUsuario = daoUser.selectAllTo("usuario", p);
+                String l = String.valueOf(listaUsuario.get(0).getIdUsuario());
+                login.dispose();
+                factura.setControlador(this);
+                ControlFactura controlF = new ControlFactura(factura, facturacion, mensaje, tablaProducto, l);
+//            login.dispose();
+//            factura.setControlador(this);
+//            ControlFactura controlF = new ControlFactura(factura, facturacion, mensaje, tablaProducto);
         } else if (vista.equals("Admin")) {
             login.dispose();
             menuAdministrador.setControlador(this);
@@ -183,7 +191,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         
 
     }
-    limpiar();
+    
         return g;
 }
 }

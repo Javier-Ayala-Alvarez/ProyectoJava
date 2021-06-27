@@ -70,6 +70,39 @@ public class ProductoDao {
         String sql = "update producto set codigoProducto =?, nombreProducto =?, precioCompra =?, cantidad =? where idProducto=" + obj.getIdProducto();
         return alterarRegistroCantidad(sql, obj);
     }
+    public ArrayList<Producto> listaProductComb() {
+        ArrayList<Producto> listaProduc = new ArrayList();
+        ArrayList<Producto> listaProdT = new ArrayList();
+        Producto obj = null;
+        try {
+            String sql = "SELECT * FROM producto WHERE estado = 1";//1= estado producto activo
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                obj = new Producto();
+                obj.setCodigoProducto(rs.getString("codigoProducto"));
+                obj.setNombreProducto(rs.getString("nombreProducto"));
+                obj.setPrecioVenta(rs.getDouble("precioVenta"));
+                listaProduc.add(obj);
+            }
+
+        } catch (Exception e) {
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
+            alert.show();
+            e.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception ex) {
+
+            }
+            conectar.closeConexion(con);
+        }
+
+        return listaProduc;
+    }
     private boolean alterarRegistroCantidad(String sql, Producto obj) {
         try {
             

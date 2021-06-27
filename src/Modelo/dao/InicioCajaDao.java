@@ -15,10 +15,17 @@ public class InicioCajaDao {
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
+    
+    Usuario usuario; 
+
+//////    public InicioCajaDao(Usuario usuario) {
+//////        this.usuario = usuario;
+//////    }
 
     public InicioCajaDao() {
-
     }
+
+
 
     public ArrayList<InicioCaja> selectAll() {
         String sql = "select * from iniciocaja";
@@ -56,14 +63,13 @@ public class InicioCajaDao {
     }
 
     public boolean insert(InicioCaja obj) {
-        String sql = "insert into iniciocaja(codigoCaja,fechaInicio,fechaCierre,dineroCajaInicio,dineroCajaCierre)VALUES(?,?,?,?,?)";
+        String sql = "insert into iniciocaja(codigoCaja,fechaInicio,fechaCierre,dineroCajaInicio,dineroCajaCierre,idUsuario)VALUES(?,?,?,?,?,?)";
         return alterarRegistro(sql, obj);
     }
 
     public boolean update(InicioCaja obj) {
-        String sql = "update iniciocaja set codigoCaja =?, fechaInicio =?, fechaCierre =?, dineroCajaInicio =?, dineroCajaCierre =? where idCaja=" + obj.getIdAdminCaja();
-        return alterarRegistro(sql, obj);
-        
+        String sql = "UPDATE `iniciocaja` SET `fechaCierre`=?,`dineroCajaCierre`=? WHERE `idCaja`='" + obj.getIdAdminCaja()+"'";
+        return alterarRegistro1(sql, obj);
     }
 
     private ArrayList<InicioCaja> select(String sql) {
@@ -87,7 +93,7 @@ public class InicioCajaDao {
             }
 
         } catch (Exception e) {
-            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
             alert.show();
             e.printStackTrace();
         } finally {
@@ -123,7 +129,7 @@ public class InicioCajaDao {
             }
 
         } catch (Exception e) {
-            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
             alert.show();
             e.printStackTrace();
         } finally {
@@ -153,7 +159,7 @@ public class InicioCajaDao {
 
             return true;
         } catch (Exception e) {
-            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null, true,"Error en sql Dao Insertar", "/img/error.png");
             alert.show();
             e.printStackTrace();
         } finally {
@@ -171,20 +177,16 @@ public class InicioCajaDao {
         try {
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
-            //ps.setInt(0, obj.getIdGasto());
-            ps.setString(1, obj.getCodigoCaja());
-            ps.setDate(2, new java.sql.Date(obj.getFechaInicio().getTime()));
-            ps.setDate(3, new java.sql.Date(obj.getFechaCierre().getTime()));
-            ps.setDouble(4, obj.getDineroInicio());
-            ps.setDouble(5, obj.getDineroCierre());
-            ps.setInt(6, obj.getUsuario().getIdUsuario());
-            ps.execute();
+            ps.setDate(1, new java.sql.Date(obj.getFechaCierre().getTime()));
+            ps.setDouble(2, obj.getDineroCierre());
+            ps.executeUpdate();
 
             return true;
         } catch (Exception e) {
-            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
             alert.show();
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 ps.close();
@@ -193,7 +195,7 @@ public class InicioCajaDao {
             }
             conectar.closeConexion(con);
         }
-        return false;
+        
     }
 
     public boolean delete(InicioCaja obj) {
@@ -205,7 +207,7 @@ public class InicioCajaDao {
             ps.execute();
             return true;
         } catch (Exception e) {
-            Alerta alert = new Alerta(null, true,"Error en sql", "/img/error.png");
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
             alert.show();
             e.printStackTrace();
         } finally {
@@ -218,4 +220,6 @@ public class InicioCajaDao {
 
         return false;
     }
+    
+    
 }

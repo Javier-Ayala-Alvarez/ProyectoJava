@@ -2,7 +2,6 @@ package VistaMV;
 
 import Controlador.ControlFactura;
 import Controlador.ControlLogin;
-import static VistaLogin.Login.LogoE;
 import javax.swing.JFrame;
 
 public class Factura extends javax.swing.JFrame {
@@ -13,15 +12,14 @@ public class Factura extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);//PANTALLA COMPLETA
         escritorioFactura.setBorder(new Fondo("/img/Fondo.jpg"));
-        jpLogo1.setBorder(new Fondo(LogoE));
+        jpLogo1.setBorder(new Fondo("/img/Logo.jpg"));
         res = "res";
         //jpEscritorio1 (nombreOriginal)
         btnTiket.setActionCommand("tiket");
         btnFacturacion.setActionCommand("facturacion");
-        btnAdmin.setActionCommand("administrador");
+        btnCerrarCaja.setActionCommand("newCC");
         btnCerrarFactura.setActionCommand("cerrarFactura");
         btnIniciarCaja.setActionCommand("inicioCaja");
-        btnCerrarCaja.setActionCommand("cerrarCaja");
 
     }
 
@@ -35,24 +33,20 @@ public class Factura extends javax.swing.JFrame {
 
     public void setControladorF(ControlFactura controlF) {
         escritorioFactura.addMouseListener(controlF);
-        tfBuscar.addActionListener(controlF);
-        tbFactura.addMouseListener(controlF);
         btnTiket.addActionListener(controlF);
         btnFacturacion.addActionListener(controlF);
-        btnAdmin.addActionListener(controlF);
+        btnCerrarCaja.addActionListener(controlF);
         btnCerrarFactura.addActionListener(controlF);
         btnIniciarCaja.addActionListener(controlF);
-        btnCerrarCaja.addActionListener(controlF);
     }
 
     public void visibilidad(boolean bool) {
-        this.btnAdmin.setVisible(bool);
         this.btnFacturacion.setVisible(bool);
         this.btnTiket.setVisible(bool);
-        this.tfBuscar.setVisible(bool);
         this.btnIniciarCaja.setVisible(!bool);
-        this.lbBuscar.setVisible(bool);
+        this.lbNombreUsuario.setVisible(bool);
         this.btnCerrarCaja.setVisible(bool);
+        this.btnCerrarFactura.setVisible(!bool);
     }
 
     @SuppressWarnings("unchecked")
@@ -75,18 +69,14 @@ public class Factura extends javax.swing.JFrame {
         escritorioFactura = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnFacturacion = new rojeru_san.complementos.RSButtonHover();
-        btnAdmin = new rojeru_san.complementos.RSButtonHover();
+        btnCerrarCaja = new rojeru_san.complementos.RSButtonHover();
         btnTiket = new rojeru_san.complementos.RSButtonHover();
         jpLogo1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lbBuscar = new javax.swing.JLabel();
-        tfBuscar = new javax.swing.JTextField();
+        lbNombreUsuario = new javax.swing.JLabel();
         btnCerrarFactura = new principal.MaterialButtonCircle();
         btnIniciarCaja = new javax.swing.JButton();
-        btnCerrarCaja = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbFactura = new javax.swing.JTable();
 
         jMenu1.setText("jMenu1");
 
@@ -167,11 +157,11 @@ public class Factura extends javax.swing.JFrame {
             }
         });
 
-        btnAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario1.png"))); // NOI18N
-        btnAdmin.setText("Administrador");
-        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario1.png"))); // NOI18N
+        btnCerrarCaja.setText("Cerrar");
+        btnCerrarCaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminActionPerformed(evt);
+                btnCerrarCajaActionPerformed(evt);
             }
         });
 
@@ -205,7 +195,7 @@ public class Factura extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnTiket, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(btnFacturacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(btnAdmin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnCerrarCaja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jpLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -221,7 +211,7 @@ public class Factura extends javax.swing.JFrame {
                 .addGap(69, 69, 69)
                 .addComponent(btnFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72)
-                .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCerrarCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(323, Short.MAX_VALUE))
         );
 
@@ -239,45 +229,9 @@ public class Factura extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Sistema de Factura");
 
-        lbBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        lbBuscar.setText("Buscar Producto:");
-
-        tfBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tfBuscarFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tfBuscarFocusLost(evt);
-            }
-        });
-        tfBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tfBuscarMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                tfBuscarMouseExited(evt);
-            }
-        });
-        tfBuscar.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                tfBuscarInputMethodTextChanged(evt);
-            }
-        });
-        tfBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfBuscarActionPerformed(evt);
-            }
-        });
-        tfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tfBuscarKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfBuscarKeyTyped(evt);
-            }
-        });
+        lbNombreUsuario.setFont(new java.awt.Font("Times New Roman", 1, 26)); // NOI18N
+        lbNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lbNombreUsuario.setText("Empleado:");
 
         btnCerrarFactura.setBackground(new java.awt.Color(220, 20, 20));
         btnCerrarFactura.setText("X");
@@ -290,22 +244,16 @@ public class Factura extends javax.swing.JFrame {
 
         btnIniciarCaja.setText("Iniciar");
 
-        btnCerrarCaja.setText("Cerrar Sesion");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(lbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(lbNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(183, 183, 183)
                 .addComponent(btnIniciarCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCerrarCaja)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 379, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCerrarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,14 +266,10 @@ public class Factura extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbBuscar)
-                    .addComponent(btnIniciarCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCerrarCaja))
+                    .addComponent(lbNombreUsuario)
+                    .addComponent(btnIniciarCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        tfBuscar.getAccessibleContext().setAccessibleName("Producto");
 
         javax.swing.GroupLayout escritorioFacturaLayout = new javax.swing.GroupLayout(escritorioFactura);
         escritorioFactura.setLayout(escritorioFacturaLayout);
@@ -342,85 +286,19 @@ public class Factura extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        tbFactura.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Codigo", "Nombre", "Cantidad", "Precio"
-            }
-        ));
-        jScrollPane1.setViewportView(tbFactura);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(escritorioFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 300, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 301, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(escritorioFactura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 553, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyTyped
-
-    }//GEN-LAST:event_tfBuscarKeyTyped
-
-    private void tfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyReleased
-
-    }//GEN-LAST:event_tfBuscarKeyReleased
-
-    private void tfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfBuscarActionPerformed
-
-    }//GEN-LAST:event_tfBuscarActionPerformed
-
-    private void tfBuscarInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_tfBuscarInputMethodTextChanged
-
-    }//GEN-LAST:event_tfBuscarInputMethodTextChanged
-
-    private void tfBuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfBuscarMouseExited
-
-    }//GEN-LAST:event_tfBuscarMouseExited
-
-    private void tfBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfBuscarMouseClicked
-//       String prod = Producto.prod;
-//        Producto vista1 = new Producto(this,false);
-//        for(int i = 0; i < 2; i++){
-//            if(prod==null){
-//                vista1.show();
-//            }else{
-//                res = null;
-//            }
-//        }
-    }//GEN-LAST:event_tfBuscarMouseClicked
-
-    private void tfBuscarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfBuscarFocusLost
-
-    }//GEN-LAST:event_tfBuscarFocusLost
-
-    private void tfBuscarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfBuscarFocusGained
-
-
-    }//GEN-LAST:event_tfBuscarFocusGained
 
     private void btnCerrarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarFacturaActionPerformed
 //        int opccion = JOptionPane.showConfirmDialog(null, "Deseas Salir?", "Confirmar salida",
@@ -445,7 +323,7 @@ public class Factura extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_btnFacturacionActionPerformed
 
-    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
+    private void btnCerrarCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarCajaActionPerformed
 //        int opccion = JOptionPane.showConfirmDialog(null, "Deseas Salir de Facturacion?", "Confirmar salida", 
 //               JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE); 
 //        if(opccion == 0){
@@ -453,15 +331,14 @@ public class Factura extends javax.swing.JFrame {
 //        vista.show();
 //        this.dispose();
 //        }
-    }//GEN-LAST:event_btnAdminActionPerformed
+    }//GEN-LAST:event_btnCerrarCajaActionPerformed
 
     private void btnTiketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiketActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTiketActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public rojeru_san.complementos.RSButtonHover btnAdmin;
-    public javax.swing.JButton btnCerrarCaja;
+    public rojeru_san.complementos.RSButtonHover btnCerrarCaja;
     public principal.MaterialButtonCircle btnCerrarFactura;
     public rojeru_san.complementos.RSButtonHover btnFacturacion;
     public javax.swing.JButton btnIniciarCaja;
@@ -483,10 +360,7 @@ public class Factura extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     public javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpLogo1;
-    public javax.swing.JLabel lbBuscar;
-    public javax.swing.JTable tbFactura;
-    public javax.swing.JTextField tfBuscar;
+    public javax.swing.JLabel lbNombreUsuario;
     // End of variables declaration//GEN-END:variables
 }

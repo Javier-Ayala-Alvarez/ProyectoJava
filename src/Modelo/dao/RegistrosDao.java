@@ -110,11 +110,11 @@ public class RegistrosDao {
     }
 
     public boolean delete(int m, double n, int id) { 
-        String sql = "delete from registros where cantidadProducto='" + m + "' AND precioTotalProducto='"+n+"' AND idProducto='"+id+"'";
+        String sqlNew = "delete from registros where cantidadProducto='" + m + "' AND precioTotalProducto='" + n + "' AND idVenta='" + id + "'";
 
         try {
             con = conectar.getConexion();
-            ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(sqlNew);
             ps.execute();
 
             return true;

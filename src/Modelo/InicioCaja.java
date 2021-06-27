@@ -3,33 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
-import Modelo.dao.UsuarioDao;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * 
+ *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class InicioCaja {
+
     private int idAdminCaja;
-     private String codigoCaja;
-    private Date fechaInicio,fechaCierre;
-    private double dineroInicio,dineroCierre;
+    private Date fechaInicio, fechaCierre;
+    private double dineroInicio, dineroCierre;
+    private ArrayList<Venta> ventas;
+    private Usuario usuario;
 
-    private  Usuario usuario;
-
-    public InicioCaja(String codigoCaja, Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre, Usuario usuario) {
-        this.codigoCaja = codigoCaja;
-        this.fechaInicio = fechaInicio;
-        this.fechaCierre = fechaCierre;
-        this.dineroInicio = dineroInicio;
-        this.dineroCierre = dineroCierre;
-        this.usuario = usuario;
-    }
+    private String codigoCaja;
 
     public InicioCaja(int idAdminCaja, Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre) {
         this.idAdminCaja = idAdminCaja;
@@ -37,22 +28,23 @@ public class InicioCaja {
         this.fechaCierre = fechaCierre;
         this.dineroInicio = dineroInicio;
         this.dineroCierre = dineroCierre;
+
     }
-    
 
     public InicioCaja() {
+    }
+
+    public InicioCaja(Date fechaInicio, Date fechaCierre, double dineroInicio, double dineroCierre) {
+        this.fechaInicio = fechaInicio;
+        this.fechaCierre = fechaCierre;
+        this.dineroInicio = dineroInicio;
+        this.dineroCierre = dineroCierre;
+
     }
 
     public InicioCaja(int idAdminCaja) {
         this.idAdminCaja = idAdminCaja;
     }
-
-    public InicioCaja(double dineroInicio) {
-        this.dineroInicio = dineroInicio;
-    }
-    
-
-    
 
     public int getIdAdminCaja() {
         return idAdminCaja;
@@ -60,14 +52,6 @@ public class InicioCaja {
 
     public void setIdAdminCaja(int idAdminCaja) {
         this.idAdminCaja = idAdminCaja;
-    }
-
-    public String getCodigoCaja() {
-        return codigoCaja;
-    }
-
-    public void setCodigoCaja(String codigoCaja) {
-        this.codigoCaja = codigoCaja;
     }
 
     public Date getFechaInicio() {
@@ -102,17 +86,36 @@ public class InicioCaja {
         this.dineroCierre = dineroCierre;
     }
 
-    public Usuario getUsuario() {
-           UsuarioDao daoUsuario = new UsuarioDao();
-        usuario = daoUsuario.selectId(usuario.getIdUsuario()).get(0);
+    public void addVenta(Venta x) {
+        ventas.add(x);
+    }
 
+    public void addUsuario(Usuario x) {
+        this.usuario = x;
+    }
+
+    public ArrayList<Venta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(ArrayList<Venta> ventas) {
+        this.ventas = ventas;
+    }
+
+    public Usuario getUsuario() {
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-  
-     
+
+    public String getCodigoCaja() {
+        return codigoCaja;
+    }
+
+    public void setCodigoCaja(String codigoCaja) {
+        this.codigoCaja = codigoCaja;
+    }
+
 }

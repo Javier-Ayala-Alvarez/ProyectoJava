@@ -50,9 +50,17 @@ public class VentaDao {
         return alterarRegistro(sql, obj);
     }
     
-    public void update(Venta obj) {
+    public boolean update(Venta obj) {
         String sql = "update venta set idVenta =?, nFactura =?, fechaVenta =?, precioTotal =? where idVenta=" + obj.getIdFactura();
-        alterarRegistro(sql, obj);
+        return alterarRegistro(sql, obj);
+    }
+    public boolean updateVenta(Venta obj) {
+        String sql = "update venta set nFactura =?, fechaVenta =?, precioTotal =?, estado=?, idCliente=?, idCaja=?, idEmpleado=?, idEmpresa=? where idVenta=" + obj.getIdFactura();
+        return alterarVenta(sql, obj);
+    }
+    public boolean insertarVenta(Venta obj) {
+        String sql = "insert into venta(nFactura, fechaVenta, precioTotal, estado,idCliente, idCaja,  idEmpleado, idEmpresa)VALUES(?,?,?,?,?,?,?,?)";
+        return insertarVenta(sql, obj);
     }
     
     
@@ -92,6 +100,37 @@ public class VentaDao {
         }
         
         return lista;
+    }
+    private boolean alterarVenta(String sql, Venta obj) {
+        try {
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            //ps.setInt(0, obj.getIdFactura());
+            ps.setString(1, obj.getnFactura());//aqui
+//            ps.setDate(2, (Date) obj.getFechaVenta());//aqui
+            ps.setDate(2, new java.sql.Date(obj.getFechaVenta().getTime()));
+            ps.setDouble(3, obj.getSaldoTotal());//aqui
+            ps.setInt(4, obj.getEstado());
+            ps.setInt(5, obj.getCliente().getIdCliente());
+            ps.setInt(6, obj.getInicioCaja().getIdAdminCaja());
+            ps.setInt(7, obj.getEmpleado().getIdEmpleado());
+            ps.setInt(8, obj.getEmpresa().getIdEmpresa());
+            ps.execute();
+            Alerta alerta = new Alerta(null, true, "Venta exitosa","/img/exito.png");
+            alerta.show();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Venta no exitosa en sql");
+            e.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception ex) {
+
+            }
+            conectar.closeConexion(con);
+        }
+        return false;
     }
     
     private boolean alterarRegistro(String sql, Venta obj){
@@ -140,6 +179,36 @@ public class VentaDao {
             }
         }
 
+        return false;
+    }
+    private boolean insertarVenta(String sql, Venta obj) {
+        try {
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            //ps.setInt(0, obj.getIdFactura());
+            ps.setString(1, obj.getnFactura());//aqui
+//            ps.setDate(2, (Date) obj.getFechaVenta());//aqui
+            ps.setDate(2, new java.sql.Date(obj.getFechaVenta().getTime()));
+            ps.setDouble(3, obj.getSaldoTotal());//aqui
+            ps.setInt(4, obj.getEstado());
+             ps.setInt(5, obj.getCliente().getIdCliente());
+            ps.setInt(6, obj.getInicioCaja().getIdAdminCaja());
+            ps.setInt(7, obj.getEmpleado().getIdEmpleado());
+            ps.setInt(8, obj.getEmpresa().getIdEmpresa());
+            ps.execute();
+
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en insertar Venta sql");
+            e.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception ex) {
+
+            }
+            conectar.closeConexion(con);
+        }
         return false;
     }
     
