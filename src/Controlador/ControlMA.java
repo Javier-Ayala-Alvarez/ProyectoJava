@@ -1537,7 +1537,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
                 ArrayList<Empleados> existe = daoEmpleado.selectAllTo("codigoEmpleado", vistaEmpleadoGM.tfCodigo.getText());
                 if (existe.isEmpty()) {
-
+                    
+                      
                     if (daoEmpleado.insert(empleado)) {
 
                         if (!vistaEmpleadoGM.tfCombobox_1.getSelectedItem().toString().equals("no añadir Bono")) {
@@ -1546,9 +1547,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                             if (bono != null) {
 
                                 empleado.addBono(bono);
+                                System.out.println( empleado.getBono().getIdBono());
                                 if (daoEmpleado.agregarBono(empleado)) {
-                                    System.out.println(bono.getCargoEmpleado());
-                                }
+                                    
+                                                                    }
 
                             }
                         }

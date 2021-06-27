@@ -78,9 +78,10 @@ public class EmpleadoDao {
         String sql = "UPDATE empleado SET idUsuario = '"+obj.getIdUsuario()+"'  WHERE idEmpleado = " + obj.getEmpleados().getIdPersona();
         return addSql(sql);
     }
-      public boolean agregarBono(Empleados obj) {
-        String sql = "UPDATE empleado SET idBono = '"+obj.getBono().getIdBono()+"'WHERE idEmpleado = " + obj.getIdPersona();
-        return addSql(sql);
+     
+       public boolean agregarBono(Empleados obj) {
+        String sql = "UPDATE empleado SET idBono = ? WHERE codigoEmpleado = ?";
+        return addBonoSql(sql,obj);
     }
        public boolean quitarBono(Empleados obj) {
         String sql = "UPDATE empleado SET idBono = NULL WHERE idEmpleado = " + obj.getIdPersona();
@@ -277,6 +278,35 @@ public class EmpleadoDao {
 
         return lista;
 
+    }
+    
+       private boolean addBonoSql(String sql, Empleados obj) {
+        try {
+            //codigoEmpleado, nombre, apellido, telefonoEmpleado,dirrecionEmpleado,"
+            //         + "salarioEmpleado,cargoEmpleado,afp,isss,contatacion,estado,idEmpresa,usuario_idUsuario
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, obj.getBono().getIdBono());
+            ps.setString(2, obj.getCodigoEmpleado());
+            
+           
+            ps.execute();
+            //System.out.println("ujhuuj");
+            return true;
+        } catch (Exception e) {
+            Alerta alert = new Alerta(null, true, "Error en sql", "/img/error.png");
+            alert.show();
+            e.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception ex) {
+
+            }
+            conectar.closeConexion(con);
+        }
+        return false;
     }
 
 }
