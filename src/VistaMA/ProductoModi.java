@@ -439,7 +439,7 @@ public class ProductoModi extends javax.swing.JDialog {
     private void tfPrecioCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecioCompraKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (Character.isDigit(c)) {
+        if (c >= 46 && c <= 57) {
             lbAlerta.setText("");
         } else {
             lbAlerta.setText("Solo numeros");
@@ -484,7 +484,7 @@ public class ProductoModi extends javax.swing.JDialog {
     private void tfPrecioVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecioVentaKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (Character.isDigit(c)) {
+        if (c >= 46 && c <= 57) {
             lbAlerta.setText("");
         } else {
             lbAlerta.setText("Solo numeros");
