@@ -151,31 +151,12 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
-            char c = e.getKeyChar();
-            //System.out.println(c + " +");
-
-            char comprobar = inicioCajaVista.tfDineroInicio.getText().charAt(inicioCajaVista.tfDineroInicio.getText().length() - 1);
-            System.out.println(comprobar);
-            if (comprobar == c) {
-                if (!validarDouble(Character.toString(c))) {
-                    e.consume();
-
-                       inicioCajaVista.lbDinero.setText("por favor ingrese solo  numeros");
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese solo numeros");////////
-                    inicioCajaVista.tfDineroInicio.setText(inicioCajaVista.tfDineroInicio.getText().replace(Character.toString(c), ""));
-                } else {
-                        inicioCajaVista.lbDinero.setText("");
-//                    JOptionPane.showMessageDialog(null, "");///////////////////////////////////////
-                }
-            }
-
-        }
+       
     }
 
     @Override
@@ -192,8 +173,8 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
         } else if (vista.equals("inicioCaja")) {
             this.inicioCajaVista = new InicioCajaVista(factura, true);
             this.inicioCajaVista.setControlador(this);
-            this.inicioCajaVista.codigoCaja.setEditable(false);////////////////////////////////////////
-            this.inicioCajaVista.codigoCaja.setText(this.crearCodigo("INCJ", "inicioCaja"));///////////
+            this.inicioCajaVista.codigoCaja.setEditable(false);
+            this.inicioCajaVista.codigoCaja.setText(this.crearCodigo("INCJ", "inicioCaja"));
             this.listaUsuario = new ArrayList();
             this.daoUsuario = new UsuarioDao();
             this.listaUsuario = this.daoUsuario.selectAllTo("idUsuario", this.acceso);
@@ -203,23 +184,8 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
         } else if (vista.equals("AccesoIC")) {
             this.crearRegistroCajaVista();
 
-        } else if (vista.equals("tiket")) {
-            //this.tiket = new Tiket(factura, true);
-            //this.tiket.setControlador(this);
-            //this.tiket.iniciar();
-            this.daoVenta = new VentaDao();
-            this.listaVenta = new ArrayList();
-            this.listaVenta = this.daoVenta.selectAll();
-            int size = this.listaVenta.size();
-            for (int i=size-1; i<size; i++) {
-                this.tiket.lbPrecioPagar.setText(String.valueOf(this.listaVenta.get(i).getSaldoTotal()));
-                DefaultTableModel modeltiket = new DefaultTableModel();
-                String titule[] = {"Codigo", "Producto", "Cantidad", "Precio/U", "Total"};
-                modeltiket.setColumnIdentifiers(titule);
-                this.registroMd = new Registros();
-            }
-        } else if (vista.equals("facturacion")) {
-            this.facturacion = new Facturacion(factura, true);//
+        }  else if (vista.equals("facturacion")) {
+            this.facturacion = new Facturacion(factura, true);
             this.facturacion.setControl(this);
             this.llenarCombo();
             this.facturacion.tfNFactura.setText(crearCodigo("FACT", "facturacion"));
@@ -248,7 +214,7 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
             int y = this.facturacion.miTb1.getSelectedRow();
             int z = this.facturacion.miTb1.getSelectedColumn();
             String objetoExistente = this.facturacion.miTb1.getValueAt(y, z).toString();
-            if (y != -1  && objetoExistente.length()>0 && z!=-1) {///primera linea que modifique
+            if (y != -1 && objetoExistente.length() > 0 && z != -1) {///primera linea que modifique
                 this.regenerarProductos(y);
                 this.eliminarRegistros(y);
             } else {
@@ -262,105 +228,28 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
             this.listaVenta = this.daoVenta.selectAll();
             int size = this.listaVenta.size();
             this.venta = new Venta();
-            this.venta.setIdFactura(this.listaVenta.get(size-1).getIdFactura());
-            this.venta.setnFactura(this.listaVenta.get(size-1).getnFactura());
-            this.venta.setFechaVenta(this.listaVenta.get(size-1).getFechaVenta());
-            this.venta.setSaldoTotal(this.listaVenta.get(size-1).getSaldoTotal());
+            this.venta.setIdFactura(this.listaVenta.get(size - 1).getIdFactura());
+            this.venta.setnFactura(this.listaVenta.get(size - 1).getnFactura());
+            this.venta.setFechaVenta(this.listaVenta.get(size - 1).getFechaVenta());
+            this.venta.setSaldoTotal(this.listaVenta.get(size - 1).getSaldoTotal());
             this.venta.setEstado(1);
-            this.venta.setInicioCaja(this.listaVenta.get(size-1).getInicioCaja());
-            this.venta.setCliente(this.listaVenta.get(size-1).getCliente());
-            this.venta.setEmpleado(this.listaVenta.get(size-1).getEmpleado());
-            this.venta.setEmpresa(this.listaVenta.get(size-1).getEmpresa());
+            this.venta.setInicioCaja(this.listaVenta.get(size - 1).getInicioCaja());
+            this.venta.setCliente(this.listaVenta.get(size - 1).getCliente());
+            this.venta.setEmpleado(this.listaVenta.get(size - 1).getEmpleado());
+            this.venta.setEmpresa(this.listaVenta.get(size - 1).getEmpresa());
             if (this.daoVenta.updateVenta(this.venta)) {
                 JOptionPane.showMessageDialog(null, "VENDIDO");
-            this.limpiarDatos();
-            this.facturacion.miTb1.removeAll();
-            this.facturacion.tfNFactura.setText(crearCodigo("FACT", "facturacion"));
-            this.facturacion.dispose();//added el Domingo
-            this.llamarVFactura("facturacion");
+                this.limpiarDatos();
+                this.facturacion.miTb1.removeAll();
+                this.facturacion.tfNFactura.setText(crearCodigo("FACT", "facturacion"));
+                this.facturacion.dispose();
+                this.llamarVFactura("facturacion");
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar la venta y fue culpa de SQL");
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar");
             }
-            
-                    
+
         } else if (vista.equals("cerrarFacturacion")) {
-            
-            
-//////////////////////            this.daoVenta = new VentaDao();
-//////////////////////            this.listaVenta = new ArrayList();
-//////////////////////            this.listaVenta = this.daoVenta.selectAll();
-//////////////////////            int size = this.listaVenta.size();
-//////////////////////            int idVentaToRegistros = this.listaVenta.get(size-1).getIdFactura();
-//////////////////////            if (this.listaVenta.get(size-1).getEstado()==0) {
-//////////////////////        
-//////////////////////        
-//////////////////////            /*Actualizando el registro de venta no realizada*/
-//////////////////////            this.registroMd = new Registros();
-//////////////////////            this.daoRegistros = new RegistrosDao();
-//////////////////////            this.listaRegistro = new ArrayList();
-//////////////////////            this.listaRegistro = this.daoRegistros.selectAllTo("idVenta", String.valueOf(idVentaToRegistros));
-//////////////////////            int tamanioRegistroCero = this.listaRegistro.size();
-//////////////////////            for (int i = 0; i < tamanioRegistroCero; i++) {
-//////////////////////                                  
-//////////////////////                
-//////////////////////                
-//////////////////////                
-//////////////////////                
-//////////////////////                /*Devolviendo los productos ingresados porque la facturacion se cerro bruscamente*/
-//////////////////////                this.producto = new Producto();
-//////////////////////                this.daoProducto = new ProductoDao();
-//////////////////////                this.listaProduc = new ArrayList();
-//////////////////////                this.listaProduc = this.daoProducto.selectAllTo("idProducto", String.valueOf(this.listaRegistro.get(i).getProducto().getIdProducto()));
-//////////////////////                
-//////////////////////                this.producto.setIdProducto(this.listaProduc.get(0).getIdProducto());
-//////////////////////                this.producto.setCodigoProducto(this.listaProduc.get(0).getCodigoProducto());
-//////////////////////                this.producto.setNombreProducto(this.listaProduc.get(0).getNombreProducto());
-//////////////////////                this.producto.setPrecioCompra(this.listaProduc.get(0).getPrecioCompra());
-//////////////////////                this.producto.setCantidad(this.listaProduc.get(0).getCantidad() + this.listaRegistro.get(i).getCantidadProducto());
-//////////////////////                this.producto.setFechaVencimiento(this.listaProduc.get(0).getFechaVencimiento());
-//////////////////////                this.producto.setMax(this.listaProduc.get(0).getMax());
-//////////////////////                this.producto.setMin(this.listaProduc.get(0).getMin());
-//////////////////////                this.producto.setEstado(this.listaProduc.get(0).getEstado());
-//////////////////////                this.producto.setGananciaUni(this.listaProduc.get(0).getGananciaUni());
-//////////////////////                this.producto.setIva(this.listaProduc.get(0).getIva());
-//////////////////////                this.producto.setPrecioVenta(this.listaProduc.get(0).getPrecioVenta());
-//////////////////////                this.producto.setEmpresa(this.listaProduc.get(0).getEmpresa());
-//////////////////////                        if (this.daoProducto.updateCantidad(this.producto)) {
-//////////////////////                        JOptionPane.showMessageDialog(null, "Cantidad regenerada de: " + this.listaProduc.get(0).getNombreProducto());
-//////////////////////                        } else {
-//////////////////////                        JOptionPane.showMessageDialog(null, "Cantidad no sumada");
-//////////////////////                        }
-//////////////////////                
-//////////////////////                
-//////////////////////            this.registroMd.setIdRegistros(this.listaRegistro.get(i).getIdRegistros());
-//////////////////////            this.registroMd.setCantidadProducto(0);
-//////////////////////            this.registroMd.setPrecioTotalProducto(0);
-//////////////////////            this.venta = new Venta();
-//////////////////////            this.venta.setIdFactura(idVentaToRegistros);
-//////////////////////            this.registroMd.setVenta(venta);
-//////////////////////            this.producto = new Producto();
-//////////////////////            this.producto.setIdProducto(this.listaRegistro.get(i).getProducto().getIdProducto());
-//////////////////////            this.registroMd.setProducto(producto);
-//////////////////////            if (this.daoRegistros.ventaNoRealizada(this.registroMd)) {
-//////////////////////                JOptionPane.showMessageDialog(null, "Registro actualizado a 0 porque no se realizo la venta");
-//////////////////////                
-//////////////////////                } else {
-//////////////////////                JOptionPane.showMessageDialog(null, "Registro no reducido");
-//////////////////////            
-//////////////////////                }
-//////////////////////            
-//////////////////////            
-//////////////////////            
-//////////////////////            
-//////////////////////            
-//////////////////////            
-//////////////////////                }
-//////////////////////            /*Fin de Actualizando el registro de venta no realizada*/
-//////////////////////            } else {
-//////////////////////                JOptionPane.showMessageDialog(null, "Sin problemas con Venta uwu");
-//////////////////////            }
-            
-                 
+
             facturacion.dispose();
 
         } else if (vista.equals("newCC")) {
@@ -373,7 +262,6 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
             sumaTotalCC = dineVentaAux + dineroCaja;
             this.cierreCaja.tfxDineroCierre.setText(String.valueOf(sumaTotalCC));
             this.cierreCaja.iniciar();
-            
 
         } else if (vista.equals("cerrarFactura")) {
 
@@ -445,7 +333,7 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
                         + "Cantidades en existencia: " + this.listaProduc.get(0).getCantidad());
             } else {
                 String exis = String.valueOf(this.listaProduc.get(0).getCantidad() - Integer.parseInt(this.facturacion.tfCantidad.getText()));
-                this.facturacion.tfExistenciaProd.setText(exis);//probando Existencia de producto restante de cantidad pedida
+                this.facturacion.tfExistenciaProd.setText(exis);
                 this.facturacion.tfCantidad.setEditable(false);
                 this.facturacion.cbProducto.setEditable(false);
                 this.facturacion.lbNomPr.setText(p);
@@ -459,12 +347,13 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
     }
 
     public void completarInfoTabla(DefaultTableModel modelTabla) {//Envía los datos de los TF y CBX a la tabla
-        //validar con la BD
+      
         this.modeloTabla = modelTabla;
         if (!this.facturacion.tfCantidad.getText().isEmpty()
                 && !this.facturacion.tfPrecioUni.getText().isEmpty()
                 && !this.facturacion.tfPrecioTotalProducto.getText().isEmpty()
-                && !this.facturacion.tfCliente.getText().isEmpty()) {
+                && !this.facturacion.tfCliente.getText().isEmpty()
+                && !this.facturacion.tfDireccion.getText().isEmpty()) {
             this.daoProducto = new ProductoDao();
             this.listaProduc = new ArrayList();
             String p = String.valueOf(this.facturacion.cbProducto.getSelectedItem().toString());
@@ -520,7 +409,7 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
         this.facturacion.miTb1.removeAll();
     }
 
-    public void eliminarProductosBD() {
+    public void eliminarProductosBD() {//Disminuye la cantidad de productos solicitados en la Facturacion
         /*Restando cantidad de Productos ingresada*/
         this.producto = new Producto();
         this.daoProducto = new ProductoDao();
@@ -555,7 +444,6 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
         if (verifFacturaexistente.equals(this.facturacion.tfNFactura.getText())) {
             JOptionPane.showMessageDialog(null, "Ya existe la factura, idVenta: " + this.listaVenta.get(size - 1).getIdFactura() + ", nFactura: " + this.listaVenta.get(size - 1).getnFactura());
             /*Agregando Datos de Producto al Registro, pero ya esta creado el idVenta correspondiente*/
-            JOptionPane.showMessageDialog(null, "Creemos una venta y factura y mejor su update");
             this.listaProduc = new ArrayList();
             this.daoProducto = new ProductoDao();
             this.listaProduc = this.daoProducto.selectAllTo("nombreProducto", this.facturacion.lbNomPr.getText());
@@ -566,9 +454,9 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
             this.venta = new Venta();
 
             /*------------------------Actualizando venta para modificar su registro---------------------*/
-            this.venta.setIdFactura(this.listaVenta.get(size-1).getIdFactura());
-            this.venta.setnFactura(this.listaVenta.get(size-1).getnFactura());//insertando nFactura y ajustarlo al tamaño (longitud)
-            this.venta.setFechaVenta(this.listaVenta.get(size-1).getFechaVenta());//insertando fecha
+            this.venta.setIdFactura(this.listaVenta.get(size - 1).getIdFactura());
+            this.venta.setnFactura(this.listaVenta.get(size - 1).getnFactura());//insertando nFactura y ajustarlo al tamaño (longitud)
+            this.venta.setFechaVenta(this.listaVenta.get(size - 1).getFechaVenta());//insertando fecha
             this.venta.setSaldoTotal(Double.parseDouble(this.facturacion.tfTotalPagar.getText()));//insertando precioVenta
             this.venta.setEstado(0);//insertando estado
 
@@ -580,59 +468,55 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
             this.inicioCaja.setIdAdminCaja(this.listaInicioCaja.get(tamanioInic - 1).getIdAdminCaja());
             this.venta.setInicioCaja(this.inicioCaja);//agregando id del ultimo cajero
 
-                this.clienteMd = new Cliente();
-                this.listaCliente = new ArrayList();
-                this.daoCliente = new ClienteDao();
-                this.listaCliente = this.daoCliente.selectAll();
-                int tamanioCli = this.listaCliente.size();
-                int idCli = this.listaCliente.get(tamanioCli - 1).getIdCliente();
-                this.clienteMd.setIdCliente(idCli);
-                this.venta.setCliente(this.clienteMd);//agregando el idCliente
+            this.clienteMd = new Cliente();
+            this.listaCliente = new ArrayList();
+            this.daoCliente = new ClienteDao();
+            this.listaCliente = this.daoCliente.selectAll();
+            int tamanioCli = this.listaCliente.size();
+            int idCli = this.listaCliente.get(tamanioCli - 1).getIdCliente();
+            this.clienteMd.setIdCliente(idCli);
+            this.venta.setCliente(this.clienteMd);//agregando el idCliente
 
-                this.empleadoMd = new Empleados();
-                this.empleadoMd.setIdEmpleado(this.listaInicioCaja.get(tamanioInic - 1).getUsuario().getIdUsuario());
-                this.venta.setEmpleado(empleadoMd);//agregando el idEmpleado
+            this.empleadoMd = new Empleados();
+            this.empleadoMd.setIdEmpleado(this.listaInicioCaja.get(tamanioInic - 1).getUsuario().getIdUsuario());
+            this.venta.setEmpleado(empleadoMd);//agregando el idEmpleado
 
-                this.empresa = new Empresa();
-                this.empresa.setIdEmpresa(1);
-                this.venta.setEmpresa(empresa);//agregando el idEmpresa
+            this.empresa = new Empresa();
+            this.empresa.setIdEmpresa(1);
+            this.venta.setEmpresa(empresa);//agregando el idEmpresa
 
+            this.daoVenta = new VentaDao();
+            if (this.daoVenta.updateVenta(this.venta)) {
+                //obteniendo el idVenta ultimo para asignar a la tabla registro
                 this.daoVenta = new VentaDao();
-                if (this.daoVenta.updateVenta(this.venta)) {
-                    JOptionPane.showMessageDialog(null, "Venta modificada");
-                    //obteniendo el idVenta ultimo para asignar a la tabla registro
-                    this.daoVenta = new VentaDao();
-                    this.listaVenta = new ArrayList();
-                    this.listaVenta = this.daoVenta.selectAll();
-                    int tamanioVenta = this.listaVenta.size();
+                this.listaVenta = new ArrayList();
+                this.listaVenta = this.daoVenta.selectAll();
+                int tamanioVenta = this.listaVenta.size();
 
-                    this.listaRegistro = new ArrayList();/////////////////////////////////////////////////////
-                    this.daoRegistros = new RegistrosDao();///////////////////////////////////////////////////
-                    this.nuevoRegistro = this.daoRegistros.selectAll().size();/////////////////////
-                    this.listaRegistro = this.daoRegistros.selectAll();
-                    int idVenUltimo = this.listaVenta.get(tamanioVenta - 1).getIdFactura();
-                    JOptionPane.showMessageDialog(null, "idVenta obtenido (ultimo): " + idVenUltimo);
-                    this.venta.setIdFactura(idVenUltimo);//Asignando el id de la Venta a la que pertenece
-                    this.producto = new Producto();
-                    this.producto.setIdProducto(this.listaProduc.get(0).getIdProducto());
-                    this.registroMd.setVenta(venta);
-                    this.registroMd.setProducto(producto);
+                this.listaRegistro = new ArrayList();
+                this.daoRegistros = new RegistrosDao();
+                this.nuevoRegistro = this.daoRegistros.selectAll().size();
+                this.listaRegistro = this.daoRegistros.selectAll();
+                int idVenUltimo = this.listaVenta.get(tamanioVenta - 1).getIdFactura();
+                this.venta.setIdFactura(idVenUltimo);//Asignando el id de la Venta a la que pertenece
+                this.producto = new Producto();
+                this.producto.setIdProducto(this.listaProduc.get(0).getIdProducto());
+                this.registroMd.setVenta(venta);
+                this.registroMd.setProducto(producto);
 
-                    if (this.daoRegistros.insert(this.registroMd) == true) {
-                        JOptionPane.showMessageDialog(null, "Registro Insertado con idVenta propio ya insertado");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Registro No insertado");
-                    }
-                    /*Fin de Agregar Datos al Registro*/
+                if (this.daoRegistros.insert(this.registroMd) == true) {
                 } else {
-                    JOptionPane.showMessageDialog(null, "Venta no modificada jsjsjsjjsjs");
+                    JOptionPane.showMessageDialog(null, "Registro No insertado");
                 }
+                /*Fin de Agregar Datos al Registro*/
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo agregar a la venta\n Por favor verificar la conexion con la BD");
+            }
             /*------------------------------------------Fin de Actualizando------------------------------------------------------*/
 
-            } else {
+        } else {
 
             /*Agregando Datos de Producto al Registro, pero antes se debe crear la venta para otorgar el id correspondiente*/
-            JOptionPane.showMessageDialog(null, "Creemos una venta y factura y mejor su registro");
             this.listaProduc = new ArrayList();
             this.daoProducto = new ProductoDao();
             this.listaProduc = this.daoProducto.selectAllTo("nombreProducto", this.facturacion.lbNomPr.getText());
@@ -663,10 +547,9 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
             this.clienteMd.setNombre(this.facturacion.tfCliente.getText());
             this.clienteMd.setApellido("-----");
             this.clienteMd.setTelefono("-----");
-            this.clienteMd.setDireccion("SanViGod");
+            this.clienteMd.setDireccion(this.facturacion.tfDireccion.getText());
             int idCli;
             if (this.daoCliente.insert(clienteMd)) {//insertando cliente para obtener su id
-                JOptionPane.showMessageDialog(null, "Cliente insertado para la venta");
 
                 this.clienteMd = new Cliente();
                 this.listaCliente = new ArrayList();
@@ -687,20 +570,19 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
 
                 this.daoVenta = new VentaDao();
                 if (this.daoVenta.insertarVenta(this.venta)) {
-                    JOptionPane.showMessageDialog(null, "Venta insertada, ahora saquemos el id");
                     //obteniendo el idVenta ultimo para asignar al registro
                     this.daoVenta = new VentaDao();
                     this.listaVenta = new ArrayList();
                     this.listaVenta = this.daoVenta.selectAll();
                     int tamanioVenta = this.listaVenta.size();
 
-                    this.listaRegistro = new ArrayList();/////////////////////////////////////////////////////
-                    this.daoRegistros = new RegistrosDao();///////////////////////////////////////////////////
-                    this.nuevoRegistro = this.daoRegistros.selectAll().size();/////////////////////
+                    this.listaRegistro = new ArrayList();
+                    this.daoRegistros = new RegistrosDao();
+                    this.nuevoRegistro = this.daoRegistros.selectAll().size();
                     this.listaRegistro = this.daoRegistros.selectAll();
                     int idVenUltimo = this.listaVenta.get(tamanioVenta - 1).getIdFactura();
                     JOptionPane.showMessageDialog(null, "idVenta obtenido (ultimo): " + idVenUltimo);
-            /*------------------------------------ Fin De Creando venta---------------------------------*/
+                    /*------------------------------------ Fin De Creando venta---------------------------------*/
                     this.venta.setIdFactura(idVenUltimo);//Asignando el id de la Venta a la que pertenece
                     this.producto = new Producto();
                     this.producto.setIdProducto(this.listaProduc.get(0).getIdProducto());
@@ -708,16 +590,15 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
                     this.registroMd.setProducto(producto);
 
                     if (this.daoRegistros.insert(this.registroMd) == true) {
-                        JOptionPane.showMessageDialog(null, "Registro Insertado con idVenta propio");
                     } else {
                         JOptionPane.showMessageDialog(null, "Registro No insertado");
                     }
                     /*Fin de Agregar Datos al Registro*/
                 } else {
-                    JOptionPane.showMessageDialog(null, "Venta no insertada jsjsjsjjsjs");
+                    JOptionPane.showMessageDialog(null, "Venta no insertada");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Cliente no insertado :u");
+                JOptionPane.showMessageDialog(null, "Problemas con cliente");
             }
 
         }
@@ -747,9 +628,8 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
         this.producto.setPrecioVenta(this.listaProduc.get(0).getPrecioVenta());
         this.producto.setEmpresa(this.listaProduc.get(0).getEmpresa());
         if (this.daoProducto.updateCantidad(this.producto)) {
-            JOptionPane.showMessageDialog(null, "Cantidad regenerada de: " + this.listaProduc.get(0).getNombreProducto());
         } else {
-            JOptionPane.showMessageDialog(null, "Cantidad no sumada");
+            JOptionPane.showMessageDialog(null, "Cantidad no devuelta");
         }
         /*Fin de Sumando Cantidad*/
     }
@@ -762,34 +642,33 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
         this.daoRegistros = new RegistrosDao();
         this.listaProduc = new ArrayList();
         this.listaProduc = this.daoProducto.selectAllTo("nombreProducto", nombre);
-        
-        
-        
-        
-                this.daoVenta = new VentaDao();
-                this.listaVenta = new ArrayList();
-                this.listaVenta = this.daoVenta.selectAll();
-                int tamanioVenta = this.listaVenta.size();
-                int idVen = this.listaVenta.get(tamanioVenta - 1).getIdFactura();
-        
-        
-        
-      
+
+        this.daoVenta = new VentaDao();
+        this.listaVenta = new ArrayList();
+        this.listaVenta = this.daoVenta.selectAll();
+        int tamanioVenta = this.listaVenta.size();
+        int idVen = this.listaVenta.get(tamanioVenta - 1).getIdFactura();
+
         if (this.daoRegistros.delete(Integer.parseInt(cant), Double.parseDouble(String.format("%.2f", precioTotal)), idVen)) {
             this.sumatoriaPrecios -= Double.parseDouble(String.format("%.2f", precioTotal));//probando la resta de la sumatoria
             this.facturacion.tfTotalPagar.setText(String.valueOf(this.sumatoriaPrecios));
-            JOptionPane.showMessageDialog(null, "Registro borrado con exito de la BD");
-            this.facturacion.miTb1.removeRowSelectionInterval(0, 5);
-            
-            int tamTabla= this.facturacion.miTb1.getRowCount();
+
+            for (int i = 0; i < 5; i++) {
+                this.facturacion.miTb1.setValueAt("", y, i);
+            }
+
+            int tamTabla = this.facturacion.miTb1.getRowCount();
             for (int i = 0; i < tamTabla; i++) {
                 String objetoExistente = this.facturacion.miTb1.getValueAt(i, 0).toString();
-            if (!objetoExistente.isEmpty()  || objetoExistente==null || objetoExistente.length()>0) { //segunda linea que modifique
-                this.facturacion.btnCerrarFd.setEnabled(true);
-            }
+                if (objetoExistente.length() > 1) { //segunda linea que modifique
+                    this.facturacion.btnCerrarFd.setEnabled(false);
+                } else {
+                    this.facturacion.btnCerrarFd.setEnabled(true);
+
+                }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "No borrado registro");
+            JOptionPane.showMessageDialog(null, "Problemas al borrar Registro");
         }
     }
 
@@ -820,12 +699,6 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
         return correlativo;
     }
 
-    
-    
-    
-    
-    
-    
     public double cantiCierre() {
         this.daoVenta = new VentaDao();
         this.listaVenta = new ArrayList();
@@ -849,7 +722,6 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
         listaVenta = null;
         return tVentaK;
     }
-    
 
     private void crearRegistroCajaVista() {
         Date auxDate = (Date) inicioCajaVista.cldFechaInicio.getDatoFecha();
@@ -861,7 +733,7 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
             this.daoUsuario = new UsuarioDao();
             this.usuario.setIdUsuario(Integer.parseInt(this.inicioCajaVista.tfUsuId.getText()));
             this.inicioCaja = new InicioCaja();
-            this.inicioCaja.setCodigoCaja(this.inicioCajaVista.codigoCaja.getText());////////////////
+            this.inicioCaja.setCodigoCaja(this.inicioCajaVista.codigoCaja.getText());
             this.inicioCaja.setUsuario(this.usuario);
             this.inicioCaja.setDineroInicio(Double.valueOf(this.inicioCajaVista.tfDineroInicio.getText()));
             dineroCaja = Double.valueOf(this.inicioCajaVista.tfDineroInicio.getText());///resetear el valor al vendeeer
@@ -886,22 +758,7 @@ if ((!this.inicioCajaVista.tfDineroInicio.getText().isEmpty())) {
             }
         }
     }
-    
-    public boolean validarDouble(String c) {
-        try {
-            if (!c.equals(".")) {
-                Double.parseDouble(c);
-                return true;
-            } else {
-                return true;
-            }
 
-        } catch (Exception e) {
 
-        }
-        return false;
-    }
-    
-    
 
 }

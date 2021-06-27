@@ -229,9 +229,8 @@ public class Factura extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Sistema de Factura");
 
-        lbNombreUsuario.setFont(new java.awt.Font("Times New Roman", 1, 26)); // NOI18N
         lbNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lbNombreUsuario.setText("Empleado:");
+        lbNombreUsuario.setText("Buscar Producto:");
 
         btnCerrarFactura.setBackground(new java.awt.Color(220, 20, 20));
         btnCerrarFactura.setText("X");
@@ -250,10 +249,10 @@ public class Factura extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(lbNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(183, 183, 183)
+                .addComponent(lbNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(233, 233, 233)
                 .addComponent(btnIniciarCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 379, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 393, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCerrarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
