@@ -1029,6 +1029,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             float totalUni = 0;
             int i = 0;
             for (Producto x : producto) {
+                if(x.getEstado() == 1){
                 precioTotalCon = (float) (x.getPrecioCompra() * x.getCantidad());
                 totalUni = (float) (x.getPrecioVenta() * x.getCantidad());
                 Object datos[] = {x.getCodigoProducto(), x.getNombreProducto(), x.getCantidad(), x.getIva(),
@@ -1036,7 +1037,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     x.getMax(), x.getMin(), x.getEmpresa().getNombre(), totalUni};///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 modelo.addRow(datos);
                 i++;
-
+                }
             }
             this.productoModi.jtDatos.setModel(modelo);
         } //************Fin productoModi*************//
@@ -1050,6 +1051,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             float total0 = 0;
             int i = 0;
             for (Producto x : producto) {
+                if(x.getEstado() == 1){
                 precioTotalCon = (float) (x.getPrecioCompra() * x.getCantidad());
                 totalUni = (float) (x.getPrecioVenta() * x.getCantidad());
                 Object datos[] = {x.getCodigoProducto(), x.getNombreProducto(), x.getCantidad(), x.getIva(),
@@ -1058,7 +1060,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 total0 = total0 + totalUni;
                 modelo.addRow(datos);
                 i++;
-
+                }
             }
             this.registrosDeProductos.jtDatos.setModel(modelo);
             this.registrosDeProductos.lbTotal.setText("$" + String.format("%.2f", total0));
@@ -1122,10 +1124,12 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             ArrayList<Venta> venta1 = daoVenta.selectAll();
             float total1 = 0;
             for (Venta x : venta1) {
+                if(x.getEstado()==1){
 
                 Object datos[] = {x.getnFactura(), x.getFechaVenta(), x.getCliente().getNombre(), x.getEmpleado().getNombre(), x.getSaldoTotal()};
                 modelo.addRow(datos);
                 total1 = (float) (total1 + x.getSaldoTotal());
+                }
             }
             registrosDeVenta.jtDatos.setModel(modelo);
             registrosDeVenta.lbTotal.setText(String.format("%.2f", total1));
@@ -1450,18 +1454,28 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 && (padreActiva.equals("productoModi"))) {
             int opccion = JOptionPane.showConfirmDialog(null, "Deseas Eliminar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opccion == 0) {
-                if (productoSeleccionado != null) {
-                    if (daoProducto.delete(productoSeleccionado)) {
-                        mostrarDatos();
-                        vaciarVista();
-                        Alerta aler = new Alerta(menuAdministrador, true, "Eliminado con exito", "/img/Succes.png");
-                        aler.show();
-                        productoSeleccionado = null;
-                    } else {
+                double ganancia = 0;
+                double precioUnitario = 0;
+                precioUnitario = (Double.parseDouble(productoModi.tfPrecioCompra.getText()) / Integer.parseInt(productoModi.tfCantidad.getText()));
+                ganancia =  (Double.parseDouble(productoModi.tfPrecioVenta.getText())) - precioUnitario;
 
-                        Alerta aler = new Alerta(menuAdministrador, true, "Error al eliminado con exito", "/img/error.png");
-                        aler.show();
-                    }
+                productoSeleccionado.setCodigoProducto(productoModi.tfCodigo.getText());
+                productoSeleccionado.setNombreProducto(productoModi.tfNombre.getText());
+                productoSeleccionado.setPrecioCompra(Double.parseDouble(productoModi.tfPrecioCompra.getText()));
+                productoSeleccionado.setCantidad(Integer.parseInt(productoModi.tfCantidad.getText()));
+                productoSeleccionado.setFechaVencimiento(productoModi.dVence.getDatoFecha());
+                productoSeleccionado.setMax(Integer.parseInt(productoModi.tfMaximo.getText()));
+                productoSeleccionado.setMin(Integer.parseInt(productoModi.tfMinimo.getText()));
+                productoSeleccionado.setEstado(0);
+                productoSeleccionado.setGananciaUni(ganancia);
+                productoSeleccionado.setIva(0.13);
+                productoSeleccionado.setPrecioVenta(Double.parseDouble(productoModi.tfPrecioVenta.getText()));
+                productoSeleccionado.getEmpresa().getIdEmpresa();
+                if (daoProducto.updateProducto(productoSeleccionado)) {
+                    vaciarVista();
+                    Alerta aler = new Alerta(menuAdministrador, true, "Eliminado con exito", "/img/Succes.png");
+                    aler.show();
+                    mostrarDatos();
                 }
             }
 
