@@ -191,7 +191,7 @@ public class ProductoDao {
     
     
     public boolean delete(Producto obj) {
-        String sql = "delete from producto where idProducto='" + obj.getIdProducto() + "'";
+        String sql = "delete from producto where idProducto='" + obj.getIdProducto() +"'";
         
         try {
             con = conectar.getConexion();

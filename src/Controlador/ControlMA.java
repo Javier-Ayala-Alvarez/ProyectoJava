@@ -1334,6 +1334,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             }
         } else if (e.getActionCommand().equals("Modificar")
                 && padreActiva.equals("consultarCliente")) {
+            if(!this.clienteMA.tfNombre.getText().isEmpty()
+                    && !this.clienteMA.tfApellido.getText().isEmpty()
+                    && !this.clienteMA.tfTelefono.getText().isEmpty()
+                    && !this.clienteMA.tfDireccion.getText().isEmpty()){
             if (clienteSeleccionado == null) {
                 Alerta aler = new Alerta(menuAdministrador, true, "Seleccione un Registro", "/img/error.png");
                 aler.show();
@@ -1347,10 +1351,14 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     clienteSeleccionado.setDireccion(ClienteMA.tfDireccion.getText());
                     daoCliente.update(clienteSeleccionado);
                     vaciarVista();
-                    Alerta aler = new Alerta(menuAdministrador, true, "Modificado con exito", "/img/bueno.png");
+                    Alerta aler = new Alerta(menuAdministrador, true, "Modificado con exito","/img/Succes.png");
                     aler.show();
                     clienteSeleccionado = null;
                 }
+            }
+            }else{
+                    Alerta aler = new Alerta(menuAdministrador, true, "Campos incompletos o vacios", "/img/Succes.png");
+                    aler.show();
             }
         }
         mostrarDatos();
@@ -1443,7 +1451,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     if (daoProducto.delete(productoSeleccionado)) {
                         mostrarDatos();
                         vaciarVista();
-
                         Alerta aler = new Alerta(menuAdministrador, true, "Eliminado con exito", "/img/Succes.png");
                         aler.show();
                         productoSeleccionado = null;
