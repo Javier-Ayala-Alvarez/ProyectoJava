@@ -1425,6 +1425,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
         } else if (e.getActionCommand().equals("Modificar")
                 && padreActiva.equals("productoModi")) {
+            if(productoSeleccionado != null){
             int opccion = JOptionPane.showConfirmDialog(null, "Deseas Modificar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opccion == 0) {
                 double ganancia = 0;
@@ -1453,8 +1454,13 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     
                 }
             }
+            }else {
+                Alerta aler = new Alerta(menuAdministrador, true, "Seleccione un registro", "/img/error.png");
+                        aler.show();
+            }
         } else if (e.getActionCommand().equals("Eliminar")
                 && (padreActiva.equals("productoModi"))) {
+            if(productoSeleccionado != null){
             int opccion = JOptionPane.showConfirmDialog(null, "Deseas Eliminar?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (opccion == 0) {
                 double ganancia = 0;
@@ -1481,6 +1487,10 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     productoSeleccionado = null;
                     mostrarDatos();
                 }
+            }
+            }else {
+                Alerta aler = new Alerta(menuAdministrador, true, "Seleccione un registro", "/img/error.png");
+                        aler.show();
             }
 
         } else if (e.getActionCommand().equals("IncrePro")) {
