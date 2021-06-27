@@ -1029,18 +1029,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Producto> producto = daoProducto.selectAll();
             float precioUni = 0;
-            //float cal1 = 0;
-            //float cal2 = 0;
-            //float precioVenta1 = 0;
-            //float ganancia = 0;
             int i = 0;
             for (Producto x : producto) {
-                //this.registrosDeProductos.jtDatos.editCellAt(3, i);
-                //precioUni = (float) (x.getPrecioCompra() / x.getCantidad());
-                //cal1 = (float) (x.getPrecioCompra() * x.getIva());
-                //cal2 = (float) (x.getPrecioCompra() + cal1 + precioUni);
-                //precioVenta1 = (float) (cal2 / x.getCantidad());
-                //ganancia = (float) (precioVenta1 - precioUni);
                 
                 Object datos[] = {x.getCodigoProducto(), x.getNombreProducto(), x.getCantidad(), x.getMax(), x.getMin(),
                     x.getPrecioCompra(), precioUni, x.getPrecioVenta(), x.getGananciaUni(), x.getFechaVencimiento(),
@@ -1055,18 +1045,18 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         //************Fin productoModi*************//
         //**************Registro Producto****************//
         else if (padreActiva.equals("registrosDeProductos")) {
-            String titulos[] = {"Codigo", "Nombre", "Cantidad", "Precio Unitario", "Iva", "Ganacia", "Precio Compra", "Precio Venta", "fecha de Vencimiento", "Max", "Min", "Empresa", "Total"};
+            String titulos[] = {"Codigo", "Nombre", "Cantidad", "Iva", "Ganacia","Precio Compra Unitario", "Precio Compra Total", "Precio Venta", "fecha de Vencimiento", "Max", "Min", "Empresa", "Total"};
             modelo.setColumnIdentifiers(titulos);
             ArrayList<Producto> producto = daoProducto.selectAll();
-            float precioUni = 0;
+            float precioTotalCon = 0;
             float totalUni = 0;
             float total0 = 0;
             int i = 0;
             for (Producto x : producto) {
-                precioUni = (float) (x.getPrecioCompra() / x.getCantidad());
+                precioTotalCon = (float)(x.getPrecioCompra() * x.getCantidad());
                 totalUni = (float) (x.getPrecioVenta() * x.getCantidad());
-                Object datos[] = {x.getCodigoProducto(), x.getNombreProducto(), x.getCantidad(), precioUni, x.getIva(),
-                    x.getGananciaUni(), x.getPrecioCompra(), x.getPrecioVenta(), x.getFechaVencimiento(),
+                Object datos[] = {x.getCodigoProducto(), x.getNombreProducto(), x.getCantidad(), x.getIva(),
+                    x.getGananciaUni(), x.getPrecioCompra(), precioTotalCon,x.getPrecioVenta(), x.getFechaVencimiento(),
                     x.getMax(), x.getMin(), x.getEmpresa().getNombre(), totalUni};///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 total0 = total0 + totalUni;
                 modelo.addRow(datos);

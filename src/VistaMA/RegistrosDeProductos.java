@@ -81,7 +81,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         lbTotal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lbTotal.setForeground(new java.awt.Color(204, 0, 0));
         lbTotal.setText(".");
-        panelFondo.add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 520, 80, -1));
+        panelFondo.add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 520, 140, -1));
 
         jtDatos.setBackground(new java.awt.Color(218, 220, 222));
         jtDatos.setModel(new javax.swing.table.DefaultTableModel(
@@ -153,7 +153,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("TOTAL:");
-        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 520, -1, -1));
+        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 520, -1, -1));
 
         btnIncrePro.setBackground(new java.awt.Color(255, 255, 255));
         btnIncrePro.setBorder(null);
