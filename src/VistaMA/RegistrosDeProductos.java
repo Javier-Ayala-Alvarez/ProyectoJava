@@ -14,6 +14,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         this.setLocation(40, 80);
         x = "x";
         jpLogo1.setBorder(new Fondo(LogoE));
+        btnIncrePro.setActionCommand("IncrePro");
         
     }
     
@@ -23,6 +24,7 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
    public void setControlador(ControlMA control1) {
         tfBuscar.addKeyListener(control1);  
         jtDatos.addMouseListener(control1);
+        btnIncrePro.addActionListener(control1);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -39,6 +41,9 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         jLabel4 = new javax.swing.JLabel();
+        btnIncrePro = new rojeru_san.complementos.RSButtonHover();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -124,12 +129,12 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
                 tfBuscarKeyTyped(evt);
             }
         });
-        panelFondo.add(tfBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 290, 40));
+        panelFondo.add(tfBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 290, 40));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Buscar...");
-        panelFondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 80, 50));
+        jLabel6.setText("Incrementar Cantidad");
+        panelFondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 100, 220, 50));
 
         materialButtonCircle2.setBackground(new java.awt.Color(255, 0, 0));
         materialButtonCircle2.setText("X");
@@ -149,6 +154,28 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("TOTAL:");
         panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 520, -1, -1));
+
+        btnIncrePro.setBackground(new java.awt.Color(255, 255, 255));
+        btnIncrePro.setBorder(null);
+        btnIncrePro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Guardar.png"))); // NOI18N
+        btnIncrePro.setActionCommand("IncrePro");
+        btnIncrePro.setColorHover(new java.awt.Color(255, 255, 255));
+        btnIncrePro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncreProActionPerformed(evt);
+            }
+        });
+        panelFondo.add(btnIncrePro, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 100, 50, 40));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("Buscar...");
+        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 80, 50));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Buscar...");
+        panelFondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 80, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,6 +212,10 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
 
     }//GEN-LAST:event_materialButtonCircle2ActionPerformed
 
+    private void btnIncreProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncreProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIncreProActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -213,9 +244,12 @@ public class RegistrosDeProductos extends javax.swing.JDialog {
 //        //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public rojeru_san.complementos.RSButtonHover btnIncrePro;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jpLogo1;

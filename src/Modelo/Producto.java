@@ -9,7 +9,7 @@ public class Producto {
   private String codigoProducto;
   private String nombreProducto;
   private double precioCompra;
-  private double cantidad;
+  private int cantidad;
   private Date fechaVencimiento;
   private int max;
   private int min;
@@ -26,51 +26,8 @@ public class Producto {
     public Producto(int idProducto) {
         this.idProducto = idProducto;
     }
-    
 
-    public Producto(int idProducto, String nombreProducto, double precioCompra, double cantidad, int max, int min) {
-        this.idProducto = idProducto;
-        this.nombreProducto = nombreProducto;
-        this.precioCompra = precioCompra;
-        this.cantidad = cantidad;
-        this.max = max;
-        this.min = min;
-    }
-
-    public Producto(String nombreProducto, double precioCompra, double cantidad, int max, int min) {
-        this.nombreProducto = nombreProducto;
-        this.precioCompra = precioCompra;
-        this.cantidad = cantidad;
-        this.max = max;
-        this.min = min;
-    }
-
-    public Producto(String codigoProducto, String nombreProducto, double precioCompra, double cantidad, Date fechaVencimiento, double gananciaUni, double precioVenta) {
-        this.codigoProducto = codigoProducto;
-        this.nombreProducto = nombreProducto;
-        this.precioCompra = precioCompra;
-        this.cantidad = cantidad;
-        this.fechaVencimiento = fechaVencimiento;
-        this.gananciaUni = gananciaUni;
-        this.precioVenta = precioVenta;
-    }
-
-    public Producto(String codigoProducto, String nombreProducto, double precioCompra, double cantidad, Date fechaVencimiento, int max, int min, int estado, double gananciaUni, double iva, double precioVenta, Empresa empresa) {
-        this.codigoProducto = codigoProducto;
-        this.nombreProducto = nombreProducto;
-        this.precioCompra = precioCompra;
-        this.cantidad = cantidad;
-        this.fechaVencimiento = fechaVencimiento;
-        this.max = max;
-        this.min = min;
-        this.estado = estado;
-        this.gananciaUni = gananciaUni;
-        this.iva = iva;
-        this.precioVenta = precioVenta;
-        this.empresa = empresa;
-    }
-    
-    public Producto(String codigoProducto, String nombreProducto, double precioCompra, double cantidad, Date fechaVencimiento, String porcentaje, int max, int min, int estado, double gananciaUni, double iva, double precioVenta, Empresa empresa) {
+    public Producto(String codigoProducto, String nombreProducto, double precioCompra, int cantidad, Date fechaVencimiento, int max, int min, int estado, double gananciaUni, double iva, double precioVenta, Empresa empresa) {
         this.codigoProducto = codigoProducto;
         this.nombreProducto = nombreProducto;
         this.precioCompra = precioCompra;
@@ -86,13 +43,6 @@ public class Producto {
     }
     
 
-    public Producto(String text, String text0, String string) {
-         
-    }
-
-    public Producto(String text, String text0, double parseDouble, double parseDouble0, Date datoFecha, String text1, String text2, double parseDouble1, Empresa get) {
-        
-    }
 
     public int getIdProducto() {
         return idProducto;
@@ -126,11 +76,13 @@ public class Producto {
         this.precioCompra = precioCompra;
     }
 
-    public double getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(double cantidad) {
+
+
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 

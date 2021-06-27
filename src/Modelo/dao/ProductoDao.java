@@ -67,26 +67,28 @@ public class ProductoDao {
     
     
     public boolean updateCantidad(Producto obj) {
-        String sql = "update producto set codigoProducto =?, nombreProducto =?, precioCompra =?, cantidad =?, fechaVencimiento =?, max =?, min =?, estado =?, gananciaUni =?, iva =?, precioVenta =?, idEmpresa =? where idProducto=" + obj.getIdProducto();
+        String sql = "update producto set codigoProducto =?, nombreProducto =?, precioCompra =?, cantidad =? where idProducto=" + obj.getIdProducto();
         return alterarRegistroCantidad(sql, obj);
     }
     private boolean alterarRegistroCantidad(String sql, Producto obj) {
         try {
+            
+
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
             //ps.setInt(0, obj.getIdProducto());
             ps.setString(1, obj.getCodigoProducto());
             ps.setString(2, obj.getNombreProducto());
             ps.setDouble(3, obj.getPrecioCompra());
-            ps.setDouble(4, obj.getCantidad());
-            ps.setDate(5, new java.sql.Date(obj.getFechaVencimiento().getTime()));
-            ps.setInt(6, obj.getMax());
-            ps.setInt(7, obj.getMin());
-            ps.setInt(8, obj.getEstado());
-            ps.setDouble(9, obj.getGananciaUni());
-            ps.setDouble(10, obj.getIva());
-            ps.setDouble(11, obj.getPrecioVenta());
-            ps.setInt(12, obj.getEmpresa().getIdEmpresa());
+                ps.setDouble(4, obj.getCantidad());
+//            ps.setDate(5, new java.sql.Date(obj.getFechaVencimiento().getTime()));
+//            ps.setInt(6, obj.getMax());
+//            ps.setInt(7, obj.getMin());
+//            ps.setInt(8, obj.getEstado());
+//            ps.setDouble(9, obj.getGananciaUni());
+//            ps.setDouble(10, obj.getIva());
+//            ps.setDouble(11, obj.getPrecioVenta());
+//            ps.setInt(12, obj.getEmpresa().getIdEmpresa());
 
             ps.execute();
 
@@ -119,11 +121,11 @@ public class ProductoDao {
 
             while (rs.next()) {
                 obj = new Producto();
-                //obj.setIdProducto(rs.getInt("idProducto"));
+                obj.setIdProducto(rs.getInt("idProducto"));
                 obj.setCodigoProducto(rs.getString("codigoProducto"));
                 obj.setNombreProducto(rs.getString("nombreProducto"));
                 obj.setPrecioCompra(rs.getDouble("precioCompra"));
-                obj.setCantidad(rs.getDouble("cantidad"));
+                obj.setCantidad(rs.getInt("cantidad"));
                 obj.setFechaVencimiento(rs.getDate("fechaVencimiento"));
                 obj.setMax(rs.getInt("max"));
                 obj.setMin(rs.getInt("min"));
@@ -159,7 +161,7 @@ public class ProductoDao {
             ps.setString(1, obj.getCodigoProducto());
             ps.setString(2, obj.getNombreProducto());
             ps.setDouble(3, obj.getPrecioCompra());
-            ps.setDouble(4, obj.getCantidad());
+            ps.setInt(4, obj.getCantidad());
             ps.setDate(5, new java.sql.Date(obj.getFechaVencimiento().getTime()));
             ps.setInt(6, obj.getMax());
             ps.setInt(7, obj.getMin());

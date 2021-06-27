@@ -141,6 +141,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
     
     
     RegistrosDeProductos registrosDeProductos;
+    Producto productoSeleccionadoAun = null;
     InicioCajaDao daoCaja = new InicioCajaDao();
     
 
@@ -239,7 +240,8 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 || (e.getActionCommand().equals("Modificar"))
                 || (e.getActionCommand().equals("Generar"))
                 || (e.getActionCommand().equals("Categoria"))
-                || (e.getActionCommand().equals("Detalle"))){
+                || (e.getActionCommand().equals("Detalle"))
+                || (e.getActionCommand().equals("IncrePro"))){
             accionDeBotones(e);
         }
         /*Fin de Sub-botones de los Menús*/
@@ -929,7 +931,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
         float totalUni1 = 0;
         ArrayList<Producto> producto1 = daoProducto.selectAll();
         for (Producto x : producto1) {
-            totalUni1 = (float) (x.getPrecioVenta() * x.getCantidad());
+            totalUni1 = (float) (x.getPrecioVenta()) * x.getCantidad();
             totalV = (float) (totalV + totalUni1);
         }
         this.menuAdministrador.lbProducto1.setText("$" + String.format("%.2f", totalV));
@@ -1061,7 +1063,6 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             float total0 = 0;
             int i = 0;
             for (Producto x : producto) {
-                this.registrosDeProductos.jtDatos.editCellAt(3, i);
                 precioUni = (float) (x.getPrecioCompra() / x.getCantidad());
                 totalUni = (float) (x.getPrecioVenta() * x.getCantidad());
                 Object datos[] = {x.getCodigoProducto(), x.getNombreProducto(), x.getCantidad(), precioUni, x.getIva(),
@@ -1423,13 +1424,13 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
             if (opccion == 0) {
                 double ganancia = 0;
                 double precioUnitario = 0;
-                precioUnitario = (Double.parseDouble(productoModi.tfPrecioCompra.getText()) / Double.parseDouble(productoModi.tfCantidad.getText()));
+                precioUnitario = (Double.parseDouble(productoModi.tfPrecioCompra.getText()) / Integer.parseInt(productoModi.tfCantidad.getText()));
                 ganancia = precioUnitario - Double.parseDouble(productoModi.tfPrecioVenta.getText());
                 
                 productoSeleccionado.setCodigoProducto(productoModi.tfCodigo.getText());
                 productoSeleccionado.setNombreProducto(productoModi.tfNombre.getText());
                 productoSeleccionado.setPrecioCompra(Double.parseDouble(productoModi.tfPrecioCompra.getText()));
-                productoSeleccionado.setCantidad(Double.parseDouble(productoModi.tfCantidad.getText()));
+                productoSeleccionado.setCantidad(Integer.parseInt(productoModi.tfCantidad.getText()));
                 productoSeleccionado.setFechaVencimiento(productoModi.dVence.getDatoFecha());
                 productoSeleccionado.setMax(Integer.parseInt(productoModi.tfMaximo.getText()));
                 productoSeleccionado.setMin(Integer.parseInt(productoModi.tfMinimo.getText()));
@@ -1438,10 +1439,12 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 productoSeleccionado.setIva(0.13);
                 productoSeleccionado.setPrecioVenta(Double.parseDouble(productoModi.tfPrecioVenta.getText()));
                 productoSeleccionado.getEmpresa().getIdEmpresa();
-                daoProducto.updateProducto(productoSeleccionado);
+                if(daoProducto.updateProducto(productoSeleccionado)){
                 vaciarVista();
                 Alerta aler = new Alerta(menuAdministrador, true, "Modificado con exito", "/img/Succes.png");
                 aler.show();
+                 mostrarDatos();
+                }
             }
         }else if (e.getActionCommand().equals("Eliminar")
                 && (padreActiva.equals("productoModi"))) {
@@ -1463,9 +1466,25 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                 }
             }
 
-        } 
-        mostrarDatos();
-        productoSeleccionado = null;
+        }else if(e.getActionCommand().equals("IncrePro")){
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         String incremento = JOptionPane.showInputDialog("Cantidad Entrante");
+            int opccion = JOptionPane.showConfirmDialog(null, "Deseas Agregar?","",  JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(opccion == 0){
+            int can =  productoSeleccionadoAun.getCantidad();
+             productoSeleccionadoAun.getCodigoProducto();
+             productoSeleccionadoAun.getNombreProducto();
+             productoSeleccionadoAun.getPrecioCompra();
+                 productoSeleccionadoAun.setCantidad(Integer.parseInt(incremento)+ can);
+                 
+                 if(daoProducto.updateCantidad(productoSeleccionadoAun)){
+                   Alerta aler = new Alerta(menuAdministrador, true, "Aunmento con exito", "/img/Succes.png");
+                        aler.show(); 
+                         productoSeleccionadoAun = null;
+                         mostrarDatos();
+                 }
+            }
+        }
         //*****************Fin produtoModi****************//       
 
         ////////////////////////////////////para Empleado////////////////////////////////////
@@ -2131,6 +2150,12 @@ public void filtrarReporte(ArrayList lista){
             String id = registrosDeVenta.jtDatos.getValueAt(fila, 0).toString();
             ArrayList<Venta> lista = daoVenta.selectAllTo("nFactura", id);
             ventaSeleccionada = lista.get(0);
+            
+        }else if (padreActiva.equals("registrosDeProductos")) {
+            int fila = this.registrosDeProductos.jtDatos.getSelectedRow();
+            String id = registrosDeProductos.jtDatos.getValueAt(fila, 0).toString();
+            ArrayList<Producto> lista = daoProducto.selectAllTo("codigoProducto", id);
+            productoSeleccionadoAun = lista.get(0);
             
         }
 
