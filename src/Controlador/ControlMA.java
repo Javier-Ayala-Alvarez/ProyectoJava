@@ -1389,8 +1389,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
                     precioUnitario = (Double.parseDouble(productoModi.tfPrecioCompra.getText()) / Integer.parseInt(productoModi.tfCantidad.getText()));
                     ganancia = Double.parseDouble(productoModi.tfPrecioVenta.getText())- precioUnitario;
 
-                    Producto productoo = new Producto(productoModi.tfCodigo.getText(), productoModi.tfNombre.getText(),
-                            Double.parseDouble(productoModi.tfPrecioCompra.getText()),
+                    Producto productoo = new Producto(productoModi.tfCodigo.getText(), productoModi.tfNombre.getText(),precioUnitario,
                              Integer.parseInt(productoModi.tfCantidad.getText()), productoModi.dVence.getDatoFecha(),
                             Integer.parseInt(productoModi.tfMaximo.getText()), Integer.parseInt(productoModi.tfMinimo.getText()),
                             1, ganancia, 0.13, Double.parseDouble(productoModi.tfPrecioVenta.getText()), empresa.get(0));
@@ -1435,7 +1434,7 @@ public class ControlMA extends MouseAdapter implements ActionListener, KeyListen
 
                 productoSeleccionado.setCodigoProducto(productoModi.tfCodigo.getText());
                 productoSeleccionado.setNombreProducto(productoModi.tfNombre.getText());
-                productoSeleccionado.setPrecioCompra(Double.parseDouble(productoModi.tfPrecioCompra.getText()));
+                productoSeleccionado.setPrecioCompra(precioUnitario);
                 productoSeleccionado.setCantidad(Integer.parseInt(productoModi.tfCantidad.getText()));
                 productoSeleccionado.setFechaVencimiento(productoModi.dVence.getDatoFecha());
                 productoSeleccionado.setMax(Integer.parseInt(productoModi.tfMaximo.getText()));

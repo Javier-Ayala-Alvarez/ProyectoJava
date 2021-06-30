@@ -156,7 +156,7 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
 
     @Override
     public void keyPressed(KeyEvent e) {
-       
+
     }
 
     @Override
@@ -184,9 +184,12 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
         } else if (vista.equals("AccesoIC")) {
             this.crearRegistroCajaVista();
 
-        }  else if (vista.equals("facturacion")) {
+        } else if (vista.equals("facturacion")) {
             this.facturacion = new Facturacion(factura, true);
             this.facturacion.setControl(this);
+            modeloTabla = new DefaultTableModel();
+            String titule[] = {"Codigo", "Producto", "Cantidad", "Precio/U", "Total"};
+            this.modeloTabla.setColumnIdentifiers(titule);
             this.llenarCombo();
             this.facturacion.tfNFactura.setText(crearCodigo("FACT", "facturacion"));
             this.facturacion.tfTotalPagar.setEditable(false);
@@ -197,7 +200,6 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
             this.listaRegistro = this.daoRegistros.selectAll();
             this.facturacion.lbTRegistroInicial.setText(String.valueOf(this.listaRegistro.size()));
             this.facturacion.btnCerrarFd.setEnabled(true);
-
             this.facturacion.iniciar();
 
         } else if (vista.equals("Precargar")) {
@@ -217,6 +219,9 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
             if (y != -1 && objetoExistente.length() > 0 && z != -1) {///primera linea que modifique
                 this.regenerarProductos(y);
                 this.eliminarRegistros(y);
+                modeloTabla = new DefaultTableModel();
+                String titule[] = {"Codigo", "Producto", "Cantidad", "Precio/U", "Total"};
+                this.modeloTabla.setColumnIdentifiers(titule);
             } else {
                 JOptionPane.showMessageDialog(null, "No ha seleccionado que eliminar ");
             }
@@ -239,8 +244,10 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
             this.venta.setEmpresa(this.listaVenta.get(size - 1).getEmpresa());
             if (this.daoVenta.updateVenta(this.venta)) {
                 JOptionPane.showMessageDialog(null, "VENDIDO");
+                modeloTabla = new DefaultTableModel();
+                String titule[] = {"Codigo", "Producto", "Cantidad", "Precio/U", "Total"};
+                this.modeloTabla.setColumnIdentifiers(titule);
                 this.limpiarDatos();
-                this.facturacion.miTb1.removeAll();
                 this.facturacion.tfNFactura.setText(crearCodigo("FACT", "facturacion"));
                 this.facturacion.dispose();
                 this.llamarVFactura("facturacion");
@@ -347,7 +354,7 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
     }
 
     public void completarInfoTabla(DefaultTableModel modelTabla) {//Envía los datos de los TF y CBX a la tabla
-      
+
         this.modeloTabla = modelTabla;
         if (!this.facturacion.tfCantidad.getText().isEmpty()
                 && !this.facturacion.tfPrecioUni.getText().isEmpty()
@@ -758,7 +765,5 @@ public class ControlFactura extends MouseAdapter implements ActionListener, KeyL
             }
         }
     }
-
-
 
 }

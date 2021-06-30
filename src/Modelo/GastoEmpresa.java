@@ -4,7 +4,7 @@ package Modelo;
 import Modelo.dao.EmpleadoDao;
 import Modelo.dao.EmpresaDao;
 import java.util.Date;
-
+//Asociacion, Agregacion y herencia
 /**
  * 
  * @author Sammy Guergachi <sguergachi at gmail.com>
@@ -15,7 +15,7 @@ public class GastoEmpresa {
     private Date fecha;
     private String categoria;
     private double saldo;
-    private Empresa empresa;
+    private Empresa empresa; //Asociacion 
     private Empleados empleado;
 
     public GastoEmpresa(int idGasto, Date fecha, String categoria, double saldo) {
@@ -70,10 +70,6 @@ public class GastoEmpresa {
     public void setEmpleado(Empleados empleado) {
         this.empleado = empleado;
     }
-
-    
-
-
 
     public String getCodigoGastos() {
         return codigoGastos;

@@ -25,7 +25,7 @@ private BufferedImage cargarImagen;
      try {
          URL ruta= new URL(getClass().getResource(r).toString());
        cargarImagen=ImageIO.read(ruta);
-     } catch (IOException ex) {         
+     } catch (Exception ex) {         
      }        
     }
     

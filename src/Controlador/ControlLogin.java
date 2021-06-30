@@ -108,9 +108,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         try{
         if (vista.equals("login")) {
             login.setControlador(this);
-            
             login.iniciar();
-
         } else if (vista.equals("admin")) {
             String p = login.tfUser.getText();
                 ArrayList<Usuario> listaUsuario = new ArrayList();
@@ -176,9 +174,7 @@ public class ControlLogin extends MouseAdapter implements ActionListener, KeyLis
         }catch (Exception ex){
             ArrayList<Empleados> emple = daoEmpleado.selectAllUsu();
              if (login.pfPass.getText().equals("12345") && (login.tfUser.getText().equals("Admin")) && emple.isEmpty()) {
-
                 int opccion = JOptionPane.showConfirmDialog(null, "Deseas ingresar a Administracion?", "Welcome", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-
                 if (opccion == 0) {
                     login.dispose();
                     g = "Admin";
